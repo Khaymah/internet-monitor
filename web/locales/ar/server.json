@@ -79,7 +79,8 @@
       "coverage": "اتراقب",
       "speed": "التحميل المعتاد",
       "speed_plan": "{speed} ({pct} من الباقة)"
-    }
+    },
+    "bufferbloat": "اللاج وقت الضغط"
   },
   "tray": {
     "starting": "جاري التشغيل…",

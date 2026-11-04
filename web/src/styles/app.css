@@ -3817,3 +3817,34 @@ button.timeline-seg:focus-visible {
   outline: 2px solid var(--accent-blue);
   outline-offset: -2px;
 }
+
+.bufferbloat {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bb-grade {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 14%, transparent);
+  border: 2px solid color-mix(in srgb, var(--tone) 55%, transparent);
+}
+
+.grade-chip {
+  display: inline-block;
+  min-width: 2.2em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  text-align: center;
+  font-weight: 600;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 14%, transparent);
+}

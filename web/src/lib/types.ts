@@ -92,6 +92,10 @@ export interface SpeedTestResult {
   duration_seconds: number;
   parallel_connections: number;
   triggered_by: "user" | "schedule";
+  idle_latency_ms?: number;
+  loaded_latency_down_ms?: number;
+  loaded_latency_up_ms?: number;
+  bufferbloat?: string;
 }
 
 export interface SpeedProgress {

@@ -27,5 +27,15 @@
   "speed_err_failed": "The test couldn't finish. Check your connection and try again.",
   "speed_err_no_result": "The test ended without a result.",
   "speed_err_running": "A test is already running.",
-  "speed_source": "Source"
+  "speed_source": "Source",
+  "bb_title": "Lag under load: {grade}",
+  "bb_good": "Calls, games and video stay smooth even while something is downloading.",
+  "bb_ok": "A little extra lag while the line is busy. Most calls and games are fine.",
+  "bb_bad": "Noticeable lag while the line is busy: video calls may stutter and games may lag when someone downloads or uploads.",
+  "bb_worse": "Heavy lag while the line is busy. This is usually the router's queue (bufferbloat). Turning on SQM or QoS on the router, or asking the provider, usually fixes it.",
+  "bb_idle": "Idle {ms}",
+  "bb_down": "while downloading {ms}",
+  "bb_up": "while uploading {ms}",
+  "bb_added": "added {ms}",
+  "bb_col": "Lag under load"
 }

@@ -159,6 +159,10 @@ type SpeedTestEvent struct {
 	Endpoints       []string  `json:"endpoints"`
 	ParallelConns   int       `json:"parallel_connections"`
 	TriggeredBy     string    `json:"triggered_by"`
+	IdleLatencyMs   int64     `json:"idle_latency_ms,omitempty"`
+	LoadedDownMs    int64     `json:"loaded_latency_down_ms,omitempty"`
+	LoadedUpMs      int64     `json:"loaded_latency_up_ms,omitempty"`
+	Bufferbloat     string    `json:"bufferbloat,omitempty"`
 }
 
 func (l *Logger) LogSpeedTest(event SpeedTestEvent) {

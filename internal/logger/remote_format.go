@@ -110,6 +110,10 @@ func speedLines(lang string, ev SpeedTestEvent, thresholdMbps float64, below boo
 	if ev.DurationSeconds > 0 {
 		lines = append(lines, remoteLine{"⏱️ " + i18n.T(lang, "remote.duration", nil), fmt.Sprintf("%.1f s", ev.DurationSeconds)})
 	}
+	if ev.Bufferbloat != "" {
+		lines = append(lines, remoteLine{"🎮 " + i18n.T(lang, "remote.bufferbloat", nil),
+			fmt.Sprintf("%s (+%d ms)", ev.Bufferbloat, max(ev.LoadedDownMs, ev.LoadedUpMs)-ev.IdleLatencyMs)})
+	}
 	if below && thresholdMbps > 0 {
 		lines = append(lines, remoteLine{"⚠️ " + i18n.T(lang, "remote.threshold", nil), fmt.Sprintf("%.1f Mbps", thresholdMbps)})
 	}
