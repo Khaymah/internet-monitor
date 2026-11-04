@@ -12,6 +12,7 @@ the curated, human-readable summary.
 
 Target: **2.0.4**. Ships as GitHub prereleases `v2.0.4-rc.N` (not offered by the
 in-app updater, which only follows the latest stable release) until the version is final.
+What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
 - **Complaints page** (`/complaints`): your provider, plan speed and line number,
