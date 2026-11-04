@@ -23,7 +23,7 @@
       "p1": "The app only connects to the places below. Each of them sees your IP address, as with any internet connection, and its own privacy policy applies.",
       "li1": "Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router.",
       "li2": "Speed tests go to speed.cloudflare.com by default, and only when you start one or schedule them. The test data contains nothing that identifies your device.",
-      "li3": "Update checks go to GitHub (api.github.com) every 6 hours, or when you press “Check for updates”. Installing an update downloads it from GitHub.",
+      "li3": "Update checks go to GitHub (api.github.com) every 6 hours (you can turn this off in Settings), or when you press “Check for updates”. Installing an update downloads it from GitHub.",
       "li4": "Alerts go to Discord, Slack or Telegram only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address."
     },
     "dashboard": {

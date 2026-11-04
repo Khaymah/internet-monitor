@@ -11,6 +11,7 @@ export interface Draft {
   packet_loss_threshold: string;
   latency_threshold_ms: string;
   use_icmp: boolean;
+  auto_update_check: boolean;
   ping_targets: string[];
   http_targets: string[];
   dns_targets: string[];
@@ -75,6 +76,7 @@ export function draftFrom(c: ConfigView): Draft {
     packet_loss_threshold: String(c.packet_loss_threshold),
     latency_threshold_ms: String(c.latency_threshold_ms),
     use_icmp: c.use_icmp,
+    auto_update_check: c.auto_update_check ?? true,
     ping_targets: [...(c.ping_targets ?? [])],
     http_targets: [...(c.http_targets ?? [])],
     dns_targets: [...(c.dns_targets ?? [])],
@@ -287,6 +289,7 @@ export function buildChanges(d: Draft, base: ConfigView): Record<string, unknown
   num(d.latency_threshold_ms, base.latency_threshold_ms, "latency_threshold_ms");
   num(d.dashboard_port, base.dashboard_port, "dashboard_port");
   if (d.use_icmp !== base.use_icmp) out.use_icmp = d.use_icmp;
+  if (d.auto_update_check !== (base.auto_update_check ?? true)) out.auto_update_check = d.auto_update_check;
   if (!sameList(d.ping_targets, base.ping_targets)) out.ping_targets = clean(d.ping_targets);
   if (!sameList(d.http_targets, base.http_targets)) out.http_targets = clean(d.http_targets);
   if (!sameList(d.dns_targets, base.dns_targets)) out.dns_targets = clean(d.dns_targets);
@@ -347,7 +350,7 @@ const SECTION_FIELDS: Record<string, FieldKey[]> = {
     "speed_download_targets",
     "speed_upload_target",
   ],
-  app: ["dashboard_port", "log_dir"],
+  app: ["dashboard_port", "log_dir", "auto_update_check"],
 };
 
 export function sectionOfField(field: FieldKey): string {

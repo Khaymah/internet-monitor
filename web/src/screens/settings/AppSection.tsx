@@ -128,6 +128,20 @@ export function AppSection({ draft, set, err }: SectionProps) {
           ltr
         />
         <hr className="divider full" />
+        <div className="switch-row full">
+          <div className="field">
+            <span className="field-label">{t("f_auto_update")}</span>
+            <span className="field-hint" id="auto-update-hint">
+              {t("f_auto_update_hint")}
+            </span>
+          </div>
+          <Switch
+            checked={draft.auto_update_check}
+            onChange={(v) => set("auto_update_check", v)}
+            label={t("f_auto_update")}
+            describedBy="auto-update-hint"
+          />
+        </div>
         <UpdatesRow />
       </div>
     </Card>

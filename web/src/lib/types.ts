@@ -178,6 +178,7 @@ export interface Config {
   telegram_chat_id: string;
   dashboard_port: number;
   use_icmp: boolean;
+  auto_update_check: boolean;
   language: string;
   speed_test: SpeedTestConfig;
   notifications: NotificationSettings;

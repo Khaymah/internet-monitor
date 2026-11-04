@@ -56,6 +56,17 @@ func TestParseDoesNotMutateDefaults(t *testing.T) {
 	}
 }
 
+func TestParseAutoUpdateCheck(t *testing.T) {
+	c, err := Parse([]byte(`{"check_interval_sec": 10}`))
+	if err != nil || !c.AutoUpdateCheck {
+		t.Errorf("missing field should default to true: %v err=%v", c.AutoUpdateCheck, err)
+	}
+	c, err = Parse([]byte(`{"auto_update_check": false}`))
+	if err != nil || c.AutoUpdateCheck {
+		t.Errorf("explicit false was not kept: %v err=%v", c.AutoUpdateCheck, err)
+	}
+}
+
 func TestParseLegacySingleTargets(t *testing.T) {
 	cfg, err := Parse([]byte(`{"http_target":"https://legacy.test","dns_target":"legacy.test","http_targets":[],"dns_targets":[]}`))
 	if err != nil {

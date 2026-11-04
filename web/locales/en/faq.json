@@ -110,7 +110,7 @@
     },
     "updates": {
       "q": "How do updates work?",
-      "a": "The app checks GitHub for a new version every 6 hours, or right away when you press “Check for updates”. Before installing, it checks the download against the release's checksums. Test (pre-release) versions are never offered automatically."
+      "a": "The app checks GitHub for a new version every 6 hours, or right away when you press “Check for updates”. You can turn the automatic check off in [Settings → App](settings#app). Before installing, it checks the download against the release's checksums. Test (pre-release) versions are never offered automatically."
     },
     "bug": {
       "q": "I found a bug. Where do I report it?",

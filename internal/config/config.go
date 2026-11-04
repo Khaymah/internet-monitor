@@ -32,6 +32,7 @@ type Config struct {
 	TelegramChatID      string          `json:"telegram_chat_id"`
 	DashboardPort       int             `json:"dashboard_port"`
 	UseICMP             bool            `json:"use_icmp"`
+	AutoUpdateCheck     bool            `json:"auto_update_check"`
 	Language            string          `json:"language"`
 	SpeedTest           SpeedTestConfig `json:"speed_test"`
 	Notifications       Notifications   `json:"notifications"`
@@ -56,6 +57,7 @@ func Default() Config {
 		LogDir:              "logs",
 		DashboardPort:       8765,
 		Language:            "en",
+		AutoUpdateCheck:     true,
 		SpeedTest: SpeedTestConfig{
 			DownloadTargets:     []string{"https://speed.cloudflare.com/__down"},
 			ParallelConnections: 4,

@@ -25,6 +25,7 @@ const base: ConfigView = {
   telegram_chat_id: "",
   dashboard_port: 8765,
   use_icmp: false,
+  auto_update_check: true,
   language: "en",
   speed_test: {
     download_targets: ["https://speed.cloudflare.com/__down"],

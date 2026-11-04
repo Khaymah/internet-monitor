@@ -88,6 +88,8 @@
   "f_port_hint": "1–65535. Needs a restart.",
   "f_logdir": "Log folder",
   "f_logdir_hint": "A folder inside the app folder.",
+  "f_auto_update": "Check for updates automatically",
+  "f_auto_update_hint": "Asks GitHub for a new version every 6 hours. Turn off to stop it; the button below still works.",
   "updates": "Updates",
   "version_current": "Version {v}",
   "update_check": "Check for updates",

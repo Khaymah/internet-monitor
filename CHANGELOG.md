@@ -10,6 +10,12 @@ the curated, human-readable summary.
 
 ## [Unreleased]
 
+### Added
+- `auto_update_check` setting (Settings → App, "Check for updates automatically")
+  to turn off the background update check. The manual button keeps working.
+- README section listing every server the app contacts, how often, and the
+  setting that changes or disables it.
+
 ## [2.0.0] - 2026-10-24
 
 The v2 rebuild.

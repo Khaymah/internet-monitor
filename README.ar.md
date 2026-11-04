@@ -251,6 +251,7 @@ Linux         →  ubuntu-22.04 (WebKitGTK 4.0؛ Tray وGUI)
   "telegram_chat_id": "",
   "dashboard_port": 8765,
   "use_icmp": false,
+  "auto_update_check": true,
   "language": "en",
   "speed_test": {
     "download_targets": ["https://speed.cloudflare.com/__down"],
@@ -275,12 +276,35 @@ Linux         →  ubuntu-22.04 (WebKitGTK 4.0؛ Tray وGUI)
 | `telegram_bot_token`, `telegram_chat_id` | تنبيهات Telegram. تعرض اللوحة الرمز المحفوظ كـ "محفوظ — مخفي" ولا يعود إليها أبداً |
 | `dashboard_port` | منفذ اللوحة المحلية (1–65535، افتراضي 8765) |
 | `use_icmp` | فحص الراوتر أيضاً بـ ICMP لتشخيص الشبكة المحلية مقابل المزوّد |
+| `auto_update_check` | البحث عن إصدار جديد على GitHub كل 6 ساعات (افتراضي `true`). زر "دوّر على تحديثات" يعمل في الحالتين |
 | `language` | `en` أو `ar` |
 | `speed_test.parallel_connections` | اتصالات متوازية في اختبار التنزيل (1–16، افتراضي 4) |
 | `speed_test.timeout_seconds` | مدة اختبار التنزيل بالثواني (5–120، افتراضي 30) |
 | `speed_test.upload_target` | نقطة POST لاختبار الرفع (افتراضي Cloudflare `__up`؛ فارغ = تعطيل الرفع) |
 | `speed_test.schedule_minutes` | تشغيل قياس سرعة تلقائي كل N دقيقة (0 = معطّل) |
 | `speed_test.alert_threshold_mbps` | أرسل Webhook إذا انخفضت السرعة عن هذا الحد (0 = معطّل) |
+
+### 🌍 ما السيرفرات التي يتصل بها التطبيق؟
+
+هذه كل الاتصالات التي يجريها التطبيق، وكل واحد منها يمكن تغييره أو إيقافه.
+لا يوجد تتبّع ولا تحليلات ولا حساب.
+
+| ماذا | السيرفر الافتراضي | كم مرة | كيف تغيّره |
+| ---- | ----------------- | ------ | ---------- |
+| فحص TCP | `8.8.8.8:53`، `1.1.1.1:53` | كل `check_interval_sec` (5 ثوانٍ) | `ping_targets` |
+| فحص الويب | `connectivitycheck.gstatic.com/generate_204` | كل `check_interval_sec` | `http_targets` |
+| البحث عن الأسماء | `www.google.com`، `www.cloudflare.com` (عبر DNS النظام) | كل `check_interval_sec` | `dns_targets` |
+| Ping بـ ICMP | الراوتر، وعناوين `ping_targets` (قبل TCP) | كل `check_interval_sec` | `use_icmp` (معطّل افتراضياً) |
+| قياس السرعة | `speed.cloudflare.com` | عند تشغيله يدوياً، أو كل `schedule_minutes` | `speed_test.*` (الجدولة معطّلة افتراضياً) |
+| فحص التحديثات | `api.github.com` | بعد 30 ثانية من التشغيل، ثم كل 6 ساعات | `auto_update_check` |
+| التنبيهات | Discord أو Slack أو Telegram | عند الأحداث فقط، وفقط إذا فعّلتها | `webhook_url`، `telegram_*` |
+
+يمكن ترك أي قائمة فارغة لتخطّي هذا النوع من الفحص، بشرط أن تبقى قائمة واحدة على الأقل فيها هدف.
+وزيادة `check_interval_sec` تقلّل الحركة بنفس النسبة.
+
+> **عن نطاقات الشهادات في تقارير الـ sandbox:** عندما يجري التطبيق طلب HTTPS، يتحقق نظام التشغيل
+> نفسه من شهادة السيرفر وقد يتصل بسيرفرات الإلغاء مثل `ocsp.digicert.com` أو `ocsp.pki.goog`
+> أو `ctldl.windowsupdate.com`. هذه الاتصالات تأتي من Windows لا من كود التطبيق، وتظهر مع أي برنامج يستخدم HTTPS.
 
 ---
 

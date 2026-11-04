@@ -251,6 +251,7 @@ Edit it directly or use the **Settings tab** in the dashboard.
   "telegram_chat_id": "",
   "dashboard_port": 8765,
   "use_icmp": false,
+  "auto_update_check": true,
   "language": "en",
   "speed_test": {
     "download_targets": ["https://speed.cloudflare.com/__down"],
@@ -275,12 +276,36 @@ Edit it directly or use the **Settings tab** in the dashboard.
 | `telegram_bot_token`, `telegram_chat_id` | Telegram alerts. The dashboard shows a saved token as "Saved — hidden" and never receives it back |
 | `dashboard_port` | Local dashboard port (1–65535, default 8765) |
 | `use_icmp` | Also ping the router (ICMP) for LAN-vs-ISP diagnosis |
+| `auto_update_check` | Check GitHub for a new version every 6 hours (default `true`). The "Check for updates" button works either way |
 | `language` | `en` or `ar` |
 | `speed_test.parallel_connections` | Parallel HTTP connections for download test (1–16, default 4) |
 | `speed_test.timeout_seconds` | Download test duration in seconds (5–120, default 30) |
 | `speed_test.upload_target` | POST endpoint for the upload test (default Cloudflare `__up`; empty disables upload) |
 | `speed_test.schedule_minutes` | Run an automatic speed test every N minutes (0 = disabled) |
 | `speed_test.alert_threshold_mbps` | Send webhook if speed drops below this value (0 = disabled) |
+
+### 🌍 Which servers does it contact?
+
+Every connection the app makes is listed below, and each one can be changed or turned off.
+There is no telemetry, analytics or account.
+
+| What | Default server | How often | How to change it |
+| ---- | -------------- | --------- | ---------------- |
+| TCP check | `8.8.8.8:53`, `1.1.1.1:53` | Every `check_interval_sec` (5 s) | `ping_targets` |
+| Web check | `connectivitycheck.gstatic.com/generate_204` | Every `check_interval_sec` | `http_targets` |
+| Name lookup | `www.google.com`, `www.cloudflare.com` (through your system DNS) | Every `check_interval_sec` | `dns_targets` |
+| ICMP ping | Your router, plus the `ping_targets` hosts (tried before TCP) | Every `check_interval_sec` | `use_icmp` (off by default) |
+| Speed test | `speed.cloudflare.com` | Only when you run it, or every `schedule_minutes` | `speed_test.*` (schedule off by default) |
+| Update check | `api.github.com` | 30 s after start, then every 6 hours | `auto_update_check` |
+| Alerts | Discord, Slack or Telegram | Only on events, only if you set them up | `webhook_url`, `telegram_*` |
+
+A list can be left empty to skip that kind of check, as long as at least one list still has a target.
+Raising `check_interval_sec` lowers the traffic proportionally.
+
+> **About certificate domains in sandbox reports:** when the app makes an HTTPS request,
+> the operating system itself checks the server's certificate and may contact revocation
+> servers such as `ocsp.digicert.com`, `ocsp.pki.goog` or `ctldl.windowsupdate.com`.
+> Those lookups come from Windows, not from the app's code, and show up for any program that uses HTTPS.
 
 ---
 

@@ -152,9 +152,13 @@ func (a *App) updateLoop() {
 		return
 	}
 	for {
-		if info, err := updater.Check(a.Version); err == nil && info.HasUpdate {
-			a.Log.AppLog("UPDATE available: %s (current: %s)", info.LatestVersion, info.CurrentVersion)
-			a.Server.SetUpdateInfo(info)
+		// Turning auto_update_check off only stops these background checks;
+		// "Check for updates" in Settings keeps working.
+		if a.Store.Get().AutoUpdateCheck {
+			if info, err := updater.Check(a.Version); err == nil && info.HasUpdate {
+				a.Log.AppLog("UPDATE available: %s (current: %s)", info.LatestVersion, info.CurrentVersion)
+				a.Server.SetUpdateInfo(info)
+			}
 		}
 		select {
 		case <-time.After(6 * time.Hour):
