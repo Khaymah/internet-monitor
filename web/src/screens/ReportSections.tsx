@@ -4,7 +4,7 @@ import { formatDate, formatDuration, formatNumber, formatPct } from "../lib/form
 import { type MessageKey, useI18n } from "../lib/i18n";
 import type { MonthlyReport } from "../lib/types";
 import { availabilityTone } from "../styles/categories";
-import { channelLabel, STATUS_LABEL, STATUS_TONE } from "./Complaints";
+import { channelLabel, STATUS_LABEL, STATUS_TONE } from "./complaints/shared";
 
 export function formatMbps(lang: string, v: number): string {
   return `\u2066${formatNumber(lang, v, v < 10 ? 1 : 0)} Mbps\u2069`;

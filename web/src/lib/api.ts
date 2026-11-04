@@ -8,9 +8,11 @@ import type {
   LogEvent,
   MonthlyReport,
   NotificationList,
+  RangeEvidence,
   SpeedTestEvent,
   StartupState,
   TestTargetsResponse,
+  Timeline,
   UpdateInfo,
 } from "./types";
 
@@ -102,6 +104,12 @@ function revisionOf(res: Response, fallback = 0): number {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
+async function evidenceZip(query: string): Promise<Blob> {
+  const res = await fetch(`/api/evidence?${query}`, { credentials: "same-origin", cache: "no-store" });
+  if (!res.ok) throw new ApiError(res.status, await parseBody(res));
+  return res.blob();
+}
+
 export const api = {
   async config(): Promise<LoadedConfig> {
     const { data, res } = await request<ConfigView>("/api/config");
@@ -127,14 +135,19 @@ export const api = {
   saveComplaint: (complaint: Partial<Complaint>) => post<Complaint>("/api/case/complaints", complaint),
   deleteComplaint: (id: string) =>
     request<{ ok: boolean }>(`/api/case/complaints/${encodeURIComponent(id)}`, { method: "DELETE" }),
-  async evidence(month: string): Promise<Blob> {
-    const res = await fetch(`/api/evidence?month=${encodeURIComponent(month)}`, {
-      credentials: "same-origin",
-      cache: "no-store",
-    });
-    if (!res.ok) throw new ApiError(res.status, await parseBody(res));
-    return res.blob();
+  caseEvidence: (from: string, to?: string, signal?: AbortSignal) =>
+    get<RangeEvidence>(
+      `/api/case/evidence?from=${encodeURIComponent(from)}${to ? `&to=${encodeURIComponent(to)}` : ""}`,
+      signal,
+    ),
+  evidence(month: string): Promise<Blob> {
+    return evidenceZip(`month=${encodeURIComponent(month)}`);
   },
+  evidenceRange(from: string, to?: string): Promise<Blob> {
+    return evidenceZip(`from=${encodeURIComponent(from)}${to ? `&to=${encodeURIComponent(to)}` : ""}`);
+  },
+  sendWeekly: () => post<{ ok: boolean }>("/api/weekly/send"),
+  timeline: (hours: number, signal?: AbortSignal) => get<Timeline>(`/api/timeline?hours=${hours}`, signal),
   speedHistory: (date: string, signal?: AbortSignal) =>
     get<SpeedTestEvent[]>(`/api/speed-test/history?date=${encodeURIComponent(date)}&limit=50`, signal),
   startSpeedTest: () => post<{ ok: boolean }>("/api/speed-test/start"),

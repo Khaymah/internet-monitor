@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { type CSSProperties, useState } from "react";
 import { LatencyChart } from "../components/LatencyChart";
+import { OutageTimeline } from "../components/OutageTimeline";
 import { Banner, Button, Card, CardHead, Empty, Ltr, Meter, Skeleton } from "../components/ui";
 import {
   causeOfEntry,
@@ -332,6 +333,7 @@ export function Overview() {
     <>
       <Hero snap={snap} />
       <Stats snap={snap} />
+      <OutageTimeline />
       <div className="grid grid-overview">
         <div className="stack">
           <Card labelledBy="chart-title" flare={tone.latency}>

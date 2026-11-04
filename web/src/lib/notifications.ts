@@ -12,6 +12,7 @@ export const KIND_LABEL: Record<AlertKind, MessageKey> = {
   reminder: "n_kind_reminder",
   speed: "n_kind_speed",
   test: "n_kind_test",
+  weekly: "n_kind_weekly",
 };
 
 export const KIND_TONE: Record<AlertKind, string> = {
@@ -21,6 +22,7 @@ export const KIND_TONE: Record<AlertKind, string> = {
   reminder: "var(--accent-coral)",
   speed: "var(--accent-blue)",
   test: "var(--accent-violet)",
+  weekly: "var(--accent-blue)",
 };
 
 export const CHANNEL_NAME: Record<AlertChannel, MessageKey> = {
@@ -58,6 +60,14 @@ export function noticeDetail(t: Translate, lang: Lang, r: NotificationRecord): s
     if (r.speed.upload_mbps) parts.push(`↑ ${formatNumber(lang, r.speed.upload_mbps, 1)} ${t("speed_unit")}`);
     parts.push(formatLatency(t, lang, r.speed.latency_ms));
     return parts.join(" · ");
+  }
+  if (r.kind === "weekly" && r.weekly) {
+    const w = r.weekly;
+    return t("n_weekly_detail", {
+      outages: formatNumber(lang, w.outages),
+      downtime: formatDuration(t, w.downtime_seconds),
+      uptime: formatNumber(lang, w.uptime_pct, 2),
+    });
   }
   if (r.kind === "restored" || r.kind === "reminder") {
     return r.duration_seconds ? t("n_lasted", { duration: formatDuration(t, r.duration_seconds) }) : "";

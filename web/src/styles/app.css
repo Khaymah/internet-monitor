@@ -3736,3 +3736,84 @@ body:has(.savebar) .toasts {
   color: var(--text-primary);
   font-weight: 500;
 }
+
+.evidence {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.evidence-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.evidence-grid > div {
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  border-inline-start: 3px solid var(--tone, var(--border-default));
+}
+
+.evidence-grid dt {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.evidence-grid dd {
+  margin: 2px 0 0;
+  font-size: var(--text-md, 1rem);
+  color: var(--text-primary);
+}
+
+.verdict {
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--tone) 12%, transparent);
+  border-inline-start: 3px solid var(--tone);
+  color: var(--text-primary);
+}
+
+.timeline {
+  position: relative;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--color-track);
+  overflow: hidden;
+}
+
+.timeline-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  border: 0;
+  background: var(--tone);
+}
+
+.timeline-seg[data-status="off"] {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-track) 0 6px,
+    color-mix(in srgb, var(--text-tertiary) 25%, transparent) 6px 8px
+  );
+}
+
+button.timeline-seg {
+  z-index: 1;
+  cursor: pointer;
+}
+
+button.timeline-seg:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: -2px;
+}

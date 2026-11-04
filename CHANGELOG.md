@@ -12,8 +12,25 @@ the curated, human-readable summary.
 
 Target: **2.0.4**. Ships as GitHub prereleases `v2.0.4-rc.N` (not offered by the
 in-app updater, which only follows the latest stable release) until the version is final.
+What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Complaints use the measured data** (rc.2): every complaint shows outages,
+  downtime, uptime, coverage and speed vs plan for the 7 days before filing and
+  since, with a verdict, a ready-to-send complaint text and an evidence ZIP for
+  that period (`GET /api/case/evidence`, `GET /api/evidence?from=&to=`). A
+  "last 7 days" card suggests logging a complaint when the line dropped.
+- **Country-aware escalation** (rc.2): Egypt, Saudi Arabia, UK, US or other sets
+  the regulator, the steps and the provider's response window (overridable).
+- **Outage timeline** on the overview, 24 hours or 7 days (rc.2, `GET /api/timeline`).
+- **Weekly summary** every Monday at 09:00 to the desktop, Discord/Slack and
+  Telegram, with a "Send last 7 days now" button (rc.2, `POST /api/weekly/send`).
+- Per-rc release notes in `docs/releases/`, used as the GitHub release text.
+
+### Changed
+- A prerelease build now checks all releases for updates and is offered the
+  next rc or the final version (rc.2). Stable builds still follow stable
+  releases only.
 - **Complaints page** (`/complaints`): your provider, plan speed and line number,
   plus a log of every complaint (number, date, channel, agent, status). Open
   complaints count down the provider's 72-hour response window and then suggest

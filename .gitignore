@@ -3,6 +3,7 @@ logs
 config.json
 case.json
 case.json.tmp
+weekly-summary.json
 *.exe*
 .serena
 .specify

@@ -93,3 +93,40 @@ func TestPickAssetSkipsGUIForTray(t *testing.T) {
 		t.Errorf("tray build picked GUI asset %q", got)
 	}
 }
+
+func TestPrereleaseChannel(t *testing.T) {
+	for v, want := range map[string]bool{
+		"v2.0.4-rc.1":       true,
+		"2.0.4-rc.2":        true,
+		"v2.0.4-dev.abc123": true,
+		"v2.0.4":            false,
+		"v2.0.2+build.5":    false,
+		"dev":               false,
+	} {
+		if got := IsPrerelease(v); got != want {
+			t.Errorf("IsPrerelease(%q) = %v, want %v", v, got, want)
+		}
+	}
+
+	rels := []ghRelease{
+		{TagName: "v2.0.2"},
+		{TagName: "v2.0.4-rc.1", Prerelease: true},
+		{TagName: "v2.0.4-rc.3", Prerelease: true, Draft: true},
+		{TagName: "v2.0.4-rc.2", Prerelease: true},
+	}
+	got, ok := newestRelease(rels)
+	if !ok || got.TagName != "v2.0.4-rc.2" {
+		t.Fatalf("newest = %q, want v2.0.4-rc.2 (drafts are skipped)", got.TagName)
+	}
+	if compareVersions(got.TagName, "v2.0.4-rc.1") <= 0 {
+		t.Fatal("rc.2 must be offered to an rc.1 install")
+	}
+
+	rels = append(rels, ghRelease{TagName: "v2.0.4"})
+	if got, _ := newestRelease(rels); got.TagName != "v2.0.4" {
+		t.Fatalf("newest = %q, want the final v2.0.4 over its rcs", got.TagName)
+	}
+	if _, ok := newestRelease(nil); ok {
+		t.Fatal("no releases must report none")
+	}
+}

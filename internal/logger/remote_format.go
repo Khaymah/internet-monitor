@@ -5,6 +5,7 @@ import (
 	"internet-monitor/internal/i18n"
 	"internet-monitor/internal/monitor"
 	"internet-monitor/internal/notifytext"
+	"internet-monitor/internal/types"
 	"strings"
 	"time"
 )
@@ -157,6 +158,81 @@ func TelegramSpeedText(lang string, ev SpeedTestEvent, thresholdMbps float64, be
 	var b strings.Builder
 	fmt.Fprintf(&b, "%s *%s*", icon, title)
 	for _, l := range speedLines(lang, ev, thresholdMbps, below) {
+		fmt.Fprintf(&b, "\n%s: %s", l.name, l.value)
+	}
+	return b.String()
+}
+
+func weeklyLines(lang string, w types.WeeklySummary) []remoteLine {
+	outages := fmt.Sprintf("%d", w.Outages)
+	if w.PrevOutages != nil {
+		outages = i18n.T(lang, "remote.weekly.vs_prev", i18n.Vars{"n": w.Outages, "prev": *w.PrevOutages})
+	}
+	lines := []remoteLine{
+		{"🔌 " + i18n.T(lang, "remote.weekly.outages", nil), outages},
+		{"⏱️ " + i18n.T(lang, "remote.weekly.downtime", nil), notifytext.Duration(lang, w.DowntimeSeconds)},
+	}
+	if w.LongestSeconds > 0 {
+		lines = append(lines, remoteLine{"📏 " + i18n.T(lang, "remote.weekly.longest", nil), notifytext.Duration(lang, w.LongestSeconds)})
+	}
+	lines = append(lines,
+		remoteLine{"📶 " + i18n.T(lang, "remote.weekly.uptime", nil), fmt.Sprintf("%.2f%%", w.UptimePct)},
+		remoteLine{"👁️ " + i18n.T(lang, "remote.weekly.coverage", nil), fmt.Sprintf("%.0f%%", w.CoveragePct)},
+	)
+	if w.SpeedTests > 0 {
+		v := fmt.Sprintf("%.1f Mbps", w.MedianMbps)
+		if w.PlanMbps > 0 {
+			v = i18n.T(lang, "remote.weekly.speed_plan", i18n.Vars{"speed": v, "pct": fmt.Sprintf("%.0f%%", w.PctOfPlan)})
+		}
+		lines = append(lines, remoteLine{"📥 " + i18n.T(lang, "remote.weekly.speed", nil), v})
+	}
+	return lines
+}
+
+func weeklyTitle(lang string, w types.WeeklySummary) (string, string, int) {
+	period := w.From.Format("2006-01-02") + " → " + w.To.Format("2006-01-02")
+	title := i18n.T(lang, "remote.weekly.title", i18n.Vars{"period": period})
+	if w.Outages > 0 {
+		return "📊", title, 0xEAB308
+	}
+	return "📊", title, 0x22C55E
+}
+
+func BuildWeeklyPayload(lang string, w types.WeeklySummary, url string) interface{} {
+	icon, title, color := weeklyTitle(lang, w)
+	lines := weeklyLines(lang, w)
+	if IsDiscord(url) {
+		fields := make([]map[string]interface{}, 0, len(lines))
+		for _, l := range lines {
+			fields = append(fields, field(l.name, l.value, true))
+		}
+		return map[string]interface{}{
+			"username": "Internet Monitor",
+			"embeds": []map[string]interface{}{{
+				"title":     icon + " " + title,
+				"color":     color,
+				"fields":    fields,
+				"timestamp": w.To.UTC().Format(time.RFC3339),
+			}},
+		}
+	}
+	parts := make([]string, 0, len(lines))
+	for _, l := range lines {
+		parts = append(parts, fmt.Sprintf("%s: *%s*", l.name, l.value))
+	}
+	return map[string]interface{}{
+		"blocks": []map[string]interface{}{{
+			"type": "section",
+			"text": map[string]interface{}{"type": "mrkdwn", "text": fmt.Sprintf("*%s %s*\n%s", icon, title, strings.Join(parts, "\n"))},
+		}},
+	}
+}
+
+func TelegramWeeklyText(lang string, w types.WeeklySummary) string {
+	icon, title, _ := weeklyTitle(lang, w)
+	var b strings.Builder
+	fmt.Fprintf(&b, "%s *%s*", icon, title)
+	for _, l := range weeklyLines(lang, w) {
 		fmt.Fprintf(&b, "\n%s: %s", l.name, l.value)
 	}
 	return b.String()

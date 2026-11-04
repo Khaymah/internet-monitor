@@ -3,6 +3,7 @@ package app
 import (
 	"context"
 	"internet-monitor/internal/alerts"
+	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/core"
 	"internet-monitor/internal/logger"
@@ -11,7 +12,9 @@ import (
 	"internet-monitor/internal/server"
 	"internet-monitor/internal/sound"
 	"internet-monitor/internal/tray"
+	"internet-monitor/internal/types"
 	"internet-monitor/internal/updater"
+	"internet-monitor/internal/weekly"
 	"log"
 	"os"
 	"path/filepath"
@@ -32,6 +35,7 @@ type App struct {
 	Server  *server.Server
 	Engine  *core.Engine
 	Alerts  *alerts.Alerts
+	Weekly  *weekly.Scheduler
 
 	stop chan struct{}
 	once sync.Once
@@ -77,6 +81,17 @@ func New(opts Options) (*App, error) {
 
 	history := alerts.OpenHistory(lgr.LogDir, lgr.AppLog)
 	var al *alerts.Alerts
+	wk := &weekly.Scheduler{
+		Dir:   lgr.LogDir,
+		State: weekly.StatePath(dir),
+		Plan: func() float64 {
+			f, _ := casefile.Open(dir).Load()
+			return f.Profile.PlanDownloadMbps
+		},
+		Send: func(w types.WeeklySummary) { al.OnWeekly(w) },
+		Logf: lgr.AppLog,
+		Now:  time.Now,
+	}
 	srv := server.New(server.Options{
 		Store:               store,
 		Logger:              lgr,
@@ -92,6 +107,7 @@ func New(opts Options) (*App, error) {
 			ApplyUpdate:      updater.Apply,
 			Restart:          updater.Restart,
 			SpeedResult:      func(ev logger.SpeedTestEvent, threshold float64, below bool) { al.OnSpeedResult(ev, threshold, below) },
+			SendWeekly:       wk.SendNow,
 		},
 	})
 	var desktop alerts.Desktop
@@ -125,6 +141,7 @@ func New(opts Options) (*App, error) {
 		Server:  srv,
 		Engine:  engine,
 		Alerts:  al,
+		Weekly:  wk,
 		stop:    make(chan struct{}),
 	}, nil
 }
@@ -143,6 +160,7 @@ func (a *App) Run(notifiers ...core.Notifier) {
 	a.Engine.Notifier = multi
 	a.Engine.Start()
 	go a.updateLoop()
+	go a.Weekly.Run(a.stop)
 }
 
 func (a *App) updateLoop() {
@@ -152,8 +170,6 @@ func (a *App) updateLoop() {
 		return
 	}
 	for {
-		// Turning auto_update_check off only stops these background checks;
-		// "Check for updates" in Settings keeps working.
 		if a.Store.Get().AutoUpdateCheck {
 			if info, err := updater.Check(a.Version); err == nil && info.HasUpdate {
 				a.Log.AppLog("UPDATE available: %s (current: %s)", info.LatestVersion, info.CurrentVersion)

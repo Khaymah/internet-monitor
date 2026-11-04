@@ -38,7 +38,7 @@ export interface Draft {
   reminder: string;
 }
 
-export const NOTIFY_EVENTS: NotifyEvent[] = ["down", "degraded", "restored", "speed"];
+export const NOTIFY_EVENTS: NotifyEvent[] = ["down", "degraded", "restored", "speed", "weekly"];
 
 export const DEFAULT_NOTIFICATIONS: NotificationSettings = {
   sound: { enabled: true, volume: 100 },
@@ -48,6 +48,7 @@ export const DEFAULT_NOTIFICATIONS: NotificationSettings = {
     degraded: { desktop: true, webhook: true, telegram: true },
     restored: { desktop: true, webhook: true, telegram: true },
     speed: { desktop: false, webhook: true, telegram: true },
+    weekly: { desktop: true, webhook: true, telegram: true },
   },
   min_outage_seconds: 0,
   reminder_minutes: 0,
@@ -59,6 +60,7 @@ function copyEvents(e: Record<NotifyEvent, ChannelSwitches>): Record<NotifyEvent
     degraded: { ...e.degraded },
     restored: { ...e.restored },
     speed: { ...e.speed },
+    weekly: { ...(e.weekly ?? DEFAULT_NOTIFICATIONS.events.weekly) },
   };
 }
 

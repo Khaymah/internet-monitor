@@ -1,9 +1,9 @@
-import { Volume2 } from "lucide-react";
-import { type CSSProperties, useId, useMemo } from "react";
+import { CalendarClock, Volume2 } from "lucide-react";
+import { type CSSProperties, useId, useMemo, useState } from "react";
 import { TextField } from "../../components/Field";
 import { toast } from "../../components/Toast";
 import { Button, Card, CardHead, Segmented, Switch } from "../../components/ui";
-import { api } from "../../lib/api";
+import { ApiError, api } from "../../lib/api";
 import { formatNumber } from "../../lib/format";
 import { type Lang, type MessageKey, useI18n } from "../../lib/i18n";
 import { NOTIFY_EVENTS } from "../../lib/settingsForm";
@@ -15,6 +15,7 @@ const EVENT_LABEL: Record<NotifyEvent, MessageKey> = {
   degraded: "n_ev_degraded",
   restored: "n_ev_restored",
   speed: "n_ev_speed",
+  weekly: "n_ev_weekly",
 };
 
 const CHANNEL_LABEL: Record<NotifyChannel, MessageKey> = {
@@ -24,6 +25,30 @@ const CHANNEL_LABEL: Record<NotifyChannel, MessageKey> = {
 };
 
 const CHANNELS: NotifyChannel[] = ["desktop", "webhook", "telegram"];
+
+function WeeklyRow() {
+  const { t } = useI18n();
+  const [busy, setBusy] = useState(false);
+  const send = async () => {
+    setBusy(true);
+    try {
+      await api.sendWeekly();
+      toast(t("n_weekly_sent"), "ok");
+    } catch (e) {
+      toast(t(e instanceof ApiError && e.code === "no_data" ? "n_weekly_no_data" : "load_failed"), "error");
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <div className="row" style={{ marginTop: 12, justifyContent: "space-between" }}>
+      <span className="field-hint">{t("n_weekly_hint")}</span>
+      <Button size="sm" variant="edge" icon={CalendarClock} busy={busy} onClick={send}>
+        {t("n_weekly_send")}
+      </Button>
+    </div>
+  );
+}
 
 const ARABIC_DIGITS = /[٠-٩۰-۹]/g;
 
@@ -272,6 +297,7 @@ export function NotificationsSection({ draft, set, err, base }: SectionProps & {
             </table>
           </div>
           <span className="field-hint">{t("n_matrix_hint")}</span>
+          <WeeklyRow />
         </div>
 
         <hr className="divider full" />
