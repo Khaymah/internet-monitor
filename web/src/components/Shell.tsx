@@ -3,6 +3,7 @@ import {
   BellRing,
   CircleAlert,
   CircleHelp,
+  FileWarning,
   Gauge as GaugeIcon,
   HeartHandshake,
   History,
@@ -47,13 +48,14 @@ import { WhatsNew } from "./WhatsNew";
 
 const NAV: {
   route: Route;
-  key: "nav_overview" | "nav_history" | "nav_notifications" | "nav_speed" | "nav_settings";
+  key: "nav_overview" | "nav_history" | "nav_notifications" | "nav_speed" | "nav_complaints" | "nav_settings";
   icon: LucideIcon;
 }[] = [
   { route: "overview", key: "nav_overview", icon: LayoutDashboard },
   { route: "history", key: "nav_history", icon: History },
   { route: "notifications", key: "nav_notifications", icon: BellRing },
   { route: "speed", key: "nav_speed", icon: GaugeIcon },
+  { route: "complaints", key: "nav_complaints", icon: FileWarning },
   { route: "settings", key: "nav_settings", icon: Settings },
 ];
 
@@ -74,6 +76,7 @@ const TITLES: Record<Route, MessageKey> = {
   history: "nav_history",
   notifications: "nav_notifications",
   speed: "nav_speed",
+  complaints: "nav_complaints",
   settings: "nav_settings",
   report: "report_open",
   changelog: "nav_changelog",

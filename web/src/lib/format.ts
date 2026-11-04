@@ -196,3 +196,8 @@ export function describeReportCause(t: Translate, cause: string): string {
     })
     .join(" + ");
 }
+
+export function formatDataSize(lang: Lang, megabytes: number): string {
+  if (megabytes >= 1000) return `${formatNumber(lang, megabytes / 1000, megabytes >= 10000 ? 0 : 1)} GB`;
+  return `${formatNumber(lang, Math.max(1, Math.round(megabytes)))} MB`;
+}

@@ -5,7 +5,8 @@ import { toast } from "../../components/Toast";
 import { Button, Card, CardHead, Switch } from "../../components/ui";
 import { api } from "../../lib/api";
 import { errorKey } from "../../lib/errors";
-import { formatLatency } from "../../lib/format";
+import { formatDataSize, formatLatency, formatNumber, localDateKey } from "../../lib/format";
+import { useAsync } from "../../lib/hooks";
 import { type Lang, type MessageKey, type Translate, useI18n } from "../../lib/i18n";
 import { type Draft, type FieldKey, MAX_TARGETS } from "../../lib/settingsForm";
 import type { ConfigView, TestTargetResult } from "../../lib/types";
@@ -267,6 +268,46 @@ export function AlertsSection({ draft, set, err, base }: SectionProps & { base: 
   );
 }
 
+const ASSUMED_DOWN_MBPS = 100;
+const ASSUMED_UP_MBPS = 20;
+
+/** Estimates how much data each speed test (and the schedule) uses, which matters on capped plans. */
+function SpeedDataHint({
+  seconds,
+  scheduleMinutes,
+  upload,
+}: {
+  seconds: number;
+  scheduleMinutes: number;
+  upload: boolean;
+}) {
+  const { t, lang } = useI18n();
+  const ref = useAsync(async (signal) => {
+    const [history, kase] = await Promise.all([
+      api.speedHistory(localDateKey(new Date()), signal).catch(() => []),
+      api.caseFile(signal).catch(() => null),
+    ]);
+    const last = history[history.length - 1];
+    if (last && last.download_mbps > 0) return { down: last.download_mbps, up: last.upload_mbps ?? 0 };
+    const plan = kase?.profile;
+    if (plan && plan.plan_download_mbps > 0)
+      return { down: plan.plan_download_mbps, up: plan.plan_upload_mbps || plan.plan_download_mbps / 5 };
+    return { down: ASSUMED_DOWN_MBPS, up: ASSUMED_UP_MBPS };
+  }, []);
+  if (!ref.data || !(seconds > 0)) return null;
+  const perTestMB = ((ref.data.down + (upload ? ref.data.up : 0)) * seconds) / 8;
+  const vars = { per: formatDataSize(lang, perTestMB), speed: formatNumber(lang, ref.data.down) };
+  if (scheduleMinutes > 0) {
+    const month = perTestMB * ((30 * 24 * 60) / scheduleMinutes);
+    return (
+      <p className="field-hint full">
+        {t("f_speed_data_month", { ...vars, month: formatDataSize(lang, month) })}
+      </p>
+    );
+  }
+  return <p className="field-hint full">{t("f_speed_data", vars)}</p>;
+}
+
 export function SpeedSection({ draft, set, err }: SectionProps) {
   const { t } = useI18n();
   return (
@@ -311,6 +352,11 @@ export function SpeedSection({ draft, set, err }: SectionProps) {
           inputMode="numeric"
           suffix={t("min_unit")}
           narrow
+        />
+        <SpeedDataHint
+          seconds={Number(draft.speed_timeout)}
+          scheduleMinutes={Number(draft.speed_schedule) || 0}
+          upload={draft.speed_upload_target.trim() !== ""}
         />
         <ListEditor
           className="full"

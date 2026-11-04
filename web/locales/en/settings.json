@@ -116,5 +116,7 @@
   "sound_using_custom": "Alerts play your uploaded sound",
   "sound_using_default": "Alerts play the built-in sound",
   "startup_on": "Internet Monitor will start with Windows",
-  "startup_off": "Internet Monitor won't start with Windows"
+  "startup_off": "Internet Monitor won't start with Windows",
+  "f_speed_data": "Each test uses about {per} of data at {speed} Mbps.",
+  "f_speed_data_month": "Each test uses about {per} of data at {speed} Mbps, so the schedule uses about {month} a month. On a capped plan this counts toward your quota."
 }

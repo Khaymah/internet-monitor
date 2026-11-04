@@ -4,14 +4,18 @@ import {
   ChevronLeft,
   ChevronRight,
   CircleAlert,
+  Download,
   FileText,
+  FileWarning,
   Printer,
   RefreshCw,
 } from "lucide-react";
 import { type CSSProperties, type KeyboardEvent, useEffect, useId, useMemo, useRef, useState } from "react";
 import { ChartTooltip } from "../components/ChartTooltip";
+import { toast } from "../components/Toast";
 import { Banner, Button, Card, CardHead, Empty, Meter, Skeleton } from "../components/ui";
 import { api } from "../lib/api";
+import { downloadBlob } from "../lib/csv";
 import {
   describeReportCause,
   eventKey,
@@ -29,6 +33,7 @@ import { isRtl, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
 import type { MonthlyReport, ReportDay } from "../lib/types";
 import { availabilityTone, statusTone, tone } from "../styles/categories";
+import { ComplaintsCard, formatMbps, GapsCard, SpeedCard } from "./ReportSections";
 
 function daysOf(month: string, days: ReportDay[]): (ReportDay | { date: string; empty: true })[] {
   const [y, m] = month.split("-").map(Number);
@@ -185,6 +190,17 @@ export function Report({ month: initial }: { month: string | null }) {
   }, [t, lang, month]);
 
   const go = (m: string) => navigate("report", `?month=${m}`, true);
+  const [exporting, setExporting] = useState(false);
+  const exportEvidence = async () => {
+    setExporting(true);
+    try {
+      downloadBlob(`internet-monitor-evidence-${month}.zip`, await api.evidence(month));
+    } catch {
+      toast(t("report_evidence_failed"), "error");
+    } finally {
+      setExporting(false);
+    }
+  };
   const r = report.data;
   const kpis: [MessageKey, string, string][] = r
     ? [
@@ -198,6 +214,11 @@ export function Report({ month: initial }: { month: string | null }) {
         ],
         ["report_mttr", r.mttr_seconds ? formatDuration(t, r.mttr_seconds) : "—", tone.latency],
         ["report_degraded", formatDuration(t, r.total_degraded_seconds), tone.degraded],
+        [
+          "report_coverage",
+          r.window_seconds > 0 ? formatPct(lang, r.coverage_pct) : "—",
+          availabilityTone(r.window_seconds > 0 ? r.coverage_pct : null),
+        ],
       ]
     : [];
   const causes = r
@@ -234,9 +255,21 @@ export function Report({ month: initial }: { month: string | null }) {
             onClick={() => go(shiftMonth(month, 1))}
           />
         </div>
-        <Button variant="solid" icon={Printer} onClick={() => window.print()} disabled={!r}>
-          {t("report_print")}
-        </Button>
+        <div className="row">
+          <Button
+            variant="edge"
+            icon={Download}
+            busy={exporting}
+            onClick={exportEvidence}
+            disabled={!r}
+            title={t("report_evidence_hint")}
+          >
+            {t("report_evidence")}
+          </Button>
+          <Button variant="solid" icon={Printer} onClick={() => window.print()} disabled={!r}>
+            {t("report_print")}
+          </Button>
+        </div>
       </div>
 
       <header className="stack" style={{ gap: 4 }}>
@@ -253,6 +286,51 @@ export function Report({ month: initial }: { month: string | null }) {
               date: formatDate(lang, r.generated_at, { dateStyle: "medium", timeStyle: "short" }),
             })}{" "}
             · {t("report_monitored", { duration: formatDuration(t, r.monitored_seconds) })}
+            {r.coverage_start
+              ? ` · ${t("report_coverage_since", { date: formatDate(lang, r.coverage_start, { dateStyle: "medium", timeStyle: "short" }) })}`
+              : ""}
+          </p>
+        ) : null}
+        {r?.profile?.provider ? (
+          <div className="report-meta">
+            <span>
+              {t("report_provider")}: <strong>{r.profile.provider}</strong>
+            </span>
+            {r.profile.plan_name || r.profile.plan_download_mbps > 0 ? (
+              <span>
+                {t("report_plan")}:{" "}
+                <strong>
+                  {[
+                    r.profile.plan_name,
+                    r.profile.plan_download_mbps > 0 ? formatMbps(lang, r.profile.plan_download_mbps) : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </strong>
+              </span>
+            ) : null}
+            {r.profile.line_number ? (
+              <span>
+                {t("report_line")}:{" "}
+                <strong className="num" dir="ltr">
+                  {r.profile.line_number}
+                </strong>
+              </span>
+            ) : null}
+            {r.profile.account_number ? (
+              <span>
+                {t("report_account")}:{" "}
+                <strong className="num" dir="ltr">
+                  {r.profile.account_number}
+                </strong>
+              </span>
+            ) : null}
+          </div>
+        ) : r ? (
+          <p className="no-print">
+            <Button variant="ghost" size="sm" icon={FileWarning} onClick={() => navigate("complaints")}>
+              {t("report_add_profile")}
+            </Button>
           </p>
         ) : null}
       </header>
@@ -362,7 +440,10 @@ export function Report({ month: initial }: { month: string | null }) {
                           </span>
                         </td>
                         <td className="num">{formatDuration(t, e.duration_seconds)}</td>
-                        <td className="wrap secondary">{describeReportCause(t, e.cause)}</td>
+                        <td className="wrap secondary">
+                          {describeReportCause(t, e.cause)}
+                          {e.after_gap ? <div className="muted">{t("report_after_gap")}</div> : null}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -370,6 +451,10 @@ export function Report({ month: initial }: { month: string | null }) {
               </div>
             )}
           </Card>
+
+          {r.speed?.tests ? <SpeedCard report={r} /> : null}
+          {r.gaps?.length ? <GapsCard report={r} /> : null}
+          {r.complaints?.length ? <ComplaintsCard report={r} /> : null}
         </>
       )}
     </div>

@@ -19,6 +19,9 @@ type EventRow struct {
 	Type         string  `json:"type"`
 	DurationSecs float64 `json:"duration_seconds"`
 	Cause        string  `json:"cause"`
+	// AfterGap marks an outage seen right after monitoring resumed from a gap.
+	// It is often the router still restarting after a power cut, not the ISP.
+	AfterGap bool `json:"after_gap,omitempty"`
 }
 
 type DayStat struct {
@@ -61,6 +64,14 @@ type MonthlySummary struct {
 	Events            []EventRow           `json:"events"`
 	Days              []DayStat            `json:"days"`
 	Trend             []TrendPoint         `json:"trend"`
+
+	// Coverage: how much of the period the app was actually watching. Time
+	// outside coverage is "not monitored", never counted as an outage.
+	CoverageStart   string   `json:"coverage_start,omitempty"`
+	WindowSeconds   float64  `json:"window_seconds"`
+	CoveragePct     float64  `json:"coverage_pct"`
+	UnmonitoredSecs float64  `json:"unmonitored_seconds"`
+	Gaps            []GapRow `json:"gaps"`
 }
 
 type dayAcc struct {
@@ -125,7 +136,14 @@ func Summarize(events []types.Event, samples []types.MetricSample, month string,
 		GeneratedAt: now.Format(time.RFC3339),
 		Causes:      map[string]CauseStat{"tcp": {}, "http": {}, "dns": {}},
 		OutageTypes: map[string]int{},
+		Events:      []EventRow{},
+		Gaps:        []GapRow{},
 	}
+	end := now
+	if hasWindow && monthEnd.Before(end) {
+		end = monthEnd
+	}
+	gaps := findGaps(samples, end)
 
 	days := map[string]*dayAcc{}
 	getDay := func(t time.Time) *dayAcc {
@@ -201,6 +219,7 @@ func Summarize(events []types.Event, samples []types.MetricSample, month string,
 					Type:         "disconnected",
 					DurationSecs: dur,
 					Cause:        failedLayers(ev.Reason),
+					AfterGap:     markAfterGap(gaps, start, dur),
 				})
 				a := getDay(start)
 				a.outages++
@@ -270,6 +289,8 @@ func Summarize(events []types.Event, samples []types.MetricSample, month string,
 		sum.AvgJitterMs = jitterWeighted / int64(totalSamples)
 	}
 
+	applyCoverage(&sum, samples, gaps, end)
+
 	dates := make([]string, 0, len(days))
 	for d := range days {
 		dates = append(dates, d)
@@ -328,4 +349,100 @@ func segmentDuration(events []types.Event, k int, now time.Time) float64 {
 		return d
 	}
 	return 0
+}
+
+// Gap kinds.
+const (
+	GapOff   = "off"   // computer off, asleep, or the app closed
+	GapPower = "power" // likely power cut: monitoring resumed straight into an outage
+)
+
+type GapRow struct {
+	Start        string  `json:"start"`
+	End          string  `json:"end"`
+	DurationSecs float64 `json:"duration_seconds"`
+	Kind         string  `json:"kind"`
+}
+
+type gap struct {
+	start, end time.Time
+	kind       string
+}
+
+const (
+	// minGap ignores the minute or two a normal restart or update leaves.
+	minGap = 5 * time.Minute
+	// powerWindow: an outage logged this soon after monitoring resumed is
+	// treated as the router still booting after the same power cut.
+	powerWindow = 3 * time.Minute
+	// powerMaxOutage caps how long that post-resume outage may last to count
+	// as a router reboot; longer ones are left as real outages.
+	powerMaxOutage = 15 * time.Minute
+)
+
+// findGaps returns the periods with no metric samples between the first
+// sample and end. Samples are one per minute while the app runs.
+func findGaps(samples []types.MetricSample, end time.Time) []gap {
+	if len(samples) == 0 {
+		return nil
+	}
+	ts := make([]time.Time, len(samples))
+	for i, s := range samples {
+		ts[i] = s.Timestamp
+	}
+	sort.Slice(ts, func(i, j int) bool { return ts[i].Before(ts[j]) })
+	var out []gap
+	for i := 1; i < len(ts); i++ {
+		from := ts[i-1].Add(time.Minute)
+		if ts[i].Sub(from) >= minGap {
+			out = append(out, gap{start: from, end: ts[i], kind: GapOff})
+		}
+	}
+	if from := ts[len(ts)-1].Add(time.Minute); end.Sub(from) >= minGap {
+		out = append(out, gap{start: from, end: end, kind: GapOff})
+	}
+	return out
+}
+
+func markAfterGap(gaps []gap, start time.Time, dur float64) bool {
+	if dur > powerMaxOutage.Seconds() {
+		return false
+	}
+	for i := range gaps {
+		g := &gaps[i]
+		if !start.Before(g.end.Add(-time.Minute)) && start.Sub(g.end) <= powerWindow {
+			g.kind = GapPower
+			return true
+		}
+	}
+	return false
+}
+
+func applyCoverage(sum *MonthlySummary, samples []types.MetricSample, gaps []gap, end time.Time) {
+	if len(samples) == 0 {
+		return
+	}
+	first := samples[0].Timestamp
+	for _, s := range samples {
+		if s.Timestamp.Before(first) {
+			first = s.Timestamp
+		}
+	}
+	window := end.Sub(first).Seconds()
+	if window <= 0 {
+		return
+	}
+	sum.CoverageStart = first.Format(time.RFC3339)
+	sum.WindowSeconds = window
+	for _, g := range gaps {
+		d := g.end.Sub(g.start).Seconds()
+		sum.UnmonitoredSecs += d
+		sum.Gaps = append(sum.Gaps, GapRow{
+			Start:        g.start.Format(time.RFC3339),
+			End:          g.end.Format(time.RFC3339),
+			DurationSecs: d,
+			Kind:         g.kind,
+		})
+	}
+	sum.CoveragePct = max(0, min(100, (window-sum.UnmonitoredSecs)/window*100))
 }

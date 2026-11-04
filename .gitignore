@@ -1,6 +1,8 @@
 logs
 *.exe
 config.json
+case.json
+case.json.tmp
 *.exe*
 .serena
 .specify

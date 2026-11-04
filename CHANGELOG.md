@@ -11,6 +11,24 @@ the curated, human-readable summary.
 ## [Unreleased]
 
 ### Added
+- **Complaints page** (`/complaints`): your provider, plan speed and line number,
+  plus a log of every complaint (number, date, channel, agent, status). Open
+  complaints count down the provider's 72-hour response window and then suggest
+  escalating to the regulator, with the Egyptian NTRA steps (155 / My NTRA).
+  Stored locally in `case.json`; `GET /api/case`, `POST /api/case/profile`,
+  `POST /api/case/complaints`, `DELETE /api/case/complaints/{id}`.
+- **Monthly report: monitoring coverage.** Minutes with no checks (computer off
+  or asleep, app closed) are listed as "not monitored" instead of being silently
+  skipped. A gap that ends straight into an outage is marked as a likely power
+  cut, and that outage is flagged as possibly the router restarting.
+- **Monthly report: speed tests vs plan** (typical, lowest/highest, share of the
+  plan speed, tests under half the plan), the line details, and the month's complaints.
+- **Evidence pack** (`GET /api/evidence?month=YYYY-MM`, "Download evidence pack"
+  on the report): a ZIP with the report, the raw logs, `case.json` and a
+  `SHA256SUMS.txt` so anyone can confirm nothing was edited.
+- Settings → Speed test shows how much data each test (and the schedule) uses.
+- `docs/MARKET_RESEARCH.ar.md`: market, competitor and growth research behind
+  these features.
 - `auto_update_check` setting (Settings → App, "Check for updates automatically")
   to turn off the background update check. The manual button keeps working.
 - README section listing every server the app contacts, how often, and the
