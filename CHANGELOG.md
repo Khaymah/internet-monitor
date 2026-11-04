@@ -15,6 +15,15 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **ntfy push notifications** (rc.3): `ntfy_url` and optional `ntfy_token`, a
+  new ntfy column in the notification matrix and `POST /api/test-ntfy`.
+- **Generic webhooks** (rc.3): `webhook_url` accepts any https address (http
+  on the local network); non-Discord/Slack hosts get a plain JSON payload.
+- **Bufferbloat grade** (rc.3): the speed test measures ping at idle and under
+  load and grades the added delay A+ to F.
+- **Route trace on outage** (rc.3): the system traceroute runs when the line
+  drops; the report explains where the route stopped, and the traces go into
+  the evidence ZIP.
 - **Complaints use the measured data** (rc.2): every complaint shows outages,
   downtime, uptime, coverage and speed vs plan for the 7 days before filing and
   since, with a verdict, a ready-to-send complaint text and an evidence ZIP for

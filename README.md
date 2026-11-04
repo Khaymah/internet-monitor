@@ -65,12 +65,13 @@ Most "my internet is down" complaints fail because you have **no proof** — no 
 | 🔍 **Multi-layer checking** | TCP Ping + HTTP + DNS simultaneously — all targets configurable as arrays |
 | 📊 **Live overview** | Connection status, a plain-language diagnosis (e.g. "router fine, outage at ISP"), latency chart, jitter, packet loss, availability for today / 7 days / 30 days, and per-target status |
 | 🕘 **History** | Per-day event log with filters and CSV export (selected day, last 7 days, last 30 days) |
-| ⚡ **Speed Test** | Download **and upload** measurement (Cloudflare endpoint) with a circular gauge, ping / download / upload results, today's runs, configurable parallel connections/timeout, **scheduled automatic tests** and a low-speed alert threshold |
-| 🔔 **Instant notifications** | Windows Toast + Discord / Slack / **Telegram**, localized to your chosen language |
+| ⚡ **Speed Test** | Download **and upload** measurement with a **lag-under-load (bufferbloat) grade** (Cloudflare endpoint) with a circular gauge, ping / download / upload results, today's runs, configurable parallel connections/timeout, **scheduled automatic tests** and a low-speed alert threshold |
+| 🔔 **Instant notifications** | Windows Toast + Discord / Slack / **Telegram** / **ntfy** (phone push) + a JSON **webhook** for Home Assistant, n8n, Zapier or IFTTT, localized to your chosen language |
 | 🎵 **Custom alert sound** | Upload an MP3 or WAV (up to 30 seconds / 10 MB). Settings shows whether the custom sound is active and its length; **Try the sound** and **Play like a real alert** let you test it. A new default sound ships built in |
 | 📋 **Structured logs** | Daily JSONL files — connectivity events in `connectivity_DATE.jsonl`, speed tests in `speedtest_DATE.jsonl` |
 | 📄 **Monthly report** | `/report?month=YYYY-MM` page with **Print or save as PDF**: uptime, outages, monitoring coverage, likely power cuts, speed vs your plan and your complaints |
 | 🧾 **Complaints** | Your provider and plan, every complaint you filed with the provider's response countdown, the measured evidence before and since each complaint, ready-to-send complaint text and an evidence ZIP with SHA-256 checksums. Escalation steps for Egypt, Saudi Arabia, the UK, the US and others |
+| 🧭 **Route trace** | When the line drops, the route to the internet is traced so the report can say whether the router, the provider or something further away stopped answering |
 | 🕒 **Outage timeline** | 24-hour and 7-day timeline of connected, unstable, disconnected and not-monitored time on the overview |
 | 📊 **Weekly summary** | Every Monday at 9:00: last week's outages, downtime, uptime and speed, to the desktop, Discord/Slack or Telegram |
 | 🔄 **Auto-update** | Checks GitHub Releases (background + a manual **"Check for updates"** button), one-click update with automatic restart |
