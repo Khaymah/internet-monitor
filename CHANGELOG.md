@@ -15,6 +15,15 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Compensation estimate** (rc.5): `monthly_price` and `currency` in the line
+  details; the report and the complaint text show the pro-rata value of the
+  provider's downtime, and Ofcom automatic-compensation days in the UK.
+- **Peak hours** (rc.5): downtime by hour of day, the 7pm–midnight share, and
+  evening vs daytime speed in the report.
+- **Insights** (rc.5): `GET /api/insights` and a "What your data says" card on
+  the overview and the Complaints page.
+- **Complaint reminder** (rc.5): a weekly "Time to complain?" alert when the line
+  keeps dropping and no complaint is open; WhatsApp and email share buttons.
 - **Headless build** (rc.4): `cmd/headless` for Raspberry Pi, Linux servers and
   Docker (`--dir`, `--listen`), linux amd64/arm64/armv7 release binaries, a
   Dockerfile, docker-compose.yml and `docs/headless.md`. Listening on a LAN
