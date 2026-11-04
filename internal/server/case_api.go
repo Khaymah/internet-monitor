@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"internet-monitor/internal/casefile"
+	"internet-monitor/internal/jsonl"
 	"internet-monitor/internal/report"
 	"internet-monitor/internal/types"
 	"io"
@@ -126,7 +127,7 @@ const evidenceReadme = `Internet Monitor — evidence pack
 ================================
 
 This archive was exported by Internet Monitor (https://github.com/Khaymah/internet-monitor)
-on %s for the month %s.
+on %s for %s.
 
 report.json            The monthly summary shown on the report page, including the
                        provider details, speed tests and complaints you entered.
@@ -144,12 +145,45 @@ SHA256SUMS.txt         The SHA-256 checksum of every file above. Anyone can reco
 `
 
 func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
-	month := r.URL.Query().Get("month")
-	if !validMonth(month) {
-		writeError(w, http.StatusBadRequest, "invalid_month", "month must be YYYY-MM")
-		return
-	}
 	now := time.Now()
+	q := r.URL.Query()
+	month := q.Get("month")
+	var period, label string
+	var reportData interface{}
+	var wantFile func(name string) bool
+	if q.Get("from") != "" {
+		from, ok1 := parseRangeTime(q.Get("from"), now)
+		to, ok2 := parseRangeTime(q.Get("to"), now)
+		if to.After(now) {
+			to = now
+		}
+		if !ok1 || !ok2 || !from.Before(to) {
+			writeError(w, http.StatusBadRequest, "invalid_range", "from and to must be RFC3339 with from before to")
+			return
+		}
+		if to.Sub(from) > maxEvidenceRange {
+			from = to.Add(-maxEvidenceRange)
+		}
+		days := map[string]bool{}
+		for d := from.AddDate(0, 0, -1); !d.After(to); d = d.AddDate(0, 0, 1) {
+			days[d.Format("2006-01-02")] = true
+		}
+		wantFile = func(name string) bool {
+			i := strings.LastIndex(name, "_")
+			return i >= 0 && days[strings.TrimSuffix(name[i+1:], ".jsonl")]
+		}
+		period = from.Format("2006-01-02 15:04") + " – " + to.Format("2006-01-02 15:04")
+		label = from.Format("20060102") + "-" + to.Format("20060102")
+		reportData = s.evidenceFor(from, to, now)
+	} else {
+		if !validMonth(month) {
+			writeError(w, http.StatusBadRequest, "invalid_month", "month must be YYYY-MM")
+			return
+		}
+		wantFile = func(name string) bool { return strings.Contains(name, "_"+month) }
+		period, label = "the month "+month, month
+		reportData = s.buildReport(month, now)
+	}
 	var buf bytes.Buffer
 	zw := zip.NewWriter(&buf)
 	var sums []string
@@ -171,7 +205,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, "export_failed", "could not build the evidence pack")
 	}
 
-	rep, err := json.MarshalIndent(s.buildReport(month, now), "", "  ")
+	rep, err := json.MarshalIndent(reportData, "", "  ")
 	if err != nil {
 		fail(err)
 		return
@@ -198,7 +232,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_"} {
-			if strings.HasPrefix(n, prefix+month) {
+			if strings.HasPrefix(n, prefix) && wantFile(n) {
 				names = append(names, n)
 			}
 		}
@@ -216,7 +250,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	if err := add("README.txt", fmt.Appendf(nil, evidenceReadme, now.Format(time.RFC1123), month)); err != nil {
+	if err := add("README.txt", fmt.Appendf(nil, evidenceReadme, now.Format(time.RFC1123), period)); err != nil {
 		fail(err)
 		return
 	}
@@ -233,7 +267,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/zip")
-	w.Header().Set("Content-Disposition", fmt.Sprintf(`attachment; filename="internet-monitor-evidence-%s.zip"`, month))
+	w.Header().Set("Content-Disposition", fmt.Sprintf(`attachment; filename="internet-monitor-evidence-%s.zip"`, label))
 	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write(buf.Bytes())
 }
@@ -250,4 +284,76 @@ func readCapped(path string, maxBytes int64) ([]byte, error) {
 	}
 	defer f.Close()
 	return io.ReadAll(io.LimitReader(f, maxBytes))
+}
+
+const maxEvidenceRange = 92 * 24 * time.Hour
+
+type rangeEvidence struct {
+	From    string                `json:"from"`
+	To      string                `json:"to"`
+	Summary report.MonthlySummary `json:"summary"`
+	Speed   report.SpeedSummary   `json:"speed"`
+}
+
+func readDays[T any](dir, prefix string, from, to time.Time) []T {
+	var out []T
+	for d := time.Date(from.Year(), from.Month(), from.Day(), 0, 0, 0, 0, from.Location()); !d.After(to); d = d.AddDate(0, 0, 1) {
+		_ = jsonl.Decode(filepath.Join(dir, prefix+d.Format("2006-01-02")+".jsonl"), func(v T) { out = append(out, v) })
+	}
+	return out
+}
+
+func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
+	dir := s.logDir()
+	events := readDays[types.Event](dir, "connectivity_", from.AddDate(0, 0, -1), to.AddDate(0, 0, 1))
+	samples := readDays[types.MetricSample](dir, "metrics_", from, to)
+	var speeds []report.SpeedSample
+	for _, sp := range readDays[report.SpeedSample](dir, "speedtest_", from, to) {
+		if !sp.Timestamp.Before(from) && sp.Timestamp.Before(to) {
+			speeds = append(speeds, sp)
+		}
+	}
+	f, _ := s.caseStore().Load()
+	return rangeEvidence{
+		From:    from.Format(time.RFC3339),
+		To:      to.Format(time.RFC3339),
+		Summary: report.SummarizeRange(events, samples, from, to, now),
+		Speed:   report.SummarizeSpeed(speeds, "", f.Profile.PlanDownloadMbps),
+	}
+}
+
+func parseRangeTime(v string, def time.Time) (time.Time, bool) {
+	if v == "" {
+		return def, true
+	}
+	t, err := time.Parse(time.RFC3339, v)
+	if err != nil {
+		return time.Time{}, false
+	}
+	return t.In(time.Local), true
+}
+
+func (s *Server) serveCaseEvidence(w http.ResponseWriter, r *http.Request) {
+	now := time.Now()
+	to, ok := parseRangeTime(r.URL.Query().Get("to"), now)
+	if !ok {
+		writeError(w, http.StatusBadRequest, "invalid_range", "to must be RFC3339")
+		return
+	}
+	from, ok := parseRangeTime(r.URL.Query().Get("from"), to.Add(-7*24*time.Hour))
+	if !ok {
+		writeError(w, http.StatusBadRequest, "invalid_range", "from must be RFC3339")
+		return
+	}
+	if to.After(now) {
+		to = now
+	}
+	if !from.Before(to) {
+		writeError(w, http.StatusBadRequest, "invalid_range", "from must be before to")
+		return
+	}
+	if to.Sub(from) > maxEvidenceRange {
+		from = to.Add(-maxEvidenceRange)
+	}
+	writeJSON(w, http.StatusOK, s.evidenceFor(from, to, now))
 }

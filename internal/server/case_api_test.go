@@ -101,3 +101,63 @@ func TestEvidencePackChecksums(t *testing.T) {
 		}
 	}
 }
+
+func TestCaseEvidenceRange(t *testing.T) {
+	e := newTestEnv(t)
+	logs := filepath.Join(e.dir, "logs")
+	if err := os.MkdirAll(logs, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	now := time.Now()
+	start := now.Add(-3 * time.Hour).Truncate(time.Minute)
+	var metrics, events strings.Builder
+	for m := start; m.Before(now.Add(-time.Minute)); m = m.Add(time.Minute) {
+		metrics.WriteString(`{"timestamp":"` + m.Format(time.RFC3339) + `","samples":12,"up_samples":12}` + "\n")
+	}
+	down := now.Add(-2 * time.Hour)
+	events.WriteString(`{"timestamp":"` + down.Format(time.RFC3339) + `","event":"disconnected","reason":{"tcp_ping_failed":true}}` + "\n")
+	events.WriteString(`{"timestamp":"` + down.Add(10*time.Minute).Format(time.RFC3339) + `","event":"connected","duration_seconds":600}` + "\n")
+	write := func(prefix, body string, at time.Time) {
+		f, err := os.OpenFile(filepath.Join(logs, prefix+at.Format("2006-01-02")+".jsonl"), os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0o600)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer f.Close()
+		if _, err := f.WriteString(body); err != nil {
+			t.Fatal(err)
+		}
+	}
+	write("metrics_", metrics.String(), start)
+	write("connectivity_", events.String(), down)
+
+	resp := e.do(t, http.MethodGet, "/api/case/evidence?from=nope", "", nil)
+	if resp.StatusCode != http.StatusBadRequest {
+		t.Fatalf("bad from status %d", resp.StatusCode)
+	}
+	from := now.Add(-4 * time.Hour).UTC().Format(time.RFC3339)
+	resp = e.do(t, http.MethodGet, "/api/case/evidence?from="+from, "", nil)
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("status %d", resp.StatusCode)
+	}
+	ev := decode[rangeEvidence](t, resp.Body)
+	if ev.Summary.Disconnections != 1 || ev.Summary.TotalDowntimeSecs != 600 {
+		t.Fatalf("summary = %+v", ev.Summary)
+	}
+
+	resp = e.do(t, http.MethodGet, "/api/evidence?from="+from, "", nil)
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("range pack status %d", resp.StatusCode)
+	}
+	body, _ := io.ReadAll(resp.Body)
+	zr, err := zip.NewReader(bytes.NewReader(body), int64(len(body)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, f := range zr.File {
+		found = found || f.Name == "logs/connectivity_"+down.Format("2006-01-02")+".jsonl"
+	}
+	if !found {
+		t.Fatal("range pack is missing the connectivity log for the outage day")
+	}
+}

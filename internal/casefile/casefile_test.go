@@ -50,12 +50,19 @@ func TestUpsertDeleteRoundTrip(t *testing.T) {
 
 func TestProfileClean(t *testing.T) {
 	s := Open(t.TempDir())
-	f, err := s.SetProfile(Profile{Provider: " Vodafone ", PlanDownloadMbps: -5, PlanUploadMbps: 10})
+	f, err := s.SetProfile(Profile{Provider: " Vodafone ", PlanDownloadMbps: -5, PlanUploadMbps: 10, Country: "eg", ResponseHours: 99999})
 	if err != nil {
 		t.Fatal(err)
 	}
 	if f.Profile.Provider != "Vodafone" || f.Profile.PlanDownloadMbps != 0 || f.Profile.PlanUploadMbps != 10 {
 		t.Fatalf("unexpected profile %+v", f.Profile)
+	}
+	if f.Profile.Country != "EG" || f.Profile.ResponseHours != maxResponseHours {
+		t.Fatalf("country/response not cleaned: %+v", f.Profile)
+	}
+	f, _ = s.SetProfile(Profile{Country: "XX", ResponseHours: -3})
+	if f.Profile.Country != "" || f.Profile.ResponseHours != 0 {
+		t.Fatalf("unknown country kept: %+v", f.Profile)
 	}
 }
 

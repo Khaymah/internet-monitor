@@ -83,28 +83,33 @@ type dayAcc struct {
 }
 
 func Summarize(events []types.Event, samples []types.MetricSample, month string, now time.Time) MonthlySummary {
-
+	var y, mo int
 	if month != "" {
+		if _, err := fmt.Sscanf(month, "%d-%d", &y, &mo); err == nil && mo >= 1 && mo <= 12 {
+			start := time.Date(y, time.Month(mo), 1, 0, 0, 0, 0, now.Location())
+			s := summarize(events, samples, start, start.AddDate(0, 1, 0), true, now)
+			s.Month = month
+			return s
+		}
+	}
+	return summarize(events, samples, time.Time{}, time.Time{}, false, now)
+}
+
+func SummarizeRange(events []types.Event, samples []types.MetricSample, from, to, now time.Time) MonthlySummary {
+	return summarize(events, samples, from, to, true, now)
+}
+
+func summarize(events []types.Event, samples []types.MetricSample, monthStart, monthEnd time.Time, hasWindow bool, now time.Time) MonthlySummary {
+	if hasWindow {
 		fs := make([]types.MetricSample, 0, len(samples))
 		for _, s := range samples {
-			if s.Timestamp.Format("2006-01") == month {
+			if !s.Timestamp.Before(monthStart) && s.Timestamp.Before(monthEnd) {
 				fs = append(fs, s)
 			}
 		}
 		samples = fs
 	}
 	sort.SliceStable(events, func(i, j int) bool { return events[i].Timestamp.Before(events[j].Timestamp) })
-
-	var monthStart, monthEnd time.Time
-	hasWindow := false
-	if month != "" {
-		var y, mo int
-		if _, err := fmt.Sscanf(month, "%d-%d", &y, &mo); err == nil && mo >= 1 && mo <= 12 {
-			monthStart = time.Date(y, time.Month(mo), 1, 0, 0, 0, 0, now.Location())
-			monthEnd = monthStart.AddDate(0, 1, 0)
-			hasWindow = true
-		}
-	}
 
 	clip := func(start, end time.Time) (time.Time, time.Time, bool) {
 		if hasWindow {
@@ -128,7 +133,6 @@ func Summarize(events []types.Event, samples []types.MetricSample, month string,
 	}
 
 	sum := MonthlySummary{
-		Month:       month,
 		GeneratedAt: now.Format(time.RFC3339),
 		Causes:      map[string]CauseStat{"tcp": {}, "http": {}, "dns": {}},
 		OutageTypes: map[string]int{},

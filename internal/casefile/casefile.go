@@ -26,6 +26,8 @@ const (
 var ErrNotFound = errors.New("complaint not found")
 
 type Profile struct {
+	Country          string  `json:"country"`
+	ResponseHours    int     `json:"response_hours"`
 	Provider         string  `json:"provider"`
 	PlanName         string  `json:"plan_name"`
 	PlanDownloadMbps float64 `json:"plan_download_mbps"`
@@ -187,7 +189,20 @@ type FieldError struct {
 
 func (e *FieldError) Error() string { return e.Field + ": " + e.Message }
 
+var Countries = []string{"EG", "SA", "GB", "US"}
+
+const maxResponseHours = 24 * 120
+
 func (p Profile) clean() Profile {
+	p.Country = strings.ToUpper(strings.TrimSpace(p.Country))
+	known := false
+	for _, c := range Countries {
+		known = known || c == p.Country
+	}
+	if !known {
+		p.Country = ""
+	}
+	p.ResponseHours = max(0, min(p.ResponseHours, maxResponseHours))
 	p.Provider = short(p.Provider)
 	p.PlanName = short(p.PlanName)
 	p.LineNumber = short(p.LineNumber)

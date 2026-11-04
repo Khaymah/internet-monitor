@@ -131,6 +131,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/report", s.serveReport)
 	mux.HandleFunc("GET /api/evidence", s.serveEvidence)
 	mux.HandleFunc("GET /api/case", s.serveCaseGet)
+	mux.HandleFunc("GET /api/case/evidence", s.serveCaseEvidence)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)

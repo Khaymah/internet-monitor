@@ -284,6 +284,8 @@ export interface ReportSpeed {
 }
 
 export interface CaseProfile {
+  country: "EG" | "SA" | "GB" | "US" | "";
+  response_hours: number;
   provider: string;
   plan_name: string;
   plan_download_mbps: number;
@@ -332,4 +334,13 @@ export interface StartupState {
 export interface SpeedTestEvent extends SpeedTestResult {
   event: "speed_test";
   endpoints: string[];
+}
+
+export type RangeSummary = Omit<MonthlyReport, "speed" | "profile" | "complaints">;
+
+export interface RangeEvidence {
+  from: string;
+  to: string;
+  summary: RangeSummary;
+  speed: ReportSpeed;
 }
