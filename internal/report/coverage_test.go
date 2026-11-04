@@ -101,3 +101,33 @@ func TestSummarizeSpeed(t *testing.T) {
 		t.Errorf("no plan: %+v", none)
 	}
 }
+
+func TestLinksRestartsAndBattery(t *testing.T) {
+	base := time.Date(2026, 5, 10, 8, 0, 0, 0, time.UTC)
+	samples := append(minutes(base, 60), minutes(base.Add(3*time.Hour), 60)...)
+	for i := range samples {
+		samples[i].Link = "ethernet"
+		if i%4 == 0 {
+			samples[i].Link, samples[i].WifiSignal = "wifi", 40
+		}
+	}
+	yes := true
+	events := []types.Event{
+		{Timestamp: base.Add(30 * time.Minute), EventType: "disconnected", OnBattery: &yes, Link: "wifi", WifiSignal: 35, Reason: types.EventReason{TCPPingFailed: true}},
+		{Timestamp: base.Add(35 * time.Minute), EventType: "connected", DurationSeconds: 300},
+	}
+	s := Summarize(events, samples, "2026-05", base.Add(4*time.Hour))
+	if s.Links.WiredPct != 75 || s.Links.WifiPct != 25 || s.Links.AvgSignalPct != 40 || s.Links.Minutes != 120 {
+		t.Errorf("links = %+v", s.Links)
+	}
+	if len(s.Events) != 1 || !s.Events[0].OnBattery || s.Events[0].Link != "wifi" || s.Events[0].WifiSignal != 35 {
+		t.Errorf("event row = %+v", s.Events)
+	}
+	if len(s.Gaps) != 1 || s.Gaps[0].Kind != GapOff {
+		t.Fatalf("gaps = %+v", s.Gaps)
+	}
+	MarkRestarts(&s, []Startup{{BootTime: base.Add(2 * time.Hour)}})
+	if s.Gaps[0].Kind != GapRestart {
+		t.Errorf("a boot inside the gap means the computer was off: %+v", s.Gaps[0])
+	}
+}

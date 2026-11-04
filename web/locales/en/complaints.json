@@ -121,5 +121,6 @@
   "c_days_two": "2 days",
   "c_days_few": "{n} days",
   "c_days_many": "{n} days",
-  "c_days_other": "{n} days"
+  "c_days_other": "{n} days",
+  "c_tx_wired": "The measurements were taken over a cable connected directly to the router, not over Wi-Fi."
 }

@@ -88,7 +88,13 @@ export function GapsCard({ report: r }: { report: MonthlyReport }) {
                 </td>
                 <td className="num">{formatDuration(t, g.duration_seconds)}</td>
                 <td className="wrap secondary">
-                  {t(g.kind === "power" ? "report_gap_power" : "report_gap_off")}
+                  {t(
+                    g.kind === "power"
+                      ? "report_gap_power"
+                      : g.kind === "restart"
+                        ? "report_gap_restart"
+                        : "report_gap_off",
+                  )}
                 </td>
               </tr>
             ))}

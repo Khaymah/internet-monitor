@@ -20,6 +20,9 @@ type EventRow struct {
 	DurationSecs float64 `json:"duration_seconds"`
 	Cause        string  `json:"cause"`
 	AfterGap     bool    `json:"after_gap,omitempty"`
+	OnBattery    bool    `json:"on_battery,omitempty"`
+	Link         string  `json:"link,omitempty"`
+	WifiSignal   int     `json:"wifi_signal,omitempty"`
 	Route        *Route  `json:"route,omitempty"`
 }
 
@@ -76,6 +79,7 @@ type MonthlySummary struct {
 	CoveragePct     float64  `json:"coverage_pct"`
 	UnmonitoredSecs float64  `json:"unmonitored_seconds"`
 	Gaps            []GapRow `json:"gaps"`
+	Links           Links    `json:"links"`
 }
 
 type dayAcc struct {
@@ -228,6 +232,9 @@ func summarize(events []types.Event, samples []types.MetricSample, monthStart, m
 					DurationSecs: dur,
 					Cause:        failedLayers(ev.Reason),
 					AfterGap:     markAfterGap(gaps, start, dur),
+					OnBattery:    ev.OnBattery != nil && *ev.OnBattery,
+					Link:         ev.Link,
+					WifiSignal:   ev.WifiSignal,
 				})
 				a := getDay(start)
 				a.outages++
@@ -298,6 +305,7 @@ func summarize(events []types.Event, samples []types.MetricSample, monthStart, m
 	}
 
 	applyCoverage(&sum, samples, gaps, end)
+	sum.Links = summarizeLinks(samples)
 
 	dates := make([]string, 0, len(days))
 	for d := range days {
@@ -360,8 +368,9 @@ func segmentDuration(events []types.Event, k int, now time.Time) float64 {
 }
 
 const (
-	GapOff   = "off"   // computer off, asleep, or the app closed
-	GapPower = "power" // likely power cut: monitoring resumed straight into an outage
+	GapOff     = "off"
+	GapRestart = "restart" // computer off, asleep, or the app closed
+	GapPower   = "power"   // likely power cut: monitoring resumed straight into an outage
 )
 
 type GapRow struct {
@@ -445,4 +454,68 @@ func applyCoverage(sum *MonthlySummary, samples []types.MetricSample, gaps []gap
 		})
 	}
 	sum.CoveragePct = max(0, min(100, (window-sum.UnmonitoredSecs)/window*100))
+}
+
+const SystemPrefix = "system_"
+
+type Startup struct {
+	Timestamp time.Time `json:"timestamp"`
+	Event     string    `json:"event"`
+	BootTime  time.Time `json:"boot_time"`
+}
+
+func MarkRestarts(sum *MonthlySummary, starts []Startup) {
+	for i := range sum.Gaps {
+		g := &sum.Gaps[i]
+		if g.Kind != GapOff {
+			continue
+		}
+		from, err1 := time.Parse(time.RFC3339, g.Start)
+		to, err2 := time.Parse(time.RFC3339, g.End)
+		if err1 != nil || err2 != nil {
+			continue
+		}
+		for _, s := range starts {
+			if !s.BootTime.Before(from) && !s.BootTime.After(to.Add(time.Minute)) {
+				g.Kind = GapRestart
+				break
+			}
+		}
+	}
+}
+
+type Links struct {
+	Minutes      int `json:"minutes"`
+	WiredPct     int `json:"wired_pct"`
+	WifiPct      int `json:"wifi_pct"`
+	AvgSignalPct int `json:"avg_signal_pct,omitempty"`
+}
+
+func summarizeLinks(samples []types.MetricSample) Links {
+	var out Links
+	wired, wifi, signals, signalSum := 0, 0, 0, 0
+	for _, s := range samples {
+		if s.Link == "" {
+			continue
+		}
+		out.Minutes++
+		switch s.Link {
+		case "ethernet":
+			wired++
+		case "wifi":
+			wifi++
+			if s.WifiSignal > 0 {
+				signals++
+				signalSum += s.WifiSignal
+			}
+		}
+	}
+	if out.Minutes > 0 {
+		out.WiredPct = wired * 100 / out.Minutes
+		out.WifiPct = wifi * 100 / out.Minutes
+	}
+	if signals > 0 {
+		out.AvgSignalPct = signalSum / signals
+	}
+	return out
 }

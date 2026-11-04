@@ -111,6 +111,7 @@ func (s *Server) buildReport(month string, now time.Time) reportView {
 		s.logf("case file: %v", err)
 	}
 	sum := report.Summarize(events, samples, month, now)
+	report.MarkRestarts(&sum, readMonthly[report.Startup](dir, report.SystemPrefix, month))
 	integrity, _ := seal.Verify(dir, now)
 	attachRoutes(sum.Events, readMonthly[trace.Trace](dir, trace.Prefix, month))
 	return reportView{
@@ -251,7 +252,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		if e.IsDir() || !strings.HasSuffix(n, ".jsonl") {
 			continue
 		}
-		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix} {
+		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix, report.SystemPrefix} {
 			if strings.HasPrefix(n, prefix) && wantFile(n) {
 				names = append(names, n)
 			}
@@ -348,10 +349,12 @@ func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
 		}
 	}
 	f, _ := s.caseStore().Load()
+	sum := report.SummarizeRange(events, samples, from, to, now)
+	report.MarkRestarts(&sum, jsonl.DecodeDays[report.Startup](dir, report.SystemPrefix, from, to))
 	return rangeEvidence{
 		From:    from.Format(time.RFC3339),
 		To:      to.Format(time.RFC3339),
-		Summary: report.SummarizeRange(events, samples, from, to, now),
+		Summary: sum,
 		Speed:   report.SummarizeSpeed(speeds, "", f.Profile.PlanDownloadMbps),
 	}
 }

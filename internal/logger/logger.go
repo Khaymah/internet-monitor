@@ -236,7 +236,8 @@ func (l *Logger) CleanupOldLogs(maxAge time.Duration) {
 			!strings.HasPrefix(name, "speedtest_") &&
 			!strings.HasPrefix(name, "metrics_") &&
 			!strings.HasPrefix(name, "notifications_") &&
-			!strings.HasPrefix(name, "traceroute_") {
+			!strings.HasPrefix(name, "traceroute_") &&
+			!strings.HasPrefix(name, "system_") {
 			continue
 		}
 		info, err := e.Info()

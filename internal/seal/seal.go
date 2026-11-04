@@ -21,7 +21,7 @@ const (
 	StampDir  = "seals"
 )
 
-var Prefixes = []string{"connectivity_", "metrics_", "speedtest_", "traceroute_", "notifications_"}
+var Prefixes = []string{"connectivity_", "metrics_", "speedtest_", "traceroute_", "notifications_", "system_"}
 
 type File struct {
 	Name   string `json:"name"`

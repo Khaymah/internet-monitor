@@ -60,5 +60,12 @@
   "seal_chain": "سلسلة الأختام مقطوعة",
   "seal_seal_edited": "ختم اتعدّل",
   "seal_file_missing": "ملف سجل متختوم مش موجود",
-  "seal_file_changed": "ملف سجل اتغيّر بعد ما اتختم"
+  "seal_file_changed": "ملف سجل اتغيّر بعد ما اتختم",
+  "report_on_battery": "الجهاز كان شغّال على البطارية: غالباً الكهربا قطعت، مش عطل من الشركة",
+  "report_over_wifi": "متقاس على الـ Wi-Fi",
+  "report_over_wifi_signal": "متقاس على الـ Wi-Fi، والإشارة {pct}%",
+  "report_measured_over": "متقاس على",
+  "report_link_cable": "كابل متوصّل بالراوتر",
+  "report_link_mix": "كابل {cable}% · Wi-Fi {wifi}% من الوقت",
+  "report_gap_restart": "الجهاز اتقفل أو اتعمله ريستارت (اتقفل أو الكهربا قطعت)"
 }

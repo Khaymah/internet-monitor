@@ -317,6 +317,19 @@ export function Report({ month: initial }: { month: string | null }) {
                 </strong>
               </span>
             ) : null}
+            {r.links?.minutes ? (
+              <span>
+                {t("report_measured_over")}:{" "}
+                <strong>
+                  {r.links.wired_pct >= 95
+                    ? t("report_link_cable")
+                    : t("report_link_mix", {
+                        cable: formatNumber(lang, r.links.wired_pct),
+                        wifi: formatNumber(lang, r.links.wifi_pct),
+                      })}
+                </strong>
+              </span>
+            ) : null}
             {r.profile.account_number ? (
               <span>
                 {t("report_account")}:{" "}
@@ -444,6 +457,14 @@ export function Report({ month: initial }: { month: string | null }) {
                           {describeReportCause(t, e.cause)}
                           {e.after_gap ? <div className="muted">{t("report_after_gap")}</div> : null}
                           {e.route ? <div className="muted">{routeText(t, e.route)}</div> : null}
+                          {e.on_battery ? <div className="muted">{t("report_on_battery")}</div> : null}
+                          {e.link === "wifi" ? (
+                            <div className="muted">
+                              {e.wifi_signal
+                                ? t("report_over_wifi_signal", { pct: formatNumber(lang, e.wifi_signal) })
+                                : t("report_over_wifi")}
+                            </div>
+                          ) : null}
                         </td>
                       </tr>
                     ))}

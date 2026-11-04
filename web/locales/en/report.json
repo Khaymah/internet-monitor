@@ -60,5 +60,12 @@
   "seal_chain": "the chain of seals is broken",
   "seal_seal_edited": "a seal was edited",
   "seal_file_missing": "a sealed log file is missing",
-  "seal_file_changed": "a log file changed after it was sealed"
+  "seal_file_changed": "a log file changed after it was sealed",
+  "report_on_battery": "The computer was running on battery: most likely a power cut, not the provider",
+  "report_over_wifi": "Measured over Wi-Fi",
+  "report_over_wifi_signal": "Measured over Wi-Fi, signal {pct}%",
+  "report_measured_over": "Measured over",
+  "report_link_cable": "a cable to the router",
+  "report_link_mix": "cable {cable}% · Wi-Fi {wifi}% of the time",
+  "report_gap_restart": "Computer was turned off or restarted (shut down or a power cut)"
 }

@@ -129,6 +129,7 @@ export function complaintText(
     );
   }
   if (s.window_seconds > 0) body.push(t("c_tx_coverage", { coverage: formatPct(lang, s.coverage_pct) }));
+  if (s.links?.minutes && s.links.wired_pct >= 95) body.push(t("c_tx_wired"));
   if (complaint?.ticket)
     body.push(t("c_tx_ticket", { ticket: complaint.ticket, date: when(complaint.opened_at) }));
   body.push(t("c_tx_close"));

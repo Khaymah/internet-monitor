@@ -6,9 +6,12 @@ import (
 	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/core"
+	"internet-monitor/internal/link"
 	"internet-monitor/internal/logger"
 	"internet-monitor/internal/monitor"
 	"internet-monitor/internal/notifytext"
+	"internet-monitor/internal/power"
+	"internet-monitor/internal/report"
 	"internet-monitor/internal/seal"
 	"internet-monitor/internal/server"
 	"internet-monitor/internal/sound"
@@ -134,6 +137,16 @@ func New(opts Options) (*App, error) {
 		Logf:    lgr.AppLog,
 	})
 	engine := core.New(cfg, monitor.NewChecker(cfg), lgr, opts.Version)
+	links := link.NewCache()
+	engine.Link = func() (string, int) {
+		i := links.Get()
+		return i.Type, i.Signal
+	}
+	engine.Power = power.OnBattery
+	if boot, ok := power.BootTime(); ok {
+		now := time.Now()
+		lgr.LogJSON(report.SystemPrefix, now, report.Startup{Timestamp: now, Event: "start", BootTime: boot})
+	}
 	store.Subscribe(engine.ApplyConfig)
 	store.Subscribe(al.ApplyConfig)
 
