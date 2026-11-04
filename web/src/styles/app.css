@@ -3680,7 +3680,6 @@ body:has(.savebar) .toasts {
   }
 }
 
-/* Complaints */
 .input.textarea {
   height: auto;
   min-height: 96px;

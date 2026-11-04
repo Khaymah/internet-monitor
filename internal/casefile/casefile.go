@@ -1,7 +1,3 @@
-// Package casefile keeps the user's ISP dispute details: who the provider is,
-// what plan they pay for, and every complaint they have filed. It is stored
-// locally next to config.json and never leaves the machine unless the user
-// exports an evidence pack.
 package casefile
 
 import (
@@ -38,7 +34,6 @@ type Profile struct {
 	AccountNumber    string  `json:"account_number"`
 }
 
-// Complaint statuses.
 const (
 	StatusOpen      = "open"
 	StatusEscalated = "escalated"
@@ -122,7 +117,6 @@ func (s *Store) SetProfile(p Profile) (File, error) {
 	return f, s.save(f)
 }
 
-// Upsert creates a complaint when c.ID is empty and replaces the matching one otherwise.
 func (s *Store) Upsert(c Complaint, now time.Time) (Complaint, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -166,7 +160,6 @@ func (s *Store) Delete(id string) error {
 	return s.save(f)
 }
 
-// InMonth returns the complaints that were open at any point during month (YYYY-MM).
 func InMonth(cs []Complaint, month string, loc *time.Location) []Complaint {
 	start, err := time.ParseInLocation("2006-01", month, loc)
 	if err != nil {
@@ -258,8 +251,6 @@ func clampMbps(v float64) float64 {
 	return min(v, 100000)
 }
 
-// normTime accepts RFC3339 or the "2006-01-02T15:04" value of an HTML
-// datetime-local input and returns RFC3339 in local time ("" when invalid).
 func normTime(v string) string {
 	t, ok := parseTime(v, time.Local)
 	if !ok {

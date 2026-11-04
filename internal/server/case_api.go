@@ -86,7 +86,6 @@ func (s *Server) serveComplaintDelete(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
 }
 
-// reportView is the monthly report plus the dispute details that belong on it.
 type reportView struct {
 	report.MonthlySummary
 	Speed      report.SpeedSummary  `json:"speed"`

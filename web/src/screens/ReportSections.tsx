@@ -6,7 +6,6 @@ import type { MonthlyReport } from "../lib/types";
 import { availabilityTone } from "../styles/categories";
 import { channelLabel, STATUS_LABEL, STATUS_TONE } from "./Complaints";
 
-/** Speed with its unit, isolated as left-to-right so "31 Mbps" never flips to "Mbps 31" in RTL text. */
 export function formatMbps(lang: string, v: number): string {
   return `\u2066${formatNumber(lang, v, v < 10 ? 1 : 0)} Mbps\u2069`;
 }

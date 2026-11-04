@@ -82,7 +82,6 @@ function toNumber(v: string): number {
   return Number.isFinite(n) && n > 0 ? n : 0;
 }
 
-/** Converts an RFC3339 value to the "YYYY-MM-DDTHH:mm" a datetime-local input expects. */
 function toLocalInput(value: string | undefined): string {
   const d = value ? new Date(value) : new Date();
   if (Number.isNaN(d.getTime())) return "";

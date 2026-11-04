@@ -271,7 +271,6 @@ export function AlertsSection({ draft, set, err, base }: SectionProps & { base: 
 const ASSUMED_DOWN_MBPS = 100;
 const ASSUMED_UP_MBPS = 20;
 
-/** Estimates how much data each speed test (and the schedule) uses, which matters on capped plans. */
 function SpeedDataHint({
   seconds,
   scheduleMinutes,

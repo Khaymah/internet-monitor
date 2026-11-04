@@ -19,9 +19,7 @@ type EventRow struct {
 	Type         string  `json:"type"`
 	DurationSecs float64 `json:"duration_seconds"`
 	Cause        string  `json:"cause"`
-	// AfterGap marks an outage seen right after monitoring resumed from a gap.
-	// It is often the router still restarting after a power cut, not the ISP.
-	AfterGap bool `json:"after_gap,omitempty"`
+	AfterGap     bool    `json:"after_gap,omitempty"`
 }
 
 type DayStat struct {
@@ -65,8 +63,6 @@ type MonthlySummary struct {
 	Days              []DayStat            `json:"days"`
 	Trend             []TrendPoint         `json:"trend"`
 
-	// Coverage: how much of the period the app was actually watching. Time
-	// outside coverage is "not monitored", never counted as an outage.
 	CoverageStart   string   `json:"coverage_start,omitempty"`
 	WindowSeconds   float64  `json:"window_seconds"`
 	CoveragePct     float64  `json:"coverage_pct"`
@@ -351,7 +347,6 @@ func segmentDuration(events []types.Event, k int, now time.Time) float64 {
 	return 0
 }
 
-// Gap kinds.
 const (
 	GapOff   = "off"   // computer off, asleep, or the app closed
 	GapPower = "power" // likely power cut: monitoring resumed straight into an outage
@@ -370,18 +365,11 @@ type gap struct {
 }
 
 const (
-	// minGap ignores the minute or two a normal restart or update leaves.
-	minGap = 5 * time.Minute
-	// powerWindow: an outage logged this soon after monitoring resumed is
-	// treated as the router still booting after the same power cut.
-	powerWindow = 3 * time.Minute
-	// powerMaxOutage caps how long that post-resume outage may last to count
-	// as a router reboot; longer ones are left as real outages.
+	minGap         = 5 * time.Minute
+	powerWindow    = 3 * time.Minute
 	powerMaxOutage = 15 * time.Minute
 )
 
-// findGaps returns the periods with no metric samples between the first
-// sample and end. Samples are one per minute while the app runs.
 func findGaps(samples []types.MetricSample, end time.Time) []gap {
 	if len(samples) == 0 {
 		return nil

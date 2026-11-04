@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-// SpeedSample is the subset of a speedtest_*.jsonl line the report needs.
 type SpeedSample struct {
 	Timestamp    time.Time `json:"timestamp"`
 	DownloadMbps float64   `json:"download_mbps"`
@@ -22,14 +21,10 @@ type SpeedSummary struct {
 	AvgUploadMbps    float64 `json:"avg_upload_mbps"`
 	AvgLatencyMs     int64   `json:"avg_latency_ms"`
 	PlanDownloadMbps float64 `json:"plan_download_mbps"`
-	// PctOfPlan is the median download as a share of the plan speed (0 when no plan is set).
-	PctOfPlan float64 `json:"pct_of_plan"`
-	// BelowHalfPlan counts tests that measured less than half the plan speed.
-	BelowHalfPlan int `json:"below_half_plan"`
+	PctOfPlan        float64 `json:"pct_of_plan"`
+	BelowHalfPlan    int     `json:"below_half_plan"`
 }
 
-// SummarizeSpeed aggregates the month's speed tests and compares them with
-// the plan speed the user entered (planMbps <= 0 skips the comparison).
 func SummarizeSpeed(tests []SpeedSample, month string, planMbps float64) SpeedSummary {
 	out := SpeedSummary{PlanDownloadMbps: max(planMbps, 0)}
 	var downs []float64

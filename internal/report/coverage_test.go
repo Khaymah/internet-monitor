@@ -17,12 +17,10 @@ func minutes(from time.Time, n int) []types.MetricSample {
 
 func TestCoverageFindsGapAndPowerCut(t *testing.T) {
 	base := time.Date(2026, 5, 10, 8, 0, 0, 0, time.UTC)
-	// 60 minutes monitored, then the machine is off for 2 hours, then 60 more minutes.
 	resume := base.Add(3 * time.Hour)
 	samples := append(minutes(base, 60), minutes(resume, 60)...)
 	now := resume.Add(time.Hour)
 	events := []types.Event{
-		// Right after resuming, the router is still booting.
 		ev(resume.Add(20*time.Second), "disconnected", 0, true, true, true),
 		ev(resume.Add(3*time.Minute), "connected", 160, false, false, false),
 	}
@@ -49,7 +47,6 @@ func TestCoverageFindsGapAndPowerCut(t *testing.T) {
 
 func TestCoverageIgnoresShortRestartAndKeepsRealOutage(t *testing.T) {
 	base := time.Date(2026, 5, 10, 8, 0, 0, 0, time.UTC)
-	// A 2-minute restart is not a gap.
 	samples := append(minutes(base, 30), minutes(base.Add(32*time.Minute), 30)...)
 	now := base.Add(62 * time.Minute)
 	events := []types.Event{
