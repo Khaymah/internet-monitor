@@ -26,6 +26,11 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 - **Weekly summary** every Monday at 09:00 to the desktop, Discord/Slack and
   Telegram, with a "Send last 7 days now" button (rc.2, `POST /api/weekly/send`).
 - Per-rc release notes in `docs/releases/`, used as the GitHub release text.
+
+### Changed
+- A prerelease build now checks all releases for updates and is offered the
+  next rc or the final version (rc.2). Stable builds still follow stable
+  releases only.
 - **Complaints page** (`/complaints`): your provider, plan speed and line number,
   plus a log of every complaint (number, date, channel, agent, status). Open
   complaints count down the provider's 72-hour response window and then suggest

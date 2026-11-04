@@ -24,6 +24,7 @@ import (
 
 const (
 	apiURL        = "https://api.github.com/repos/Khaymah/internet-monitor/releases/latest"
+	listURL       = "https://api.github.com/repos/Khaymah/internet-monitor/releases?per_page=30"
 	checkInterval = 6 * time.Hour
 )
 
@@ -36,9 +37,11 @@ type Info struct {
 }
 
 type ghRelease struct {
-	TagName string    `json:"tag_name"`
-	Body    string    `json:"body"`
-	Assets  []ghAsset `json:"assets"`
+	TagName    string    `json:"tag_name"`
+	Draft      bool      `json:"draft"`
+	Prerelease bool      `json:"prerelease"`
+	Body       string    `json:"body"`
+	Assets     []ghAsset `json:"assets"`
 }
 
 type ghAsset struct {
@@ -78,27 +81,57 @@ func pinnedClient(timeout time.Duration) *http.Client {
 	}
 }
 
-func Check(currentVersion string) (*Info, error) {
-	client := pinnedClient(10 * time.Second)
-	req, err := http.NewRequest("GET", apiURL, nil)
+func IsPrerelease(version string) bool {
+	v := strings.SplitN(strings.TrimPrefix(strings.TrimSpace(version), "v"), "+", 2)[0]
+	return strings.Contains(v, "-")
+}
+
+func newestRelease(rels []ghRelease) (ghRelease, bool) {
+	var best ghRelease
+	found := false
+	for _, r := range rels {
+		if r.Draft || r.TagName == "" {
+			continue
+		}
+		if !found || compareVersions(r.TagName, best.TagName) > 0 {
+			best, found = r, true
+		}
+	}
+	return best, found
+}
+
+func fetchJSON(client *http.Client, url, currentVersion string, v interface{}) error {
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	req.Header.Set("User-Agent", "internet-monitor/"+currentVersion)
 	req.Header.Set("Accept", "application/vnd.github+json")
-
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer resp.Body.Close()
-
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("GitHub API returned %d", resp.StatusCode)
+		return fmt.Errorf("GitHub API returned %d", resp.StatusCode)
 	}
+	return json.NewDecoder(resp.Body).Decode(v)
+}
 
+func Check(currentVersion string) (*Info, error) {
+	client := pinnedClient(10 * time.Second)
 	var rel ghRelease
-	if err := json.NewDecoder(resp.Body).Decode(&rel); err != nil {
+	if IsPrerelease(currentVersion) {
+		var rels []ghRelease
+		if err := fetchJSON(client, listURL, currentVersion, &rels); err != nil {
+			return nil, err
+		}
+		newest, ok := newestRelease(rels)
+		if !ok {
+			return &Info{CurrentVersion: currentVersion, LatestVersion: currentVersion}, nil
+		}
+		rel = newest
+	} else if err := fetchJSON(client, apiURL, currentVersion, &rel); err != nil {
 		return nil, err
 	}
 
