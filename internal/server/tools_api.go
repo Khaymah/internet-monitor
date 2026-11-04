@@ -8,6 +8,7 @@ import (
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/i18n"
 	"internet-monitor/internal/logger"
+	"internet-monitor/internal/pkgid"
 	"internet-monitor/internal/startup"
 	"io"
 	"net"
@@ -292,7 +293,11 @@ func (s *Server) serveTestWebhook(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) serveStartupGet(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, map[string]bool{"supported": startup.Supported(), "enabled": startup.IsEnabled()})
+	resp := map[string]interface{}{"supported": startup.Supported(), "enabled": startup.IsEnabled()}
+	if pkgid.Packaged() {
+		resp["managed"] = "store"
+	}
+	writeJSON(w, http.StatusOK, resp)
 }
 
 func (s *Server) serveStartupPost(w http.ResponseWriter, r *http.Request) {

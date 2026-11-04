@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"errors"
 	"internet-monitor/internal/alerts"
 	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/config"
@@ -10,6 +11,7 @@ import (
 	"internet-monitor/internal/logger"
 	"internet-monitor/internal/monitor"
 	"internet-monitor/internal/notifytext"
+	"internet-monitor/internal/pkgid"
 	"internet-monitor/internal/power"
 	"internet-monitor/internal/report"
 	"internet-monitor/internal/seal"
@@ -49,6 +51,11 @@ type App struct {
 }
 
 func Dir() string {
+	if pkgid.Packaged() {
+		if base := os.Getenv("LOCALAPPDATA"); base != "" {
+			return filepath.Join(base, "InternetMonitor")
+		}
+	}
 	exe, err := os.Executable()
 	if err != nil {
 		wd, _ := os.Getwd()
@@ -118,8 +125,8 @@ func New(opts Options) (*App, error) {
 			PlaySound:        sound.PlayAt,
 			TestWebhook:      lgr.SendTestWebhook,
 			TestNtfy:         lgr.SendTestNtfy,
-			CheckUpdate:      func() (*updater.Info, error) { return updater.Check(opts.Version) },
-			ApplyUpdate:      updater.Apply,
+			CheckUpdate:      func() (*updater.Info, error) { return checkUpdate(opts.Version) },
+			ApplyUpdate:      applyUpdate,
 			Restart:          updater.Restart,
 			SpeedResult:      func(ev logger.SpeedTestEvent, threshold float64, below bool) { al.OnSpeedResult(ev, threshold, below) },
 			SendWeekly:       wk.SendNow,
@@ -229,7 +236,24 @@ func (a *App) Run(notifiers ...core.Notifier) {
 	go a.Weekly.Run(a.stop)
 }
 
+func checkUpdate(version string) (*updater.Info, error) {
+	if pkgid.Packaged() {
+		return &updater.Info{CurrentVersion: version, LatestVersion: version, Managed: "store"}, nil
+	}
+	return updater.Check(version)
+}
+
+func applyUpdate(downloadURL string) error {
+	if pkgid.Packaged() {
+		return errors.New("updates for this copy come from the Microsoft Store")
+	}
+	return updater.Apply(downloadURL)
+}
+
 func (a *App) updateLoop() {
+	if pkgid.Packaged() {
+		return
+	}
 	select {
 	case <-time.After(30 * time.Second):
 	case <-a.stop:

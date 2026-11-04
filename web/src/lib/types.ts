@@ -40,6 +40,7 @@ export interface Availability {
 }
 
 export interface UpdateInfo {
+  managed?: "store";
   has_update: boolean;
   latest_version: string;
   current_version: string;
@@ -391,6 +392,7 @@ export interface ConfigSaveResponse {
 export interface StartupState {
   supported: boolean;
   enabled: boolean;
+  managed?: "store";
 }
 
 export interface SpeedTestEvent extends SpeedTestResult {

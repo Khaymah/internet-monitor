@@ -34,6 +34,7 @@ type Info struct {
 	CurrentVersion string `json:"current_version"`
 	DownloadURL    string `json:"download_url"`
 	ReleaseNotes   string `json:"release_notes"`
+	Managed        string `json:"managed,omitempty"`
 }
 
 type ghRelease struct {

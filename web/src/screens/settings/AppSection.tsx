@@ -40,7 +40,11 @@ function StartupRow() {
       <div className="field">
         <span className="field-label">{t("f_startup")}</span>
         <span className="field-hint" id="startup-hint">
-          {state && !state.supported ? t("f_startup_unsupported") : t("f_startup_hint")}
+          {state?.managed === "store"
+            ? t("f_startup_store")
+            : state && !state.supported
+              ? t("f_startup_unsupported")
+              : t("f_startup_hint")}
         </span>
       </div>
       <Switch
@@ -63,7 +67,8 @@ function UpdatesRow() {
     setChecking(true);
     try {
       const info = await api.checkUpdate();
-      if (info.has_update) toast(t("update_available", { v: info.latest_version }), "info");
+      if (info.managed === "store") toast(t("update_store"), "info");
+      else if (info.has_update) toast(t("update_available", { v: info.latest_version }), "info");
       else toast(t("update_latest"), "ok");
     } catch (e) {
       toast(t(errorKey(e, "update_check_failed")), "error");

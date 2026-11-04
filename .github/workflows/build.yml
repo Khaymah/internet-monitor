@@ -302,6 +302,34 @@ jobs:
           path: internet-monitor-gui-windows.exe
 
   # ── macOS — arm64 native + amd64 cross-compiled via Xcode ────
+  msix:
+    name: "🛍️ Microsoft Store package (MSIX)"
+    runs-on: windows-latest
+    continue-on-error: true
+    needs: [version, web, windows-tray, windows-gui]
+    if: ${{ always() && needs.windows-tray.result == 'success' && needs.windows-gui.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: "{windows-tray,windows-gui}"
+          merge-multiple: true
+          path: bin
+
+      - name: Build MSIX
+        shell: pwsh
+        env:
+          VERSION: ${{ needs.version.outputs.new_tag || needs.web.outputs.dev_version }}
+        run: |
+          ./packaging/msix/build.ps1 -GuiExe bin/internet-monitor-gui-windows.exe -TrayExe bin/internet-monitor-windows.exe -Version $env:VERSION -Out internet-monitor-store.msix
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: msix
+          path: internet-monitor-store.msix
+          if-no-files-found: ignore
+
   macos:
     name: "🍎 macOS (arm64 + intel)"
     runs-on: macos-latest
@@ -402,7 +430,7 @@ jobs:
   # ══════════════════════════════════════════════════════════════
   release:
     name: "🚀 Auto Release"
-    needs: [version, windows-tray, windows-gui, macos, linux, headless]
+    needs: [version, windows-tray, windows-gui, macos, linux, headless, msix]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && needs.version.outputs.new_tag != ''
     concurrency:
@@ -419,6 +447,12 @@ jobs:
           pattern: "{windows-tray,windows-gui,macos,linux,headless}"
           merge-multiple: true
           path: dist/
+
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          name: msix
+          path: store/
 
       - name: Verify every release binary is present
         run: |
@@ -505,3 +539,10 @@ jobs:
             dist/internet-monitor-headless-linux-armv7
             dist/SHA256SUMS
           body_path: release-notes.md
+
+      - name: Attach the Store package
+        if: ${{ hashFiles('store/internet-monitor-store.msix') != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.version.outputs.new_tag }}
+        run: gh release upload "$TAG" store/internet-monitor-store.msix --repo "$GITHUB_REPOSITORY" --clobber
