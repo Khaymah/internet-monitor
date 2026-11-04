@@ -295,20 +295,12 @@ type rangeEvidence struct {
 	Speed   report.SpeedSummary   `json:"speed"`
 }
 
-func readDays[T any](dir, prefix string, from, to time.Time) []T {
-	var out []T
-	for d := time.Date(from.Year(), from.Month(), from.Day(), 0, 0, 0, 0, from.Location()); !d.After(to); d = d.AddDate(0, 0, 1) {
-		_ = jsonl.Decode(filepath.Join(dir, prefix+d.Format("2006-01-02")+".jsonl"), func(v T) { out = append(out, v) })
-	}
-	return out
-}
-
 func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
 	dir := s.logDir()
-	events := readDays[types.Event](dir, "connectivity_", from.AddDate(0, 0, -1), to.AddDate(0, 0, 1))
-	samples := readDays[types.MetricSample](dir, "metrics_", from, to)
+	events := jsonl.DecodeDays[types.Event](dir, "connectivity_", from.AddDate(0, 0, -1), to.AddDate(0, 0, 1))
+	samples := jsonl.DecodeDays[types.MetricSample](dir, "metrics_", from, to)
 	var speeds []report.SpeedSample
-	for _, sp := range readDays[report.SpeedSample](dir, "speedtest_", from, to) {
+	for _, sp := range jsonl.DecodeDays[report.SpeedSample](dir, "speedtest_", from, to) {
 		if !sp.Timestamp.Before(from) && sp.Timestamp.Before(to) {
 			speeds = append(speeds, sp)
 		}
@@ -356,4 +348,34 @@ func (s *Server) serveCaseEvidence(w http.ResponseWriter, r *http.Request) {
 		from = to.Add(-maxEvidenceRange)
 	}
 	writeJSON(w, http.StatusOK, s.evidenceFor(from, to, now))
+}
+
+func (s *Server) serveWeeklySend(w http.ResponseWriter, _ *http.Request) {
+	if s.hooks.SendWeekly == nil {
+		writeError(w, http.StatusNotImplemented, "unavailable", "weekly summary is not available in this build")
+		return
+	}
+	if !s.tester.allow("weekly") {
+		writeError(w, http.StatusTooManyRequests, "rate_limited", "wait a moment and try again")
+		return
+	}
+	if !s.hooks.SendWeekly() {
+		writeError(w, http.StatusConflict, "no_data", "no monitoring data in the last 7 days")
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
+}
+
+func (s *Server) serveTimeline(w http.ResponseWriter, r *http.Request) {
+	hours := parseLimit(r.URL.Query().Get("hours"), 24, 24*7)
+	now := time.Now()
+	from := now.Add(-time.Duration(hours) * time.Hour)
+	dir := s.logDir()
+	events := jsonl.DecodeDays[types.Event](dir, "connectivity_", from.AddDate(0, 0, -1), now)
+	samples := jsonl.DecodeDays[types.MetricSample](dir, "metrics_", from, now)
+	writeJSON(w, http.StatusOK, map[string]interface{}{
+		"from":     from.Format(time.RFC3339),
+		"to":       now.Format(time.RFC3339),
+		"segments": report.Timeline(events, samples, from, now),
+	})
 }

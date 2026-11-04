@@ -65,5 +65,15 @@
   "probe_not_found": "مش موجود",
   "probe_unreachable": "مش واصل له",
   "probe_no_permission": "محجوب",
-  "probe_error": "فشل"
+  "probe_error": "فشل",
+  "tl_title": "خط زمني للانقطاعات",
+  "tl_sub": "{outages} فصلات · {downtime} من غير نت",
+  "tl_sub_none": "مفيش فصلات في الفترة دي",
+  "tl_range": "المدة",
+  "tl_24h": "24 ساعة",
+  "tl_7d": "7 أيام",
+  "tl_off": "من غير مراقبة",
+  "tl_from": "من",
+  "tl_to": "لحد",
+  "tl_now": "دلوقتي"
 }

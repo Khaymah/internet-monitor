@@ -7,6 +7,8 @@ import (
 	"errors"
 	"io"
 	"os"
+	"path/filepath"
+	"time"
 )
 
 const maxLine = 1 << 20
@@ -86,4 +88,12 @@ func Decode[T any](path string, fn func(T)) error {
 		}
 		return true
 	})
+}
+
+func DecodeDays[T any](dir, prefix string, from, to time.Time) []T {
+	var out []T
+	for d := time.Date(from.Year(), from.Month(), from.Day(), 0, 0, 0, 0, from.Location()); !d.After(to); d = d.AddDate(0, 0, 1) {
+		_ = Decode(filepath.Join(dir, prefix+d.Format("2006-01-02")+".jsonl"), func(v T) { out = append(out, v) })
+	}
+	return out
 }

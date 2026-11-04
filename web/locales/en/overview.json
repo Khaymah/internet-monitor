@@ -65,5 +65,15 @@
   "probe_not_found": "Not found",
   "probe_unreachable": "Unreachable",
   "probe_no_permission": "Blocked",
-  "probe_error": "Failed"
+  "probe_error": "Failed",
+  "tl_title": "Outage timeline",
+  "tl_sub": "{outages} outages · {downtime} offline",
+  "tl_sub_none": "No outages in this period",
+  "tl_range": "Time range",
+  "tl_24h": "24 hours",
+  "tl_7d": "7 days",
+  "tl_off": "Not monitored",
+  "tl_from": "From",
+  "tl_to": "To",
+  "tl_now": "Now"
 }

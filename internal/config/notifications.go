@@ -39,6 +39,7 @@ type EventSwitches struct {
 	Degraded ChannelSwitches `json:"degraded"`
 	Restored ChannelSwitches `json:"restored"`
 	Speed    ChannelSwitches `json:"speed"`
+	Weekly   ChannelSwitches `json:"weekly"`
 }
 
 type Notifications struct {
@@ -66,6 +67,7 @@ func DefaultNotifications() Notifications {
 			Degraded: on,
 			Restored: on,
 			Speed:    ChannelSwitches{Webhook: true, Telegram: true},
+			Weekly:   on,
 		},
 	}
 }

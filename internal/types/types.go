@@ -82,3 +82,18 @@ type MetricSample struct {
 	HTTPFails    int       `json:"http_fails"`
 	DNSFails     int       `json:"dns_fails"`
 }
+
+type WeeklySummary struct {
+	From            time.Time `json:"from"`
+	To              time.Time `json:"to"`
+	Outages         int       `json:"outages"`
+	DowntimeSeconds float64   `json:"downtime_seconds"`
+	LongestSeconds  float64   `json:"longest_seconds"`
+	UptimePct       float64   `json:"uptime_pct"`
+	CoveragePct     float64   `json:"coverage_pct"`
+	SpeedTests      int       `json:"speed_tests"`
+	MedianMbps      float64   `json:"median_mbps"`
+	PlanMbps        float64   `json:"plan_mbps"`
+	PctOfPlan       float64   `json:"pct_of_plan"`
+	PrevOutages     *int      `json:"prev_outages,omitempty"`
+}

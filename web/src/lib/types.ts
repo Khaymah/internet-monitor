@@ -117,7 +117,7 @@ export interface SpeedTestConfig {
   schedule_minutes: number;
 }
 
-export type NotifyEvent = "down" | "degraded" | "restored" | "speed";
+export type NotifyEvent = "down" | "degraded" | "restored" | "speed" | "weekly";
 export type NotifyChannel = "desktop" | "webhook" | "telegram";
 export type QuietMode = "sound" | "all";
 
@@ -131,7 +131,7 @@ export interface NotificationSettings {
   reminder_minutes: number;
 }
 
-export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test";
+export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test" | "weekly";
 export type AlertChannel = "desktop" | "sound" | "webhook" | "telegram";
 export type MuteReason = "disabled" | "quiet_hours" | "sound_off" | "short_outage" | "startup";
 
@@ -147,6 +147,7 @@ export interface NotificationRecord {
     avg_latency_ms: number;
   };
   duration_seconds?: number;
+  weekly?: WeeklySummary;
   speed?: {
     download_mbps: number;
     upload_mbps?: number;
@@ -343,4 +344,33 @@ export interface RangeEvidence {
   to: string;
   summary: RangeSummary;
   speed: ReportSpeed;
+}
+
+export interface WeeklySummary {
+  from: string;
+  to: string;
+  outages: number;
+  downtime_seconds: number;
+  longest_seconds: number;
+  uptime_pct: number;
+  coverage_pct: number;
+  speed_tests: number;
+  median_mbps: number;
+  plan_mbps: number;
+  pct_of_plan: number;
+  prev_outages?: number;
+}
+
+export type TimelineStatus = "connected" | "degraded" | "disconnected" | "off";
+
+export interface TimelineSegment {
+  start: string;
+  end: string;
+  status: TimelineStatus;
+}
+
+export interface Timeline {
+  from: string;
+  to: string;
+  segments: TimelineSegment[];
 }

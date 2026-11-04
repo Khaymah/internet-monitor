@@ -271,6 +271,16 @@ func (l *Logger) SendSpeed(lang string, event SpeedTestEvent, thresholdMbps floa
 	}
 }
 
+func (l *Logger) SendWeekly(lang string, w types.WeeklySummary, webhook, telegram bool) {
+	url, token, chat := l.remoteTargets()
+	if webhook && url != "" && IsSupportedWebhook(url) {
+		go l.sendWebhook(url, BuildWeeklyPayload(lang, w, url))
+	}
+	if telegram && token != "" && chat != "" {
+		go l.sendTelegram(token, chat, TelegramWeeklyText(lang, w))
+	}
+}
+
 func (l *Logger) sendTelegram(token, chatID, text string) {
 	defer func() {
 		if r := recover(); r != nil {

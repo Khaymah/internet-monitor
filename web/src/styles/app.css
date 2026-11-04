@@ -3782,3 +3782,38 @@ body:has(.savebar) .toasts {
   border-inline-start: 3px solid var(--tone);
   color: var(--text-primary);
 }
+
+.timeline {
+  position: relative;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--color-track);
+  overflow: hidden;
+}
+
+.timeline-seg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  border: 0;
+  background: var(--tone);
+}
+
+.timeline-seg[data-status="off"] {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--color-track) 0 6px,
+    color-mix(in srgb, var(--text-tertiary) 25%, transparent) 6px 8px
+  );
+}
+
+button.timeline-seg {
+  z-index: 1;
+  cursor: pointer;
+}
+
+button.timeline-seg:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: -2px;
+}

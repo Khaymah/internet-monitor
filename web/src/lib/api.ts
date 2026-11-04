@@ -12,6 +12,7 @@ import type {
   SpeedTestEvent,
   StartupState,
   TestTargetsResponse,
+  Timeline,
   UpdateInfo,
 } from "./types";
 
@@ -145,6 +146,8 @@ export const api = {
   evidenceRange(from: string, to?: string): Promise<Blob> {
     return evidenceZip(`from=${encodeURIComponent(from)}${to ? `&to=${encodeURIComponent(to)}` : ""}`);
   },
+  sendWeekly: () => post<{ ok: boolean }>("/api/weekly/send"),
+  timeline: (hours: number, signal?: AbortSignal) => get<Timeline>(`/api/timeline?hours=${hours}`, signal),
   speedHistory: (date: string, signal?: AbortSignal) =>
     get<SpeedTestEvent[]>(`/api/speed-test/history?date=${encodeURIComponent(date)}&limit=50`, signal),
   startSpeedTest: () => post<{ ok: boolean }>("/api/speed-test/start"),

@@ -161,3 +161,26 @@ func TestCaseEvidenceRange(t *testing.T) {
 		t.Fatal("range pack is missing the connectivity log for the outage day")
 	}
 }
+
+func TestTimelineEndpoint(t *testing.T) {
+	e := newTestEnv(t)
+	resp := e.do(t, http.MethodGet, "/api/timeline?hours=999", "", nil)
+	if resp.StatusCode != http.StatusOK {
+		t.Fatalf("status %d", resp.StatusCode)
+	}
+	body := decode[struct {
+		From     string `json:"from"`
+		To       string `json:"to"`
+		Segments []struct {
+			Status string `json:"status"`
+		} `json:"segments"`
+	}](t, resp.Body)
+	from, _ := time.Parse(time.RFC3339, body.From)
+	to, _ := time.Parse(time.RFC3339, body.To)
+	if h := to.Sub(from).Hours(); h < 167 || h > 169 {
+		t.Fatalf("window = %vh, want 168 (capped)", h)
+	}
+	if len(body.Segments) != 1 || body.Segments[0].Status != "off" {
+		t.Fatalf("segments = %+v, want one off segment with no data", body.Segments)
+	}
+}

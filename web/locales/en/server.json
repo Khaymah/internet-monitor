@@ -31,6 +31,11 @@
     },
     "action": {
       "open": "Open dashboard"
+    },
+    "weekly": {
+      "title": "📊 Your internet this week",
+      "body": "{outages} outages, {downtime} offline · uptime {uptime}%",
+      "clear": "No outages this week · uptime {uptime}%"
     }
   },
   "duration": {
@@ -63,6 +68,17 @@
     "speed": {
       "done": "Speed test completed",
       "drop": "Speed drop detected"
+    },
+    "weekly": {
+      "title": "Weekly summary {period}",
+      "outages": "Outages",
+      "vs_prev": "{n} (last week: {prev})",
+      "downtime": "Total downtime",
+      "longest": "Longest outage",
+      "uptime": "Uptime",
+      "coverage": "Monitored",
+      "speed": "Typical download",
+      "speed_plan": "{speed} ({pct} of plan)"
     }
   },
   "tray": {

@@ -68,6 +68,8 @@ func (r *fakeRemote) SendSpeed(string, logger.SpeedTestEvent, float64, bool, boo
 	r.speeds++
 }
 
+func (r *fakeRemote) SendWeekly(string, types.WeeklySummary, bool, bool) {}
+
 type fakeDesktop struct {
 	mu     sync.Mutex
 	toasts []Toast

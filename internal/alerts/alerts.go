@@ -27,6 +27,7 @@ type Desktop interface {
 type Remote interface {
 	SendEvent(lang string, ev types.Event, kind string, webhook, telegram bool)
 	SendSpeed(lang string, ev logger.SpeedTestEvent, thresholdMbps float64, below, webhook, telegram bool)
+	SendWeekly(lang string, w types.WeeklySummary, webhook, telegram bool)
 }
 
 type SpeedInfo struct {
@@ -38,14 +39,15 @@ type SpeedInfo struct {
 }
 
 type Record struct {
-	ID              string             `json:"id"`
-	Time            time.Time          `json:"time"`
-	Kind            Kind               `json:"kind"`
-	Reason          *types.EventReason `json:"reason,omitempty"`
-	DurationSeconds float64            `json:"duration_seconds,omitempty"`
-	Speed           *SpeedInfo         `json:"speed,omitempty"`
-	Sent            []Channel          `json:"sent"`
-	Muted           map[Channel]Reason `json:"muted,omitempty"`
+	ID              string               `json:"id"`
+	Time            time.Time            `json:"time"`
+	Kind            Kind                 `json:"kind"`
+	Reason          *types.EventReason   `json:"reason,omitempty"`
+	DurationSeconds float64              `json:"duration_seconds,omitempty"`
+	Speed           *SpeedInfo           `json:"speed,omitempty"`
+	Weekly          *types.WeeklySummary `json:"weekly,omitempty"`
+	Sent            []Channel            `json:"sent"`
+	Muted           map[Channel]Reason   `json:"muted,omitempty"`
 }
 
 type stopper interface{ Stop() bool }
@@ -437,6 +439,30 @@ func (a *Alerts) OnSpeedResult(ev logger.SpeedTestEvent, thresholdMbps float64, 
 	}
 	if (d.Webhook || d.Telegram) && a.opts.Remote != nil {
 		a.opts.Remote.SendSpeed(lang, ev, thresholdMbps, below, d.Webhook, d.Telegram)
+	}
+}
+
+func (a *Alerts) OnWeekly(w types.WeeklySummary) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if a.closed {
+		return
+	}
+	now := a.now()
+	d := Decide(KindWeekly, a.settings, a.has, now)
+	info := w
+	a.record(Record{ID: a.nextID(), Time: now, Kind: KindWeekly, Weekly: &info, Sent: d.Sent(), Muted: d.Muted})
+	lang := a.lang
+	if d.Desktop && a.opts.Desktop != nil {
+		title, body := WeeklyText(lang, w)
+		status := types.StatusConnected
+		if w.Outages > 0 {
+			status = types.StatusDegraded
+		}
+		a.show(Toast{Kind: KindWeekly, Status: status, Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
+	}
+	if (d.Webhook || d.Telegram) && a.opts.Remote != nil {
+		a.opts.Remote.SendWeekly(lang, w, d.Webhook, d.Telegram)
 	}
 }
 
