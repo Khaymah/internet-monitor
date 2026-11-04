@@ -1,5 +1,8 @@
 import type {
   Availability,
+  CaseFile,
+  CaseProfile,
+  Complaint,
   ConfigSaveResponse,
   ConfigView,
   LogEvent,
@@ -119,6 +122,19 @@ export const api = {
   availability: () => get<Availability>("/api/availability"),
   report: (month: string, signal?: AbortSignal) =>
     get<MonthlyReport>(`/api/report?month=${encodeURIComponent(month)}`, signal),
+  caseFile: (signal?: AbortSignal) => get<CaseFile>("/api/case", signal),
+  saveProfile: (profile: CaseProfile) => post<CaseFile>("/api/case/profile", profile),
+  saveComplaint: (complaint: Partial<Complaint>) => post<Complaint>("/api/case/complaints", complaint),
+  deleteComplaint: (id: string) =>
+    request<{ ok: boolean }>(`/api/case/complaints/${encodeURIComponent(id)}`, { method: "DELETE" }),
+  async evidence(month: string): Promise<Blob> {
+    const res = await fetch(`/api/evidence?month=${encodeURIComponent(month)}`, {
+      credentials: "same-origin",
+      cache: "no-store",
+    });
+    if (!res.ok) throw new ApiError(res.status, await parseBody(res));
+    return res.blob();
+  },
   speedHistory: (date: string, signal?: AbortSignal) =>
     get<SpeedTestEvent[]>(`/api/speed-test/history?date=${encodeURIComponent(date)}&limit=50`, signal),
   startSpeedTest: () => post<{ ok: boolean }>("/api/speed-test/start"),

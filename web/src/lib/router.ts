@@ -5,6 +5,7 @@ export type Route =
   | "history"
   | "notifications"
   | "speed"
+  | "complaints"
   | "settings"
   | "report"
   | "changelog"
@@ -20,6 +21,7 @@ const paths: Record<Route, string> = {
   history: "/history",
   notifications: "/notifications",
   speed: "/speed",
+  complaints: "/complaints",
   settings: "/settings",
   report: "/report",
   changelog: "/changelog",

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useSyncExternalStore } from "react";
 import about from "../../locales/en/about.json";
 import changelog from "../../locales/en/changelog.json";
 import common from "../../locales/en/common.json";
+import complaints from "../../locales/en/complaints.json";
 import faq from "../../locales/en/faq.json";
 import history from "../../locales/en/history.json";
 import legal from "../../locales/en/legal.json";
@@ -18,6 +19,7 @@ export const MESSAGE_FILES = {
   about,
   changelog,
   common,
+  complaints,
   faq,
   history,
   legal,

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"internet-monitor/internal/jsonl"
-	"internet-monitor/internal/report"
 	"internet-monitor/internal/types"
 	"net/http"
 	"os"
@@ -121,20 +120,6 @@ func readMonthly[T any](dir, prefix, month string) []T {
 		_ = jsonl.Decode(filepath.Join(dir, name), func(v T) { out = append(out, v) })
 	}
 	return out
-}
-
-func (s *Server) serveReport(w http.ResponseWriter, r *http.Request) {
-	month := r.URL.Query().Get("month")
-	if !validMonth(month) {
-		month = time.Now().Format("2006-01")
-	}
-	dir := s.logDir()
-	prev, next := adjacentMonths(month)
-	events := readMonthly[types.Event](dir, "connectivity_", month)
-	events = append(events, readMonthly[types.Event](dir, "connectivity_", prev)...)
-	events = append(events, readMonthly[types.Event](dir, "connectivity_", next)...)
-	samples := readMonthly[types.MetricSample](dir, "metrics_", month)
-	writeJSON(w, http.StatusOK, report.Summarize(events, samples, month, time.Now()))
 }
 
 type Availability struct {

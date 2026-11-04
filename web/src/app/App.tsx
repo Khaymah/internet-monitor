@@ -8,6 +8,7 @@ import { live, useLive } from "../lib/live";
 import { useLocation } from "../lib/router";
 import { About } from "../screens/About";
 import { Changelog } from "../screens/Changelog";
+import { Complaints } from "../screens/Complaints";
 import { Contact } from "../screens/Contact";
 import { Faq } from "../screens/Faq";
 import { History } from "../screens/History";
@@ -68,6 +69,7 @@ export function App() {
         {route === "history" ? <History /> : null}
         {route === "notifications" ? <Notifications /> : null}
         {route === "speed" ? <Speed /> : null}
+        {route === "complaints" ? <Complaints /> : null}
         {route === "settings" ? <Settings /> : null}
         {route === "overview" ? <Overview /> : null}
         {route === "changelog" ? <Changelog /> : null}

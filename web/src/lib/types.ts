@@ -221,6 +221,7 @@ export interface ReportEventRow {
   type: string;
   duration_seconds: number;
   cause: string;
+  after_gap?: boolean;
 }
 
 export interface ReportDay {
@@ -252,6 +253,64 @@ export interface MonthlyReport {
   outage_types: Record<string, number>;
   events: ReportEventRow[];
   days: ReportDay[];
+  coverage_start?: string;
+  window_seconds: number;
+  coverage_pct: number;
+  unmonitored_seconds: number;
+  gaps: ReportGap[];
+  speed: ReportSpeed;
+  profile: CaseProfile;
+  complaints: Complaint[];
+}
+
+export interface ReportGap {
+  start: string;
+  end: string;
+  duration_seconds: number;
+  kind: "off" | "power";
+}
+
+export interface ReportSpeed {
+  tests: number;
+  avg_download_mbps: number;
+  median_download_mbps: number;
+  min_download_mbps: number;
+  max_download_mbps: number;
+  avg_upload_mbps: number;
+  avg_latency_ms: number;
+  plan_download_mbps: number;
+  pct_of_plan: number;
+  below_half_plan: number;
+}
+
+export interface CaseProfile {
+  provider: string;
+  plan_name: string;
+  plan_download_mbps: number;
+  plan_upload_mbps: number;
+  line_number: string;
+  account_number: string;
+}
+
+export type ComplaintStatus = "open" | "escalated" | "resolved" | "rejected";
+
+export interface Complaint {
+  id: string;
+  provider: string;
+  ticket: string;
+  opened_at: string;
+  channel: string;
+  agent: string;
+  status: ComplaintStatus;
+  escalated_at?: string;
+  regulator_ticket?: string;
+  closed_at?: string;
+  notes: string;
+}
+
+export interface CaseFile {
+  profile: CaseProfile;
+  complaints: Complaint[];
 }
 
 export interface ConfigView extends Config {
