@@ -33,7 +33,16 @@ import { isRtl, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
 import type { MonthlyReport, ReportDay } from "../lib/types";
 import { availabilityTone, statusTone, tone } from "../styles/categories";
-import { ComplaintsCard, formatMbps, GapsCard, IntegrityCard, routeText, SpeedCard } from "./ReportSections";
+import {
+  CompensationCard,
+  ComplaintsCard,
+  formatMbps,
+  GapsCard,
+  HoursCard,
+  IntegrityCard,
+  routeText,
+  SpeedCard,
+} from "./ReportSections";
 
 function daysOf(month: string, days: ReportDay[]): (ReportDay | { date: string; empty: true })[] {
   const [y, m] = month.split("-").map(Number);
@@ -474,7 +483,9 @@ export function Report({ month: initial }: { month: string | null }) {
             )}
           </Card>
 
+          <HoursCard report={r} />
           {r.speed?.tests ? <SpeedCard report={r} /> : null}
+          <CompensationCard report={r} />
           {r.gaps?.length ? <GapsCard report={r} /> : null}
           {r.complaints?.length ? <ComplaintsCard report={r} /> : null}
           <IntegrityCard report={r} />

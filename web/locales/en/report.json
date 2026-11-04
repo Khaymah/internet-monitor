@@ -67,5 +67,14 @@
   "report_measured_over": "Measured over",
   "report_link_cable": "a cable to the router",
   "report_link_mix": "cable {cable}% · Wi-Fi {wifi}% of the time",
-  "report_gap_restart": "Computer was turned off or restarted (shut down or a power cut)"
+  "report_gap_restart": "Computer was turned off or restarted (shut down or a power cut)",
+  "comp_title": "What the downtime is worth",
+  "comp_prorata": "At {price} a month, {downtime} without internet is worth {amount} of what you paid.",
+  "comp_ofcom": "UK: {days} day(s) qualify for Ofcom automatic compensation, about {amount}.",
+  "comp_excluded": "{duration} of outages that look like power cuts are left out.",
+  "comp_note": "This is an estimate to support your claim, not a legal entitlement. Rules and rates depend on your country and contract.",
+  "hours_title": "Downtime by hour of day",
+  "hours_peak": "{pct} of the downtime was between 7pm and midnight",
+  "report_speed_peak": "Typical speed 7pm–midnight",
+  "report_speed_offpeak": "Typical speed other hours"
 }

@@ -201,3 +201,15 @@ export function formatDataSize(lang: Lang, megabytes: number): string {
   if (megabytes >= 1000) return `${formatNumber(lang, megabytes / 1000, megabytes >= 10000 ? 0 : 1)} GB`;
   return `${formatNumber(lang, Math.max(1, Math.round(megabytes)))} MB`;
 }
+
+export function formatMoney(lang: Lang, amount: number, currency?: string): string {
+  const code = (currency ?? "").trim().toUpperCase();
+  if (/^[A-Z]{3}$/.test(code)) {
+    try {
+      return new Intl.NumberFormat(localeOf(lang), { style: "currency", currency: code }).format(amount);
+    } catch {
+      return `${formatNumber(lang, amount, 2)} ${code}`;
+    }
+  }
+  return formatNumber(lang, amount, 2);
+}

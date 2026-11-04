@@ -1,9 +1,9 @@
 import type { CSSProperties } from "react";
 import { Card, CardHead, Meter } from "../components/ui";
-import { formatDate, formatDuration, formatNumber, formatPct } from "../lib/format";
+import { formatDate, formatDuration, formatMoney, formatNumber, formatPct } from "../lib/format";
 import { type MessageKey, type Translate, useI18n } from "../lib/i18n";
 import type { MonthlyReport, ReportRoute } from "../lib/types";
-import { availabilityTone } from "../styles/categories";
+import { availabilityTone, tone } from "../styles/categories";
 import { channelLabel, STATUS_LABEL, STATUS_TONE } from "./complaints/shared";
 
 export function formatMbps(lang: string, v: number): string {
@@ -22,6 +22,10 @@ export function SpeedCard({ report: r }: { report: MonthlyReport }) {
     ],
   ];
   if (sp.avg_upload_mbps > 0) rows.push(["report_speed_up", formatMbps(lang, sp.avg_upload_mbps)]);
+  if ((sp.peak_tests ?? 0) > 0 && (sp.off_peak_median_mbps ?? 0) > 0) {
+    rows.push(["report_speed_peak", formatMbps(lang, sp.peak_median_mbps ?? 0)]);
+    rows.push(["report_speed_offpeak", formatMbps(lang, sp.off_peak_median_mbps ?? 0)]);
+  }
   if (sp.plan_download_mbps > 0) {
     rows.push(["report_speed_plan", formatMbps(lang, sp.plan_download_mbps)]);
     rows.push(["report_speed_below", formatNumber(lang, sp.below_half_plan)]);
@@ -197,6 +201,81 @@ export function IntegrityCard({ report: r }: { report: MonthlyReport }) {
           ))}
         </ul>
       ) : null}
+    </Card>
+  );
+}
+
+export function CompensationCard({ report: r }: { report: MonthlyReport }) {
+  const { t, lang } = useI18n();
+  const c = r.compensation;
+  if (!c || (c.monthly_price <= 0 && !c.ofcom_days) || c.provider_downtime_seconds <= 0) return null;
+  return (
+    <Card labelledBy="report-comp">
+      <CardHead id="report-comp" title={t("comp_title")} />
+      <div className="stack" style={{ gap: 8 }}>
+        {c.monthly_price > 0 ? (
+          <p>
+            {t("comp_prorata", {
+              amount: formatMoney(lang, c.pro_rata, c.currency),
+              price: formatMoney(lang, c.monthly_price, c.currency),
+              downtime: formatDuration(t, c.provider_downtime_seconds),
+            })}
+          </p>
+        ) : null}
+        {c.ofcom_days ? (
+          <p>
+            {t("comp_ofcom", {
+              days: formatNumber(lang, c.ofcom_days),
+              amount: formatMoney(lang, c.ofcom_amount_gbp ?? 0, "GBP"),
+            })}
+          </p>
+        ) : null}
+        {c.excluded_seconds > 0 ? (
+          <p className="muted">{t("comp_excluded", { duration: formatDuration(t, c.excluded_seconds) })}</p>
+        ) : null}
+        <p className="muted">{t("comp_note")}</p>
+      </div>
+    </Card>
+  );
+}
+
+export function HoursCard({ report: r }: { report: MonthlyReport }) {
+  const { t, lang } = useI18n();
+  const hours = r.hours ?? [];
+  const max = Math.max(0, ...hours.map((h) => h.downtime_seconds));
+  if (!hours.length || max <= 0) return null;
+  return (
+    <Card labelledBy="report-hours">
+      <CardHead
+        id="report-hours"
+        title={t("hours_title")}
+        sub={t("hours_peak", { pct: formatPct(lang, r.peak_share_pct ?? 0) })}
+      />
+      <div className="hours" dir="ltr" role="img" aria-label={t("hours_title")}>
+        {hours.map((h) => (
+          <span
+            key={h.hour}
+            title={`${String(h.hour).padStart(2, "0")}:00 · ${formatDuration(t, h.downtime_seconds)} · ${formatNumber(lang, h.outages)}`}
+            className="hour-bar"
+            style={
+              {
+                height: `${h.downtime_seconds > 0 ? Math.max(4, (h.downtime_seconds / max) * 100) : 2}%`,
+                "--tone":
+                  h.downtime_seconds > 0
+                    ? h.hour >= 19
+                      ? tone.disconnected
+                      : tone.degraded
+                    : "var(--color-track)",
+              } as CSSProperties
+            }
+          />
+        ))}
+      </div>
+      <div className="hours-axis num" dir="ltr" aria-hidden>
+        {hours.map((h) => (
+          <span key={h.hour}>{h.hour % 3 === 0 ? formatNumber(lang, h.hour) : ""}</span>
+        ))}
+      </div>
     </Card>
   );
 }

@@ -18,6 +18,8 @@ interface ProfileDraft {
   plan_upload_mbps: string;
   line_number: string;
   account_number: string;
+  monthly_price: string;
+  currency: string;
 }
 
 function toDraft(p: CaseProfile): ProfileDraft {
@@ -31,6 +33,8 @@ function toDraft(p: CaseProfile): ProfileDraft {
     plan_upload_mbps: n(p.plan_upload_mbps),
     line_number: p.line_number,
     account_number: p.account_number,
+    monthly_price: n(p.monthly_price ?? 0),
+    currency: p.currency ?? "",
   };
 }
 
@@ -59,6 +63,8 @@ export function ProfileCard({
         plan_upload_mbps: toNumber(draft.plan_upload_mbps),
         line_number: draft.line_number,
         account_number: draft.account_number,
+        monthly_price: toNumber(draft.monthly_price),
+        currency: draft.currency.trim().toUpperCase(),
       });
       onSaved(f.profile);
       setDraft(toDraft(f.profile));
@@ -123,6 +129,22 @@ export function ProfileCard({
           onChange={(v) => set("plan_upload_mbps", v)}
           inputMode="decimal"
           suffix="Mbps"
+          narrow
+        />
+        <TextField
+          label={t("c_price")}
+          hint={t("c_price_hint")}
+          value={draft.monthly_price}
+          onChange={(v) => set("monthly_price", v)}
+          inputMode="decimal"
+          narrow
+        />
+        <TextField
+          label={t("c_currency")}
+          value={draft.currency}
+          onChange={(v) => set("currency", v)}
+          placeholder="EGP"
+          ltr
           narrow
         />
         <TextField

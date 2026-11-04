@@ -13,6 +13,7 @@ export const KIND_LABEL: Record<AlertKind, MessageKey> = {
   speed: "n_kind_speed",
   test: "n_kind_test",
   weekly: "n_kind_weekly",
+  nudge: "n_kind_nudge",
 };
 
 export const KIND_TONE: Record<AlertKind, string> = {
@@ -23,6 +24,7 @@ export const KIND_TONE: Record<AlertKind, string> = {
   speed: "var(--accent-blue)",
   test: "var(--accent-violet)",
   weekly: "var(--accent-blue)",
+  nudge: "var(--accent-amber)",
 };
 
 export const CHANNEL_NAME: Record<AlertChannel, MessageKey> = {

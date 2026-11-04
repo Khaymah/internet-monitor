@@ -75,5 +75,6 @@
   "n_weekly_send": "Send last 7 days now",
   "n_weekly_sent": "Weekly summary sent",
   "n_weekly_no_data": "Nothing was monitored in the last 7 days yet.",
-  "n_ch_ntfy": "ntfy (phone)"
+  "n_ch_ntfy": "ntfy (phone)",
+  "n_kind_nudge": "Complaint reminder"
 }

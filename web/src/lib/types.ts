@@ -135,7 +135,7 @@ export interface NotificationSettings {
   reminder_minutes: number;
 }
 
-export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test" | "weekly";
+export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test" | "weekly" | "nudge";
 export type AlertChannel = "desktop" | "sound" | "webhook" | "telegram" | "ntfy";
 export type MuteReason = "disabled" | "quiet_hours" | "sound_off" | "short_outage" | "startup";
 
@@ -279,10 +279,30 @@ export interface MonthlyReport {
   unmonitored_seconds: number;
   gaps: ReportGap[];
   links?: { minutes: number; wired_pct: number; wifi_pct: number; avg_signal_pct?: number };
+  hours?: { hour: number; downtime_seconds: number; outages: number }[];
+  peak_share_pct?: number;
   speed: ReportSpeed;
   profile: CaseProfile;
   complaints: Complaint[];
   integrity?: SealStatus;
+  compensation?: Compensation;
+}
+
+export interface Compensation {
+  currency?: string;
+  monthly_price: number;
+  provider_downtime_seconds: number;
+  excluded_seconds: number;
+  month_seconds: number;
+  pro_rata: number;
+  ofcom_days?: number;
+  ofcom_amount_gbp?: number;
+}
+
+export interface Insight {
+  id: string;
+  level: "warn" | "info" | "good";
+  vars?: Record<string, string | number>;
 }
 
 export interface SealStatus {
@@ -318,6 +338,9 @@ export interface ReportSpeed {
   plan_download_mbps: number;
   pct_of_plan: number;
   below_half_plan: number;
+  peak_median_mbps?: number;
+  off_peak_median_mbps?: number;
+  peak_tests?: number;
 }
 
 export interface CaseProfile {
@@ -327,6 +350,8 @@ export interface CaseProfile {
   plan_name: string;
   plan_download_mbps: number;
   plan_upload_mbps: number;
+  monthly_price?: number;
+  currency?: string;
   line_number: string;
   account_number: string;
 }
@@ -380,6 +405,7 @@ export interface RangeEvidence {
   to: string;
   summary: RangeSummary;
   speed: ReportSpeed;
+  compensation?: Compensation;
 }
 
 export interface WeeklySummary {

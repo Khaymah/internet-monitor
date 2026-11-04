@@ -1,10 +1,10 @@
-import { Copy, Download } from "lucide-react";
+import { Copy, Download, Mail, MessageCircle } from "lucide-react";
 import { useId, useState } from "react";
 import { toast } from "../../components/Toast";
 import { Button, Skeleton } from "../../components/ui";
 import { api } from "../../lib/api";
 import { downloadBlob } from "../../lib/csv";
-import { formatDate, formatDuration, formatNumber, formatPct } from "../../lib/format";
+import { formatDate, formatDuration, formatMoney, formatNumber, formatPct } from "../../lib/format";
 import { useAsync } from "../../lib/hooks";
 import type { Lang, Translate } from "../../lib/i18n";
 import { useI18n } from "../../lib/i18n";
@@ -132,6 +132,15 @@ export function complaintText(
   if (s.links?.minutes && s.links.wired_pct >= 95) body.push(t("c_tx_wired"));
   if (complaint?.ticket)
     body.push(t("c_tx_ticket", { ticket: complaint.ticket, date: when(complaint.opened_at) }));
+  const comp = ev.compensation;
+  if (comp && comp.monthly_price > 0 && comp.pro_rata > 0) {
+    body.push(
+      t("c_tx_comp", {
+        amount: formatMoney(lang, comp.pro_rata, comp.currency),
+        price: formatMoney(lang, comp.monthly_price, comp.currency),
+      }),
+    );
+  }
   body.push(t("c_tx_close"));
   return [t("c_tx_subject"), "", ...head, "", ...body].join("\n").replace(/\n{3,}/g, "\n\n");
 }
@@ -194,6 +203,22 @@ export function EvidenceActions({
         <Button size="sm" variant="edge" icon={Download} busy={busy} onClick={download}>
           {t("c_download_pack")}
         </Button>
+        <a
+          className="btn btn-edge btn-sm"
+          href={`https://wa.me/?text=${encodeURIComponent(text)}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <MessageCircle size={15} aria-hidden />
+          {t("c_share_whatsapp")}
+        </a>
+        <a
+          className="btn btn-edge btn-sm"
+          href={`mailto:?subject=${encodeURIComponent(t("c_tx_subject"))}&body=${encodeURIComponent(text)}`}
+        >
+          <Mail size={15} aria-hidden />
+          {t("c_share_email")}
+        </a>
       </div>
     </div>
   );
