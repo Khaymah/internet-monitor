@@ -206,6 +206,21 @@ func (a *App) Run(notifiers ...core.Notifier) {
 		Logf: a.Log.AppLog,
 	}
 	go sealer.Run(a.stop)
+	nudger := &weekly.Nudger{
+		State: weekly.NudgePath(a.Dir),
+		Check: func(days int) (int, bool) {
+			for _, in := range a.Server.Insights(days, time.Now()) {
+				if in.ID == "file_complaint" {
+					n, _ := in.Vars["n"].(int)
+					return n, true
+				}
+			}
+			return 0, false
+		},
+		Send: a.Alerts.OnNudge,
+		Now:  time.Now,
+	}
+	go nudger.Run(a.stop)
 	multi := core.MultiNotifier{server.NewNotifier(a.Server), a.Alerts, tracer}
 	multi = append(multi, notifiers...)
 	a.Engine.Notifier = multi

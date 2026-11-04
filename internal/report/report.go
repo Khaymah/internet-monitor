@@ -80,6 +80,8 @@ type MonthlySummary struct {
 	UnmonitoredSecs float64  `json:"unmonitored_seconds"`
 	Gaps            []GapRow `json:"gaps"`
 	Links           Links    `json:"links"`
+	Hours           [24]Hour `json:"hours"`
+	PeakSharePct    float64  `json:"peak_share_pct"`
 }
 
 type dayAcc struct {
@@ -188,6 +190,8 @@ func summarize(events []types.Event, samples []types.MetricSample, monthStart, m
 			clipped := cEnd.Sub(cStart).Seconds()
 			sum.TotalDowntimeSecs += clipped
 
+			spreadHours(&sum.Hours, cStart, clipped)
+
 			remaining := clipped
 			cursor := cStart
 			for remaining > 1e-6 {
@@ -236,6 +240,7 @@ func summarize(events []types.Event, samples []types.MetricSample, monthStart, m
 					Link:         ev.Link,
 					WifiSignal:   ev.WifiSignal,
 				})
+				sum.Hours[start.Hour()].Outages++
 				a := getDay(start)
 				a.outages++
 				if clipped > a.worst {
@@ -306,6 +311,16 @@ func summarize(events []types.Event, samples []types.MetricSample, monthStart, m
 
 	applyCoverage(&sum, samples, gaps, end)
 	sum.Links = summarizeLinks(samples)
+	for h := range sum.Hours {
+		sum.Hours[h].Hour = h
+	}
+	if sum.TotalDowntimeSecs > 0 {
+		var peak float64
+		for h := PeakFrom; h < PeakTo; h++ {
+			peak += sum.Hours[h].DowntimeSecs
+		}
+		sum.PeakSharePct = peak / sum.TotalDowntimeSecs * 100
+	}
 
 	dates := make([]string, 0, len(days))
 	for d := range days {
@@ -518,4 +533,26 @@ func summarizeLinks(samples []types.MetricSample) Links {
 		out.AvgSignalPct = signalSum / signals
 	}
 	return out
+}
+
+const (
+	PeakFrom = 19
+	PeakTo   = 24
+)
+
+type Hour struct {
+	Hour         int     `json:"hour"`
+	DowntimeSecs float64 `json:"downtime_seconds"`
+	Outages      int     `json:"outages"`
+}
+
+func spreadHours(hours *[24]Hour, from time.Time, secs float64) {
+	cursor := from
+	for secs > 1e-6 {
+		next := cursor.Truncate(time.Hour).Add(time.Hour)
+		slice := min(next.Sub(cursor).Seconds(), secs)
+		hours[cursor.Hour()].DowntimeSecs += slice
+		secs -= slice
+		cursor = next
+	}
 }

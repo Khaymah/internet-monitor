@@ -28,6 +28,7 @@ type Remote interface {
 	SendEvent(lang string, ev types.Event, kind string, to types.Targets)
 	SendSpeed(lang string, ev logger.SpeedTestEvent, thresholdMbps float64, below bool, to types.Targets)
 	SendWeekly(lang string, w types.WeeklySummary, to types.Targets)
+	SendNudge(lang string, outages, days int, to types.Targets)
 }
 
 type SpeedInfo struct {
@@ -467,6 +468,25 @@ func (a *Alerts) OnWeekly(w types.WeeklySummary) {
 	}
 	if d.Remote().Any() && a.opts.Remote != nil {
 		a.opts.Remote.SendWeekly(lang, w, d.Remote())
+	}
+}
+
+func (a *Alerts) OnNudge(outages, days int) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if a.closed {
+		return
+	}
+	now := a.now()
+	d := Decide(KindNudge, a.settings, a.has, now)
+	a.record(Record{ID: a.nextID(), Time: now, Kind: KindNudge, Sent: d.Sent(), Muted: d.Muted})
+	lang := a.lang
+	if d.Desktop && a.opts.Desktop != nil {
+		title, body := NudgeText(lang, outages, days)
+		a.show(Toast{Kind: KindNudge, Status: types.StatusDegraded, Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
+	}
+	if d.Remote().Any() && a.opts.Remote != nil {
+		a.opts.Remote.SendNudge(lang, outages, days, d.Remote())
 	}
 }
 

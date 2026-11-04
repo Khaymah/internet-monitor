@@ -10,6 +10,7 @@ type SpeedSample struct {
 	DownloadMbps float64   `json:"download_mbps"`
 	UploadMbps   *float64  `json:"upload_mbps"`
 	LatencyMs    int64     `json:"latency_ms"`
+	Bufferbloat  string    `json:"bufferbloat,omitempty"`
 }
 
 type SpeedSummary struct {
@@ -23,11 +24,27 @@ type SpeedSummary struct {
 	PlanDownloadMbps float64 `json:"plan_download_mbps"`
 	PctOfPlan        float64 `json:"pct_of_plan"`
 	BelowHalfPlan    int     `json:"below_half_plan"`
+	PeakMedian       float64 `json:"peak_median_mbps"`
+	OffPeakMedian    float64 `json:"off_peak_median_mbps"`
+	PeakTests        int     `json:"peak_tests"`
+}
+
+func medianOf(v []float64) float64 {
+	if len(v) == 0 {
+		return 0
+	}
+	s := append([]float64(nil), v...)
+	sort.Float64s(s)
+	m := len(s) / 2
+	if len(s)%2 == 0 {
+		return (s[m-1] + s[m]) / 2
+	}
+	return s[m]
 }
 
 func SummarizeSpeed(tests []SpeedSample, month string, planMbps float64) SpeedSummary {
 	out := SpeedSummary{PlanDownloadMbps: max(planMbps, 0)}
-	var downs []float64
+	var downs, peak, offPeak []float64
 	var upSum, latSum float64
 	ups := 0
 	for _, t := range tests {
@@ -38,6 +55,11 @@ func SummarizeSpeed(tests []SpeedSample, month string, planMbps float64) SpeedSu
 			continue
 		}
 		downs = append(downs, t.DownloadMbps)
+		if h := t.Timestamp.Local().Hour(); h >= PeakFrom && h < PeakTo {
+			peak = append(peak, t.DownloadMbps)
+		} else {
+			offPeak = append(offPeak, t.DownloadMbps)
+		}
 		latSum += float64(t.LatencyMs)
 		if t.UploadMbps != nil && *t.UploadMbps > 0 {
 			upSum += *t.UploadMbps
@@ -51,6 +73,9 @@ func SummarizeSpeed(tests []SpeedSample, month string, planMbps float64) SpeedSu
 	if out.Tests == 0 {
 		return out
 	}
+	out.PeakTests = len(peak)
+	out.PeakMedian = medianOf(peak)
+	out.OffPeakMedian = medianOf(offPeak)
 	sort.Float64s(downs)
 	var sum float64
 	for _, d := range downs {
