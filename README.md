@@ -9,7 +9,7 @@
 
 > [🇸🇦 اقرأ بالعربية](README.ar.md)
 
-# Document your outages. Win the dispute with your ISP.
+# Document your outages. Complain with proof.
 
 **Internet Monitor** is a free, source-available tool that captures **proof** of every internet drop — so you can stop arguing from memory and start attaching evidence to your support ticket.
 
@@ -40,10 +40,11 @@ Most "my internet is down" complaints fail because you have **no proof** — no 
 
 ## 🧾 How to use this against your ISP
 
-1. **Run it** in the background (system tray or standalone window) — it checks every few seconds, 24/7.
-2. **Let it capture the drops** — each outage is logged with its cause (TCP/HTTP/DNS), exact start time and duration.
-3. **Generate the monthly report** — open the dashboard → **History**, open the monthly report (`/report?month=YYYY-MM`), pick the month, then click **Print or save as PDF**.
-4. **Attach it to your ticket/complaint.** The report is **neutral by default** (reads as your own document); an opt-in "shareable" toggle can add a small footer if you want.
+1. **Run it** in the background (system tray or standalone window), ideally on a computer that stays on and is wired to the router. It checks every few seconds, 24/7.
+2. **Let it capture the drops.** Each outage is logged with its cause (TCP/HTTP/DNS), exact start time and duration. Times when the computer was off or asleep are marked "not monitored" and are never counted as outages.
+3. **Open Complaints** and fill in your country, provider, plan speed and line number. "Your line in the last 7 days" shows what happened and offers to log a complaint when the line dropped.
+4. **Complain to your provider** and log the complaint number. The page counts down the provider's response window for your country and then shows how to escalate to the regulator (Egypt's NTRA, Saudi Arabia's CST, the UK ADR schemes, the US FCC).
+5. **Send the proof.** Each complaint has a ready-to-send text built from your measurements (outages, downtime, speed vs plan) and an evidence ZIP for exactly that period, with a SHA-256 checksum for every file. The monthly report (`/report?month=YYYY-MM` → **Print or save as PDF**) covers the whole month.
 
 > Tip: enable **scheduled speed tests** and **ICMP/LAN-vs-ISP diagnosis** to back your case with latency, jitter, and throughput history.
 
@@ -68,7 +69,10 @@ Most "my internet is down" complaints fail because you have **no proof** — no 
 | 🔔 **Instant notifications** | Windows Toast + Discord / Slack / **Telegram**, localized to your chosen language |
 | 🎵 **Custom alert sound** | Upload an MP3 or WAV (up to 30 seconds / 10 MB). Settings shows whether the custom sound is active and its length; **Try the sound** and **Play like a real alert** let you test it. A new default sound ships built in |
 | 📋 **Structured logs** | Daily JSONL files — connectivity events in `connectivity_DATE.jsonl`, speed tests in `speedtest_DATE.jsonl` |
-| 📄 **Monthly report** | `/report?month=YYYY-MM` page with **Print or save as PDF** |
+| 📄 **Monthly report** | `/report?month=YYYY-MM` page with **Print or save as PDF**: uptime, outages, monitoring coverage, likely power cuts, speed vs your plan and your complaints |
+| 🧾 **Complaints** | Your provider and plan, every complaint you filed with the provider's response countdown, the measured evidence before and since each complaint, ready-to-send complaint text and an evidence ZIP with SHA-256 checksums. Escalation steps for Egypt, Saudi Arabia, the UK, the US and others |
+| 🕒 **Outage timeline** | 24-hour and 7-day timeline of connected, unstable, disconnected and not-monitored time on the overview |
+| 📊 **Weekly summary** | Every Monday at 9:00: last week's outages, downtime, uptime and speed, to the desktop, Discord/Slack or Telegram |
 | 🔄 **Auto-update** | Checks GitHub Releases (background + a manual **"Check for updates"** button), one-click update with automatic restart |
 | 🌐 **Bilingual UI** | Arabic & English with full RTL support, toggle anytime |
 | 🎨 **Themes & small screens** | Dark and light themes; the layout adapts to phone-size windows |
