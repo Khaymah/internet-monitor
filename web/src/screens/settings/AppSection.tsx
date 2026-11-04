@@ -142,6 +142,21 @@ export function AppSection({ draft, set, err }: SectionProps) {
             describedBy="auto-update-hint"
           />
         </div>
+        <hr className="divider full" />
+        <div className="switch-row full">
+          <div className="field">
+            <span className="field-label">{t("f_seal_ts")}</span>
+            <span className="field-hint" id="seal-ts-hint">
+              {t("f_seal_ts_hint")}
+            </span>
+          </div>
+          <Switch
+            checked={draft.seal_timestamp}
+            onChange={(v) => set("seal_timestamp", v)}
+            label={t("f_seal_ts")}
+            describedBy="seal-ts-hint"
+          />
+        </div>
         <UpdatesRow />
       </div>
     </Card>

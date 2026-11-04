@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"internet-monitor/internal/i18n"
+	"net/url"
 	"path/filepath"
 	"strings"
 	"time"
@@ -35,6 +36,8 @@ type Config struct {
 	DashboardPort       int             `json:"dashboard_port"`
 	UseICMP             bool            `json:"use_icmp"`
 	AutoUpdateCheck     bool            `json:"auto_update_check"`
+	SealTimestamp       bool            `json:"seal_timestamp"`
+	TSAURL              string          `json:"tsa_url"`
 	Language            string          `json:"language"`
 	SpeedTest           SpeedTestConfig `json:"speed_test"`
 	Notifications       Notifications   `json:"notifications"`
@@ -204,6 +207,11 @@ func (c Config) ValidateChanges(prev Config, all bool) error {
 	if all || c.WebhookURL != prev.WebhookURL {
 		if c.WebhookURL != "" && !IsSupportedWebhook(c.WebhookURL) {
 			return fieldError("webhook_url", "use an https address (http is allowed only for addresses on your own network)")
+		}
+	}
+	if all || c.TSAURL != prev.TSAURL {
+		if u, err := url.Parse(c.TSAURL); c.TSAURL != "" && (err != nil || u.Scheme != "https" || u.Host == "") {
+			return fieldError("tsa_url", "use an https address")
 		}
 	}
 	if all || c.NtfyURL != prev.NtfyURL {

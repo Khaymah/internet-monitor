@@ -7,6 +7,7 @@ import (
 	"encoding/hex"
 	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/report"
+	"internet-monitor/internal/seal"
 	"internet-monitor/internal/trace"
 	"io"
 	"net/http"
@@ -200,5 +201,38 @@ func TestAttachRoutes(t *testing.T) {
 	}
 	if rows[1].Route != nil || rows[2].Route != nil {
 		t.Fatal("route attached to the wrong rows")
+	}
+}
+
+func TestEvidencePackIncludesSeals(t *testing.T) {
+	e := newTestEnv(t)
+	logs := filepath.Join(e.dir, "logs")
+	if err := os.MkdirAll(logs, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	day := time.Now().AddDate(0, 0, -1)
+	month := day.Format("2006-01")
+	if err := os.WriteFile(filepath.Join(logs, "metrics_"+day.Format("2006-01-02")+".jsonl"), []byte("{}\n"), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := (&seal.Sealer{Dir: func() string { return logs }}).SealPending(); err != nil {
+		t.Fatal(err)
+	}
+	resp := e.do(t, http.MethodGet, "/api/evidence?month="+month, "", nil)
+	body, _ := io.ReadAll(resp.Body)
+	zr, err := zip.NewReader(bytes.NewReader(body), int64(len(body)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	found := false
+	for _, f := range zr.File {
+		found = found || f.Name == seal.ChainFile
+	}
+	if !found {
+		t.Fatal("seals.jsonl missing from the evidence pack")
+	}
+	st := decode[seal.Status](t, e.do(t, http.MethodGet, "/api/seals", "", nil).Body)
+	if !st.Intact || st.Days != 1 {
+		t.Fatalf("seal status = %+v", st)
 	}
 }

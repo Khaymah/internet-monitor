@@ -123,5 +123,7 @@
   "f_ntfy_hint": "Install the free ntfy app on your phone, subscribe to a topic with a name that's hard to guess, and paste its address here. Works with ntfy.sh or your own ntfy server.",
   "f_ntfy_token": "ntfy access token (optional)",
   "f_ntfy_token_hint": "Only needed if your ntfy topic is protected.",
-  "ntfy_ok": "Test sent to ntfy"
+  "ntfy_ok": "Test sent to ntfy",
+  "f_seal_ts": "Timestamp the sealed logs",
+  "f_seal_ts_hint": "Every day's logs are sealed with a hash chain. With this on, each day's seal is also timestamped by an independent authority (freetsa.org), which receives only a 32-byte hash, never your data. That timestamp lets anyone check that your logs existed in this exact form on that date."
 }

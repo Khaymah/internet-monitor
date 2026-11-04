@@ -140,6 +140,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/case/evidence", s.serveCaseEvidence)
 	mux.HandleFunc("POST /api/weekly/send", s.serveWeeklySend)
 	mux.HandleFunc("GET /api/timeline", s.serveTimeline)
+	mux.HandleFunc("GET /api/seals", s.serveSeals)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)

@@ -186,6 +186,8 @@ export interface Config {
   dashboard_port: number;
   use_icmp: boolean;
   auto_update_check: boolean;
+  seal_timestamp?: boolean;
+  tsa_url?: string;
   language: string;
   speed_test: SpeedTestConfig;
   notifications: NotificationSettings;
@@ -276,6 +278,22 @@ export interface MonthlyReport {
   speed: ReportSpeed;
   profile: CaseProfile;
   complaints: Complaint[];
+  integrity?: SealStatus;
+}
+
+export interface SealStatus {
+  days: number;
+  stamped: number;
+  first?: string;
+  last?: string;
+  expired: number;
+  intact: boolean;
+  problems: {
+    date: string;
+    reason: "chain" | "seal_edited" | "file_missing" | "file_changed";
+    file?: string;
+  }[];
+  checked_at: string;
 }
 
 export interface ReportGap {

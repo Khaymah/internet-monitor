@@ -9,6 +9,7 @@ import (
 	"internet-monitor/internal/logger"
 	"internet-monitor/internal/monitor"
 	"internet-monitor/internal/notifytext"
+	"internet-monitor/internal/seal"
 	"internet-monitor/internal/server"
 	"internet-monitor/internal/sound"
 	"internet-monitor/internal/trace"
@@ -176,6 +177,22 @@ func (a *App) Run(notifiers ...core.Notifier) {
 		Save: func(at time.Time, t trace.Trace) { a.Log.LogJSON(trace.Prefix, at, t) },
 		Logf: a.Log.AppLog,
 	}
+	sealer := &seal.Sealer{
+		Dir: a.LogDir,
+		Stamp: func() seal.Stamper {
+			cfg := a.Store.Get()
+			if !cfg.SealTimestamp {
+				return nil
+			}
+			u := cfg.TSAURL
+			if u == "" {
+				u = seal.DefaultTSA
+			}
+			return seal.HTTPStamper(u, nil)
+		},
+		Logf: a.Log.AppLog,
+	}
+	go sealer.Run(a.stop)
 	multi := core.MultiNotifier{server.NewNotifier(a.Server), a.Alerts, tracer}
 	multi = append(multi, notifiers...)
 	a.Engine.Notifier = multi

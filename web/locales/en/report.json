@@ -51,5 +51,14 @@
   "route_reached": "Route: the internet was reachable, so the fault was in name lookup or the website check",
   "route_none": "Route: nothing answered, not even your router. Check the router, its power and the cable",
   "route_router": "Route: your router ({addr}) answered, but nothing beyond it, so the break was at the provider",
-  "route_stopped": "Route: stopped after hop {hop} ({addr}) inside the provider's network"
+  "route_stopped": "Route: stopped after hop {hop} ({addr}) inside the provider's network",
+  "seal_title": "Log integrity",
+  "seal_ok": "{days} days sealed ({range}), none changed since",
+  "seal_broken": "{days} days sealed ({range}): some changed after sealing",
+  "seal_stamped": "{n} of {days} days also have an independent timestamp (RFC 3161), included in the evidence pack.",
+  "seal_local": "Each finished day is sealed with a hash chain on this computer. Turn on timestamping in Settings → App for proof from an independent authority.",
+  "seal_chain": "the chain of seals is broken",
+  "seal_seal_edited": "a seal was edited",
+  "seal_file_missing": "a sealed log file is missing",
+  "seal_file_changed": "a log file changed after it was sealed"
 }
