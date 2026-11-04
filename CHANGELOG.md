@@ -10,6 +10,9 @@ the curated, human-readable summary.
 
 ## [Unreleased]
 
+Target: **2.0.4**. Ships as GitHub prereleases `v2.0.4-rc.N` (not offered by the
+in-app updater, which only follows the latest stable release) until the version is final.
+
 ### Added
 - **Complaints page** (`/complaints`): your provider, plan speed and line number,
   plus a log of every complaint (number, date, channel, agent, status). Open
