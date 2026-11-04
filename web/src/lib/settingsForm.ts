@@ -18,6 +18,8 @@ export interface Draft {
   webhook: SecretDraft;
   telegram_token: SecretDraft;
   telegram_chat_id: string;
+  ntfy_url: SecretDraft;
+  ntfy_token: SecretDraft;
   dashboard_port: string;
   log_dir: string;
   speed_timeout: string;
@@ -44,11 +46,11 @@ export const DEFAULT_NOTIFICATIONS: NotificationSettings = {
   sound: { enabled: true, volume: 100 },
   quiet_hours: { enabled: false, start: "22:00", end: "07:00", days: [0, 1, 2, 3, 4, 5, 6], mode: "sound" },
   events: {
-    down: { desktop: true, webhook: true, telegram: true },
-    degraded: { desktop: true, webhook: true, telegram: true },
-    restored: { desktop: true, webhook: true, telegram: true },
-    speed: { desktop: false, webhook: true, telegram: true },
-    weekly: { desktop: true, webhook: true, telegram: true },
+    down: { desktop: true, webhook: true, telegram: true, ntfy: true },
+    degraded: { desktop: true, webhook: true, telegram: true, ntfy: true },
+    restored: { desktop: true, webhook: true, telegram: true, ntfy: true },
+    speed: { desktop: false, webhook: true, telegram: true, ntfy: true },
+    weekly: { desktop: true, webhook: true, telegram: true, ntfy: true },
   },
   min_outage_seconds: 0,
   reminder_minutes: 0,
@@ -85,6 +87,8 @@ export function draftFrom(c: ConfigView): Draft {
     webhook: { mode: "keep" },
     telegram_token: { mode: "keep" },
     telegram_chat_id: c.telegram_chat_id ?? "",
+    ntfy_url: { mode: "keep" },
+    ntfy_token: { mode: "keep" },
     dashboard_port: String(c.dashboard_port),
     log_dir: c.log_dir,
     speed_timeout: String(c.speed_test.timeout_seconds),
@@ -159,16 +163,59 @@ const WEBHOOK_HOSTS: Record<string, string> = {
   "hooks.slack.com": "/services/",
 };
 
-export function isSupportedWebhook(raw: string): boolean {
-  let u: URL;
+function parseUrl(raw: string): URL | null {
   try {
-    u = new URL(raw.trim());
+    return new URL(raw.trim());
   } catch {
-    return false;
+    return null;
   }
-  if (u.protocol !== "https:" || u.username || u.password || u.port) return false;
+}
+
+function isPrivateHost(host: string): boolean {
+  const h = host.toLowerCase().replace(/^\[|\]$/g, "");
+  if (h === "localhost" || h.endsWith(".local") || h === "::1") return true;
+  const m = /^(\d+)\.(\d+)\.\d+\.\d+$/.exec(h);
+  if (!m) return /^f[cd][0-9a-f]{2}:/.test(h) || /^fe80:/.test(h);
+  const a = Number(m[1]);
+  const b = Number(m[2]);
+  return (
+    a === 10 ||
+    a === 127 ||
+    (a === 172 && b >= 16 && b <= 31) ||
+    (a === 192 && b === 168) ||
+    (a === 169 && b === 254)
+  );
+}
+
+function isOpenUrl(u: URL | null): u is URL {
+  if (!u || u.username || u.password || !u.hostname) return false;
+  return u.protocol === "https:" || (u.protocol === "http:" && isPrivateHost(u.hostname));
+}
+
+export function webhookKind(raw: string): "discord" | "slack" | "generic" | null {
+  const u = parseUrl(raw);
+  if (!u) return null;
   const prefix = WEBHOOK_HOSTS[u.hostname.toLowerCase()];
-  return !!prefix && u.pathname.startsWith(prefix) && u.pathname.length > prefix.length;
+  if (
+    u.protocol === "https:" &&
+    !u.port &&
+    !u.username &&
+    prefix &&
+    u.pathname.startsWith(prefix) &&
+    u.pathname.length > prefix.length
+  ) {
+    return u.hostname.toLowerCase().includes("discord") ? "discord" : "slack";
+  }
+  return isOpenUrl(u) ? "generic" : null;
+}
+
+export function isSupportedWebhook(raw: string): boolean {
+  return webhookKind(raw) !== null;
+}
+
+export function isNtfyUrl(raw: string): boolean {
+  const u = parseUrl(raw);
+  return isOpenUrl(u) && u.pathname.replace(/\//g, "") !== "" && !u.search;
 }
 
 export function isHostPort(v: string): boolean {
@@ -259,6 +306,7 @@ export function validateDraft(d: Draft, base?: Pick<ConfigView, "log_dir">): Iss
     issues.webhook = { key: "err_webhook" };
   if (d.telegram_token.mode === "set" && !d.telegram_token.value.trim())
     issues.telegram_token = { key: "err_required" };
+  if (d.ntfy_url.mode === "set" && !isNtfyUrl(d.ntfy_url.value)) issues.ntfy_url = { key: "err_ntfy" };
   if ((!base || d.log_dir.trim() !== base.log_dir) && !isSafeLogDir(d.log_dir))
     issues.log_dir = { key: "err_logdir" };
   put("min_outage", numberIssue(d.min_outage, 0, 3600));
@@ -302,6 +350,10 @@ export function buildChanges(d: Draft, base: ConfigView): Record<string, unknown
   if (d.webhook.mode === "clear") out.webhook_url = "";
   if (d.telegram_token.mode === "set") out.telegram_bot_token = d.telegram_token.value.trim();
   if (d.telegram_token.mode === "clear") out.telegram_bot_token = "";
+  if (d.ntfy_url.mode === "set") out.ntfy_url = d.ntfy_url.value.trim();
+  if (d.ntfy_url.mode === "clear") out.ntfy_url = "";
+  if (d.ntfy_token.mode === "set") out.ntfy_token = d.ntfy_token.value.trim();
+  if (d.ntfy_token.mode === "clear") out.ntfy_token = "";
 
   const st = base.speed_test;
   const speed: Record<string, unknown> = {};
@@ -331,7 +383,7 @@ export function buildChanges(d: Draft, base: ConfigView): Record<string, unknown
 const SECTION_FIELDS: Record<string, FieldKey[]> = {
   monitoring: ["check_interval_sec", "fail_threshold", "packet_loss_threshold", "latency_threshold_ms"],
   targets: ["ping_targets", "http_targets", "dns_targets", "targets"],
-  alerts: ["webhook", "telegram_token", "telegram_chat_id"],
+  alerts: ["webhook", "telegram_token", "telegram_chat_id", "ntfy_url", "ntfy_token"],
   notifications: [
     "sound_enabled",
     "sound_volume",
@@ -366,6 +418,8 @@ export function serverFieldToDraft(field: string | undefined): FieldKey | undefi
   switch (field) {
     case "webhook_url":
       return "webhook";
+    case "ntfy_url":
+      return "ntfy_url";
     case "log_dir":
       return "log_dir";
     case "targets":
@@ -393,6 +447,8 @@ export function rebaseDraft(
     if (key === "telegram_token") {
       theirs = oldBase.secret_set.telegram_bot_token !== newBase.secret_set.telegram_bot_token;
     }
+    if (key === "ntfy_url") theirs = oldBase.secret_set.ntfy_url !== newBase.secret_set.ntfy_url;
+    if (key === "ntfy_token") theirs = oldBase.secret_set.ntfy_token !== newBase.secret_set.ntfy_token;
     if (theirs && !same(draft[key], after[key])) conflicts.push(key);
     Object.assign(out, { [key]: draft[key] });
   }

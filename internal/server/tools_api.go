@@ -273,8 +273,8 @@ func (s *Server) serveTestWebhook(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusBadRequest, "not_configured", "webhook_url not configured")
 		return
 	}
-	if u, err := url.Parse(target); err != nil || u.Scheme != "https" || !logger.IsSupportedWebhook(target) {
-		writeError(w, http.StatusBadRequest, "unsupported", "Only Discord and Slack https webhooks are supported")
+	if _, err := url.Parse(target); err != nil || !logger.IsSupportedWebhook(target) {
+		writeError(w, http.StatusBadRequest, "unsupported", "use an https address (http is allowed only for addresses on your own network)")
 		return
 	}
 	if !s.tester.allow("test-webhook") {
@@ -328,4 +328,48 @@ func simplifyError(e string) string {
 	default:
 		return "error"
 	}
+}
+
+func (s *Server) serveTestNtfy(w http.ResponseWriter, r *http.Request) {
+	var req struct {
+		URL   string `json:"url"`
+		Token string `json:"token"`
+	}
+	body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 4096))
+	if err != nil {
+		writeError(w, http.StatusRequestEntityTooLarge, "too_large", "request body too large")
+		return
+	}
+	if len(bytes.TrimSpace(body)) > 0 && json.Unmarshal(body, &req) != nil {
+		writeError(w, http.StatusBadRequest, "invalid_json", "invalid JSON body")
+		return
+	}
+	cfg := s.config()
+	target, token := strings.TrimSpace(req.URL), strings.TrimSpace(req.Token)
+	if target == "" {
+		target = cfg.NtfyURL
+	}
+	if token == "" {
+		token = cfg.NtfyToken
+	}
+	if target == "" {
+		writeError(w, http.StatusBadRequest, "not_configured", "ntfy_url not configured")
+		return
+	}
+	if !config.IsValidNtfyURL(target) {
+		writeError(w, http.StatusBadRequest, "unsupported", "use the full topic address, like https://ntfy.sh/my-topic")
+		return
+	}
+	if !s.tester.allow("test-ntfy") {
+		writeError(w, http.StatusTooManyRequests, "rate_limited", "please wait a minute before testing again")
+		return
+	}
+	if s.hooks.TestNtfy != nil {
+		if msg := s.hooks.TestNtfy(target, token); msg != "" {
+			s.tester.forget("test-ntfy")
+			writeError(w, http.StatusBadGateway, "ntfy_failed", msg)
+			return
+		}
+	}
+	writeJSON(w, http.StatusOK, map[string]bool{"ok": true})
 }

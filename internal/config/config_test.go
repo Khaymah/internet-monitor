@@ -231,13 +231,16 @@ func TestWebhookValidation(t *testing.T) {
 	good := []string{
 		"https://discord.com/api/webhooks/1/abc",
 		"https://hooks.slack.com/services/T/B/x",
+		"https://example.com/hooks/internet",
+		"https://maker.ifttt.com/trigger/x/with/key/y",
+		"http://192.168.1.10:8123/api/webhook/net",
+		"http://homeassistant.local:8123/api/webhook/net",
 	}
 	bad := []string{
-		"https://evil.example/?x=discord.com/api/webhooks",
-		"http://discord.com/api/webhooks/1/abc",
-		"https://discord.com.evil.example/api/webhooks/1",
-		"https://user@hooks.slack.com/services/T",
-		"https://hooks.slack.com/",
+		"http://example.com/hook",
+		"https://user:pw@example.com/hook",
+		"ftp://example.com/hook",
+		"not a url",
 	}
 	for _, u := range good {
 		if !IsSupportedWebhook(u) {
@@ -249,12 +252,30 @@ func TestWebhookValidation(t *testing.T) {
 			t.Errorf("%q accepted", u)
 		}
 	}
+	if IsGenericWebhook(good[0]) || !IsGenericWebhook(good[2]) {
+		t.Error("Discord must not be treated as a generic webhook, other hosts must")
+	}
 	s, err := Open(filepath.Join(t.TempDir(), "config.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
 	if _, _, err := s.Update(0, func(c *Config) error { c.WebhookURL = bad[0]; return nil }); !errors.Is(err, ErrInvalid) {
 		t.Errorf("unsupported webhook saved: err = %v", err)
+	}
+}
+
+func TestNtfyValidation(t *testing.T) {
+	for u, want := range map[string]bool{
+		"https://ntfy.sh/my-topic":           true,
+		"http://192.168.1.5/alerts":          true,
+		"https://ntfy.sh/":                   false,
+		"https://ntfy.sh/topic?auth=x":       false,
+		"http://ntfy.example.com/topic":      false,
+		"https://ntfy.example.com/my/topic/": true,
+	} {
+		if got := IsValidNtfyURL(u); got != want {
+			t.Errorf("IsValidNtfyURL(%q) = %v, want %v", u, got, want)
+		}
 	}
 }
 

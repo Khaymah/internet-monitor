@@ -74,5 +74,6 @@
   "n_weekly_hint": "Sent every Monday at 9:00 with last week's outages, downtime, uptime and speed.",
   "n_weekly_send": "Send last 7 days now",
   "n_weekly_sent": "Weekly summary sent",
-  "n_weekly_no_data": "Nothing was monitored in the last 7 days yet."
+  "n_weekly_no_data": "Nothing was monitored in the last 7 days yet.",
+  "n_ch_ntfy": "ntfy (phone)"
 }

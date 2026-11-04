@@ -6,6 +6,7 @@ const BY_CODE: Record<string, MessageKey> = {
   unsupported: "err_webhook",
   not_configured: "err_webhook_missing",
   webhook_failed: "err_webhook_failed",
+  ntfy_failed: "err_ntfy_failed",
   in_progress: "update_in_progress",
   no_update: "update_latest",
   unavailable: "err_unavailable",

@@ -86,9 +86,13 @@ func (sr *speedRunner) start(triggeredBy string) bool {
 		}()
 
 		sr.emit(speedProgress{Phase: "ping"})
+		probeURL := stCfg.Endpoints[0]
+		idle := speedtest.IdleLatency(ctx, probeURL)
+		downProbe := speedtest.StartProbe(ctx, probeURL)
 		result, err := speedtest.Run(ctx, stCfg, func(mbps float64, elapsed time.Duration) {
 			sr.emit(speedProgress{Phase: "download", CurrentMbps: mbps, ElapsedSeconds: elapsed.Seconds(), TotalSeconds: total})
 		})
+		loadedDown := downProbe.Stop()
 		if ctx.Err() != nil && (result == nil || result.DownloadMbps == 0) {
 			sr.emit(speedProgress{Phase: "cancelled", Done: true, Cancelled: true})
 			return
@@ -105,10 +109,13 @@ func (sr *speedRunner) start(triggeredBy string) bool {
 		sr.emit(speedProgress{Phase: "ping", LatencyMs: result.LatencyMs})
 
 		var uploadMbps *float64
+		var loadedUp int64
 		if stCfg.UploadTarget != "" {
+			upProbe := speedtest.StartProbe(ctx, probeURL)
 			mbps, uerr := speedtest.MeasureUpload(ctx, stCfg, func(m float64, elapsed time.Duration) {
 				sr.emit(speedProgress{Phase: "upload", CurrentMbps: m, ElapsedSeconds: elapsed.Seconds(), TotalSeconds: total})
 			})
+			loadedUp = upProbe.Stop()
 			if uerr == nil {
 				uploadMbps = &mbps
 			} else {
@@ -131,6 +138,10 @@ func (sr *speedRunner) start(triggeredBy string) bool {
 			Endpoints:       result.Endpoints,
 			ParallelConns:   result.ParallelConns,
 			TriggeredBy:     triggeredBy,
+			IdleLatencyMs:   idle,
+			LoadedDownMs:    loadedDown,
+			LoadedUpMs:      loadedUp,
+			Bufferbloat:     speedtest.BufferbloatGrade(idle, max(loadedDown, loadedUp)),
 		}
 		if lgr := sr.s.lgr; lgr != nil {
 			lgr.LogSpeedTest(event)

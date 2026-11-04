@@ -43,8 +43,8 @@
   "test_targets": "جرّب الأهداف",
   "testing": "جاري الاختبار…",
   "test_ok": "{ok} من {total} شغّالين",
-  "f_webhook": "Webhook لـ Discord أو Slack",
-  "f_webhook_hint": "بيبعت كل انقطاع على قناة.",
+  "f_webhook": "Webhook (Discord أو Slack أو أي خدمة)",
+  "f_webhook_hint": "بيبعت كل انقطاع لقناة Discord أو Slack. وأي عنوان تاني بيوصله رسالة JSON بسيطة (العنوان والنص والبيانات)، ودي بتشتغل مع Home Assistant وn8n وZapier وIFTTT وغيرهم. استخدم https، أو http لو العنوان على شبكتك.",
   "f_tg_token": "توكن بوت Telegram",
   "f_tg_chat": "معرّف محادثة Telegram",
   "f_tg_hint": "بيبعت نفس التنبيهات من خلال بوت Telegram بتاعك.",
@@ -118,5 +118,10 @@
   "startup_on": "مراقب الإنترنت هيشتغل مع Windows",
   "startup_off": "مراقب الإنترنت مش هيشتغل مع Windows",
   "f_speed_data": "كل اختبار بياكل حوالي {per} من الباقة على سرعة {speed} Mbps.",
-  "f_speed_data_month": "كل اختبار بياكل حوالي {per} من الباقة على سرعة {speed} Mbps، فالجدولة هتاكل حوالي {month} في الشهر. ولو باقتك محدودة ده هيتخصم منها."
+  "f_speed_data_month": "كل اختبار بياكل حوالي {per} من الباقة على سرعة {speed} Mbps، فالجدولة هتاكل حوالي {month} في الشهر. ولو باقتك محدودة ده هيتخصم منها.",
+  "f_ntfy_url": "topic بتاع ntfy (إشعارات الموبايل)",
+  "f_ntfy_hint": "نزّل تطبيق ntfy المجاني على موبايلك، واشترك في topic باسم صعب حد يخمّنه، وحط عنوانه هنا. بيشتغل مع ntfy.sh أو سيرفر ntfy بتاعك.",
+  "f_ntfy_token": "توكن ntfy (اختياري)",
+  "f_ntfy_token_hint": "محتاجه بس لو الـ topic محمي.",
+  "ntfy_ok": "اتبعتت تجربة لـ ntfy"
 }

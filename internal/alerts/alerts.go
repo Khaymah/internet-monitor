@@ -25,9 +25,9 @@ type Desktop interface {
 }
 
 type Remote interface {
-	SendEvent(lang string, ev types.Event, kind string, webhook, telegram bool)
-	SendSpeed(lang string, ev logger.SpeedTestEvent, thresholdMbps float64, below, webhook, telegram bool)
-	SendWeekly(lang string, w types.WeeklySummary, webhook, telegram bool)
+	SendEvent(lang string, ev types.Event, kind string, to types.Targets)
+	SendSpeed(lang string, ev logger.SpeedTestEvent, thresholdMbps float64, below bool, to types.Targets)
+	SendWeekly(lang string, w types.WeeklySummary, to types.Targets)
 }
 
 type SpeedInfo struct {
@@ -197,6 +197,7 @@ func (a *Alerts) applyLocked(cfg config.Config) {
 	a.has = Configured{
 		Webhook:  cfg.WebhookURL != "" && config.IsSupportedWebhook(cfg.WebhookURL),
 		Telegram: cfg.TelegramBotToken != "" && cfg.TelegramChatID != "",
+		Ntfy:     cfg.NtfyURL != "" && config.IsValidNtfyURL(cfg.NtfyURL),
 	}
 }
 
@@ -360,6 +361,9 @@ func (a *Alerts) recordShortLocked(p *pending, outage float64) {
 	if a.has.Telegram {
 		rec.Muted[ChannelTelegram] = ReasonShortOutage
 	}
+	if a.has.Ntfy {
+		rec.Muted[ChannelNtfy] = ReasonShortOutage
+	}
 	a.record(rec)
 }
 
@@ -381,10 +385,10 @@ func (a *Alerts) dispatchLocked(kind Kind, ev types.Event, d Decision, duration 
 		title, body := EventText(lang, kind, ev, duration)
 		a.show(Toast{Kind: kind, Status: statusOf(kind), Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
 	}
-	if (d.Webhook || d.Telegram) && a.opts.Remote != nil {
+	if d.Remote().Any() && a.opts.Remote != nil {
 		sent := ev
 		sent.DurationSeconds = duration
-		a.opts.Remote.SendEvent(lang, sent, string(kind), d.Webhook, d.Telegram)
+		a.opts.Remote.SendEvent(lang, sent, string(kind), d.Remote())
 	}
 }
 
@@ -437,8 +441,8 @@ func (a *Alerts) OnSpeedResult(ev logger.SpeedTestEvent, thresholdMbps float64, 
 		}
 		a.show(Toast{Kind: KindSpeed, Status: status, Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
 	}
-	if (d.Webhook || d.Telegram) && a.opts.Remote != nil {
-		a.opts.Remote.SendSpeed(lang, ev, thresholdMbps, below, d.Webhook, d.Telegram)
+	if d.Remote().Any() && a.opts.Remote != nil {
+		a.opts.Remote.SendSpeed(lang, ev, thresholdMbps, below, d.Remote())
 	}
 }
 
@@ -461,8 +465,8 @@ func (a *Alerts) OnWeekly(w types.WeeklySummary) {
 		}
 		a.show(Toast{Kind: KindWeekly, Status: status, Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
 	}
-	if (d.Webhook || d.Telegram) && a.opts.Remote != nil {
-		a.opts.Remote.SendWeekly(lang, w, d.Webhook, d.Telegram)
+	if d.Remote().Any() && a.opts.Remote != nil {
+		a.opts.Remote.SendWeekly(lang, w, d.Remote())
 	}
 }
 

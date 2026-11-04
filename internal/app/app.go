@@ -11,6 +11,7 @@ import (
 	"internet-monitor/internal/notifytext"
 	"internet-monitor/internal/server"
 	"internet-monitor/internal/sound"
+	"internet-monitor/internal/trace"
 	"internet-monitor/internal/tray"
 	"internet-monitor/internal/types"
 	"internet-monitor/internal/updater"
@@ -103,6 +104,7 @@ func New(opts Options) (*App, error) {
 			TestNotification: func(lang string, volume *int) { al.Test(lang, volume) },
 			PlaySound:        sound.PlayAt,
 			TestWebhook:      lgr.SendTestWebhook,
+			TestNtfy:         lgr.SendTestNtfy,
 			CheckUpdate:      func() (*updater.Info, error) { return updater.Check(opts.Version) },
 			ApplyUpdate:      updater.Apply,
 			Restart:          updater.Restart,
@@ -155,7 +157,17 @@ func (a *App) LogDir() string {
 }
 
 func (a *App) Run(notifiers ...core.Notifier) {
-	multi := core.MultiNotifier{server.NewNotifier(a.Server), a.Alerts}
+	tracer := &trace.Recorder{
+		Target: func() string {
+			if t := a.Store.Get().PingTargets; len(t) > 0 {
+				return t[0]
+			}
+			return ""
+		},
+		Save: func(at time.Time, t trace.Trace) { a.Log.LogJSON(trace.Prefix, at, t) },
+		Logf: a.Log.AppLog,
+	}
+	multi := core.MultiNotifier{server.NewNotifier(a.Server), a.Alerts, tracer}
 	multi = append(multi, notifiers...)
 	a.Engine.Notifier = multi
 	a.Engine.Start()

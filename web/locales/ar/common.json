@@ -36,7 +36,7 @@
   "err_url": "استخدم عنوان كامل يبدأ بـ http(s)://",
   "err_hostname": "استخدم اسم دومين زي www.google.com",
   "err_https": "استخدم عنوان يبدأ بـ https://",
-  "err_webhook": "بندعم بس عناوين Webhook بتاعة Discord أو Slack",
+  "err_webhook": "استخدم عنوان https (الـ http بيشتغل بس مع العناوين اللي على شبكتك)",
   "err_targets": "سيب هدف واحد على الأقل",
   "err_logdir": "لازم يكون فولدر جوه فولدر التطبيق",
   "err_rate_limited": "بسرعة شوية. استنى لحظة وجرّب تاني.",
@@ -68,5 +68,7 @@
   "nav_privacy": "الخصوصية",
   "nav_terms": "شروط الاستخدام",
   "opens_new_tab": "(بيتفتح في تاب جديد)",
-  "s_unit": "ث"
+  "s_unit": "ث",
+  "err_ntfy": "اكتب عنوان الـ topic كامل، زي https://ntfy.sh/my-topic",
+  "err_ntfy_failed": "ntfy ماقبلش الرسالة. راجع عنوان الـ topic والتوكن."
 }

@@ -32,6 +32,7 @@ type ChannelSwitches struct {
 	Desktop  bool `json:"desktop"`
 	Webhook  bool `json:"webhook"`
 	Telegram bool `json:"telegram"`
+	Ntfy     bool `json:"ntfy"`
 }
 
 type EventSwitches struct {
@@ -53,7 +54,7 @@ type Notifications struct {
 func allDays() []int { return []int{0, 1, 2, 3, 4, 5, 6} }
 
 func DefaultNotifications() Notifications {
-	on := ChannelSwitches{Desktop: true, Webhook: true, Telegram: true}
+	on := ChannelSwitches{Desktop: true, Webhook: true, Telegram: true, Ntfy: true}
 	return Notifications{
 		Sound: SoundSettings{Enabled: true, Volume: 100},
 		QuietHours: QuietHours{
@@ -66,7 +67,7 @@ func DefaultNotifications() Notifications {
 			Down:     on,
 			Degraded: on,
 			Restored: on,
-			Speed:    ChannelSwitches{Webhook: true, Telegram: true},
+			Speed:    ChannelSwitches{Webhook: true, Telegram: true, Ntfy: true},
 			Weekly:   on,
 		},
 	}

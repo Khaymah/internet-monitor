@@ -10,6 +10,7 @@ import {
   Timer,
 } from "lucide-react";
 import { type CSSProperties, useEffect, useState } from "react";
+import { BufferbloatCard, GRADE_TONE } from "../components/BufferbloatCard";
 import { Gauge } from "../components/Gauge";
 import { toast } from "../components/Toast";
 import { Banner, Button, Card, CardHead, Empty, Skeleton } from "../components/ui";
@@ -175,6 +176,8 @@ export function Speed() {
         </div>
       </Card>
 
+      {!busy && result ? <BufferbloatCard result={result} /> : null}
+
       <div className="phases">
         <Phase
           icon={Timer}
@@ -232,6 +235,7 @@ export function Speed() {
                   <th scope="col">{t("speed_download")}</th>
                   <th scope="col">{t("speed_upload")}</th>
                   <th scope="col">{t("speed_ping")}</th>
+                  <th scope="col">{t("bb_col")}</th>
                   <th scope="col" className="hide-sm">
                     {t("speed_source")}
                   </th>
@@ -251,6 +255,18 @@ export function Speed() {
                     <td className="num">
                       {latencyParts(t, lang, h.latency_ms).value}{" "}
                       <span className="muted">{latencyParts(t, lang, h.latency_ms).unit}</span>
+                    </td>
+                    <td>
+                      {h.bufferbloat ? (
+                        <span
+                          className="grade-chip"
+                          style={{ "--tone": GRADE_TONE[h.bufferbloat] } as CSSProperties}
+                        >
+                          {h.bufferbloat}
+                        </span>
+                      ) : (
+                        "—"
+                      )}
                     </td>
                     <td className="hide-sm secondary">
                       {t(h.triggered_by === "schedule" ? "speed_by_schedule" : "speed_by_user")}

@@ -11,6 +11,7 @@ import (
 	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/jsonl"
 	"internet-monitor/internal/report"
+	"internet-monitor/internal/trace"
 	"internet-monitor/internal/types"
 	"io"
 	"net/http"
@@ -107,8 +108,10 @@ func (s *Server) buildReport(month string, now time.Time) reportView {
 	if err != nil {
 		s.logf("case file: %v", err)
 	}
+	sum := report.Summarize(events, samples, month, now)
+	attachRoutes(sum.Events, readMonthly[trace.Trace](dir, trace.Prefix, month))
 	return reportView{
-		MonthlySummary: report.Summarize(events, samples, month, now),
+		MonthlySummary: sum,
 		Speed:          report.SummarizeSpeed(speeds, month, f.Profile.PlanDownloadMbps),
 		Profile:        f.Profile,
 		Complaints:     casefile.InMonth(f.Complaints, month, now.Location()),
@@ -137,7 +140,9 @@ logs/connectivity_*    One line per status change (connected / unstable / discon
 logs/metrics_*         One line per monitored minute: checks run, checks up, latency,
                        jitter and packet loss. Minutes with no line were not monitored
                        (computer off or asleep, or the app closed).
-logs/speedtest_*       Every speed test with download, upload and latency.
+logs/speedtest_*       Every speed test with download, upload, latency and lag under load.
+logs/traceroute_*      The route to the internet, traced when each outage started:
+                       which hops answered and where it stopped.
 SHA256SUMS.txt         The SHA-256 checksum of every file above. Anyone can recompute
                        them (for example "sha256sum -c SHA256SUMS.txt", or
                        "certutil -hashfile <file> SHA256" on Windows) to confirm that
@@ -231,7 +236,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		if e.IsDir() || !strings.HasSuffix(n, ".jsonl") {
 			continue
 		}
-		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_"} {
+		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix} {
 			if strings.HasPrefix(n, prefix) && wantFile(n) {
 				names = append(names, n)
 			}
@@ -378,4 +383,23 @@ func (s *Server) serveTimeline(w http.ResponseWriter, r *http.Request) {
 		"to":       now.Format(time.RFC3339),
 		"segments": report.Timeline(events, samples, from, now),
 	})
+}
+
+func attachRoutes(rows []report.EventRow, traces []trace.Trace) {
+	byTime := make(map[int64]trace.Trace, len(traces))
+	for _, t := range traces {
+		byTime[t.EventTime.Unix()] = t
+	}
+	for i := range rows {
+		if rows[i].Type != "disconnected" {
+			continue
+		}
+		at, err := time.Parse(time.RFC3339, rows[i].Time)
+		if err != nil {
+			continue
+		}
+		if t, ok := byTime[at.Unix()]; ok {
+			rows[i].Route = &report.Route{Hops: len(t.Hops), LastHop: t.LastHop, LastAddr: t.LastAddr, Reached: t.Reached}
+		}
+	}
 }

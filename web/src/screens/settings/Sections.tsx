@@ -183,7 +183,7 @@ export function TargetsSection({ draft, set, err }: SectionProps) {
 
 export function AlertsSection({ draft, set, err, base }: SectionProps & { base: ConfigView }) {
   const { t, lang } = useI18n();
-  const [busy, setBusy] = useState<"webhook" | "notify" | null>(null);
+  const [busy, setBusy] = useState<"webhook" | "notify" | "ntfy" | null>(null);
 
   const testWebhook = async () => {
     setBusy("webhook");
@@ -196,6 +196,25 @@ export function AlertsSection({ draft, set, err, base }: SectionProps & { base: 
       setBusy(null);
     }
   };
+
+  const testNtfy = async () => {
+    setBusy("ntfy");
+    try {
+      await api.testNtfy(
+        draft.ntfy_url.mode === "set" ? draft.ntfy_url.value.trim() : undefined,
+        draft.ntfy_token.mode === "set" ? draft.ntfy_token.value.trim() : undefined,
+      );
+      toast(t("ntfy_ok"), "ok");
+    } catch (e) {
+      toast(t(errorKey(e, "err_ntfy_failed")), "error");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const canTestNtfy =
+    (draft.ntfy_url.mode === "set" && !!draft.ntfy_url.value.trim() && !err("ntfy_url")) ||
+    (draft.ntfy_url.mode === "keep" && !!base.secret_set.ntfy_url);
 
   const testNotify = async () => {
     setBusy("notify");
@@ -263,6 +282,40 @@ export function AlertsSection({ draft, set, err, base }: SectionProps & { base: 
           narrow
           placeholder="-1001234567890"
         />
+        <hr className="divider full" />
+        <SecretField
+          t={t}
+          label={t("f_ntfy_url")}
+          hint={t("f_ntfy_hint")}
+          error={err("ntfy_url")}
+          saved={!!base.secret_set.ntfy_url}
+          value={draft.ntfy_url}
+          onChange={(v) => set("ntfy_url", v)}
+          placeholder="https://ntfy.sh/my-home-internet"
+        />
+        <SecretField
+          t={t}
+          label={t("f_ntfy_token")}
+          hint={t("f_ntfy_token_hint")}
+          error={err("ntfy_token")}
+          saved={!!base.secret_set.ntfy_token}
+          value={draft.ntfy_token}
+          onChange={(v) => set("ntfy_token", v)}
+          placeholder="tk_…"
+          masked
+        />
+        <div className="full row">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon={Send}
+            busy={busy === "ntfy"}
+            disabled={!canTestNtfy}
+            onClick={testNtfy}
+          >
+            {t("test_webhook")}
+          </Button>
+        </div>
       </div>
     </Card>
   );

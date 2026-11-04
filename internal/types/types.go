@@ -97,3 +97,11 @@ type WeeklySummary struct {
 	PctOfPlan       float64   `json:"pct_of_plan"`
 	PrevOutages     *int      `json:"prev_outages,omitempty"`
 }
+
+type Targets struct {
+	Webhook  bool
+	Telegram bool
+	Ntfy     bool
+}
+
+func (t Targets) Any() bool { return t.Webhook || t.Telegram || t.Ntfy }

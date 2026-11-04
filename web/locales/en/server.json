@@ -79,7 +79,8 @@
       "coverage": "Monitored",
       "speed": "Typical download",
       "speed_plan": "{speed} ({pct} of plan)"
-    }
+    },
+    "bufferbloat": "Lag under load"
   },
   "tray": {
     "starting": "Starting…",

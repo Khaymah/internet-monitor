@@ -4,10 +4,12 @@ import {
   DEFAULT_NOTIFICATIONS,
   draftFrom,
   isHostPort,
+  isNtfyUrl,
   isSafeLogDir,
   isSupportedWebhook,
   rebaseDraft,
   validateDraft,
+  webhookKind,
 } from "./settingsForm";
 import type { ConfigView, NotificationSettings } from "./types";
 
@@ -23,6 +25,8 @@ const base: ConfigView = {
   webhook_url: "",
   telegram_bot_token: "",
   telegram_chat_id: "",
+  ntfy_url: "",
+  ntfy_token: "",
   dashboard_port: 8765,
   use_icmp: false,
   auto_update_check: true,
@@ -99,12 +103,21 @@ describe("validateDraft", () => {
     expect(validateDraft(d).targets?.key).toBe("err_targets");
   });
 
-  test("rejects unsupported webhook hosts only when replacing", () => {
+  test("rejects plain http webhooks on the public internet", () => {
     const d = {
       ...draftFrom(base),
-      webhook: { mode: "set" as const, value: "https://evil.example/api/webhooks/1/x" },
+      webhook: { mode: "set" as const, value: "http://example.com/hook" },
     };
     expect(validateDraft(d).webhook?.key).toBe("err_webhook");
+    const lan = { ...d, webhook: { mode: "set" as const, value: "http://192.168.1.10:8123/api/webhook/x" } };
+    expect(validateDraft(lan).webhook).toBeUndefined();
+  });
+
+  test("ntfy needs a topic address", () => {
+    const bad = { ...draftFrom(base), ntfy_url: { mode: "set" as const, value: "https://ntfy.sh/" } };
+    expect(validateDraft(bad).ntfy_url?.key).toBe("err_ntfy");
+    const good = { ...bad, ntfy_url: { mode: "set" as const, value: "https://ntfy.sh/my-topic" } };
+    expect(validateDraft(good).ntfy_url).toBeUndefined();
   });
 
   test("flags duplicates", () => {
@@ -114,14 +127,19 @@ describe("validateDraft", () => {
 });
 
 describe("validators", () => {
-  test("webhook allowlist mirrors the backend", () => {
-    expect(isSupportedWebhook("https://discord.com/api/webhooks/1/abc")).toBe(true);
-    expect(isSupportedWebhook("https://hooks.slack.com/services/T/B/x")).toBe(true);
+  test("webhook rules mirror the backend", () => {
+    expect(webhookKind("https://discord.com/api/webhooks/1/abc")).toBe("discord");
+    expect(webhookKind("https://hooks.slack.com/services/T/B/x")).toBe("slack");
+    expect(webhookKind("https://discord.com.evil.io/api/webhooks/1/abc")).toBe("generic");
+    expect(webhookKind("https://example.com/hooks/net")).toBe("generic");
+    expect(webhookKind("http://homeassistant.local:8123/api/webhook/x")).toBe("generic");
     expect(isSupportedWebhook("http://discord.com/api/webhooks/1/abc")).toBe(false);
-    expect(isSupportedWebhook("https://discord.com.evil.io/api/webhooks/1/abc")).toBe(false);
-    expect(isSupportedWebhook("https://discord.com:8443/api/webhooks/1/abc")).toBe(false);
-    expect(isSupportedWebhook("https://user@discord.com/api/webhooks/1/abc")).toBe(false);
-    expect(isSupportedWebhook("https://discord.com/api/webhooks/")).toBe(false);
+    expect(isSupportedWebhook("https://user@example.com/hook")).toBe(false);
+    expect(isSupportedWebhook("ftp://example.com/hook")).toBe(false);
+    expect(isNtfyUrl("https://ntfy.sh/topic")).toBe(true);
+    expect(isNtfyUrl("http://10.0.0.5/alerts")).toBe(true);
+    expect(isNtfyUrl("http://ntfy.example.com/topic")).toBe(false);
+    expect(isNtfyUrl("https://ntfy.sh/topic?x=1")).toBe(false);
   });
 
   test("host:port", () => {

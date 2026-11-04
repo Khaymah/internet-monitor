@@ -1,6 +1,7 @@
 package config
 
 import (
+	"net"
 	"net/url"
 	"strings"
 )
@@ -25,9 +26,47 @@ func parseWebhook(raw string) (*url.URL, bool) {
 	return u, true
 }
 
+func parseGeneric(raw string) (*url.URL, bool) {
+	u, err := url.Parse(strings.TrimSpace(raw))
+	if err != nil || u.User != nil || u.Hostname() == "" {
+		return nil, false
+	}
+	switch u.Scheme {
+	case "https":
+		return u, true
+	case "http":
+		return u, isPrivateHost(u.Hostname())
+	}
+	return nil, false
+}
+
+func isPrivateHost(host string) bool {
+	if strings.EqualFold(host, "localhost") || strings.HasSuffix(strings.ToLower(host), ".local") {
+		return true
+	}
+	ip := net.ParseIP(host)
+	return ip != nil && (ip.IsLoopback() || ip.IsPrivate() || ip.IsLinkLocalUnicast())
+}
+
 func IsSupportedWebhook(raw string) bool {
-	_, ok := parseWebhook(raw)
+	if _, ok := parseWebhook(raw); ok {
+		return true
+	}
+	_, ok := parseGeneric(raw)
 	return ok
+}
+
+func IsGenericWebhook(raw string) bool {
+	if _, ok := parseWebhook(raw); ok {
+		return false
+	}
+	_, ok := parseGeneric(raw)
+	return ok
+}
+
+func IsValidNtfyURL(raw string) bool {
+	u, ok := parseGeneric(raw)
+	return ok && strings.Trim(u.Path, "/") != "" && u.RawQuery == ""
 }
 
 func IsDiscordWebhook(raw string) bool {

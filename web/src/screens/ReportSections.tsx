@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
 import { Card, CardHead, Meter } from "../components/ui";
 import { formatDate, formatDuration, formatNumber, formatPct } from "../lib/format";
-import { type MessageKey, useI18n } from "../lib/i18n";
-import type { MonthlyReport } from "../lib/types";
+import { type MessageKey, type Translate, useI18n } from "../lib/i18n";
+import type { MonthlyReport, ReportRoute } from "../lib/types";
 import { availabilityTone } from "../styles/categories";
 import { channelLabel, STATUS_LABEL, STATUS_TONE } from "./complaints/shared";
 
@@ -155,4 +155,11 @@ export function ComplaintsCard({ report: r }: { report: MonthlyReport }) {
       </div>
     </Card>
   );
+}
+
+export function routeText(t: Translate, r: ReportRoute): string {
+  if (r.reached) return t("route_reached");
+  if (r.last_hop === 0) return t("route_none");
+  if (r.last_hop === 1) return t("route_router", { addr: r.last_addr ?? "" });
+  return t("route_stopped", { hop: r.last_hop, addr: r.last_addr ?? "" });
 }

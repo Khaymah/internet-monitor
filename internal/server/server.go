@@ -20,6 +20,7 @@ type Hooks struct {
 	TestNotification func(lang string, volume *int)
 	PlaySound        func(volume int)
 	TestWebhook      func(url string) string
+	TestNtfy         func(url, token string) string
 	CheckUpdate      func() (*updater.Info, error)
 	ApplyUpdate      func(downloadURL string) error
 	Restart          func()
@@ -142,6 +143,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /api/test-targets", s.serveTestTargets)
 	mux.HandleFunc("POST /api/test-notification", s.serveTestNotification)
 	mux.HandleFunc("POST /api/test-webhook", s.serveTestWebhook)
+	mux.HandleFunc("POST /api/test-ntfy", s.serveTestNtfy)
 	mux.HandleFunc("POST /api/play-sound", s.servePlaySound)
 	mux.HandleFunc("GET /api/startup", s.serveStartupGet)
 	mux.HandleFunc("POST /api/startup", s.serveStartupPost)

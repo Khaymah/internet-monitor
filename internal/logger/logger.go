@@ -3,6 +3,7 @@ package logger
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/i18n"
@@ -158,6 +159,10 @@ type SpeedTestEvent struct {
 	Endpoints       []string  `json:"endpoints"`
 	ParallelConns   int       `json:"parallel_connections"`
 	TriggeredBy     string    `json:"triggered_by"`
+	IdleLatencyMs   int64     `json:"idle_latency_ms,omitempty"`
+	LoadedDownMs    int64     `json:"loaded_latency_down_ms,omitempty"`
+	LoadedUpMs      int64     `json:"loaded_latency_up_ms,omitempty"`
+	Bufferbloat     string    `json:"bufferbloat,omitempty"`
 }
 
 func (l *Logger) LogSpeedTest(event SpeedTestEvent) {
@@ -230,7 +235,8 @@ func (l *Logger) CleanupOldLogs(maxAge time.Duration) {
 		if !strings.HasPrefix(name, "connectivity_") &&
 			!strings.HasPrefix(name, "speedtest_") &&
 			!strings.HasPrefix(name, "metrics_") &&
-			!strings.HasPrefix(name, "notifications_") {
+			!strings.HasPrefix(name, "notifications_") &&
+			!strings.HasPrefix(name, "traceroute_") {
 			continue
 		}
 		info, err := e.Info()
@@ -245,40 +251,158 @@ func (l *Logger) CleanupOldLogs(maxAge time.Duration) {
 	}
 }
 
-func (l *Logger) remoteTargets() (url, token, chat string) {
+type remote struct {
+	webhook, token, chat, ntfyURL, ntfyToken string
+}
+
+func (l *Logger) remoteTargets() remote {
 	l.mu.Lock()
 	defer l.mu.Unlock()
-	return l.cfg.WebhookURL, l.cfg.TelegramBotToken, l.cfg.TelegramChatID
+	return remote{l.cfg.WebhookURL, l.cfg.TelegramBotToken, l.cfg.TelegramChatID, l.cfg.NtfyURL, l.cfg.NtfyToken}
 }
 
-func (l *Logger) SendEvent(lang string, event monitor.Event, kind string, webhook, telegram bool) {
-	url, token, chat := l.remoteTargets()
-	if webhook && url != "" && IsSupportedWebhook(url) {
-		go l.sendWebhook(url, BuildEventPayload(lang, event, kind, url))
+type message struct {
+	kind     string
+	title    string
+	telegram string
+	data     interface{}
+	at       time.Time
+	webhook  func(url string) interface{}
+}
+
+func (l *Logger) deliver(to types.Targets, m message) {
+	r := l.remoteTargets()
+	if to.Webhook && r.webhook != "" && IsSupportedWebhook(r.webhook) {
+		payload := m.webhook
+		if config.IsGenericWebhook(r.webhook) {
+			go l.sendWebhook(r.webhook, GenericPayload(m.kind, m.title, PlainText(m.telegram), m.at, m.data))
+		} else {
+			go l.sendWebhook(r.webhook, payload(r.webhook))
+		}
 	}
-	if telegram && token != "" && chat != "" {
-		go l.sendTelegram(token, chat, TelegramEventText(lang, event, kind))
+	if to.Telegram && r.token != "" && r.chat != "" {
+		go l.sendTelegram(r.token, r.chat, m.telegram)
+	}
+	if to.Ntfy && r.ntfyURL != "" && config.IsValidNtfyURL(r.ntfyURL) {
+		go l.sendNtfy(r.ntfyURL, r.ntfyToken, m.kind, m.title, PlainBody(m.telegram))
 	}
 }
 
-func (l *Logger) SendSpeed(lang string, event SpeedTestEvent, thresholdMbps float64, below, webhook, telegram bool) {
-	url, token, chat := l.remoteTargets()
-	if webhook && url != "" && IsSupportedWebhook(url) {
-		go l.sendWebhook(url, BuildSpeedResultPayload(lang, event, thresholdMbps, below, url))
+func (l *Logger) SendEvent(lang string, event monitor.Event, kind string, to types.Targets) {
+	l.deliver(to, message{
+		kind:     kind,
+		title:    EventTitle(lang, kind),
+		telegram: TelegramEventText(lang, event, kind),
+		data:     event,
+		at:       event.Timestamp,
+		webhook:  func(url string) interface{} { return BuildEventPayload(lang, event, kind, url) },
+	})
+}
+
+func (l *Logger) SendSpeed(lang string, event SpeedTestEvent, thresholdMbps float64, below bool, to types.Targets) {
+	_, title, _ := speedTitle(lang, below)
+	kind := "speed"
+	if below {
+		kind = "speed_drop"
 	}
-	if telegram && token != "" && chat != "" {
-		go l.sendTelegram(token, chat, TelegramSpeedText(lang, event, thresholdMbps, below))
+	l.deliver(to, message{
+		kind:     kind,
+		title:    title,
+		telegram: TelegramSpeedText(lang, event, thresholdMbps, below),
+		data:     event,
+		at:       event.Timestamp,
+		webhook:  func(url string) interface{} { return BuildSpeedResultPayload(lang, event, thresholdMbps, below, url) },
+	})
+}
+
+func (l *Logger) SendWeekly(lang string, w types.WeeklySummary, to types.Targets) {
+	_, title, _ := weeklyTitle(lang, w)
+	l.deliver(to, message{
+		kind:     "weekly",
+		title:    title,
+		telegram: TelegramWeeklyText(lang, w),
+		data:     w,
+		at:       w.To,
+		webhook:  func(url string) interface{} { return BuildWeeklyPayload(lang, w, url) },
+	})
+}
+
+var ntfyTags = map[string]string{
+	"down":       "x",
+	"degraded":   "warning",
+	"restored":   "white_check_mark",
+	"reminder":   "alarm_clock",
+	"speed":      "rocket",
+	"speed_drop": "warning",
+	"weekly":     "bar_chart",
+	"test":       "bell",
+}
+
+func ntfyPriority(kind string) string {
+	switch kind {
+	case "down", "reminder":
+		return "high"
+	case "weekly", "speed", "test":
+		return "low"
+	}
+	return "default"
+}
+
+func NtfyRequest(url, token, kind, title, body string) (*http.Request, error) {
+	req, err := http.NewRequest(http.MethodPost, url, strings.NewReader(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Title", title)
+	req.Header.Set("Priority", ntfyPriority(kind))
+	if tag := ntfyTags[kind]; tag != "" {
+		req.Header.Set("Tags", tag)
+	}
+	if token != "" {
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
+	return req, nil
+}
+
+func (l *Logger) postNtfy(url, token, kind, title, body string) error {
+	req, err := NtfyRequest(url, token, kind, title, body)
+	if err != nil {
+		return err
+	}
+	resp, err := NoRedirectClient(10 * time.Second).Do(req)
+	if err != nil {
+		return errors.New(RedactSecret(RedactSecret(err.Error(), token), url))
+	}
+	resp.Body.Close()
+	if resp.StatusCode >= 400 {
+		return fmt.Errorf("the ntfy server answered HTTP %d", resp.StatusCode)
+	}
+	return nil
+}
+
+func (l *Logger) sendNtfy(url, token, kind, title, body string) {
+	defer func() {
+		if r := recover(); r != nil {
+			l.AppLog("PANIC recovered in ntfy send: %v", r)
+		}
+	}()
+	if err := l.postNtfy(url, token, kind, title, body); err != nil {
+		l.AppLog("NTFY %s", err)
 	}
 }
 
-func (l *Logger) SendWeekly(lang string, w types.WeeklySummary, webhook, telegram bool) {
-	url, token, chat := l.remoteTargets()
-	if webhook && url != "" && IsSupportedWebhook(url) {
-		go l.sendWebhook(url, BuildWeeklyPayload(lang, w, url))
+func (l *Logger) SendTestNtfy(url, token string) string {
+	if !config.IsValidNtfyURL(url) {
+		return "use the full topic address, like https://ntfy.sh/my-topic"
 	}
-	if telegram && token != "" && chat != "" {
-		go l.sendTelegram(token, chat, TelegramWeeklyText(lang, w))
+	l.mu.Lock()
+	lang := l.cfg.Language
+	l.mu.Unlock()
+	if err := l.postNtfy(url, token, "test", i18n.T(lang, "webhook.test.title", nil), i18n.T(lang, "webhook.test.body", nil)); err != nil {
+		l.AppLog("NTFY TEST %s", err)
+		return err.Error()
 	}
+	return ""
 }
 
 func (l *Logger) sendTelegram(token, chatID, text string) {
@@ -338,7 +462,7 @@ func (l *Logger) sendWebhook(url string, payload interface{}) {
 
 func (l *Logger) SendTestWebhook(url string) string {
 	if !IsSupportedWebhook(url) {
-		return "Only Discord and Slack webhooks are supported"
+		return "use an https address (http is allowed only for addresses on your own network)"
 	}
 
 	l.mu.Lock()
@@ -347,7 +471,9 @@ func (l *Logger) SendTestWebhook(url string) string {
 	title, text := i18n.T(lang, "webhook.test.title", nil), i18n.T(lang, "webhook.test.body", nil)
 
 	var payload interface{}
-	if IsDiscord(url) {
+	if config.IsGenericWebhook(url) {
+		payload = GenericPayload("test", title, text, time.Now(), nil)
+	} else if IsDiscord(url) {
 		payload = map[string]interface{}{
 			"username": "Internet Monitor",
 			"embeds": []map[string]interface{}{{
@@ -394,4 +520,22 @@ func NoRedirectClient(timeout time.Duration) *http.Client {
 		Timeout:       timeout,
 		CheckRedirect: func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse },
 	}
+}
+
+func (l *Logger) LogJSON(prefix string, at time.Time, v interface{}) {
+	data, err := json.Marshal(v)
+	if err != nil {
+		l.AppLog("ERROR marshal %s: %v", prefix, err)
+		return
+	}
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	filename := filepath.Join(l.cfg.LogDir, prefix+at.Format("2006-01-02")+".jsonl")
+	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0o644)
+	if err != nil {
+		l.AppLog("ERROR open %s log: %v", prefix, err)
+		return
+	}
+	defer f.Close()
+	_, _ = f.Write(append(data, '\n'))
 }

@@ -110,6 +110,10 @@ func speedLines(lang string, ev SpeedTestEvent, thresholdMbps float64, below boo
 	if ev.DurationSeconds > 0 {
 		lines = append(lines, remoteLine{"⏱️ " + i18n.T(lang, "remote.duration", nil), fmt.Sprintf("%.1f s", ev.DurationSeconds)})
 	}
+	if ev.Bufferbloat != "" {
+		lines = append(lines, remoteLine{"🎮 " + i18n.T(lang, "remote.bufferbloat", nil),
+			fmt.Sprintf("%s (+%d ms)", ev.Bufferbloat, max(ev.LoadedDownMs, ev.LoadedUpMs)-ev.IdleLatencyMs)})
+	}
 	if below && thresholdMbps > 0 {
 		lines = append(lines, remoteLine{"⚠️ " + i18n.T(lang, "remote.threshold", nil), fmt.Sprintf("%.1f Mbps", thresholdMbps)})
 	}
@@ -236,4 +240,28 @@ func TelegramWeeklyText(lang string, w types.WeeklySummary) string {
 		fmt.Fprintf(&b, "\n%s: %s", l.name, l.value)
 	}
 	return b.String()
+}
+
+func GenericPayload(kind, title, text string, at time.Time, data interface{}) map[string]interface{} {
+	out := map[string]interface{}{
+		"source": "internet-monitor",
+		"type":   kind,
+		"title":  title,
+		"text":   text,
+		"time":   at.UTC().Format(time.RFC3339),
+	}
+	if data != nil {
+		out["data"] = data
+	}
+	return out
+}
+
+func PlainText(s string) string { return strings.ReplaceAll(s, "*", "") }
+
+func PlainBody(telegram string) string {
+	_, body, ok := strings.Cut(PlainText(telegram), "\n")
+	if !ok {
+		return PlainText(telegram)
+	}
+	return body
 }

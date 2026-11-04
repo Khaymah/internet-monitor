@@ -34,9 +34,16 @@ type configView struct {
 }
 
 func viewOf(c config.Config) configView {
-	set := map[string]bool{"webhook_url": c.WebhookURL != "", "telegram_bot_token": c.TelegramBotToken != ""}
+	set := map[string]bool{
+		"webhook_url":        c.WebhookURL != "",
+		"telegram_bot_token": c.TelegramBotToken != "",
+		"ntfy_url":           c.NtfyURL != "",
+		"ntfy_token":         c.NtfyToken != "",
+	}
 	c.WebhookURL = ""
 	c.TelegramBotToken = ""
+	c.NtfyURL = ""
+	c.NtfyToken = ""
 	return configView{Config: c, SecretSet: set}
 }
 

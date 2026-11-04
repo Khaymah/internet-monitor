@@ -47,6 +47,9 @@ func (r TestResults) AllOK() bool {
 }
 
 func BuildTestPayload(results TestResults, url string) interface{} {
+	if config.IsGenericWebhook(url) {
+		return GenericPayload("test_targets", "Internet Monitor target test", "", time.Now(), results)
+	}
 	if IsDiscord(url) {
 		return discordTestPayload(results)
 	}
