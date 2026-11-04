@@ -71,6 +71,8 @@ Most "my internet is down" complaints fail because you have **no proof** — no 
 | 📋 **Structured logs** | Daily JSONL files — connectivity events in `connectivity_DATE.jsonl`, speed tests in `speedtest_DATE.jsonl` |
 | 📄 **Monthly report** | `/report?month=YYYY-MM` page with **Print or save as PDF**: uptime, outages, monitoring coverage, likely power cuts, speed vs your plan and your complaints |
 | 🧾 **Complaints** | Your provider and plan, every complaint you filed with the provider's response countdown, the measured evidence before and since each complaint, ready-to-send complaint text and an evidence ZIP with SHA-256 checksums. Escalation steps for Egypt, Saudi Arabia, the UK, the US and others |
+| 🔏 **Sealed logs** | Every finished day is sealed in a SHA-256 hash chain, optionally timestamped by an independent RFC 3161 authority so anyone can verify the logs were not edited (`openssl ts -verify`) |
+| 📶 **Wi-Fi or cable** | Each minute and outage records whether you were on Wi-Fi or a cable and the signal strength, and outages while a laptop runs on battery are flagged as likely power cuts |
 | 🧭 **Route trace** | When the line drops, the route to the internet is traced so the report can say whether the router, the provider or something further away stopped answering |
 | 🕒 **Outage timeline** | 24-hour and 7-day timeline of connected, unstable, disconnected and not-monitored time on the overview |
 | 📊 **Weekly summary** | Every Monday at 9:00: last week's outages, downtime, uptime and speed, to the desktop, Discord/Slack or Telegram |
@@ -120,6 +122,14 @@ chmod +x internet-monitor-*
 Open the dashboard from the **tray menu** (or the app window in the GUI version).
 
 > The dashboard only accepts requests that carry a per-launch session token. Opening <http://127.0.0.1:8765> directly in a browser shows an "open from the app" message — that is expected.
+
+---
+
+### Run it 24/7 on a Raspberry Pi, a server or Docker
+
+For the strongest evidence, run the headless build on a device that never sleeps and is
+wired to the router: `internet-monitor-headless-linux-arm64` (Raspberry Pi 4/5),
+`-armv7` (Pi 2/3) or `-amd64`, or `docker compose up -d`. See [docs/headless.md](docs/headless.md).
 
 ---
 
