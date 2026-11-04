@@ -33,7 +33,7 @@ import { isRtl, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
 import type { MonthlyReport, ReportDay } from "../lib/types";
 import { availabilityTone, statusTone, tone } from "../styles/categories";
-import { ComplaintsCard, formatMbps, GapsCard, SpeedCard } from "./ReportSections";
+import { ComplaintsCard, formatMbps, GapsCard, routeText, SpeedCard } from "./ReportSections";
 
 function daysOf(month: string, days: ReportDay[]): (ReportDay | { date: string; empty: true })[] {
   const [y, m] = month.split("-").map(Number);
@@ -443,6 +443,7 @@ export function Report({ month: initial }: { month: string | null }) {
                         <td className="wrap secondary">
                           {describeReportCause(t, e.cause)}
                           {e.after_gap ? <div className="muted">{t("report_after_gap")}</div> : null}
+                          {e.route ? <div className="muted">{routeText(t, e.route)}</div> : null}
                         </td>
                       </tr>
                     ))}

@@ -235,7 +235,8 @@ func (l *Logger) CleanupOldLogs(maxAge time.Duration) {
 		if !strings.HasPrefix(name, "connectivity_") &&
 			!strings.HasPrefix(name, "speedtest_") &&
 			!strings.HasPrefix(name, "metrics_") &&
-			!strings.HasPrefix(name, "notifications_") {
+			!strings.HasPrefix(name, "notifications_") &&
+			!strings.HasPrefix(name, "traceroute_") {
 			continue
 		}
 		info, err := e.Info()
@@ -519,4 +520,22 @@ func NoRedirectClient(timeout time.Duration) *http.Client {
 		Timeout:       timeout,
 		CheckRedirect: func(*http.Request, []*http.Request) error { return http.ErrUseLastResponse },
 	}
+}
+
+func (l *Logger) LogJSON(prefix string, at time.Time, v interface{}) {
+	data, err := json.Marshal(v)
+	if err != nil {
+		l.AppLog("ERROR marshal %s: %v", prefix, err)
+		return
+	}
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	filename := filepath.Join(l.cfg.LogDir, prefix+at.Format("2006-01-02")+".jsonl")
+	f, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0o644)
+	if err != nil {
+		l.AppLog("ERROR open %s log: %v", prefix, err)
+		return
+	}
+	defer f.Close()
+	_, _ = f.Write(append(data, '\n'))
 }

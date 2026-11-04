@@ -20,6 +20,14 @@ type EventRow struct {
 	DurationSecs float64 `json:"duration_seconds"`
 	Cause        string  `json:"cause"`
 	AfterGap     bool    `json:"after_gap,omitempty"`
+	Route        *Route  `json:"route,omitempty"`
+}
+
+type Route struct {
+	Hops     int    `json:"hops"`
+	LastHop  int    `json:"last_hop"`
+	LastAddr string `json:"last_addr,omitempty"`
+	Reached  bool   `json:"reached"`
 }
 
 type DayStat struct {

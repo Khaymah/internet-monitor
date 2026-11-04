@@ -6,6 +6,8 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"internet-monitor/internal/casefile"
+	"internet-monitor/internal/report"
+	"internet-monitor/internal/trace"
 	"io"
 	"net/http"
 	"os"
@@ -182,5 +184,21 @@ func TestTimelineEndpoint(t *testing.T) {
 	}
 	if len(body.Segments) != 1 || body.Segments[0].Status != "off" {
 		t.Fatalf("segments = %+v, want one off segment with no data", body.Segments)
+	}
+}
+
+func TestAttachRoutes(t *testing.T) {
+	at := time.Date(2026, 11, 3, 10, 0, 0, 0, time.UTC)
+	rows := []report.EventRow{
+		{Time: at.Format(time.RFC3339), Type: "disconnected"},
+		{Time: at.Add(time.Hour).Format(time.RFC3339), Type: "disconnected"},
+		{Time: at.Format(time.RFC3339), Type: "degraded"},
+	}
+	attachRoutes(rows, []trace.Trace{{EventTime: at, LastHop: 1, LastAddr: "192.168.1.1", Hops: []trace.Hop{{N: 1}, {N: 2}}}})
+	if rows[0].Route == nil || rows[0].Route.LastAddr != "192.168.1.1" || rows[0].Route.Hops != 2 {
+		t.Fatalf("route not attached: %+v", rows[0].Route)
+	}
+	if rows[1].Route != nil || rows[2].Route != nil {
+		t.Fatal("route attached to the wrong rows")
 	}
 }

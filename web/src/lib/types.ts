@@ -229,6 +229,14 @@ export interface ReportEventRow {
   duration_seconds: number;
   cause: string;
   after_gap?: boolean;
+  route?: ReportRoute;
+}
+
+export interface ReportRoute {
+  hops: number;
+  last_hop: number;
+  last_addr?: string;
+  reached: boolean;
 }
 
 export interface ReportDay {
