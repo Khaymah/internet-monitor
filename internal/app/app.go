@@ -24,8 +24,10 @@ import (
 )
 
 type Options struct {
-	Version string
-	Desktop func(launchURL func() string) alerts.Desktop
+	Version    string
+	Dir        string
+	ListenHost string
+	Desktop    func(launchURL func() string) alerts.Desktop
 }
 
 type App struct {
@@ -55,7 +57,13 @@ func Dir() string {
 }
 
 func New(opts Options) (*App, error) {
-	dir := Dir()
+	dir := opts.Dir
+	if dir == "" {
+		dir = Dir()
+	}
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return nil, err
+	}
 	if err := os.Chdir(dir); err != nil {
 		log.Printf("warning: could not chdir to %s: %v", dir, err)
 	}
@@ -98,7 +106,8 @@ func New(opts Options) (*App, error) {
 		Logger:              lgr,
 		Version:             opts.Version,
 		AppDir:              dir,
-		NativeNotifications: true,
+		NativeNotifications: opts.Desktop != nil,
+		ListenHost:          opts.ListenHost,
 		History:             history,
 		Hooks: server.Hooks{
 			TestNotification: func(lang string, volume *int) { al.Test(lang, volume) },

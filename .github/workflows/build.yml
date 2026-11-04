@@ -228,6 +228,38 @@ jobs:
           name: windows-tray
           path: internet-monitor-windows.exe
 
+  headless:
+    name: "🖥️ Headless (Linux amd64 / arm64 / armv7)"
+    runs-on: ubuntu-latest
+    needs: [version, quality, web]
+    if: ${{ always() && needs.quality.result == 'success' && needs.web.result == 'success' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: web-dist
+          path: web/dist
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Build
+        env:
+          CGO_ENABLED: 0
+          VERSION: ${{ needs.version.outputs.new_tag || needs.web.outputs.dev_version }}
+        run: |
+          GOOS=linux GOARCH=amd64 go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-headless-linux-amd64 ./cmd/headless
+          GOOS=linux GOARCH=arm64 go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-headless-linux-arm64 ./cmd/headless
+          GOOS=linux GOARCH=arm GOARM=7 go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-headless-linux-armv7 ./cmd/headless
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: headless
+          path: internet-monitor-headless-linux-*
+
   # ── Windows GUI — CGO + WebView2, requires Windows runner ────
   windows-gui:
     name: "🪟 Windows GUI (native)"
@@ -370,7 +402,7 @@ jobs:
   # ══════════════════════════════════════════════════════════════
   release:
     name: "🚀 Auto Release"
-    needs: [version, windows-tray, windows-gui, macos, linux]
+    needs: [version, windows-tray, windows-gui, macos, linux, headless]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && needs.version.outputs.new_tag != ''
     concurrency:
@@ -384,15 +416,15 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v8
         with:
-          pattern: "{windows-tray,windows-gui,macos,linux}"
+          pattern: "{windows-tray,windows-gui,macos,linux,headless}"
           merge-multiple: true
           path: dist/
 
       - name: Verify every release binary is present
         run: |
           count=$(ls dist/internet-monitor-* | wc -l)
-          if [ "$count" -ne 8 ]; then
-            echo "Expected 8 binaries, found $count:"; ls -la dist; exit 1
+          if [ "$count" -ne 11 ]; then
+            echo "Expected 11 binaries, found $count:"; ls -la dist; exit 1
           fi
 
       - name: Make Linux/macOS binaries executable
@@ -401,6 +433,7 @@ jobs:
             dist/internet-monitor-linux \
             dist/internet-monitor-gui-linux \
             dist/internet-monitor-macos-* \
+            dist/internet-monitor-headless-linux-* \
             dist/internet-monitor-gui-macos-* \
             2>/dev/null || true
 
@@ -436,6 +469,9 @@ jobs:
             | `internet-monitor-gui-macos-intel` | macOS Intel | Standalone window |
             | `internet-monitor-linux` | Linux | System Tray |
             | `internet-monitor-gui-linux` | Linux | Standalone window |
+            | `internet-monitor-headless-linux-amd64` | Linux server / Docker | Headless, 24/7 |
+            | `internet-monitor-headless-linux-arm64` | Raspberry Pi 4/5 (64-bit) | Headless, 24/7 |
+            | `internet-monitor-headless-linux-armv7` | Raspberry Pi 2/3 (32-bit) | Headless, 24/7 |
 
             > Download the binary only — `config.json` is created automatically on first run.
 
@@ -464,5 +500,8 @@ jobs:
             dist/internet-monitor-gui-macos-arm64
             dist/internet-monitor-linux
             dist/internet-monitor-gui-linux
+            dist/internet-monitor-headless-linux-amd64
+            dist/internet-monitor-headless-linux-arm64
+            dist/internet-monitor-headless-linux-armv7
             dist/SHA256SUMS
           body_path: release-notes.md

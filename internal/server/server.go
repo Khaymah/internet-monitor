@@ -12,6 +12,7 @@ import (
 	"internet-monitor/internal/updater"
 	"net"
 	"net/http"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -34,6 +35,7 @@ type Options struct {
 	Version             string
 	AppDir              string
 	NativeNotifications bool
+	ListenHost          string
 	Hooks               Hooks
 	History             *alerts.History
 }
@@ -46,6 +48,7 @@ type Server struct {
 	bootID  string
 	token   string
 	native  bool
+	listen  string
 	hooks   Hooks
 	history *alerts.History
 
@@ -72,6 +75,7 @@ func New(opts Options) *Server {
 		bootID:   newBootID(),
 		token:    loadOrCreateToken(opts.AppDir, time.Now()),
 		native:   opts.NativeNotifications,
+		listen:   opts.ListenHost,
 		hooks:    opts.Hooks,
 		history:  opts.History,
 		shutdown: make(chan struct{}),
@@ -167,7 +171,7 @@ func (s *Server) routes() http.Handler {
 }
 
 func (s *Server) Start(port int) error {
-	ln, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", port))
+	ln, err := net.Listen("tcp", net.JoinHostPort(s.listenHost(), strconv.Itoa(port)))
 	if err != nil {
 		return fmt.Errorf("dashboard port %d is unavailable: %w", port, err)
 	}
@@ -191,6 +195,31 @@ func (s *Server) Start(port int) error {
 }
 
 func (s *Server) Port() int { return s.port }
+
+func (s *Server) listenHost() string {
+	if s.listen == "" {
+		return "127.0.0.1"
+	}
+	return s.listen
+}
+
+func (s *Server) LANMode() bool {
+	ip := net.ParseIP(s.listenHost())
+	return ip == nil || !ip.IsLoopback()
+}
+
+func (s *Server) LANLaunchURLs() []string {
+	var out []string
+	addrs, _ := net.InterfaceAddrs()
+	for _, a := range addrs {
+		ipn, ok := a.(*net.IPNet)
+		if !ok || ipn.IP.IsLoopback() || ipn.IP.To4() == nil || ipn.IP.IsLinkLocalUnicast() {
+			continue
+		}
+		out = append(out, fmt.Sprintf("http://%s:%d/?%s=%s", ipn.IP, s.port, sessionQuery, s.token))
+	}
+	return out
+}
 
 func (s *Server) URL() string { return fmt.Sprintf("http://127.0.0.1:%d", s.port) }
 

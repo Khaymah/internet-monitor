@@ -1,0 +1,11 @@
+services:
+  internet-monitor:
+    image: internet-monitor:latest
+    build: .
+    container_name: internet-monitor
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: Africa/Cairo
+    volumes:
+      - ./data:/data
