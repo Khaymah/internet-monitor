@@ -56,19 +56,19 @@ type fakeRemote struct {
 	speeds int
 }
 
-func (r *fakeRemote) SendEvent(_ string, ev types.Event, kind string, webhook, telegram bool) {
+func (r *fakeRemote) SendEvent(_ string, ev types.Event, kind string, to types.Targets) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
-	r.events = append(r.events, sentEvent{kind, ev.DurationSeconds, webhook, telegram})
+	r.events = append(r.events, sentEvent{kind, ev.DurationSeconds, to.Webhook, to.Telegram})
 }
 
-func (r *fakeRemote) SendSpeed(string, logger.SpeedTestEvent, float64, bool, bool, bool) {
+func (r *fakeRemote) SendSpeed(string, logger.SpeedTestEvent, float64, bool, types.Targets) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 	r.speeds++
 }
 
-func (r *fakeRemote) SendWeekly(string, types.WeeklySummary, bool, bool) {}
+func (r *fakeRemote) SendWeekly(string, types.WeeklySummary, types.Targets) {}
 
 type fakeDesktop struct {
 	mu     sync.Mutex

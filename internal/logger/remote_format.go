@@ -237,3 +237,27 @@ func TelegramWeeklyText(lang string, w types.WeeklySummary) string {
 	}
 	return b.String()
 }
+
+func GenericPayload(kind, title, text string, at time.Time, data interface{}) map[string]interface{} {
+	out := map[string]interface{}{
+		"source": "internet-monitor",
+		"type":   kind,
+		"title":  title,
+		"text":   text,
+		"time":   at.UTC().Format(time.RFC3339),
+	}
+	if data != nil {
+		out["data"] = data
+	}
+	return out
+}
+
+func PlainText(s string) string { return strings.ReplaceAll(s, "*", "") }
+
+func PlainBody(telegram string) string {
+	_, body, ok := strings.Cut(PlainText(telegram), "\n")
+	if !ok {
+		return PlainText(telegram)
+	}
+	return body
+}

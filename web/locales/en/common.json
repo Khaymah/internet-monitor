@@ -36,7 +36,7 @@
   "err_url": "Use a full http(s):// address",
   "err_hostname": "Use a domain name like www.google.com",
   "err_https": "Use an https:// address",
-  "err_webhook": "Only Discord or Slack webhook addresses are supported",
+  "err_webhook": "Use an https address (http only works for addresses on your own network)",
   "err_targets": "Keep at least one target",
   "err_logdir": "Must be a folder inside the app folder",
   "err_rate_limited": "Too fast. Wait a moment and try again.",
@@ -68,5 +68,7 @@
   "nav_privacy": "Privacy",
   "nav_terms": "Terms of use",
   "opens_new_tab": "(opens in a new tab)",
-  "s_unit": "s"
+  "s_unit": "s",
+  "err_ntfy": "Use the full topic address, like https://ntfy.sh/my-topic",
+  "err_ntfy_failed": "ntfy didn't accept the message. Check the topic address and token."
 }

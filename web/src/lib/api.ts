@@ -159,6 +159,8 @@ export const api = {
       `/api/test-notification?lang=${lang}${volume === undefined ? "" : `&volume=${volume}`}`,
     ),
   testWebhook: (url?: string) => post<{ ok: boolean }>("/api/test-webhook", url ? { url } : {}),
+  testNtfy: (url?: string, token?: string) =>
+    post<{ ok: boolean }>("/api/test-ntfy", { ...(url ? { url } : {}), ...(token ? { token } : {}) }),
   playSound: (volume?: number) =>
     post<{ ok: boolean }>(volume === undefined ? "/api/play-sound" : `/api/play-sound?volume=${volume}`),
   notifications: (limit = 50, signal?: AbortSignal) =>

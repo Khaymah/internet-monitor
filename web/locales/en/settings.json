@@ -43,8 +43,8 @@
   "test_targets": "Test targets",
   "testing": "Testing…",
   "test_ok": "{ok} of {total} reachable",
-  "f_webhook": "Discord or Slack webhook",
-  "f_webhook_hint": "Posts every outage to a channel.",
+  "f_webhook": "Webhook (Discord, Slack or any service)",
+  "f_webhook_hint": "Posts every outage to a Discord or Slack channel. Any other address gets a plain JSON message (title, text and the raw data), which works with Home Assistant, n8n, Zapier, IFTTT and similar. Use https, or http for an address on your own network.",
   "f_tg_token": "Telegram bot token",
   "f_tg_chat": "Telegram chat ID",
   "f_tg_hint": "Sends the same alerts through your Telegram bot.",
@@ -118,5 +118,10 @@
   "startup_on": "Internet Monitor will start with Windows",
   "startup_off": "Internet Monitor won't start with Windows",
   "f_speed_data": "Each test uses about {per} of data at {speed} Mbps.",
-  "f_speed_data_month": "Each test uses about {per} of data at {speed} Mbps, so the schedule uses about {month} a month. On a capped plan this counts toward your quota."
+  "f_speed_data_month": "Each test uses about {per} of data at {speed} Mbps, so the schedule uses about {month} a month. On a capped plan this counts toward your quota.",
+  "f_ntfy_url": "ntfy topic (phone notifications)",
+  "f_ntfy_hint": "Install the free ntfy app on your phone, subscribe to a topic with a name that's hard to guess, and paste its address here. Works with ntfy.sh or your own ntfy server.",
+  "f_ntfy_token": "ntfy access token (optional)",
+  "f_ntfy_token_hint": "Only needed if your ntfy topic is protected.",
+  "ntfy_ok": "Test sent to ntfy"
 }

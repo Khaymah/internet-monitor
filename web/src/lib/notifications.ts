@@ -30,6 +30,7 @@ export const CHANNEL_NAME: Record<AlertChannel, MessageKey> = {
   sound: "n_ch_sound",
   webhook: "n_ch_webhook",
   telegram: "n_ch_telegram",
+  ntfy: "n_ch_ntfy",
 };
 
 export const REASON_LABEL: Record<MuteReason, MessageKey> = {
@@ -40,7 +41,7 @@ export const REASON_LABEL: Record<MuteReason, MessageKey> = {
   startup: "n_reason_startup",
 };
 
-const CHANNEL_ORDER: AlertChannel[] = ["desktop", "sound", "webhook", "telegram"];
+const CHANNEL_ORDER: AlertChannel[] = ["desktop", "sound", "webhook", "telegram", "ntfy"];
 
 export function mutedChannels(r: NotificationRecord): { channel: AlertChannel; reason: MuteReason }[] {
   const muted = r.muted ?? {};

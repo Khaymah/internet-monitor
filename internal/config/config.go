@@ -30,6 +30,8 @@ type Config struct {
 	WebhookURL          string          `json:"webhook_url"`
 	TelegramBotToken    string          `json:"telegram_bot_token"`
 	TelegramChatID      string          `json:"telegram_chat_id"`
+	NtfyURL             string          `json:"ntfy_url"`
+	NtfyToken           string          `json:"ntfy_token"`
 	DashboardPort       int             `json:"dashboard_port"`
 	UseICMP             bool            `json:"use_icmp"`
 	AutoUpdateCheck     bool            `json:"auto_update_check"`
@@ -201,7 +203,12 @@ func (c Config) ValidateChanges(prev Config, all bool) error {
 	}
 	if all || c.WebhookURL != prev.WebhookURL {
 		if c.WebhookURL != "" && !IsSupportedWebhook(c.WebhookURL) {
-			return fieldError("webhook_url", "only https Discord or Slack webhook URLs are supported")
+			return fieldError("webhook_url", "use an https address (http is allowed only for addresses on your own network)")
+		}
+	}
+	if all || c.NtfyURL != prev.NtfyURL {
+		if c.NtfyURL != "" && !IsValidNtfyURL(c.NtfyURL) {
+			return fieldError("ntfy_url", "use the full topic address, like https://ntfy.sh/my-topic")
 		}
 	}
 	if len(c.PingTargets) == 0 && len(c.HTTPTargets) == 0 && len(c.DNSTargets) == 0 {

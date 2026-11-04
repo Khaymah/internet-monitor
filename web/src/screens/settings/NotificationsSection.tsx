@@ -22,9 +22,10 @@ const CHANNEL_LABEL: Record<NotifyChannel, MessageKey> = {
   desktop: "n_ch_desktop",
   webhook: "n_ch_webhook",
   telegram: "n_ch_telegram",
+  ntfy: "n_ch_ntfy",
 };
 
-const CHANNELS: NotifyChannel[] = ["desktop", "webhook", "telegram"];
+const CHANNELS: NotifyChannel[] = ["desktop", "webhook", "telegram", "ntfy"];
 
 function WeeklyRow() {
   const { t } = useI18n();
@@ -88,8 +89,12 @@ export function NotificationsSection({ draft, set, err, base }: SectionProps & {
       draft.telegram_token.mode === "set"
         ? draft.telegram_token.value.trim() !== ""
         : draft.telegram_token.mode === "keep" && base.secret_set.telegram_bot_token;
-    return { desktop: true, webhook, telegram: token && draft.telegram_chat_id.trim() !== "" };
-  }, [draft.webhook, draft.telegram_token, draft.telegram_chat_id, base.secret_set]);
+    const ntfy =
+      draft.ntfy_url.mode === "set"
+        ? draft.ntfy_url.value.trim() !== ""
+        : draft.ntfy_url.mode === "keep" && !!base.secret_set.ntfy_url;
+    return { desktop: true, webhook, telegram: token && draft.telegram_chat_id.trim() !== "", ntfy };
+  }, [draft.webhook, draft.telegram_token, draft.telegram_chat_id, draft.ntfy_url, base.secret_set]);
 
   const toggle = (ev: NotifyEvent, ch: NotifyChannel, on: boolean) => {
     set("notify_events", { ...draft.notify_events, [ev]: { ...draft.notify_events[ev], [ch]: on } });

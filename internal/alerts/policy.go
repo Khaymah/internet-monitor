@@ -2,6 +2,7 @@ package alerts
 
 import (
 	"internet-monitor/internal/config"
+	"internet-monitor/internal/types"
 	"time"
 )
 
@@ -24,6 +25,7 @@ const (
 	ChannelSound    Channel = "sound"
 	ChannelWebhook  Channel = "webhook"
 	ChannelTelegram Channel = "telegram"
+	ChannelNtfy     Channel = "ntfy"
 )
 
 type Reason string
@@ -39,6 +41,7 @@ const (
 type Configured struct {
 	Webhook  bool
 	Telegram bool
+	Ntfy     bool
 }
 
 type Decision struct {
@@ -46,7 +49,12 @@ type Decision struct {
 	Volume   int
 	Webhook  bool
 	Telegram bool
+	Ntfy     bool
 	Muted    map[Channel]Reason
+}
+
+func (d Decision) Remote() types.Targets {
+	return types.Targets{Webhook: d.Webhook, Telegram: d.Telegram, Ntfy: d.Ntfy}
 }
 
 func (d Decision) Sent() []Channel {
@@ -62,6 +70,9 @@ func (d Decision) Sent() []Channel {
 	}
 	if d.Telegram {
 		out = append(out, ChannelTelegram)
+	}
+	if d.Ntfy {
+		out = append(out, ChannelNtfy)
 	}
 	return out
 }
@@ -128,6 +139,13 @@ func Decide(kind Kind, n config.Notifications, has Configured, now time.Time) De
 			d.Telegram = true
 		} else {
 			d.mute(ChannelTelegram, ReasonDisabled)
+		}
+	}
+	if has.Ntfy {
+		if sw.Ntfy {
+			d.Ntfy = true
+		} else {
+			d.mute(ChannelNtfy, ReasonDisabled)
 		}
 	}
 	return d

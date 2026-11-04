@@ -103,6 +103,7 @@ func New(opts Options) (*App, error) {
 			TestNotification: func(lang string, volume *int) { al.Test(lang, volume) },
 			PlaySound:        sound.PlayAt,
 			TestWebhook:      lgr.SendTestWebhook,
+			TestNtfy:         lgr.SendTestNtfy,
 			CheckUpdate:      func() (*updater.Info, error) { return updater.Check(opts.Version) },
 			ApplyUpdate:      updater.Apply,
 			Restart:          updater.Restart,

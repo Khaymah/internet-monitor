@@ -118,7 +118,7 @@ export interface SpeedTestConfig {
 }
 
 export type NotifyEvent = "down" | "degraded" | "restored" | "speed" | "weekly";
-export type NotifyChannel = "desktop" | "webhook" | "telegram";
+export type NotifyChannel = "desktop" | "webhook" | "telegram" | "ntfy";
 export type QuietMode = "sound" | "all";
 
 export type ChannelSwitches = Record<NotifyChannel, boolean>;
@@ -132,7 +132,7 @@ export interface NotificationSettings {
 }
 
 export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test" | "weekly";
-export type AlertChannel = "desktop" | "sound" | "webhook" | "telegram";
+export type AlertChannel = "desktop" | "sound" | "webhook" | "telegram" | "ntfy";
 export type MuteReason = "disabled" | "quiet_hours" | "sound_off" | "short_outage" | "startup";
 
 export interface NotificationRecord {
@@ -177,6 +177,8 @@ export interface Config {
   webhook_url: string;
   telegram_bot_token: string;
   telegram_chat_id: string;
+  ntfy_url: string;
+  ntfy_token: string;
   dashboard_port: number;
   use_icmp: boolean;
   auto_update_check: boolean;
@@ -317,7 +319,7 @@ export interface CaseFile {
 }
 
 export interface ConfigView extends Config {
-  secret_set: { webhook_url: boolean; telegram_bot_token: boolean };
+  secret_set: { webhook_url: boolean; telegram_bot_token: boolean; ntfy_url?: boolean; ntfy_token?: boolean };
 }
 
 export interface ConfigSaveResponse {
