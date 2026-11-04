@@ -433,3 +433,36 @@ func TestEmbeddedUIServed(t *testing.T) {
 		t.Errorf("missing asset: status %d, want 404", resp.StatusCode)
 	}
 }
+
+func TestHostAndOriginRules(t *testing.T) {
+	local := &Server{port: 8765}
+	if !local.allowedHost("127.0.0.1:8765") || local.allowedHost("192.168.1.5:8765") {
+		t.Fatal("default mode must accept loopback only")
+	}
+	if local.allowedOrigin("http://192.168.1.5:8765", "192.168.1.5:8765") {
+		t.Fatal("default mode must reject LAN origins")
+	}
+
+	lan := &Server{port: 8765, listen: "0.0.0.0"}
+	for host, want := range map[string]bool{
+		"192.168.1.5:8765":       true,
+		"[fd00::5]:8765":         true,
+		"raspberrypi.local:8765": true,
+		"192.168.1.5:9999":       false,
+		"evil.example:8765":      false,
+		"192.168.1.5":            false,
+	} {
+		if got := lan.allowedHost(host); got != want {
+			t.Errorf("LAN allowedHost(%q) = %v, want %v", host, got, want)
+		}
+	}
+	if !lan.allowedOrigin("http://192.168.1.5:8765", "192.168.1.5:8765") {
+		t.Error("LAN mode must accept a same-origin request")
+	}
+	if lan.allowedOrigin("http://192.168.1.9:8765", "192.168.1.5:8765") {
+		t.Error("LAN mode must reject an origin that differs from the Host")
+	}
+	if lan.allowedOrigin("http://evil.example:8765", "evil.example:8765") {
+		t.Error("LAN mode must reject a foreign host even when origin and Host match")
+	}
+}

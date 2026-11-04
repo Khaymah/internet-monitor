@@ -90,6 +90,8 @@ type Engine struct {
 	version string
 
 	Notifier Notifier
+	Link     func() (kind string, signal int)
+	Power    func() (onBattery, known bool)
 
 	ctx    context.Context
 	cancel context.CancelFunc
@@ -118,6 +120,8 @@ type minuteAgg struct {
 	tcpFails  int
 	httpFails int
 	dnsFails  int
+	link      string
+	signal    int
 
 	prevLat   int64
 	havePrev  bool
@@ -210,6 +214,9 @@ func (e *Engine) accumulate(r types.CheckResult, status types.Status) {
 		e.agg = minuteAgg{bucket: min}
 	}
 	e.agg.samples++
+	if e.Link != nil && e.agg.link == "" {
+		e.agg.link, e.agg.signal = e.Link()
+	}
 	if status != types.StatusDisconnected {
 		e.agg.up++
 	}
@@ -266,6 +273,8 @@ func (e *Engine) flushAgg() {
 		TCPFails:     e.agg.tcpFails,
 		HTTPFails:    e.agg.httpFails,
 		DNSFails:     e.agg.dnsFails,
+		Link:         e.agg.link,
+		WifiSignal:   e.agg.signal,
 	})
 }
 
@@ -309,6 +318,15 @@ func (e *Engine) runCheck() {
 				PacketLossPct: result.PacketLoss,
 				AvgLatencyMs:  result.LatencyMs,
 			},
+		}
+
+		if e.Link != nil {
+			event.Link, event.WifiSignal = e.Link()
+		}
+		if e.Power != nil && newStatus == types.StatusDisconnected {
+			if on, known := e.Power(); known {
+				event.OnBattery = &on
+			}
 		}
 
 		isFirst := e.currentStatus == nil

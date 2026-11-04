@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"mime"
+	"net"
 	"net/http"
+	"os"
 	"runtime/debug"
+	"strconv"
 	"strings"
 )
 
@@ -18,14 +21,30 @@ func (s *Server) allowedHost(host string) bool {
 			return true
 		}
 	}
+	if !s.LANMode() {
+		return false
+	}
+	name, port, err := net.SplitHostPort(host)
+	if err != nil || port != strconv.Itoa(s.port) {
+		return false
+	}
+	if net.ParseIP(strings.Trim(name, "[]")) != nil || strings.HasSuffix(name, ".local") {
+		return true
+	}
+	if hn, err := os.Hostname(); err == nil && strings.EqualFold(name, hn) {
+		return true
+	}
 	return false
 }
 
-func (s *Server) allowedOrigin(origin string) bool {
+func (s *Server) allowedOrigin(origin, host string) bool {
 	origin = strings.ToLower(origin)
-	return origin == fmt.Sprintf("http://127.0.0.1:%d", s.port) ||
+	if origin == fmt.Sprintf("http://127.0.0.1:%d", s.port) ||
 		origin == fmt.Sprintf("http://localhost:%d", s.port) ||
-		origin == fmt.Sprintf("http://[::1]:%d", s.port)
+		origin == fmt.Sprintf("http://[::1]:%d", s.port) {
+		return true
+	}
+	return s.LANMode() && origin == "http://"+strings.ToLower(host) && s.allowedHost(host)
 }
 
 func isStateChanging(method string) bool {
@@ -60,7 +79,7 @@ func (s *Server) guard(next http.Handler) http.Handler {
 			http.Error(w, "forbidden host", http.StatusForbidden)
 			return
 		}
-		if origin := r.Header.Get("Origin"); origin != "" && !s.allowedOrigin(origin) {
+		if origin := r.Header.Get("Origin"); origin != "" && !s.allowedOrigin(origin, r.Host) {
 			http.Error(w, "cross-origin request denied", http.StatusForbidden)
 			return
 		}

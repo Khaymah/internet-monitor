@@ -1,0 +1,9 @@
+.git
+web/node_modules
+web/dist
+logs
+tmp
+data
+*.exe
+config.json
+case.json

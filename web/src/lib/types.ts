@@ -186,6 +186,8 @@ export interface Config {
   dashboard_port: number;
   use_icmp: boolean;
   auto_update_check: boolean;
+  seal_timestamp?: boolean;
+  tsa_url?: string;
   language: string;
   speed_test: SpeedTestConfig;
   notifications: NotificationSettings;
@@ -230,6 +232,9 @@ export interface ReportEventRow {
   cause: string;
   after_gap?: boolean;
   route?: ReportRoute;
+  on_battery?: boolean;
+  link?: string;
+  wifi_signal?: number;
 }
 
 export interface ReportRoute {
@@ -273,16 +278,33 @@ export interface MonthlyReport {
   coverage_pct: number;
   unmonitored_seconds: number;
   gaps: ReportGap[];
+  links?: { minutes: number; wired_pct: number; wifi_pct: number; avg_signal_pct?: number };
   speed: ReportSpeed;
   profile: CaseProfile;
   complaints: Complaint[];
+  integrity?: SealStatus;
+}
+
+export interface SealStatus {
+  days: number;
+  stamped: number;
+  first?: string;
+  last?: string;
+  expired: number;
+  intact: boolean;
+  problems: {
+    date: string;
+    reason: "chain" | "seal_edited" | "file_missing" | "file_changed";
+    file?: string;
+  }[];
+  checked_at: string;
 }
 
 export interface ReportGap {
   start: string;
   end: string;
   duration_seconds: number;
-  kind: "off" | "power";
+  kind: "off" | "power" | "restart";
 }
 
 export interface ReportSpeed {

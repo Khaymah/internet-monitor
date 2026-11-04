@@ -121,5 +121,6 @@
   "c_days_two": "يومين",
   "c_days_few": "{n} أيام",
   "c_days_many": "{n} يوم",
-  "c_days_other": "{n} يوم"
+  "c_days_other": "{n} يوم",
+  "c_tx_wired": "تمت القياسات عبر كابل متصل مباشرة بالراوتر، وليس عبر Wi-Fi."
 }

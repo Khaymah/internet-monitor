@@ -88,7 +88,13 @@ export function GapsCard({ report: r }: { report: MonthlyReport }) {
                 </td>
                 <td className="num">{formatDuration(t, g.duration_seconds)}</td>
                 <td className="wrap secondary">
-                  {t(g.kind === "power" ? "report_gap_power" : "report_gap_off")}
+                  {t(
+                    g.kind === "power"
+                      ? "report_gap_power"
+                      : g.kind === "restart"
+                        ? "report_gap_restart"
+                        : "report_gap_off",
+                  )}
                 </td>
               </tr>
             ))}
@@ -162,4 +168,35 @@ export function routeText(t: Translate, r: ReportRoute): string {
   if (r.last_hop === 0) return t("route_none");
   if (r.last_hop === 1) return t("route_router", { addr: r.last_addr ?? "" });
   return t("route_stopped", { hop: r.last_hop, addr: r.last_addr ?? "" });
+}
+
+export function IntegrityCard({ report: r }: { report: MonthlyReport }) {
+  const { t, lang } = useI18n();
+  const st = r.integrity;
+  if (!st || st.days === 0) return null;
+  const range = `${formatDate(lang, st.first ?? "")} – ${formatDate(lang, st.last ?? "")}`;
+  return (
+    <Card labelledBy="report-integrity">
+      <CardHead
+        id="report-integrity"
+        title={t("seal_title")}
+        sub={t(st.intact ? "seal_ok" : "seal_broken", { days: formatNumber(lang, st.days), range })}
+      />
+      <p className="secondary">
+        {st.stamped > 0
+          ? t("seal_stamped", { n: formatNumber(lang, st.stamped), days: formatNumber(lang, st.days) })
+          : t("seal_local")}
+      </p>
+      {st.problems.length ? (
+        <ul className="guide-steps" style={{ marginTop: 12 }}>
+          {st.problems.slice(0, 10).map((p) => (
+            <li key={`${p.date}-${p.reason}-${p.file ?? ""}`}>
+              {formatDate(lang, p.date)}: {t(`seal_${p.reason}` as MessageKey)}
+              {p.file ? ` (${p.file})` : ""}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </Card>
+  );
 }

@@ -11,6 +11,7 @@ import (
 	"internet-monitor/internal/casefile"
 	"internet-monitor/internal/jsonl"
 	"internet-monitor/internal/report"
+	"internet-monitor/internal/seal"
 	"internet-monitor/internal/trace"
 	"internet-monitor/internal/types"
 	"io"
@@ -93,6 +94,7 @@ type reportView struct {
 	Speed      report.SpeedSummary  `json:"speed"`
 	Profile    casefile.Profile     `json:"profile"`
 	Complaints []casefile.Complaint `json:"complaints"`
+	Integrity  seal.Status          `json:"integrity"`
 }
 
 func (s *Server) buildReport(month string, now time.Time) reportView {
@@ -109,12 +111,15 @@ func (s *Server) buildReport(month string, now time.Time) reportView {
 		s.logf("case file: %v", err)
 	}
 	sum := report.Summarize(events, samples, month, now)
+	report.MarkRestarts(&sum, readMonthly[report.Startup](dir, report.SystemPrefix, month))
+	integrity, _ := seal.Verify(dir, now)
 	attachRoutes(sum.Events, readMonthly[trace.Trace](dir, trace.Prefix, month))
 	return reportView{
 		MonthlySummary: sum,
 		Speed:          report.SummarizeSpeed(speeds, month, f.Profile.PlanDownloadMbps),
 		Profile:        f.Profile,
 		Complaints:     casefile.InMonth(f.Complaints, month, now.Location()),
+		Integrity:      integrity,
 	}
 }
 
@@ -143,6 +148,17 @@ logs/metrics_*         One line per monitored minute: checks run, checks up, lat
 logs/speedtest_*       Every speed test with download, upload, latency and lag under load.
 logs/traceroute_*      The route to the internet, traced when each outage started:
                        which hops answered and where it stopped.
+seals.jsonl            One line per finished day: the SHA-256 of each of that day's log
+                       files and the hash of the previous day's seal. Changing any old
+                       file, or any older seal, breaks the chain from that day on.
+seals/DATE.tsr         Present when timestamping was turned on: an RFC 3161 timestamp
+seals/DATE.seal.json   from an independent authority over that day's seal. Check it with
+                       openssl ts -verify -data seals/DATE.seal.json -in seals/DATE.tsr \
+                         -CAfile cacert.pem -untrusted tsa.crt
+                       (cacert.pem and tsa.crt from https://freetsa.org/files/ when the
+                       default authority was used). "Verification: OK" proves the logs
+                       of that day existed in this exact form at the time shown by
+                         openssl ts -reply -in seals/DATE.tsr -text
 SHA256SUMS.txt         The SHA-256 checksum of every file above. Anyone can recompute
                        them (for example "sha256sum -c SHA256SUMS.txt", or
                        "certutil -hashfile <file> SHA256" on Windows) to confirm that
@@ -236,13 +252,35 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		if e.IsDir() || !strings.HasSuffix(n, ".jsonl") {
 			continue
 		}
-		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix} {
+		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix, report.SystemPrefix} {
 			if strings.HasPrefix(n, prefix) && wantFile(n) {
 				names = append(names, n)
 			}
 		}
 	}
 	sort.Strings(names)
+	sealed := map[string]bool{}
+	for _, n := range names {
+		if i := strings.LastIndex(n, "_"); i >= 0 {
+			sealed[strings.TrimSuffix(n[i+1:], ".jsonl")] = true
+		}
+	}
+	if data, err := readCapped(filepath.Join(dir, seal.ChainFile), 16<<20); err == nil {
+		if err := add(seal.ChainFile, data); err != nil {
+			fail(err)
+			return
+		}
+	}
+	for day := range sealed {
+		for _, ext := range []string{".seal.json", ".tsr"} {
+			if data, err := readCapped(filepath.Join(dir, seal.StampDir, day+ext), 1<<20); err == nil {
+				if err := add(seal.StampDir+"/"+day+ext, data); err != nil {
+					fail(err)
+					return
+				}
+			}
+		}
+	}
 	for _, n := range names {
 		data, err := readCapped(filepath.Join(dir, n), 64<<20)
 		if err != nil {
@@ -311,10 +349,12 @@ func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
 		}
 	}
 	f, _ := s.caseStore().Load()
+	sum := report.SummarizeRange(events, samples, from, to, now)
+	report.MarkRestarts(&sum, jsonl.DecodeDays[report.Startup](dir, report.SystemPrefix, from, to))
 	return rangeEvidence{
 		From:    from.Format(time.RFC3339),
 		To:      to.Format(time.RFC3339),
-		Summary: report.SummarizeRange(events, samples, from, to, now),
+		Summary: sum,
 		Speed:   report.SummarizeSpeed(speeds, "", f.Profile.PlanDownloadMbps),
 	}
 }
@@ -402,4 +442,14 @@ func attachRoutes(rows []report.EventRow, traces []trace.Trace) {
 			rows[i].Route = &report.Route{Hops: len(t.Hops), LastHop: t.LastHop, LastAddr: t.LastAddr, Reached: t.Reached}
 		}
 	}
+}
+
+func (s *Server) serveSeals(w http.ResponseWriter, _ *http.Request) {
+	st, err := seal.Verify(s.logDir(), time.Now())
+	if err != nil {
+		s.logf("seals: %v", err)
+		writeError(w, http.StatusInternalServerError, "read_failed", "could not check the sealed logs")
+		return
+	}
+	writeJSON(w, http.StatusOK, st)
 }

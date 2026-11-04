@@ -15,6 +15,18 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Headless build** (rc.4): `cmd/headless` for Raspberry Pi, Linux servers and
+  Docker (`--dir`, `--listen`), linux amd64/arm64/armv7 release binaries, a
+  Dockerfile, docker-compose.yml and `docs/headless.md`. Listening on a LAN
+  address keeps the access key and enforces same-origin Host/Origin checks.
+- **Sealed logs** (rc.4): each finished day is sealed in a SHA-256 hash chain
+  (`seals.jsonl`, `GET /api/seals`, "Log integrity" in the report), with
+  optional RFC 3161 timestamps (`seal_timestamp`, `tsa_url`) that verify with
+  `openssl ts -verify`.
+- **Wi-Fi vs cable** (rc.4): `link` and `wifi_signal` on every minute and event,
+  shown in the report and the complaint text.
+- **Power-cut detection** (rc.4): `on_battery` on outages and boot times in
+  `system_DATE.jsonl`; gaps that contain a boot are labeled as restarts.
 - **ntfy push notifications** (rc.3): `ntfy_url` and optional `ntfy_token`, a
   new ntfy column in the notification matrix and `POST /api/test-ntfy`.
 - **Generic webhooks** (rc.3): `webhook_url` accepts any https address (http

@@ -68,6 +68,9 @@ type Event struct {
 	EventType       string      `json:"event"`
 	DurationSeconds float64     `json:"duration_seconds,omitempty"`
 	Reason          EventReason `json:"reason"`
+	Link            string      `json:"link,omitempty"`
+	WifiSignal      int         `json:"wifi_signal,omitempty"`
+	OnBattery       *bool       `json:"on_battery,omitempty"`
 }
 
 type MetricSample struct {
@@ -81,6 +84,8 @@ type MetricSample struct {
 	TCPFails     int       `json:"tcp_fails"`
 	HTTPFails    int       `json:"http_fails"`
 	DNSFails     int       `json:"dns_fails"`
+	Link         string    `json:"link,omitempty"`
+	WifiSignal   int       `json:"wifi_signal,omitempty"`
 }
 
 type WeeklySummary struct {
