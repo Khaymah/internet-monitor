@@ -15,7 +15,7 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
-- **Privacy policy** (rc.5): `PRIVACY.md` in English and Arabic, the public
+- **Privacy policy** (rc.6): `PRIVACY.md` in English and Arabic, the public
   copy of the in-app Privacy page, which now also covers `case.json`, ntfy,
   log timestamps, the outage traceroute and the Store data folder.
 - **Compensation estimate** (rc.5): `monthly_price` and `currency` in the line
