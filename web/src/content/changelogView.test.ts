@@ -9,7 +9,7 @@ const ar = (key: MessageKey) => translate("ar", key);
 describe("changelog timeline", () => {
   test("groups releases by month, newest first", () => {
     const t = buildTimeline(RELEASES, "all", "", en);
-    expect(t.months.map((m) => m.key)).toEqual(["2026-10", "2026-06", "2026-05"]);
+    expect(t.months.map((m) => m.key)).toEqual(["2026-11", "2026-10", "2026-06", "2026-05"]);
     const unreleased = buildTimeline(
       [{ ...(RELEASES[0] as (typeof RELEASES)[number]), id: "next", version: null, date: null }, ...RELEASES],
       "all",

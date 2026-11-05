@@ -8,11 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 GitHub release notes for each tag are auto-generated from commits; this file is
 the curated, human-readable summary.
 
-## [Unreleased]
+## [2.0.4] - 2026-11-05
 
-Target: **2.0.4**. Ships as GitHub prereleases `v2.0.4-rc.N` (not offered by the
-in-app updater, which only follows the latest stable release) until the version is final.
-What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
+Released after fourteen previews (`v2.0.4-rc.1` … `rc.14`); what each one changed and how
+it was tested is in `docs/releases/`. The user-facing summary is `docs/releases/v2.0.4.md`.
 
 ### Added
 - **Mac installer** (rc.14): universal `internet-monitor-macos.dmg` and
@@ -147,6 +146,8 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
   setting that changes or disables it.
 
 ### Fixed
+- The Arabic videos page intro is the short line meant for rc.14, and the Mac `.dmg`
+  build retries `hdiutil` while macOS still holds the new image.
 - Router page reading works with routers that serve it only over HTTPS with an old TLS
   setup (Huawei HG630 V2): https first, then http, legacy TLS for the home router only,
   and the test shows why it failed (rc.10).
