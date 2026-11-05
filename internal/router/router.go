@@ -39,6 +39,13 @@ type Status struct {
 	Connected    *bool     `json:"connected,omitempty"`
 	UptimeSecs   int64     `json:"uptime_seconds,omitempty"`
 	LastError    string    `json:"last_error,omitempty"`
+	MaxDownKbps  int64     `json:"max_down_kbps,omitempty"`
+	MaxUpKbps    int64     `json:"max_up_kbps,omitempty"`
+	SNRDown      *float64  `json:"snr_down_db,omitempty"`
+	SNRUp        *float64  `json:"snr_up_db,omitempty"`
+	AttnDown     *float64  `json:"attn_down_db,omitempty"`
+	AttnUp       *float64  `json:"attn_up_db,omitempty"`
+	LineUpSecs   int64     `json:"line_up_seconds,omitempty"`
 	RxBytes      uint64    `json:"rx_bytes,omitempty"`
 	TxBytes      uint64    `json:"tx_bytes,omitempty"`
 	HasCounters  bool      `json:"has_counters,omitempty"`

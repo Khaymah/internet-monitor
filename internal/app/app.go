@@ -116,8 +116,12 @@ func New(opts Options) (*App, error) {
 	}
 	poller := &router.Poller{
 		Enabled: func() bool { return store.Get().RouterStatus },
-		Save:    func(at time.Time, st router.Status) { lgr.LogJSON(router.Prefix, at, st) },
-		Logf:    lgr.AppLog,
+		Web: func() (router.WebReader, bool) {
+			c := store.Get()
+			return router.WebReader{Host: c.RouterAddress, User: c.RouterUser, Password: c.RouterPassword}, c.RouterPassword != ""
+		},
+		Save: func(at time.Time, st router.Status) { lgr.LogJSON(router.Prefix, at, st) },
+		Logf: lgr.AppLog,
 	}
 	srv := server.New(server.Options{
 		Store:               store,
@@ -138,6 +142,11 @@ func New(opts Options) (*App, error) {
 			SpeedResult:      func(ev logger.SpeedTestEvent, threshold float64, below bool) { al.OnSpeedResult(ev, threshold, below) },
 			SendWeekly:       wk.SendNow,
 			Router:           poller.Snapshot,
+			TestRouter: func(user, password string) (router.WebStats, error) {
+				ctx, cancel := context.WithTimeout(context.Background(), 40*time.Second)
+				defer cancel()
+				return poller.TestWeb(ctx, router.WebReader{Host: store.Get().RouterAddress, User: user, Password: password})
+			},
 		},
 	})
 	var desktop alerts.Desktop

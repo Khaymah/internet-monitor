@@ -11,6 +11,10 @@ const BY_CODE: Record<string, MessageKey> = {
   no_update: "update_latest",
   unavailable: "err_unavailable",
   check_failed: "update_check_failed",
+  router_wrong_password: "rt_web_wrong_password",
+  router_busy: "rt_web_busy",
+  router_unsupported: "rt_web_unsupported",
+  router_unreachable: "rt_web_unreachable",
 };
 
 export function errorKey(e: unknown, fallback: MessageKey): MessageKey {

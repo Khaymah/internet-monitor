@@ -496,6 +496,15 @@ func (s *Server) Insights(days int, now time.Time) []insights.Insight {
 		}
 	}
 	in := insights.Input{Summary: ev.Summary, Speed: ev.Speed, Grades: grades, Days: days, OpenOrRecentComplaint: recent}
+	var snr []float64
+	for _, st := range jsonl.DecodeDays[router.Status](s.logDir(), router.Prefix, now.AddDate(0, 0, -3), now) {
+		if st.SNRDown != nil && now.Sub(st.Time) <= 72*time.Hour {
+			snr = append(snr, *st.SNRDown)
+		}
+	}
+	if len(snr) >= 3 {
+		in.SNRDown, in.HasSNR = report.Median(snr), true
+	}
 	if u, ok := s.PlanUsage(now); ok && u.QuotaBytes > 0 {
 		in.QuotaUsedPct = u.UsedPct
 		in.QuotaProjectedPct = float64(u.ProjectedBytes) / float64(u.QuotaBytes) * 100

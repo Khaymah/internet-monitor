@@ -39,11 +39,13 @@ func viewOf(c config.Config) configView {
 		"telegram_bot_token": c.TelegramBotToken != "",
 		"ntfy_url":           c.NtfyURL != "",
 		"ntfy_token":         c.NtfyToken != "",
+		"router_password":    c.RouterPassword != "",
 	}
 	c.WebhookURL = ""
 	c.TelegramBotToken = ""
 	c.NtfyURL = ""
 	c.NtfyToken = ""
+	c.RouterPassword = ""
 	return configView{Config: c, SecretSet: set}
 }
 

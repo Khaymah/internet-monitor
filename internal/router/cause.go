@@ -39,6 +39,15 @@ func Classify(samples []Status, start, end time.Time) string {
 			return CauseRestarted
 		}
 	}
+	for i, s := range during {
+		prev := before
+		if i > 0 {
+			prev = &during[i-1]
+		}
+		if prev != nil && retrained(*prev, s) {
+			return CauseLineDown
+		}
+	}
 	for _, s := range during {
 		if s.Connected != nil && !*s.Connected {
 			for _, after := range during {
@@ -59,4 +68,11 @@ func Classify(samples []Status, start, end time.Time) string {
 
 func providerError(code string) bool {
 	return code == "ERROR_ISP_DISCONNECT" || code == "ERROR_ISP_TIME_OUT"
+}
+
+func retrained(a, b Status) bool {
+	if a.LineUpSecs <= 0 || b.LineUpSecs <= 0 {
+		return false
+	}
+	return b.LineUpSecs+60 < a.LineUpSecs+int64(b.Time.Sub(a.Time).Seconds())
 }

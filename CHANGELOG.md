@@ -19,6 +19,12 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
   common link properties report no speed, `last_error` from `GetStatusInfo`, the
   `provider_dropped` outage cause and insight; router actions that fail with an HTTP
   error are not asked again. Checked against a Huawei HG630 V2.
+- **Router page reading** (rc.8): optional `router_address`, `router_user` and
+  `router_password` (secret). With a password, the Huawei web API
+  (`/api/system/user_login`, `/api/ntwk/dslinfo`, `/api/ntwk/wan_st`) is read every 5
+  minutes or less for SNR, attenuation, attainable rate, showtime and traffic counters;
+  `POST /api/test-router`; `snr_low` insight; line resync counts as `line_down`. Only
+  private addresses are contacted, and a rejected password is never retried.
 - **Router status** (rc.7): UPnP IGD reading once a minute (`router_status`, on by
   default), `router_DATE.jsonl`, `GET /api/router`, a router card on the overview, and
   `router` on each outage row (`line_down`, `session_down`, `router_restarted`,

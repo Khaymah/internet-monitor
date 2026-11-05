@@ -27,6 +27,8 @@ type Input struct {
 	QuotaUsedPct          float64
 	QuotaProjectedPct     float64
 	QuotaDaysLeft         int
+	SNRDown               float64
+	HasSNR                bool
 }
 
 func Analyze(in Input) []Insight {
@@ -74,6 +76,10 @@ func Analyze(in Input) []Insight {
 
 	if lineDown >= 1 {
 		add("line_sync", Warn, map[string]any{"n": lineDown})
+	}
+
+	if in.HasSNR && in.SNRDown < 6 {
+		add("snr_low", Warn, map[string]any{"db": math.Round(in.SNRDown*10) / 10})
 	}
 
 	if dropped >= 1 {

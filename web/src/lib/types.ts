@@ -198,6 +198,9 @@ export interface Config {
   auto_update_check: boolean;
   seal_timestamp?: boolean;
   router_status?: boolean;
+  router_address?: string;
+  router_user?: string;
+  router_password?: string;
   tsa_url?: string;
   language: string;
   speed_test: SpeedTestConfig;
@@ -266,6 +269,13 @@ export interface RouterStatus {
   connected?: boolean;
   uptime_seconds?: number;
   last_error?: string;
+  max_down_kbps?: number;
+  max_up_kbps?: number;
+  snr_down_db?: number;
+  snr_up_db?: number;
+  attn_down_db?: number;
+  attn_up_db?: number;
+  line_up_seconds?: number;
   has_counters?: boolean;
 }
 
@@ -285,6 +295,8 @@ export interface RouterView {
   found: boolean;
   status?: RouterStatus;
   error?: string;
+  web_ok?: boolean;
+  web_error?: "wrong_password" | "busy" | "unsupported" | "unreachable";
   usage?: PlanUsage;
 }
 
@@ -431,7 +443,13 @@ export interface CaseFile {
 }
 
 export interface ConfigView extends Config {
-  secret_set: { webhook_url: boolean; telegram_bot_token: boolean; ntfy_url?: boolean; ntfy_token?: boolean };
+  secret_set: {
+    webhook_url: boolean;
+    telegram_bot_token: boolean;
+    ntfy_url?: boolean;
+    ntfy_token?: boolean;
+    router_password?: boolean;
+  };
 }
 
 export interface ConfigSaveResponse {
