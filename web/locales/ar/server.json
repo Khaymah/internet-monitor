@@ -89,7 +89,7 @@
       "speed": "التحميل المعتاد",
       "speed_plan": "{speed} ({pct} من الباقة)"
     },
-    "bufferbloat": "اللاج وقت الضغط"
+    "bufferbloat": "البطء وقت الضغط"
   },
   "tray": {
     "starting": "جاري التشغيل…",
@@ -104,8 +104,8 @@
     "last_change_none": "آخر تغيير: —",
     "open_dashboard": "افتح لوحة التحكم",
     "open_dashboard_hint": "افتح لوحة التحكم في المتصفح",
-    "open_window": "افتح النافذة",
-    "open_window_hint": "اعرض النافذة الرئيسية",
+    "open_window": "افتح الشاشة",
+    "open_window_hint": "اعرض الشاشة الرئيسية",
     "open_logs": "افتح فولدر السجلات",
     "open_logs_hint": "افتح الفولدر اللي فيه ملفات السجل",
     "exit": "خروج",

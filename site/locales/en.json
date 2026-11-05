@@ -175,7 +175,7 @@
     "title": "Video tours — Internet Monitor",
     "description": "Short narrated videos, one for each page of Internet Monitor: what every part shows, what it means and what to do with it.",
     "h1": "Watch how each page works",
-    "intro": "Seven short videos with an English voice and subtitles in five languages. Pick a page and press play.",
+    "intro": "Pick the page you want to understand and press play.",
     "video_label": "Video tour: {title}",
     "subtitles": "Subtitles: {langs}. Use the CC button in the player.",
     "no_subtitles": "Subtitles are on the way.",

@@ -175,7 +175,7 @@
     "title": "Video turlar — Internet Monitor",
     "description": "Internet Monitor'ün her sayfası için kısa, sesli bir video: her bölüm ne gösterir, ne anlama gelir ve onunla ne yapmalısınız.",
     "h1": "Her sayfanın nasıl çalıştığını izleyin",
-    "intro": "İngilizce anlatımlı ve beş dilde altyazılı yedi kısa video. Bir sayfa seçip oynat'a basın.",
+    "intro": "Anlamak istediğiniz sayfayı seçin ve oynat'a basın.",
     "video_label": "Video tur: {title}",
     "subtitles": "Altyazılar: {langs}. Oynatıcıdaki CC düğmesini kullanın.",
     "no_subtitles": "Altyazılar yolda.",

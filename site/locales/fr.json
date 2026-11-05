@@ -175,7 +175,7 @@
     "title": "Visites en vidéo — Internet Monitor",
     "description": "De courtes vidéos commentées, une pour chaque page d'Internet Monitor : ce que montre chaque partie, ce qu'elle signifie et quoi en faire.",
     "h1": "Voyez comment marche chaque page",
-    "intro": "Sept courtes vidéos, commentées en anglais et sous-titrées en cinq langues. Choisissez une page et appuyez sur lecture.",
+    "intro": "Choisissez la page que vous voulez comprendre et lancez la vidéo.",
     "video_label": "Visite en vidéo : {title}",
     "subtitles": "Sous-titres : {langs}. Utilisez le bouton CC du lecteur.",
     "no_subtitles": "Les sous-titres arrivent bientôt.",
