@@ -15,6 +15,7 @@ import { type CSSProperties, useEffect, useMemo, useState } from "react";
 import { ConfirmDialog } from "../../components/ConfirmDialog";
 import { InsightsCard } from "../../components/InsightsCard";
 import { toast } from "../../components/Toast";
+import { TourLink } from "../../components/TourLink";
 import { Banner, Button, Card, CardHead, Empty, Skeleton } from "../../components/ui";
 import { api } from "../../lib/api";
 import { formatDate, formatDuration, formatNumber, monthKey } from "../../lib/format";
@@ -305,13 +306,16 @@ export function Complaints() {
           <h1>{t("c_page_title")}</h1>
           <p>{t("c_page_sub")}</p>
         </div>
-        <Button
-          variant="edge"
-          icon={FileText}
-          onClick={() => navigate("report", `?month=${monthKey(new Date())}`)}
-        >
-          {t("c_open_report")}
-        </Button>
+        <div className="row">
+          <TourLink id="complaints" />
+          <Button
+            variant="edge"
+            icon={FileText}
+            onClick={() => navigate("report", `?month=${monthKey(new Date())}`)}
+          >
+            {t("c_open_report")}
+          </Button>
+        </div>
       </div>
 
       {data.error ? (

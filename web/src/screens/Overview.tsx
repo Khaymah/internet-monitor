@@ -19,6 +19,7 @@ import { InsightsCard } from "../components/InsightsCard";
 import { LatencyChart } from "../components/LatencyChart";
 import { OutageTimeline } from "../components/OutageTimeline";
 import { RouterCard } from "../components/RouterCard";
+import { TourLink } from "../components/TourLink";
 import { Banner, Button, Card, CardHead, Empty, Ltr, Meter, Skeleton } from "../components/ui";
 import {
   causeOfEntry,
@@ -333,6 +334,9 @@ export function Overview() {
   const history = snap.latency_history ?? [];
   return (
     <>
+      <div className="page-tour">
+        <TourLink id="overview" />
+      </div>
       <Hero snap={snap} />
       <Stats snap={snap} />
       <OutageTimeline />

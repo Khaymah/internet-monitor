@@ -2,6 +2,7 @@ import { BellOff, Check, CheckCheck, CircleAlert, RefreshCw } from "lucide-react
 import { type CSSProperties, useMemo, useState } from "react";
 import { SmartSelect } from "../components/SmartSelect";
 import { toast } from "../components/Toast";
+import { TourLink } from "../components/TourLink";
 import { Banner, Button, Card, Empty, Segmented, Skeleton } from "../components/ui";
 import { formatDate, formatTime, localDateKey } from "../lib/format";
 import { type Lang, type Translate, useI18n } from "../lib/i18n";
@@ -85,11 +86,14 @@ export function Notifications() {
           <h1>{t("n_page_title")}</h1>
           <p>{t("n_page_sub")}</p>
         </div>
-        {data && data.items.length > 0 ? (
-          <Button variant="edge" icon={CheckCheck} busy={busy} disabled={unread === 0} onClick={readAll}>
-            {t("bell_mark_read")}
-          </Button>
-        ) : null}
+        <div className="row">
+          <TourLink id="notifications" />
+          {data && data.items.length > 0 ? (
+            <Button variant="edge" icon={CheckCheck} busy={busy} disabled={unread === 0} onClick={readAll}>
+              {t("bell_mark_read")}
+            </Button>
+          ) : null}
+        </div>
       </div>
 
       {error ? (

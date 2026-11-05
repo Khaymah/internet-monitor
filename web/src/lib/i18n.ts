@@ -13,6 +13,7 @@ import server from "../../locales/en/server.json";
 import settings from "../../locales/en/settings.json";
 import speed from "../../locales/en/speed.json";
 import support from "../../locales/en/support.json";
+import tour from "../../locales/en/tour.json";
 import { useLive } from "./live";
 
 export const MESSAGE_FILES = {
@@ -30,6 +31,7 @@ export const MESSAGE_FILES = {
   settings,
   speed,
   support,
+  tour,
 };
 
 type Leaves<T, P extends string = ""> = {
