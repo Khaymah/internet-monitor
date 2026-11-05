@@ -90,7 +90,17 @@ ln -s /Applications "$stage/Applications"
 
 mkdir -p "$(dirname "$out")"
 rm -f "$out"
-hdiutil create -volname "$app_name" -srcfolder "$stage" -ov -format UDZO "$out"
-hdiutil verify "$out" >/dev/null
+retry() {
+  local n
+  for n in 1 2 3 4 5; do
+    if "$@"; then return 0; fi
+    echo "retry $n: $*" >&2
+    sleep $((n * 3))
+  done
+  "$@"
+}
+
+retry hdiutil create -volname "$app_name" -srcfolder "$stage" -ov -format UDZO "$out"
+retry hdiutil verify "$out"
 
 echo "built $out ($app_name $version, $archs)"
