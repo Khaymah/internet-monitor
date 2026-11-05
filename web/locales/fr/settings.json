@@ -149,5 +149,14 @@
   "phone_qr_alt": "Code QR qui ouvre le tableau de bord sur votre téléphone",
   "phone_address": "Adresse sur votre réseau",
   "phone_warning_title": "Ce code contient votre clé d’accès",
-  "phone_warning": "Toute personne sur votre réseau qui le scanne peut ouvrir votre tableau de bord : ne partagez pas de photo de ce code. Si votre téléphone vous demande plus tard d’ouvrir le tableau de bord depuis l’application, la clé a changé : scannez à nouveau le code."
+  "phone_warning": "Toute personne sur votre réseau qui le scanne peut ouvrir votre tableau de bord : ne partagez pas de photo de ce code. Si votre téléphone vous demande plus tard d’ouvrir le tableau de bord depuis l’application, la clé a changé : scannez à nouveau le code.",
+  "tour_watch": "Regarder la visite des paramètres",
+  "tut_title": "Visite de la page Paramètres",
+  "tut_intro": "Une courte vidéo commentée qui explique chaque réglage : ce qu'il fait et pourquoi le modifier.",
+  "tut_stream_note": "La vidéo est lue depuis GitHub seulement quand vous appuyez sur lecture. Rien n'est téléchargé avant.",
+  "tut_subtitles_note": "Le commentaire est en anglais, avec des sous-titres dans toutes les langues de l'application. Activez-les ou changez-les depuis le menu des sous-titres (CC) de la vidéo.",
+  "tut_error": "Impossible de charger la vidéo depuis GitHub. Réessayez dans un moment, ou ouvrez-la sur GitHub.",
+  "tut_error_offline": "Vous semblez hors ligne. Connectez-vous à Internet et réessayez.",
+  "tut_open_github": "Ouvrir sur GitHub",
+  "tut_open_settings": "Aller aux paramètres"
 }

@@ -10,6 +10,7 @@ export type Route =
   | "report"
   | "changelog"
   | "faq"
+  | "tutorial"
   | "privacy"
   | "terms"
   | "about"
@@ -26,6 +27,7 @@ const paths: Record<Route, string> = {
   report: "/report",
   changelog: "/changelog",
   faq: "/faq",
+  tutorial: "/tutorial",
   privacy: "/privacy",
   terms: "/terms",
   about: "/about",

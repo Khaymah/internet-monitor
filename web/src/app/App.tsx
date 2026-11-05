@@ -19,6 +19,7 @@ import { Report } from "../screens/Report";
 import { Speed } from "../screens/Speed";
 import { Support } from "../screens/Support";
 import { Settings } from "../screens/settings/Settings";
+import { Tutorial } from "../screens/Tutorial";
 
 function Gate({ kind }: { kind: "unauthorized" | "busy" | "offline" }) {
   const { t } = useI18n();
@@ -74,6 +75,7 @@ export function App() {
         {route === "overview" ? <Overview /> : null}
         {route === "changelog" ? <Changelog /> : null}
         {route === "faq" ? <Faq /> : null}
+        {route === "tutorial" ? <Tutorial /> : null}
         {route === "privacy" ? <Legal kind="privacy" /> : null}
         {route === "terms" ? <Legal kind="terms" /> : null}
         {route === "about" ? <About /> : null}
