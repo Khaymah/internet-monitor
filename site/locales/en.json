@@ -1,0 +1,243 @@
+{
+  "site": {
+    "name": "Internet Monitor",
+    "skip": "Skip to content",
+    "menu": "Menu",
+    "language": "Language",
+    "theme": "Switch between light and dark",
+    "main_nav": "Main",
+    "logo_alt": "Internet Monitor logo"
+  },
+  "nav": {
+    "home": "Home",
+    "download": "Download",
+    "tutorial": "Video",
+    "guide": "Guide",
+    "faq": "FAQ",
+    "privacy": "Privacy",
+    "changelog": "What's new"
+  },
+  "footer": {
+    "tagline": "A free app that keeps a record of every internet outage, so you can complain with proof.",
+    "license": "Elastic License 2.0 — free for personal and commercial use",
+    "source": "Source code on GitHub",
+    "issues": "Report a problem",
+    "languages": "Languages"
+  },
+  "home": {
+    "title": "Internet Monitor — Document your outages. Complain with proof.",
+    "description": "A free app for Windows, Mac and Linux that records every internet outage and slowdown, and turns it into proof you can send to your provider. No account, no tracking.",
+    "eyebrow": "Free · Windows, Mac, Linux · No account",
+    "hero_title": "Document your outages. Complain with proof.",
+    "hero_sub": "Internet Monitor quietly watches your home internet. Every time it drops or slows down, it writes down when, for how long, and why. When you call your provider, you have the facts, not just a feeling.",
+    "cta_download": "Download for free",
+    "cta_download_os": "Download for {os}",
+    "cta_guide": "How it works",
+    "version_note": "Version {version} · {date}",
+    "hero_alt": "The Internet Monitor dashboard: connection status, delay, outage timeline and tips about your line",
+    "benefits_title": "Why people use it",
+    "benefits_sub": "Calling your provider without proof rarely works. This app gives you the proof.",
+    "benefits": [
+      {
+        "title": "Every outage, written down",
+        "body": "The exact start time, how long it lasted, and which part failed. Even the short drops you didn't notice."
+      },
+      {
+        "title": "Your router or your provider?",
+        "body": "It tells you whether the problem is in your home or at your provider, so you know who to call."
+      },
+      {
+        "title": "A complaint, ready to send",
+        "body": "One click gives you a complaint text built from your own measurements, plus an evidence file to attach."
+      },
+      {
+        "title": "Is your speed what you pay for?",
+        "body": "Run speed tests, or schedule them, and compare the results with the speed in your contract."
+      }
+    ],
+    "shots_title": "See it in action",
+    "shots_sub": "Simple screens that show what your internet really did.",
+    "shots": {
+      "overview": "Live status, the last 24 hours, and plain tips about your line",
+      "complaints": "Your complaints, the provider's deadline, and the proof for each one",
+      "report": "A monthly report you can save as PDF and send",
+      "history": "Every outage of the day, with its time, length and cause"
+    },
+    "promise_title": "Free, and private by design",
+    "promise_sub": "Your internet history is yours. It never leaves your computer unless you send it.",
+    "promise": [
+      "No account and nothing to sign up for",
+      "No ads, no tracking, no analytics",
+      "Your data stays on your computer",
+      "Free for home and work, with the code in the open"
+    ],
+    "promise_more": "Read the privacy policy",
+    "final_title": "Start collecting proof today",
+    "final_sub": "Install it once, leave it running, and let the facts build up."
+  },
+  "download": {
+    "title": "Download Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
+    "description": "Download Internet Monitor for free and install it in a few minutes, with simple steps for Windows, Mac, Linux and Raspberry Pi.",
+    "h1": "Download Internet Monitor",
+    "intro": "Free, no account needed. Pick your computer below, download one file, and follow the short steps.",
+    "latest": "Latest version {version}, released {date}",
+    "detected": "Looks like you're on {os}. This is the file for you:",
+    "pick": "Pick your system below.",
+    "phone": "Internet Monitor runs on a computer. Open this page on your computer to download it. You can then check the dashboard from your phone.",
+    "os": {
+      "windows": "Windows",
+      "mac": "Mac",
+      "linux": "Linux",
+      "pi": "Raspberry Pi or home server"
+    },
+    "os_sub": {
+      "windows": "Windows 10 and 11",
+      "mac": "Apple chip (M1 and newer) or Intel",
+      "linux": "Ubuntu, Debian and similar",
+      "pi": "Runs 24/7, you open it from your phone or PC"
+    },
+    "tray": "Tray version (recommended)",
+    "tray_desc": "Runs quietly in the background with a small icon near the clock. Best for catching every outage.",
+    "window": "Window version",
+    "window_desc": "Opens in its own window, like any other app.",
+    "mac_arm": "Mac with Apple chip (M1, M2, M3, M4…)",
+    "mac_intel": "Mac with Intel processor",
+    "mac_which": "Not sure which Mac you have? Click the Apple menu, then **About This Mac**. If it says **Chip: Apple**, pick Apple chip. If it says **Processor: Intel**, pick Intel.",
+    "pi_64": "Raspberry Pi 4 or 5 (64-bit)",
+    "pi_32": "Raspberry Pi 2 or 3, or 32-bit system",
+    "pi_amd64": "Other Linux PC or server (64-bit)",
+    "btn": "Download",
+    "preview_only": "Only in the preview for now",
+    "fallback": "We couldn't load the list of files right now. All the files are on the downloads page on GitHub.",
+    "fallback_btn": "Open the downloads page",
+    "preview_title": "Try the next version (preview)",
+    "preview_body": "Version {version} ({date}) is a test version with the newest features. It may still have bugs. The app never switches to a preview on its own.",
+    "preview_btn": "See the preview files",
+    "install_title": "How to install",
+    "install_sub": "Takes about two minutes. You only do this once.",
+    "steps": {
+      "windows": [
+        "Download the file above.",
+        "Make a new folder, for example **Internet Monitor** in your Documents, and move the file into it. The app keeps its records next to itself.",
+        "Double-click the file to start it.",
+        "If a blue window says **Windows protected your PC**, click **More info**, then **Run anyway**. This appears because the app is new and not signed, not because something is wrong.",
+        "A small icon appears near the clock (click the **^** arrow if you don't see it). Click it and choose **Open dashboard**.",
+        "In the dashboard, open **Settings → App** and turn on **Start with Windows**, so it keeps watching after a restart."
+      ],
+      "mac": [
+        "Download the file for your Mac above.",
+        "Make a new folder, for example **Internet Monitor** in your Documents, and move the file into it.",
+        "Open **Terminal** (search for it with Spotlight), type **chmod +x** and a space, drag the file into the Terminal window, and press Enter. This lets the file run.",
+        "Right-click the file (or Control-click) and choose **Open**, then **Open** again. You only need to do this the first time.",
+        "If your Mac says it **can't be opened because it's from an unidentified developer** and shows no Open button, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**.",
+        "An icon appears in the menu bar at the top. Click it and choose **Open dashboard**."
+      ],
+      "linux": [
+        "Download the file above and move it to a folder of its own.",
+        "Right-click the file, choose **Properties → Permissions**, and tick **Allow executing file as program**. Or run **chmod +x** on it in a terminal.",
+        "Double-click the file, or run it from a terminal.",
+        "Open the dashboard from the tray icon, or from the app window in the window version."
+      ],
+      "pi": [
+        "Download the file for your device above.",
+        "In a terminal, run **chmod +x** on the file, then start it with **--listen 0.0.0.0** so your phone and PC can reach it.",
+        "It prints a link with your private key. Open it from any phone or computer at home.",
+        "To start it automatically after a power cut, follow the full guide."
+      ]
+    },
+    "pi_guide": "Full Raspberry Pi guide",
+    "advanced_title": "For advanced users",
+    "advanced_sums": "Check your download with the SHA256SUMS file",
+    "advanced_all": "All versions and release notes on GitHub",
+    "advanced_source": "Build it yourself from the source code"
+  },
+  "tutorial": {
+    "title": "Video tutorial — Internet Monitor",
+    "description": "Watch a short video that shows how to install Internet Monitor, read the dashboard, and send a complaint with proof.",
+    "h1": "Watch how it works",
+    "intro": "A short video that shows the whole thing: installing the app, reading the dashboard, and sending your first complaint.",
+    "video_label": "Internet Monitor tutorial video",
+    "subtitles": "Subtitles: {langs}. Use the CC button in the player.",
+    "no_subtitles": "Subtitles are on the way.",
+    "preview_note": "This video comes with the preview version {version}.",
+    "soon_title": "The video is coming soon",
+    "soon_body": "We're still recording it. Meanwhile, the step-by-step guide covers everything.",
+    "download_video": "Download the video",
+    "next": "Read the step-by-step guide"
+  },
+  "guide": {
+    "title": "Beginner's guide — your first complaint in 5 steps",
+    "description": "A simple guide to Internet Monitor: install it, leave it running, and send your provider a complaint backed by real measurements.",
+    "h1": "Your first complaint in 5 steps",
+    "intro": "No technical knowledge needed. Here's how to go from \"my internet keeps dropping\" to a complaint your provider can't brush off.",
+    "steps": [
+      {
+        "title": "Install it",
+        "body": "Download the app for your computer and start it. It takes two minutes, and the download page walks you through it."
+      },
+      {
+        "title": "Leave it running",
+        "body": "Keep it running in the background, every day. It checks your internet every few seconds. A computer that stays on and is plugged into the router by cable gives the best proof. Times when the computer was off or asleep are marked as \"not monitored\", never as outages."
+      },
+      {
+        "title": "Fill in your line details",
+        "body": "Open **Complaints** in the dashboard and enter your country, your provider, your plan speed and your line number. This is saved only on your computer and is used to fill in your complaint."
+      },
+      {
+        "title": "When outages happen, open Complaints",
+        "body": "The **Your line in the last 7 days** card shows what happened. When your line has dropped, it suggests logging a complaint. Call your provider, then write down the complaint number they give you."
+      },
+      {
+        "title": "Send the proof",
+        "body": "Open your complaint and press **Copy text** to get a ready-made message with your outages, downtime and speed. Press **Download evidence (ZIP)** to get the proof file, and send both to your provider. If they don't answer in time, the page shows you how to go to the regulator."
+      }
+    ],
+    "tip_title": "Good to know",
+    "tips": [
+      "The monthly report (History → Monthly report → Print or save as PDF) covers the whole month in one page.",
+      "Turn on scheduled speed tests in Settings to show your speed over time, not just once.",
+      "Alerts can reach your phone through Telegram, Discord or ntfy when the internet drops."
+    ],
+    "pi_title": "Run it 24/7 on a Raspberry Pi",
+    "pi_intro": "The strongest proof comes from a device that never sleeps. A laptop that goes to sleep leaves gaps. A small Raspberry Pi plugged into your router by cable watches all day and night, and you open the dashboard from your phone.",
+    "pi_steps": [
+      "Download the Raspberry Pi file: **arm64** for a Pi 4 or 5, **armv7** for a Pi 2 or 3.",
+      "Make it runnable and start it with **--listen 0.0.0.0**, so other devices at home can reach it.",
+      "It prints a link (and a QR code) with your private key. Scan it with your phone's camera and the dashboard opens. Keep this link private.",
+      "Set it to start on its own after a power cut, using the few lines in the full guide. It also runs with Docker."
+    ],
+    "pi_more": "Full Raspberry Pi and Docker guide (in English)",
+    "cta": "Download Internet Monitor"
+  },
+  "faq": {
+    "title": "Questions and answers — Internet Monitor",
+    "description": "Short answers about how Internet Monitor works, what it keeps, and how to fix common problems.",
+    "from_app": "These are the same answers you'll find inside the app.",
+    "more": "Didn't find your answer? Ask us on GitHub"
+  },
+  "privacy": {
+    "title": "Privacy policy — Internet Monitor",
+    "description": "Internet Monitor keeps your data on your computer. No account, no analytics, no tracking. Here's everything it stores and every place it connects to.",
+    "from_app": "This is the same privacy policy shown inside the app.",
+    "site_title": "About this website",
+    "site_body": "This website has no cookies, no trackers and no outside scripts or fonts. It only remembers your theme and language in your own browser. Downloads come straight from GitHub."
+  },
+  "changelog": {
+    "title": "What's new — Internet Monitor",
+    "description": "The latest changes in Internet Monitor: new features, fixes and preview notes.",
+    "h1": "What's new",
+    "intro": "What changed in each version. The notes below are in English.",
+    "summary": "Summary",
+    "previews": "Preview notes, newest first",
+    "on_github": "See this version on GitHub"
+  },
+  "notfound": {
+    "title": "Page not found — Internet Monitor",
+    "h1": "This page doesn't exist",
+    "body": "The link may be old or mistyped. These pages might help:"
+  },
+  "root": {
+    "title": "Internet Monitor — choose your language",
+    "pick": "Choose your language"
+  }
+}

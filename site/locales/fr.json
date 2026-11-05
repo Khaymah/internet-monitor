@@ -1,0 +1,243 @@
+{
+  "site": {
+    "name": "Internet Monitor",
+    "skip": "Aller au contenu",
+    "menu": "Menu",
+    "language": "Langue",
+    "theme": "Passer en clair ou en sombre",
+    "main_nav": "Principal",
+    "logo_alt": "Logo d'Internet Monitor"
+  },
+  "nav": {
+    "home": "Accueil",
+    "download": "Télécharger",
+    "tutorial": "Vidéo",
+    "guide": "Guide",
+    "faq": "FAQ",
+    "privacy": "Confidentialité",
+    "changelog": "Nouveautés"
+  },
+  "footer": {
+    "tagline": "Une appli gratuite qui note chaque coupure d'internet, pour réclamer avec des preuves.",
+    "license": "Elastic License 2.0 — gratuit pour un usage personnel et professionnel",
+    "source": "Code source sur GitHub",
+    "issues": "Signaler un problème",
+    "languages": "Langues"
+  },
+  "home": {
+    "title": "Internet Monitor — Notez vos coupures. Réclamez avec des preuves.",
+    "description": "Une appli gratuite pour Windows, Mac et Linux qui enregistre chaque coupure et chaque ralentissement d'internet, et en fait des preuves à envoyer à votre fournisseur. Sans compte, sans pistage.",
+    "eyebrow": "Gratuit · Windows, Mac, Linux · Sans compte",
+    "hero_title": "Notez vos coupures. Réclamez avec des preuves.",
+    "hero_sub": "Internet Monitor surveille discrètement votre internet à la maison. À chaque coupure ou ralentissement, il note quand, combien de temps et pourquoi. Quand vous appelez votre fournisseur, vous avez des faits, pas juste une impression.",
+    "cta_download": "Télécharger gratuitement",
+    "cta_download_os": "Télécharger pour {os}",
+    "cta_guide": "Comment ça marche",
+    "version_note": "Version {version} · {date}",
+    "hero_alt": "Le tableau de bord d'Internet Monitor : état de la connexion, délai, chronologie des coupures et conseils sur votre ligne",
+    "benefits_title": "Pourquoi l'utiliser",
+    "benefits_sub": "Appeler son fournisseur sans preuve marche rarement. Cette appli vous donne la preuve.",
+    "benefits": [
+      {
+        "title": "Chaque coupure, notée",
+        "body": "L'heure exacte du début, la durée et la partie qui a lâché. Même les petites coupures que vous n'avez pas vues."
+      },
+      {
+        "title": "Votre box ou votre fournisseur ?",
+        "body": "Elle vous dit si le problème vient de chez vous ou de votre fournisseur, pour savoir qui appeler."
+      },
+      {
+        "title": "Une réclamation prête à envoyer",
+        "body": "En un clic, un texte de réclamation basé sur vos propres mesures, plus un fichier de preuves à joindre."
+      },
+      {
+        "title": "Le débit que vous payez ?",
+        "body": "Lancez des tests de débit, ou programmez-les, et comparez les résultats avec le débit de votre contrat."
+      }
+    ],
+    "shots_title": "Aperçu",
+    "shots_sub": "Des écrans simples qui montrent ce que votre internet a vraiment fait.",
+    "shots": {
+      "overview": "L'état en direct, les dernières 24 heures et des conseils clairs sur votre ligne",
+      "complaints": "Vos réclamations, le délai du fournisseur et les preuves pour chacune",
+      "report": "Un rapport mensuel à enregistrer en PDF et à envoyer",
+      "history": "Chaque coupure de la journée, avec son heure, sa durée et sa cause"
+    },
+    "promise_title": "Gratuit, et privé dès le départ",
+    "promise_sub": "Votre historique internet vous appartient. Il ne quitte jamais votre ordinateur, sauf si vous l'envoyez.",
+    "promise": [
+      "Pas de compte, rien à créer",
+      "Pas de pub, pas de pistage, pas de statistiques",
+      "Vos données restent sur votre ordinateur",
+      "Gratuit à la maison et au travail, code ouvert à tous"
+    ],
+    "promise_more": "Lire la politique de confidentialité",
+    "final_title": "Commencez à réunir des preuves dès aujourd'hui",
+    "final_sub": "Installez-la une fois, laissez-la tourner, et laissez les faits s'accumuler."
+  },
+  "download": {
+    "title": "Télécharger Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
+    "description": "Téléchargez Internet Monitor gratuitement et installez-le en quelques minutes, avec des étapes simples pour Windows, Mac, Linux et Raspberry Pi.",
+    "h1": "Télécharger Internet Monitor",
+    "intro": "Gratuit, sans compte. Choisissez votre ordinateur ci-dessous, téléchargez un seul fichier et suivez les étapes.",
+    "latest": "Dernière version {version}, publiée le {date}",
+    "detected": "Vous semblez être sur {os}. Voici votre fichier :",
+    "pick": "Choisissez votre système ci-dessous.",
+    "phone": "Internet Monitor fonctionne sur un ordinateur. Ouvrez cette page sur votre ordinateur pour le télécharger. Vous pourrez ensuite voir le tableau de bord depuis votre téléphone.",
+    "os": {
+      "windows": "Windows",
+      "mac": "Mac",
+      "linux": "Linux",
+      "pi": "Raspberry Pi ou serveur maison"
+    },
+    "os_sub": {
+      "windows": "Windows 10 et 11",
+      "mac": "Puce Apple (M1 et plus récent) ou Intel",
+      "linux": "Ubuntu, Debian et similaires",
+      "pi": "Tourne 24 h/24, vous l'ouvrez depuis le téléphone ou le PC"
+    },
+    "tray": "Version icône (conseillée)",
+    "tray_desc": "Tourne discrètement en arrière-plan, avec une petite icône près de l'horloge. Idéal pour ne rater aucune coupure.",
+    "window": "Version fenêtre",
+    "window_desc": "S'ouvre dans sa propre fenêtre, comme n'importe quelle appli.",
+    "mac_arm": "Mac avec puce Apple (M1, M2, M3, M4…)",
+    "mac_intel": "Mac avec processeur Intel",
+    "mac_which": "Vous ne savez pas quel Mac vous avez ? Cliquez sur le menu Pomme, puis **À propos de ce Mac**. S'il est écrit **Puce : Apple**, choisissez puce Apple. S'il est écrit **Processeur : Intel**, choisissez Intel.",
+    "pi_64": "Raspberry Pi 4 ou 5 (64 bits)",
+    "pi_32": "Raspberry Pi 2 ou 3, ou système 32 bits",
+    "pi_amd64": "Autre PC ou serveur Linux (64 bits)",
+    "btn": "Télécharger",
+    "preview_only": "Pour l'instant dans la préversion seulement",
+    "fallback": "Impossible de charger la liste des fichiers pour le moment. Tous les fichiers sont sur la page de téléchargement GitHub.",
+    "fallback_btn": "Ouvrir la page de téléchargement",
+    "preview_title": "Essayer la prochaine version (préversion)",
+    "preview_body": "La version {version} ({date}) est une version de test avec les dernières nouveautés. Elle peut encore contenir des bugs. L'appli ne passe jamais toute seule à une préversion.",
+    "preview_btn": "Voir les fichiers de la préversion",
+    "install_title": "Comment l'installer",
+    "install_sub": "Environ deux minutes, à faire une seule fois.",
+    "steps": {
+      "windows": [
+        "Téléchargez le fichier ci-dessus.",
+        "Créez un dossier, par exemple **Internet Monitor** dans vos Documents, et déplacez-y le fichier. L'appli garde ses enregistrements à côté d'elle.",
+        "Double-cliquez sur le fichier pour la lancer.",
+        "Si une fenêtre bleue affiche **Windows a protégé votre ordinateur**, cliquez sur **Informations complémentaires**, puis **Exécuter quand même**. Ce message apparaît car l'appli est nouvelle et non signée, pas parce qu'il y a un problème.",
+        "Une petite icône apparaît près de l'horloge (cliquez sur la flèche **^** si vous ne la voyez pas). Cliquez dessus et choisissez **Ouvrir le tableau de bord**.",
+        "Dans le tableau de bord, ouvrez **Paramètres → Application** et activez **Lancer avec Windows**, pour que la surveillance continue après un redémarrage."
+      ],
+      "mac": [
+        "Téléchargez ci-dessus le fichier qui correspond à votre Mac.",
+        "Créez un dossier, par exemple **Internet Monitor** dans vos Documents, et déplacez-y le fichier.",
+        "Ouvrez le **Terminal** (cherchez-le avec Spotlight), tapez **chmod +x** suivi d'une espace, glissez le fichier dans la fenêtre du Terminal et appuyez sur Entrée. Cela permet au fichier de se lancer.",
+        "Faites un clic droit sur le fichier (ou Ctrl-clic), choisissez **Ouvrir**, puis **Ouvrir** à nouveau. C'est seulement la première fois.",
+        "Si votre Mac dit qu'il **ne peut pas être ouvert car il provient d'un développeur non identifié** sans bouton Ouvrir, allez dans **Réglages Système → Confidentialité et sécurité**, descendez et cliquez sur **Ouvrir quand même**.",
+        "Une icône apparaît dans la barre des menus en haut. Cliquez dessus et choisissez **Ouvrir le tableau de bord**."
+      ],
+      "linux": [
+        "Téléchargez le fichier ci-dessus et placez-le dans un dossier à part.",
+        "Faites un clic droit sur le fichier, choisissez **Propriétés → Permissions** et cochez **Autoriser l'exécution du fichier comme un programme**. Ou lancez **chmod +x** dessus dans un terminal.",
+        "Double-cliquez sur le fichier, ou lancez-le depuis un terminal.",
+        "Ouvrez le tableau de bord depuis l'icône, ou depuis la fenêtre dans la version fenêtre."
+      ],
+      "pi": [
+        "Téléchargez ci-dessus le fichier qui correspond à votre appareil.",
+        "Dans un terminal, lancez **chmod +x** sur le fichier, puis démarrez-le avec **--listen 0.0.0.0** pour que votre téléphone et votre PC puissent y accéder.",
+        "Il affiche un lien avec votre clé privée. Ouvrez-le depuis n'importe quel téléphone ou ordinateur de la maison.",
+        "Pour qu'il redémarre tout seul après une coupure de courant, suivez le guide complet."
+      ]
+    },
+    "pi_guide": "Guide complet Raspberry Pi",
+    "advanced_title": "Pour les utilisateurs avancés",
+    "advanced_sums": "Vérifier votre téléchargement avec le fichier SHA256SUMS",
+    "advanced_all": "Toutes les versions et notes de version sur GitHub",
+    "advanced_source": "Compiler soi-même depuis le code source"
+  },
+  "tutorial": {
+    "title": "Tutoriel vidéo — Internet Monitor",
+    "description": "Regardez une courte vidéo qui montre comment installer Internet Monitor, lire le tableau de bord et envoyer une réclamation avec preuves.",
+    "h1": "Voyez comment ça marche",
+    "intro": "Une courte vidéo qui montre tout : installer l'appli, lire le tableau de bord et envoyer votre première réclamation.",
+    "video_label": "Vidéo tutoriel d'Internet Monitor",
+    "subtitles": "Sous-titres : {langs}. Utilisez le bouton CC du lecteur.",
+    "no_subtitles": "Les sous-titres arrivent bientôt.",
+    "preview_note": "Cette vidéo accompagne la préversion {version}.",
+    "soon_title": "La vidéo arrive bientôt",
+    "soon_body": "Nous sommes encore en train de l'enregistrer. En attendant, le guide pas à pas explique tout.",
+    "download_video": "Télécharger la vidéo",
+    "next": "Lire le guide pas à pas"
+  },
+  "guide": {
+    "title": "Guide du débutant — votre première réclamation en 5 étapes",
+    "description": "Un guide simple d'Internet Monitor : installez-le, laissez-le tourner et envoyez à votre fournisseur une réclamation appuyée par de vraies mesures.",
+    "h1": "Votre première réclamation en 5 étapes",
+    "intro": "Aucune connaissance technique nécessaire. Voici comment passer de « mon internet coupe tout le temps » à une réclamation que votre fournisseur ne peut pas ignorer.",
+    "steps": [
+      {
+        "title": "Installez-la",
+        "body": "Téléchargez l'appli pour votre ordinateur et lancez-la. Ça prend deux minutes, et la page de téléchargement vous guide."
+      },
+      {
+        "title": "Laissez-la tourner",
+        "body": "Gardez-la ouverte en arrière-plan, tous les jours. Elle vérifie votre internet toutes les quelques secondes. Un ordinateur qui reste allumé et branché à la box par câble donne les meilleures preuves. Les moments où l'ordinateur était éteint ou en veille sont marqués « non surveillé », jamais comme des coupures."
+      },
+      {
+        "title": "Remplissez les infos de votre ligne",
+        "body": "Ouvrez **Réclamations** dans le tableau de bord et indiquez votre pays, votre fournisseur, le débit de votre offre et votre numéro de ligne. Tout reste sur votre ordinateur et sert à remplir votre réclamation."
+      },
+      {
+        "title": "Quand les coupures arrivent, ouvrez Réclamations",
+        "body": "La carte **Votre ligne ces 7 derniers jours** montre ce qui s'est passé. Si votre ligne a coupé, elle vous propose d'enregistrer une réclamation. Appelez votre fournisseur, puis notez le numéro de réclamation qu'il vous donne."
+      },
+      {
+        "title": "Envoyez les preuves",
+        "body": "Ouvrez votre réclamation et appuyez sur **Copier le texte** pour obtenir un message tout prêt avec vos coupures, leur durée et votre débit. Appuyez sur **Télécharger les preuves (ZIP)** pour obtenir le fichier de preuves, et envoyez les deux à votre fournisseur. S'il ne répond pas à temps, la page vous montre comment saisir le régulateur."
+      }
+    ],
+    "tip_title": "Bon à savoir",
+    "tips": [
+      "Le rapport mensuel (Historique → Rapport mensuel → Imprimer ou enregistrer en PDF) résume tout le mois sur une page.",
+      "Activez les tests de débit programmés dans les Paramètres pour montrer votre débit dans la durée, pas une seule fois.",
+      "Les alertes peuvent arriver sur votre téléphone via Telegram, Discord ou ntfy quand internet coupe."
+    ],
+    "pi_title": "La faire tourner 24 h/24 sur un Raspberry Pi",
+    "pi_intro": "Les meilleures preuves viennent d'un appareil qui ne dort jamais. Un portable qui se met en veille laisse des trous. Un petit Raspberry Pi branché à la box par câble surveille jour et nuit, et vous ouvrez le tableau de bord depuis votre téléphone.",
+    "pi_steps": [
+      "Téléchargez le fichier Raspberry Pi : **arm64** pour un Pi 4 ou 5, **armv7** pour un Pi 2 ou 3.",
+      "Rendez-le exécutable et lancez-le avec **--listen 0.0.0.0**, pour que les autres appareils de la maison puissent y accéder.",
+      "Il affiche un lien (et un QR code) avec votre clé privée. Scannez-le avec l'appareil photo du téléphone et le tableau de bord s'ouvre. Gardez ce lien pour vous.",
+      "Faites-le démarrer tout seul après une coupure de courant, avec les quelques lignes du guide complet. Il fonctionne aussi avec Docker."
+    ],
+    "pi_more": "Guide complet Raspberry Pi et Docker (en anglais)",
+    "cta": "Télécharger Internet Monitor"
+  },
+  "faq": {
+    "title": "Questions et réponses — Internet Monitor",
+    "description": "Des réponses courtes sur le fonctionnement d'Internet Monitor, ce qu'il conserve et comment régler les problèmes courants.",
+    "from_app": "Ce sont les mêmes réponses que dans l'appli.",
+    "more": "Vous n'avez pas trouvé votre réponse ? Posez-nous la question sur GitHub"
+  },
+  "privacy": {
+    "title": "Politique de confidentialité — Internet Monitor",
+    "description": "Internet Monitor garde vos données sur votre ordinateur. Pas de compte, pas de statistiques, pas de pistage. Voici tout ce qu'il enregistre et tous les endroits qu'il contacte.",
+    "from_app": "C'est la même politique de confidentialité que dans l'appli.",
+    "site_title": "À propos de ce site",
+    "site_body": "Ce site n'a ni cookies, ni traceurs, ni scripts ou polices externes. Il retient seulement votre thème et votre langue, dans votre propre navigateur. Les téléchargements viennent directement de GitHub."
+  },
+  "changelog": {
+    "title": "Nouveautés — Internet Monitor",
+    "description": "Les dernières évolutions d'Internet Monitor : nouvelles fonctions, corrections et notes des préversions.",
+    "h1": "Nouveautés",
+    "intro": "Ce qui a changé dans chaque version. Les notes ci-dessous sont en anglais.",
+    "summary": "Résumé",
+    "previews": "Notes des préversions, la plus récente d'abord",
+    "on_github": "Voir cette version sur GitHub"
+  },
+  "notfound": {
+    "title": "Page introuvable — Internet Monitor",
+    "h1": "Cette page n'existe pas",
+    "body": "Le lien est peut-être ancien ou mal tapé. Ces pages peuvent vous aider :"
+  },
+  "root": {
+    "title": "Internet Monitor — choisissez votre langue",
+    "pick": "Choisissez votre langue"
+  }
+}
