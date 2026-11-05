@@ -9,6 +9,8 @@
 
 > [🇸🇦 اقرأ بالعربية](README.ar.md)
 
+> 🌍 **Website:** [khaymah.github.io/internet-monitor](https://khaymah.github.io/internet-monitor/) — download, install steps, a video tutorial and a beginner's guide in English, Arabic, French, Turkish and Urdu.
+
 # Document your outages. Complain with proof.
 
 **Internet Monitor** is a free, source-available tool that captures **proof** of every internet drop — so you can stop arguing from memory and start attaching evidence to your support ticket.
