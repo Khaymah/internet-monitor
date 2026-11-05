@@ -11,7 +11,7 @@
   "nav": {
     "home": "Home",
     "download": "Download",
-    "tutorial": "Video",
+    "tutorial": "Videos",
     "guide": "Guide",
     "faq": "FAQ",
     "privacy": "Privacy",
@@ -153,16 +153,16 @@
     "advanced_source": "Build it yourself from the source code"
   },
   "tutorial": {
-    "title": "Video tutorial — Internet Monitor",
-    "description": "Watch a short video that shows how to install Internet Monitor, read the dashboard, and send a complaint with proof.",
-    "h1": "Watch how it works",
-    "intro": "A short video that shows the whole thing: installing the app, reading the dashboard, and sending your first complaint.",
-    "video_label": "Internet Monitor tutorial video",
+    "title": "Video tours — Internet Monitor",
+    "description": "Short narrated videos, one for each page of Internet Monitor: what every part shows, what it means and what to do with it.",
+    "h1": "Watch how each page works",
+    "intro": "Seven short videos with an English voice and subtitles in five languages. Pick a page and press play.",
+    "video_label": "Video tour: {title}",
     "subtitles": "Subtitles: {langs}. Use the CC button in the player.",
     "no_subtitles": "Subtitles are on the way.",
     "preview_note": "This video comes with the preview version {version}.",
-    "soon_title": "The video is coming soon",
-    "soon_body": "We're still recording it. Meanwhile, the step-by-step guide covers everything.",
+    "soon_title": "Coming soon",
+    "soon_body": "This video comes with the next release.",
     "download_video": "Download the video",
     "next": "Read the step-by-step guide"
   },
@@ -279,7 +279,7 @@
       ],
       "tutorial": [
         "internet monitor video",
-        "settings tour",
+        "video tours",
         "video tutorial",
         "how to use internet monitor"
       ],
@@ -329,7 +329,7 @@
     "answer": {
       "download": "Internet Monitor is a free download for Windows 10 and 11, macOS, Linux and Raspberry Pi. Download one file, start it, and it begins recording your internet outages right away.",
       "guide": "To prove your internet keeps dropping, install Internet Monitor, leave it running, and send your provider the report and evidence file it builds from its own measurements.",
-      "tutorial": "This video walks through Internet Monitor's settings one by one, with subtitles in English, Arabic, French, Turkish and Urdu.",
+      "tutorial": "Seven short videos, one for each page of Internet Monitor, explain what every part shows and what to do with it, with subtitles in English, Arabic, French, Turkish and Urdu.",
       "faq": "Internet Monitor checks your connection every few seconds in three ways and records every outage with its time, length and cause. These answers explain how it works.",
       "changelog": "Every Internet Monitor release, newest first: new features, improvements, fixes and security updates, plus the notes of the version being tested now.",
       "about": "Internet Monitor is a free app by Khaymah that runs on your own computer, records every internet outage, and tells you whether the problem is at home or at your provider.",

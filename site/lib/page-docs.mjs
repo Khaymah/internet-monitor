@@ -14,51 +14,6 @@ ${extra}
 </section>`;
 }
 
-export function renderTutorial(ctx) {
-  const { releases, site, lang } = ctx;
-  const tut = releases.tutorial;
-  let main;
-  if (tut) {
-    const tracks = ctx.tracks
-      .map(
-        (tr) =>
-          `<track kind="subtitles" src="${site.base}tutorial/${tr.lang}.vtt" srclang="${tr.lang}" label="${esc(site.meta[tr.lang].name)}"${tr.lang === lang ? " default" : ""}>`,
-      )
-      .join("\n");
-    const poster = ctx.shots.files[0] ? ` poster="${site.base}assets/shots/${ctx.shots.lang}/${ctx.shots.files[0]}"` : "";
-    const note = tut.release.prerelease ? `<p class="hint">${ctx.e("tutorial.preview_note", { version: tut.release.tag })}</p>` : "";
-    main = `<div class="video-frame frame frame-glow">
-<video controls preload="none" playsinline${poster} aria-label="${ctx.e("tutorial.video_label")}">
-<source src="${esc(tut.url)}" type="video/mp4">
-${tracks}
-</video>
-</div>
-<p class="hint">${
-      ctx.tracks.length
-        ? ctx.e("tutorial.subtitles", {
-            langs: new Intl.ListFormat(site.meta[lang].intl, { type: "conjunction" }).format(
-              ctx.tracks.map((tr) => site.meta[tr.lang].name),
-            ),
-          })
-        : ctx.e("tutorial.no_subtitles")
-    }</p>
-${note}
-<p><a class="text-link" href="${esc(tut.url)}" rel="noopener">${icon("download", { size: 16 })}${ctx.e("tutorial.download_video")}</a></p>`;
-  } else {
-    main = `<div class="card edge soon">
-<span class="well well-lg">${icon("play", { size: 26 })}</span>
-<h2>${ctx.e("tutorial.soon_title")}</h2>
-<p>${ctx.e("tutorial.soon_body")}</p>
-</div>`;
-  }
-  const body = `${hero(ctx.e("tutorial.h1"), ctx.e("tutorial.intro"))}
-<div class="wrap page-body narrow">
-${main}
-<p class="center"><a class="btn btn-aurora btn-lg" href="${pageUrl(site.base, lang, "guide")}">${icon("book", { size: 18 })}${ctx.e("tutorial.next")}</a></p>
-</div>`;
-  return { title: ctx.t("tutorial.title"), description: ctx.t("tutorial.description"), body };
-}
-
 export function renderGuide(ctx) {
   const { site, lang } = ctx;
   const steps = ctx

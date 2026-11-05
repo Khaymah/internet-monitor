@@ -2,7 +2,7 @@
 
 The public website lives at <https://khaymah.github.io/internet-monitor/>. It's a static
 site for people who aren't technical: what the app does, how to download and install it,
-a tutorial video, a beginner's guide, and the app's own pages: FAQ, what's new, about,
+a video tour of each app page, a beginner's guide, and the app's own pages: FAQ, what's new, about,
 contact, support us, privacy policy and terms of use. It comes in English, Arabic, French,
 Turkish and Urdu (Arabic and Urdu right to left), in a light and a dark theme. The pages
 that also exist inside the app use the app's own CSS, markup, icons and texts, so they look
@@ -41,8 +41,9 @@ builds the site and checks every internal link, so a broken site fails CI.
 | Language names, direction, date format | `web/locales/<lang>/meta.json` | build |
 | What's new, next release | `docs/releases/v*.md` (newest first, in English) | build |
 | Versions, dates, file sizes, download links | GitHub REST API: latest stable release and newest prerelease | build |
-| Tutorial video | `internet-monitor-tutorial.mp4` on the latest release (or the newest prerelease that has it) | build |
-| Subtitles | `web/public/tutorial/<lang>.vtt`, copied when present | build |
+| Video tours | `web/src/content/tours.json` (order and length); for each, `internet-monitor-tour-<id>.mp4` on the newest release that has it (for `settings`, also the older `internet-monitor-tutorial.mp4`) | build |
+| Tour titles | `web/locales/<lang>/tour.json` | build |
+| Subtitles and posters | `web/public/tutorial/<id>/<lang>.vtt` and `poster.jpg`, copied when present | build |
 | Screenshots | `docs/store/<lang>/*.png`, English when a language has none | build |
 | Colors, radii, gradients | `web/src/styles/tokens.css` | build |
 | Fonts | `@fontsource/poppins` and `@fontsource/ibm-plex-sans-arabic`, self-hosted | build |
@@ -51,7 +52,7 @@ These pages are the app's own texts and data, so the site never says something d
 from the app. Links inside the app's texts that point to app screens the site doesn't have
 (Settings, History…) are shown as plain text. If the GitHub API can't be reached (for example a local build
 without network), the build still succeeds: download buttons point to the latest release
-page and the video shows "coming soon".
+page and each video shows "coming soon".
 
 The five locale files must have the same keys in the same order, with lists of the same
 length. The build stops with an error if they don't.
@@ -89,7 +90,7 @@ links between them:
   `/contact/`, `/support/`, `/privacy/`, `/terms/`.
 
 The header has the main pages and a "More pages" menu; the footer and the phone menu
-list the same group as the app's sidebar (About, What's new, FAQ, Video, Contact, Privacy,
+list the same group as the app's sidebar (About, What's new, FAQ, Videos, Contact, Privacy,
 Terms of use, Support us). Switching the theme plays the app's circular reveal, and skips
 it when the system asks for reduced motion.
 
@@ -112,8 +113,8 @@ Every page has its own title and description (from `site/locales`), keywords
 (`seo.keywords` for the whole site plus `seo.page_keywords.<page>`), canonical and
 `hreflang` links, Open Graph and Twitter cards, and JSON-LD: `WebSite`, the publisher
 and developer, a breadcrumb on inner pages, `SoftwareApplication` on home and download,
-`FAQPage` from the app's FAQ, `HowTo` on the guide and the install steps, `VideoObject`
-on the video page, and `AboutPage` / `ContactPage`. Each page starts with a short direct
+`FAQPage` from the app's FAQ, `HowTo` on the guide and the install steps, one `VideoObject`
+per published tour on the video page, and `AboutPage` / `ContactPage`. Each page starts with a short direct
 answer (`seo.answer.<page>`) and a visible "last updated" date taken from the last
 commit that touched its content (or the release / policy date). `robots.txt` allows the
 main search and AI crawlers, `sitemap.xml` has a `lastmod` and the language alternates

@@ -1,5 +1,3 @@
-export const TUTORIAL_ASSET = "internet-monitor-tutorial.mp4";
-
 function shapeRelease(r) {
   const assets = {};
   for (const a of r.assets ?? []) {
@@ -38,7 +36,7 @@ export async function loadReleases(repo, { token, offline } = {}) {
     ok: false,
     stable: null,
     preview: null,
-    tutorial: null,
+    list: [],
     page: `https://github.com/${repo}/releases/latest`,
     all: `https://github.com/${repo}/releases`,
   };
@@ -59,18 +57,7 @@ export async function loadReleases(repo, { token, offline } = {}) {
   const newestPre = releases.find((r) => r.prerelease) ?? null;
   const preview = newestPre && (!stable || new Date(newestPre.date) > new Date(stable.date)) ? newestPre : null;
 
-  let tutorial = null;
-  if (stable?.assets[TUTORIAL_ASSET]) {
-    tutorial = {
-      url: `https://github.com/${repo}/releases/latest/download/${TUTORIAL_ASSET}`,
-      release: stable,
-    };
-  } else {
-    const pre = releases.find((r) => r.prerelease && r.assets[TUTORIAL_ASSET]);
-    if (pre) tutorial = { url: pre.assets[TUTORIAL_ASSET].url, release: pre };
-  }
-
-  return { ...fallback, ok: Boolean(stable || preview), stable, preview, tutorial };
+  return { ...fallback, ok: Boolean(stable || preview), stable, preview, list: releases };
 }
 
 export const PLATFORMS = [

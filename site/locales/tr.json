@@ -11,7 +11,7 @@
   "nav": {
     "home": "Ana sayfa",
     "download": "İndir",
-    "tutorial": "Video",
+    "tutorial": "Videolar",
     "guide": "Rehber",
     "faq": "SSS",
     "privacy": "Gizlilik",
@@ -153,16 +153,16 @@
     "advanced_source": "Kaynak koddan kendiniz derleyin"
   },
   "tutorial": {
-    "title": "Video eğitim — Internet Monitor",
-    "description": "Internet Monitor'ün nasıl kurulduğunu, panelin nasıl okunduğunu ve kanıtla nasıl şikayet gönderildiğini gösteren kısa bir video izleyin.",
-    "h1": "Nasıl çalıştığını izleyin",
-    "intro": "Her şeyi gösteren kısa bir video: uygulamayı kurmak, paneli okumak ve ilk şikayetinizi göndermek.",
-    "video_label": "Internet Monitor eğitim videosu",
+    "title": "Video turlar — Internet Monitor",
+    "description": "Internet Monitor'ün her sayfası için kısa, sesli bir video: her bölüm ne gösterir, ne anlama gelir ve onunla ne yapmalısınız.",
+    "h1": "Her sayfanın nasıl çalıştığını izleyin",
+    "intro": "İngilizce anlatımlı ve beş dilde altyazılı yedi kısa video. Bir sayfa seçip oynat'a basın.",
+    "video_label": "Video tur: {title}",
     "subtitles": "Altyazılar: {langs}. Oynatıcıdaki CC düğmesini kullanın.",
     "no_subtitles": "Altyazılar yolda.",
     "preview_note": "Bu video {version} ön sürümüyle birlikte geliyor.",
-    "soon_title": "Video yakında geliyor",
-    "soon_body": "Hâlâ kaydediyoruz. O zamana kadar adım adım rehber her şeyi anlatıyor.",
+    "soon_title": "Yakında",
+    "soon_body": "Bu video bir sonraki sürümle geliyor.",
     "download_video": "Videoyu indir",
     "next": "Adım adım rehberi okuyun"
   },
@@ -279,7 +279,7 @@
       ],
       "tutorial": [
         "internet monitor video",
-        "ayarlar turu",
+        "video turlar",
         "video eğitim",
         "internet monitor kullanımı"
       ],
@@ -329,7 +329,7 @@
     "answer": {
       "download": "Internet Monitor; Windows 10 ve 11, macOS, Linux ve Raspberry Pi için ücretsiz indirilir. Tek bir dosyayı indirip başlatın, internet kesintilerinizi hemen kaydetmeye başlar.",
       "guide": "İnternetinizin koptuğunu kanıtlamak için Internet Monitor'ü kurun, çalışır bırakın ve kendi ölçümlerinden hazırladığı raporu ve kanıt dosyasını sağlayıcınıza gönderin.",
-      "tutorial": "Bu video Internet Monitor'ün ayarlarını tek tek anlatır; İngilizce, Arapça, Fransızca, Türkçe ve Urduca altyazılıdır.",
+      "tutorial": "Internet Monitor'ün her sayfası için bir tane olmak üzere yedi kısa video, her bölümün ne gösterdiğini ve onunla ne yapılacağını anlatır; İngilizce, Arapça, Fransızca, Türkçe ve Urduca altyazılıdır.",
       "faq": "Internet Monitor bağlantınızı birkaç saniyede bir üç yolla kontrol eder ve her kesintiyi zamanı, süresi ve nedeniyle kaydeder. Bu yanıtlar nasıl çalıştığını anlatır.",
       "changelog": "Internet Monitor'ün tüm sürümleri, en yenisi önce: yeni özellikler, iyileştirmeler, düzeltmeler ve güvenlik güncellemeleri, ayrıca şu an denenen sürümün notları.",
       "about": "Internet Monitor, Khaymah'ın kendi bilgisayarınızda çalışan ücretsiz uygulamasıdır; her internet kesintisini kaydeder ve sorunun evde mi sağlayıcıda mı olduğunu söyler.",

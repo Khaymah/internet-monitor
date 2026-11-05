@@ -23,9 +23,24 @@ export function createContent(root) {
       .sort((a, b) => compareVersions(b.tag, a.tag));
   }
 
-  function tracks(langs) {
-    const dir = join(root, "web", "public", "tutorial");
-    return langs.filter((l) => existsSync(join(dir, `${l}.vtt`))).map((l) => ({ lang: l, file: join(dir, `${l}.vtt`) }));
+  function tours(langs) {
+    const file = join(root, "web", "src", "content", "tours.json");
+    if (!existsSync(file)) return [];
+    return JSON.parse(readFileSync(file, "utf8")).map(({ id, seconds }) => {
+      const dir = join(root, "web", "public", "tutorial", id);
+      const poster = join(dir, "poster.jpg");
+      return {
+        id,
+        seconds,
+        poster: existsSync(poster) ? poster : null,
+        tracks: langs.filter((l) => existsSync(join(dir, `${l}.vtt`))).map((l) => ({ lang: l, file: join(dir, `${l}.vtt`) })),
+      };
+    });
+  }
+
+  function tourText(lang, id) {
+    const data = appFile(lang, "tour");
+    return { title: data[`tour_${id}_title`], desc: data[`tour_${id}_desc`] };
   }
 
   function screenshots(lang) {
@@ -38,5 +53,5 @@ export function createContent(root) {
     return { lang: pick, files };
   }
 
-  return { json, meta, releaseNotes, tracks, screenshots };
+  return { json, meta, releaseNotes, tours, tourText, screenshots };
 }

@@ -11,7 +11,7 @@
   "nav": {
     "home": "Accueil",
     "download": "Télécharger",
-    "tutorial": "Vidéo",
+    "tutorial": "Vidéos",
     "guide": "Guide",
     "faq": "FAQ",
     "privacy": "Confidentialité",
@@ -153,16 +153,16 @@
     "advanced_source": "Compiler soi-même depuis le code source"
   },
   "tutorial": {
-    "title": "Tutoriel vidéo — Internet Monitor",
-    "description": "Regardez une courte vidéo qui montre comment installer Internet Monitor, lire le tableau de bord et envoyer une réclamation avec preuves.",
-    "h1": "Voyez comment ça marche",
-    "intro": "Une courte vidéo qui montre tout : installer l'appli, lire le tableau de bord et envoyer votre première réclamation.",
-    "video_label": "Vidéo tutoriel d'Internet Monitor",
+    "title": "Visites en vidéo — Internet Monitor",
+    "description": "De courtes vidéos commentées, une pour chaque page d'Internet Monitor : ce que montre chaque partie, ce qu'elle signifie et quoi en faire.",
+    "h1": "Voyez comment marche chaque page",
+    "intro": "Sept courtes vidéos, commentées en anglais et sous-titrées en cinq langues. Choisissez une page et appuyez sur lecture.",
+    "video_label": "Visite en vidéo : {title}",
     "subtitles": "Sous-titres : {langs}. Utilisez le bouton CC du lecteur.",
     "no_subtitles": "Les sous-titres arrivent bientôt.",
     "preview_note": "Cette vidéo accompagne la préversion {version}.",
-    "soon_title": "La vidéo arrive bientôt",
-    "soon_body": "Nous sommes encore en train de l'enregistrer. En attendant, le guide pas à pas explique tout.",
+    "soon_title": "Bientôt disponible",
+    "soon_body": "Cette vidéo arrive avec la prochaine version.",
     "download_video": "Télécharger la vidéo",
     "next": "Lire le guide pas à pas"
   },
@@ -279,7 +279,7 @@
       ],
       "tutorial": [
         "vidéo internet monitor",
-        "visite des réglages",
+        "visites en vidéo",
         "tutoriel vidéo",
         "utiliser internet monitor"
       ],
@@ -329,7 +329,7 @@
     "answer": {
       "download": "Internet Monitor se télécharge gratuitement pour Windows 10 et 11, macOS, Linux et Raspberry Pi. Un seul fichier à lancer, et il note vos coupures d'internet tout de suite.",
       "guide": "Pour prouver que votre internet se coupe, installez Internet Monitor, laissez-le tourner et envoyez à votre fournisseur le rapport et le fichier de preuves qu'il crée à partir de ses propres mesures.",
-      "tutorial": "Cette vidéo présente les réglages d'Internet Monitor un par un, avec des sous-titres en anglais, arabe, français, turc et ourdou.",
+      "tutorial": "Sept courtes vidéos, une pour chaque page d'Internet Monitor, expliquent ce que montre chaque partie et quoi en faire, avec des sous-titres en anglais, arabe, français, turc et ourdou.",
       "faq": "Internet Monitor vérifie votre connexion toutes les quelques secondes de trois façons et note chaque coupure avec son heure, sa durée et sa cause. Ces réponses expliquent son fonctionnement.",
       "changelog": "Toutes les versions d'Internet Monitor, de la plus récente à la plus ancienne : nouveautés, améliorations, corrections et sécurité, avec les notes de la version en test.",
       "about": "Internet Monitor est une appli gratuite de Khaymah qui tourne sur votre ordinateur, note chaque coupure d'internet et vous dit si le problème vient de chez vous ou de votre fournisseur.",

@@ -1,12 +1,10 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { esc } from "./util.mjs";
 
 const SOURCES = {
   home: ["site/locales", "site/lib/page-home.mjs", "docs/store"],
   download: ["site/locales", "site/lib/page-download.mjs"],
   guide: ["site/locales", "site/lib/page-docs.mjs"],
-  tutorial: ["site/locales", "web/public/tutorial"],
+  tutorial: ["site/locales", "web/public/tutorial", "web/src/content/tours.json", "web/locales/*/tour.json"],
   faq: ["web/src/content/faq.ts", "web/locales/*/faq.json"],
   changelog: ["web/src/content/changelog.ts", "web/locales/*/changelog.json", "docs/releases"],
   about: ["web/src/content/about.ts", "web/locales/*/about.json"],
@@ -37,28 +35,16 @@ function latest(...dates) {
     .pop();
 }
 
-export function pageDates(root, releases, appData) {
+export function pageDates(root, releases, appData, tours = []) {
   const today = new Date().toISOString().slice(0, 10);
   const dates = {};
   for (const [id, paths] of Object.entries(SOURCES)) dates[id] = gitDate(root, paths) ?? today;
   dates.download = latest(dates.download, releases.stable?.date, releases.preview?.date);
-  dates.tutorial = latest(dates.tutorial, releases.tutorial?.release.date);
+  dates.tutorial = latest(dates.tutorial, ...tours.map((t) => t.video?.release.date));
   dates.changelog = latest(dates.changelog, appData.releases.find((r) => r.date)?.date);
   dates.privacy = appData.legal.PRIVACY.updated;
   dates.terms = appData.legal.TERMS.updated;
   return dates;
-}
-
-export function vttDuration(file) {
-  try {
-    const stamps = [...readFileSync(file, "utf8").matchAll(/-->\s*(?:(\d+):)?(\d+):(\d+)\.\d+/g)];
-    const last = stamps.pop();
-    if (!last) return null;
-    const total = Number(last[1] ?? 0) * 3600 + Number(last[2]) * 60 + Number(last[3]);
-    return `PT${Math.floor(total / 60)}M${total % 60}S`;
-  } catch {
-    return null;
-  }
 }
 
 export function keywords(ctx, pageId) {
@@ -208,25 +194,27 @@ export function structuredData(ctx, pageId, title, description) {
       graph.push(howTo(name, ctx.t("download.install_sub"), steps, `${url}#os-${os}`, lang));
     }
   }
-  if (pageId === "tutorial" && ctx.releases.tutorial) {
-    const tut = ctx.releases.tutorial;
-    const video = {
-      "@type": "VideoObject",
-      name: ctx.t("tutorial.h1"),
-      description: ctx.t("tutorial.intro"),
-      thumbnailUrl: ctx.shots.files[0] ? `${base}assets/shots/${ctx.shots.lang}/${ctx.shots.files[0]}` : `${base}assets/og/${lang}.png`,
-      contentUrl: tut.url,
-      uploadDate: tut.release.date,
-      inLanguage: "en",
-      caption: ctx.tracks.map((tr) => ({
-        "@type": "MediaObject",
-        contentUrl: `${base}tutorial/${tr.lang}.vtt`,
-        encodingFormat: "text/vtt",
-        inLanguage: tr.lang,
-      })),
-    };
-    if (ctx.videoDuration) video.duration = ctx.videoDuration;
-    graph.push(video);
+  if (pageId === "tutorial") {
+    for (const tour of ctx.tours.filter((t) => t.video)) {
+      const seconds = Math.round(tour.seconds);
+      graph.push({
+        "@type": "VideoObject",
+        "@id": `${url}#${tour.id}`,
+        name: tour.text.title,
+        description: tour.text.desc,
+        thumbnailUrl: tour.poster ? `${base}tutorial/${tour.id}/poster.jpg` : `${base}assets/og/${lang}.png`,
+        contentUrl: tour.video.url,
+        uploadDate: tour.video.release.date,
+        inLanguage: "en",
+        ...(seconds > 0 ? { duration: `PT${Math.floor(seconds / 60)}M${seconds % 60}S` } : {}),
+        caption: tour.tracks.map((tr) => ({
+          "@type": "MediaObject",
+          contentUrl: `${base}tutorial/${tour.id}/${tr.lang}.vtt`,
+          encodingFormat: "text/vtt",
+          inLanguage: tr.lang,
+        })),
+      });
+    }
   }
   const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
   return `<script type="application/ld+json">${json}</script>`;
