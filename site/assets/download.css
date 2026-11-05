@@ -133,29 +133,6 @@
   color: var(--text-secondary);
 }
 
-.mac-switch {
-  justify-self: start;
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.mac-switch[hidden] {
-  display: none;
-}
-
-.dl-os[data-os="mac"][data-arch="arm"] [data-arch="intel"],
-.dl-os[data-os="mac"][data-arch="intel"] [data-arch="arm"] {
-  display: none;
-}
-
-.dl-os[data-os="mac"][data-arch] .mac-hint {
-  display: none;
-}
-
 .dl-steps-wrap {
   display: grid;
   gap: 14px;

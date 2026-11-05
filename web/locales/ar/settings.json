@@ -97,6 +97,7 @@
   "update_latest": "انت على أحدث إصدار",
   "update_available": "الإصدار {v} متاح",
   "update_install": "ثبّت وشغّل التطبيق تاني",
+  "update_download": "افتح صفحة التحميل",
   "update_downloading": "جاري تنزيل التحديث…",
   "update_restarting": "بنعيد التشغيل…",
   "update_failed": "التحديث فشل: {error}",

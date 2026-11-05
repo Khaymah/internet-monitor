@@ -97,6 +97,7 @@
   "update_latest": "You're up to date",
   "update_available": "Version {v} is available",
   "update_install": "Install and restart",
+  "update_download": "Open download page",
   "update_downloading": "Downloading the update…",
   "update_restarting": "Restarting…",
   "update_failed": "Update failed: {error}",
