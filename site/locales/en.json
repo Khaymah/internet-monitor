@@ -25,8 +25,8 @@
     "languages": "Languages"
   },
   "home": {
-    "title": "Internet Monitor — Document your outages. Complain with proof.",
-    "description": "A free app for Windows, Mac and Linux that records every internet outage and slowdown, and turns it into proof you can send to your provider. No account, no tracking.",
+    "title": "Internet Monitor — Document outages, complain with proof",
+    "description": "Free app for Windows, Mac and Linux that records every internet outage and slowdown and turns it into proof for your provider. No account, no tracking.",
     "eyebrow": "Free · Windows, Mac, Linux · No account",
     "hero_title": "Document your outages. Complain with proof.",
     "hero_sub": "Internet Monitor quietly watches your home internet. Every time it drops or slows down, it writes down when, for how long, and why. When you call your provider, you have the facts, not just a feeling.",
@@ -76,8 +76,9 @@
     "final_sub": "Install it once, leave it running, and let the facts build up."
   },
   "download": {
-    "title": "Download Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
+    "title": "Download Internet Monitor — Windows, Mac, Linux, Pi",
     "description": "Download Internet Monitor for free and install it in a few minutes, with simple steps for Windows, Mac, Linux and Raspberry Pi.",
+    "eyebrow": "Free download",
     "h1": "Download Internet Monitor",
     "intro": "Free, no account needed. Pick your computer below, download one file, and follow the short steps.",
     "latest": "Latest version {version}, released {date}",
@@ -168,6 +169,7 @@
   "guide": {
     "title": "Beginner's guide — your first complaint in 5 steps",
     "description": "A simple guide to Internet Monitor: install it, leave it running, and send your provider a complaint backed by real measurements.",
+    "eyebrow": "Beginner's guide",
     "h1": "Your first complaint in 5 steps",
     "intro": "No technical knowledge needed. Here's how to go from \"my internet keeps dropping\" to a complaint your provider can't brush off.",
     "steps": [
@@ -211,30 +213,131 @@
   },
   "faq": {
     "title": "Questions and answers — Internet Monitor",
-    "description": "Short answers about how Internet Monitor works, what it keeps, and how to fix common problems.",
-    "from_app": "These are the same answers you'll find inside the app.",
-    "more": "Didn't find your answer? Ask us on GitHub"
+    "description": "Short answers about how Internet Monitor works, what it keeps, and how to fix common problems."
   },
   "privacy": {
     "title": "Privacy policy — Internet Monitor",
     "description": "Internet Monitor keeps your data on your computer. No account, no analytics, no tracking. Here's everything it stores and every place it connects to.",
-    "from_app": "This is the same privacy policy shown inside the app.",
     "site_title": "About this website",
     "site_body": "This website has no cookies, no trackers and no outside scripts or fonts. It only remembers your theme and language in your own browser. Downloads come straight from GitHub."
   },
   "changelog": {
     "title": "What's new — Internet Monitor",
     "description": "The latest changes in Internet Monitor: new features, fixes and preview notes.",
-    "h1": "What's new",
-    "intro": "What changed in each version. The notes below are in English.",
-    "summary": "Summary",
-    "previews": "Preview notes, newest first",
+    "preview_title": "Preview version, notes in English",
     "on_github": "See this version on GitHub"
+  },
+  "about": {
+    "title": "About Internet Monitor — free, open, private",
+    "description": "Why Internet Monitor exists, what it cares about and who makes it: a free app that keeps a record of every internet outage, on your own computer."
+  },
+  "contact": {
+    "title": "Contact Internet Monitor — WhatsApp, Discord, email",
+    "description": "Questions, ideas or problems? Reach the Internet Monitor team on WhatsApp, Discord, by email or on GitHub, whichever suits you."
+  },
+  "support": {
+    "title": "Support Internet Monitor — keep it free",
+    "description": "Internet Monitor is free and stays free. If it helped you, you can support it with PayPal, Vodafone Cash or InstaPay. Completely optional."
+  },
+  "terms": {
+    "title": "Terms of use — Internet Monitor",
+    "description": "The terms for using Internet Monitor: free for personal and commercial use under the Elastic License 2.0, without warranty."
   },
   "notfound": {
     "title": "Page not found — Internet Monitor",
     "h1": "This page doesn't exist",
     "body": "The link may be old or mistyped. These pages might help:"
+  },
+  "seo": {
+    "og_alt": "Internet Monitor: document your internet outages and complain with proof",
+    "keywords": [
+      "internet monitor",
+      "internet outage tracker",
+      "log internet outages",
+      "complain to internet provider",
+      "proof of internet outage",
+      "free network monitor"
+    ],
+    "page_keywords": {
+      "home": [
+        "internet down log",
+        "ISP complaint evidence",
+        "uptime monitor",
+        "packet loss monitor"
+      ],
+      "download": [
+        "download internet monitor",
+        "internet monitor for windows",
+        "internet monitor for mac",
+        "raspberry pi network monitor"
+      ],
+      "guide": [
+        "how to prove internet outages",
+        "ISP complaint guide",
+        "beginner guide",
+        "internet complaint steps"
+      ],
+      "tutorial": [
+        "internet monitor video",
+        "settings tour",
+        "video tutorial",
+        "how to use internet monitor"
+      ],
+      "faq": [
+        "internet monitor faq",
+        "why does my internet keep disconnecting",
+        "DNS problem or outage",
+        "router or provider"
+      ],
+      "changelog": [
+        "internet monitor changelog",
+        "release notes",
+        "new version",
+        "updates"
+      ],
+      "about": [
+        "about internet monitor",
+        "open source",
+        "elastic license",
+        "Khaymah"
+      ],
+      "contact": [
+        "contact internet monitor",
+        "internet monitor help",
+        "whatsapp group",
+        "discord"
+      ],
+      "support": [
+        "donate",
+        "support internet monitor",
+        "paypal",
+        "instapay"
+      ],
+      "privacy": [
+        "privacy policy",
+        "no tracking",
+        "local data",
+        "no account"
+      ],
+      "terms": [
+        "terms of use",
+        "elastic license 2.0",
+        "free for commercial use",
+        "no warranty"
+      ]
+    },
+    "answer": {
+      "download": "Internet Monitor is a free download for Windows 10 and 11, macOS, Linux and Raspberry Pi. Download one file, start it, and it begins recording your internet outages right away.",
+      "guide": "To prove your internet keeps dropping, install Internet Monitor, leave it running, and send your provider the report and evidence file it builds from its own measurements.",
+      "tutorial": "This video walks through Internet Monitor's settings one by one, with subtitles in English, Arabic, French, Turkish and Urdu.",
+      "faq": "Internet Monitor checks your connection every few seconds in three ways and records every outage with its time, length and cause. These answers explain how it works.",
+      "changelog": "Every Internet Monitor release, newest first: new features, improvements, fixes and security updates, plus the notes of the version being tested now.",
+      "about": "Internet Monitor is a free app by Khaymah that runs on your own computer, records every internet outage, and tells you whether the problem is at home or at your provider.",
+      "contact": "You can reach the Internet Monitor team on WhatsApp, Discord, by email or on GitHub. Bug reports and feature requests go to GitHub so others can follow them.",
+      "support": "Internet Monitor is free for everyone. Donations through PayPal, Vodafone Cash or InstaPay are optional and help keep it free.",
+      "privacy": "Internet Monitor keeps all its data on your computer. It has no account, no analytics and no tracking, and only connects to the places listed below.",
+      "terms": "Internet Monitor is free for personal and commercial use under the Elastic License 2.0 and comes without a warranty."
+    }
   },
   "root": {
     "title": "Internet Monitor — choose your language",

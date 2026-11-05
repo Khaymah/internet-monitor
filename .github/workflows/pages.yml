@@ -10,9 +10,8 @@ on:
       - "docs/**"
       - "web/locales/**"
       - "web/public/tutorial/**"
-      - "web/src/content/faq.ts"
-      - "web/src/content/legal.ts"
-      - "web/src/styles/tokens.css"
+      - "web/src/content/**"
+      - "web/src/styles/**"
       - "internal/assets/favicon.png"
       - "CHANGELOG.md"
       - "PRIVACY.md"
@@ -38,6 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          fetch-depth: 0
           ref: ${{ github.event_name == 'release' && github.event.repository.default_branch || github.ref }}
 
       - uses: oven-sh/setup-bun@v2
@@ -51,6 +51,9 @@ jobs:
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
+          BING_SITE_VERIFICATION: ${{ vars.BING_SITE_VERIFICATION }}
+          YANDEX_VERIFICATION: ${{ vars.YANDEX_VERIFICATION }}
         run: bun site/build.mjs
 
       - name: Check links
