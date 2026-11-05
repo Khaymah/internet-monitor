@@ -307,7 +307,7 @@ jobs:
     runs-on: windows-latest
     continue-on-error: true
     needs: [version, web, windows-tray, windows-gui]
-    if: ${{ always() && needs.windows-tray.result == 'success' && needs.windows-gui.result == 'success' }}
+    if: ${{ always() && vars.STORE_BUILD == 'true' && needs.windows-tray.result == 'success' && needs.windows-gui.result == 'success' }}
     steps:
       - uses: actions/checkout@v7
 
@@ -430,7 +430,7 @@ jobs:
   # ══════════════════════════════════════════════════════════════
   release:
     name: "🚀 Auto Release"
-    needs: [version, windows-tray, windows-gui, macos, linux, headless, msix]
+    needs: [version, windows-tray, windows-gui, macos, linux, headless]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && needs.version.outputs.new_tag != ''
     concurrency:
@@ -447,12 +447,6 @@ jobs:
           pattern: "{windows-tray,windows-gui,macos,linux,headless}"
           merge-multiple: true
           path: dist/
-
-      - uses: actions/download-artifact@v8
-        continue-on-error: true
-        with:
-          name: msix
-          path: store/
 
       - name: Verify every release binary is present
         run: |
@@ -539,10 +533,3 @@ jobs:
             dist/internet-monitor-headless-linux-armv7
             dist/SHA256SUMS
           body_path: release-notes.md
-
-      - name: Attach the Store package
-        if: ${{ hashFiles('store/internet-monitor-store.msix') != '' }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ needs.version.outputs.new_tag }}
-        run: gh release upload "$TAG" store/internet-monitor-store.msix --repo "$GITHUB_REPOSITORY" --clobber

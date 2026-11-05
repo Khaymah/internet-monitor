@@ -4,8 +4,27 @@ Text for Partner Center → Store listings. The package declares English and Ara
 both listings are needed. "What's new in this version" stays empty on the first
 submission. Each product feature is at most 200 characters.
 
-Screenshots: `docs/ar/screenshot-*.png` (Arabic) and `docs/screenshot-*.png` (English),
-all larger than 1366 × 768. Suggested order: dashboard, logs, speed-result, notifications.
+Screenshots: `docs/store/ar/` (Arabic listing) and `docs/store/en/` (English listing),
+1920 × 1080, in upload order: overview, complaints, monthly report, history. They show
+2.0.4-rc.6 with sample data.
+
+## Remaining Partner Center fields
+
+| Section | Value |
+| ------- | ----- |
+| Pricing and availability → Markets | All markets |
+| Pricing and availability → Pricing | Free |
+| Pricing and availability → Visibility | Public audience, discoverable in the Store |
+| Properties → Category | Utilities + tools (subcategory: none) |
+| Properties → Privacy policy URL | `https://github.com/Khaymah/internet-monitor/blob/master/PRIVACY.md` |
+| Properties → Website | `https://github.com/Khaymah/internet-monitor` |
+| Properties → Support contact info | `https://github.com/Khaymah/internet-monitor/issues` |
+| Properties → Product declarations | Leave all unchecked |
+| Properties → System requirements | Leave every hardware item unchecked and every value "Not specified" |
+| Age ratings | Questionnaire: no violence, no user-generated content shared with others, no purchases, no location sharing. "Does the app share the user's data with third parties?" — No. Expected rating: 3+ / Everyone |
+| Packages | The `.msix` from the `msix` CI artifact of a final (non-rc) version |
+| Submission options → Notes for certification | "Desktop (Win32) app with runFullTrust. It runs a local monitoring service, a tray icon, and the system's tracert and netsh tools. No account or sign-in is needed." |
+| Restricted capability `runFullTrust` | Same text as the certification notes |
 
 ---
 
