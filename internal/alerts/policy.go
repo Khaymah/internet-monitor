@@ -17,6 +17,7 @@ const (
 	KindTest     Kind = "test"
 	KindWeekly   Kind = "weekly"
 	KindNudge    Kind = "nudge"
+	KindQuota    Kind = "quota"
 )
 
 type Channel string
@@ -95,7 +96,7 @@ func switchesFor(kind Kind, n config.Notifications) config.ChannelSwitches {
 		return n.Events.Restored
 	case KindSpeed:
 		return n.Events.Speed
-	case KindWeekly, KindNudge:
+	case KindWeekly, KindNudge, KindQuota:
 		return n.Events.Weekly
 	case KindTest:
 		return config.ChannelSwitches{Desktop: true}

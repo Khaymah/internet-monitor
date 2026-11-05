@@ -9,6 +9,7 @@ import (
 	"internet-monitor/internal/alerts"
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/logger"
+	"internet-monitor/internal/router"
 	"internet-monitor/internal/updater"
 	"net"
 	"net/http"
@@ -27,6 +28,7 @@ type Hooks struct {
 	Restart          func()
 	SpeedResult      func(event logger.SpeedTestEvent, thresholdMbps float64, below bool)
 	SendWeekly       func() bool
+	Router           func() router.Snapshot
 }
 
 type Options struct {
@@ -142,6 +144,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/timeline", s.serveTimeline)
 	mux.HandleFunc("GET /api/seals", s.serveSeals)
 	mux.HandleFunc("GET /api/insights", s.serveInsights)
+	mux.HandleFunc("GET /api/router", s.serveRouter)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)

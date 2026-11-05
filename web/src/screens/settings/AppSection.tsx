@@ -162,6 +162,21 @@ export function AppSection({ draft, set, err }: SectionProps) {
             describedBy="seal-ts-hint"
           />
         </div>
+        <hr className="divider full" />
+        <div className="switch-row full">
+          <div className="field">
+            <span className="field-label">{t("f_router")}</span>
+            <span className="field-hint" id="router-hint">
+              {t("f_router_hint")}
+            </span>
+          </div>
+          <Switch
+            checked={draft.router_status}
+            onChange={(v) => set("router_status", v)}
+            label={t("f_router")}
+            describedBy="router-hint"
+          />
+        </div>
         <UpdatesRow />
       </div>
     </Card>

@@ -72,6 +72,8 @@ func (r *fakeRemote) SendWeekly(string, types.WeeklySummary, types.Targets) {}
 
 func (r *fakeRemote) SendNudge(string, int, int, types.Targets) {}
 
+func (r *fakeRemote) SendNotice(string, string, string, any, types.Targets) {}
+
 type fakeDesktop struct {
 	mu     sync.Mutex
 	toasts []Toast

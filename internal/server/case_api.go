@@ -12,6 +12,7 @@ import (
 	"internet-monitor/internal/insights"
 	"internet-monitor/internal/jsonl"
 	"internet-monitor/internal/report"
+	"internet-monitor/internal/router"
 	"internet-monitor/internal/seal"
 	"internet-monitor/internal/trace"
 	"internet-monitor/internal/types"
@@ -116,6 +117,7 @@ func (s *Server) buildReport(month string, now time.Time) reportView {
 	report.MarkRestarts(&sum, readMonthly[report.Startup](dir, report.SystemPrefix, month))
 	integrity, _ := seal.Verify(dir, now)
 	attachRoutes(sum.Events, readMonthly[trace.Trace](dir, trace.Prefix, month))
+	attachRouter(sum.Events, readMonthly[router.Status](dir, router.Prefix, month))
 	return reportView{
 		MonthlySummary: sum,
 		Speed:          report.SummarizeSpeed(speeds, month, f.Profile.PlanDownloadMbps),
@@ -151,6 +153,9 @@ logs/metrics_*         One line per monitored minute: checks run, checks up, lat
 logs/speedtest_*       Every speed test with download, upload, latency and lag under load.
 logs/traceroute_*      The route to the internet, traced when each outage started:
                        which hops answered and where it stopped.
+logs/router_*          Present when the router shares its status (UPnP): once a minute,
+                       the line state, sync speed, connection state, router uptime
+                       and traffic counters, as the router reported them.
 seals.jsonl            One line per finished day: the SHA-256 of each of that day's log
                        files and the hash of the previous day's seal. Changing any old
                        file, or any older seal, breaks the chain from that day on.
@@ -255,7 +260,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		if e.IsDir() || !strings.HasSuffix(n, ".jsonl") {
 			continue
 		}
-		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix, report.SystemPrefix} {
+		for _, prefix := range []string{"connectivity_", "metrics_", "speedtest_", trace.Prefix, report.SystemPrefix, router.Prefix} {
 			if strings.HasPrefix(n, prefix) && wantFile(n) {
 				names = append(names, n)
 			}
@@ -355,6 +360,7 @@ func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
 	f, _ := s.caseStore().Load()
 	sum := report.SummarizeRange(events, samples, from, to, now)
 	report.MarkRestarts(&sum, jsonl.DecodeDays[report.Startup](dir, report.SystemPrefix, from, to))
+	attachRouter(sum.Events, jsonl.DecodeDays[router.Status](dir, router.Prefix, from, to.AddDate(0, 0, 1)))
 	return rangeEvidence{
 		From:    from.Format(time.RFC3339),
 		To:      to.Format(time.RFC3339),
@@ -482,7 +488,13 @@ func (s *Server) Insights(days int, now time.Time) []insights.Insight {
 			}
 		}
 	}
-	return insights.Analyze(insights.Input{Summary: ev.Summary, Speed: ev.Speed, Grades: grades, Days: days, OpenOrRecentComplaint: recent})
+	in := insights.Input{Summary: ev.Summary, Speed: ev.Speed, Grades: grades, Days: days, OpenOrRecentComplaint: recent}
+	if u, ok := s.PlanUsage(now); ok && u.QuotaBytes > 0 {
+		in.QuotaUsedPct = u.UsedPct
+		in.QuotaProjectedPct = float64(u.ProjectedBytes) / float64(u.QuotaBytes) * 100
+		in.QuotaDaysLeft = u.DaysLeft
+	}
+	return insights.Analyze(in)
 }
 
 func (s *Server) serveInsights(w http.ResponseWriter, r *http.Request) {

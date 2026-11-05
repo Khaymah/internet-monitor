@@ -24,6 +24,7 @@ type EventRow struct {
 	Link         string  `json:"link,omitempty"`
 	WifiSignal   int     `json:"wifi_signal,omitempty"`
 	Route        *Route  `json:"route,omitempty"`
+	Router       string  `json:"router,omitempty"`
 }
 
 type Route struct {

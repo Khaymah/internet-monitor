@@ -68,7 +68,7 @@
   "n_event": "Event",
   "n_cap": "Showing the latest {n} notifications. Older ones are removed automatically.",
   "n_showing": "Showing {n} of {total}",
-  "n_ev_weekly": "Weekly summary",
+  "n_ev_weekly": "Weekly summary and reminders",
   "n_kind_weekly": "Weekly summary",
   "n_weekly_detail": "{outages} outages · {downtime} offline · uptime {uptime}%",
   "n_weekly_hint": "Sent every Monday at 9:00 with last week's outages, downtime, uptime and speed.",
@@ -76,5 +76,6 @@
   "n_weekly_sent": "Weekly summary sent",
   "n_weekly_no_data": "Nothing was monitored in the last 7 days yet.",
   "n_ch_ntfy": "ntfy (phone)",
-  "n_kind_nudge": "Complaint reminder"
+  "n_kind_nudge": "Complaint reminder",
+  "n_kind_quota": "Data plan"
 }

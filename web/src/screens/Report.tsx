@@ -466,6 +466,7 @@ export function Report({ month: initial }: { month: string | null }) {
                           {describeReportCause(t, e.cause)}
                           {e.after_gap ? <div className="muted">{t("report_after_gap")}</div> : null}
                           {e.route ? <div className="muted">{routeText(t, e.route)}</div> : null}
+                          {e.router ? <div className="muted">{t(`router_${e.router}`)}</div> : null}
                           {e.on_battery ? <div className="muted">{t("report_on_battery")}</div> : null}
                           {e.link === "wifi" ? (
                             <div className="muted">

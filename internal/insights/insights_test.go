@@ -62,3 +62,32 @@ func TestAnalyzeAllGood(t *testing.T) {
 		t.Fatalf("got %+v", got)
 	}
 }
+
+func TestAnalyzeRouterAndQuota(t *testing.T) {
+	s := report.MonthlySummary{
+		WindowSeconds:  7 * 86400,
+		CoveragePct:    99,
+		Disconnections: 3,
+		Causes:         map[string]report.CauseStat{"tcp": {Outages: 3}},
+		Events: []report.EventRow{
+			{Type: "disconnected", Router: "line_down"},
+			{Type: "disconnected", Router: "router_restarted"},
+			{Type: "disconnected", Router: "router_restarted"},
+			{Type: "disconnected", Router: "line_down", OnBattery: true},
+		},
+	}
+	got := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 62, QuotaProjectedPct: 140, QuotaDaysLeft: 12}))
+	if got["line_sync"].Vars["n"] != 1 {
+		t.Errorf("line_sync must count only outages not explained by power: %v", got["line_sync"])
+	}
+	if got["router_restarts"].Vars["n"] != 2 {
+		t.Errorf("router_restarts = %v", got["router_restarts"])
+	}
+	if q := got["quota_pace"]; q.Vars["pct"] != 62.0 || q.Vars["days"] != 12 {
+		t.Errorf("quota_pace = %v", q)
+	}
+	calm := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 40, QuotaProjectedPct: 90, QuotaDaysLeft: 12}))
+	if _, ok := calm["quota_pace"]; ok {
+		t.Error("no quota warning when the plan will last")
+	}
+}

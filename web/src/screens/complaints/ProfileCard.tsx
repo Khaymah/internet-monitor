@@ -20,6 +20,8 @@ interface ProfileDraft {
   account_number: string;
   monthly_price: string;
   currency: string;
+  quota_gb: string;
+  quota_reset_day: string;
 }
 
 function toDraft(p: CaseProfile): ProfileDraft {
@@ -35,6 +37,8 @@ function toDraft(p: CaseProfile): ProfileDraft {
     account_number: p.account_number,
     monthly_price: n(p.monthly_price ?? 0),
     currency: p.currency ?? "",
+    quota_gb: n(p.quota_gb ?? 0),
+    quota_reset_day: n(p.quota_reset_day ?? 0),
   };
 }
 
@@ -65,6 +69,8 @@ export function ProfileCard({
         account_number: draft.account_number,
         monthly_price: toNumber(draft.monthly_price),
         currency: draft.currency.trim().toUpperCase(),
+        quota_gb: toNumber(draft.quota_gb),
+        quota_reset_day: Math.round(toNumber(draft.quota_reset_day)),
       });
       onSaved(f.profile);
       setDraft(toDraft(f.profile));
@@ -145,6 +151,25 @@ export function ProfileCard({
           onChange={(v) => set("currency", v)}
           placeholder="EGP"
           ltr
+          narrow
+        />
+        <TextField
+          label={t("c_quota")}
+          hint={t("c_quota_hint")}
+          value={draft.quota_gb}
+          onChange={(v) => set("quota_gb", v)}
+          inputMode="decimal"
+          suffix="GB"
+          placeholder={t("c_quota_ph")}
+          narrow
+        />
+        <TextField
+          label={t("c_quota_day")}
+          hint={t("c_quota_day_hint")}
+          value={draft.quota_reset_day}
+          onChange={(v) => set("quota_reset_day", v)}
+          inputMode="numeric"
+          placeholder="1"
           narrow
         />
         <TextField

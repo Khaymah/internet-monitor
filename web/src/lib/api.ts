@@ -10,6 +10,7 @@ import type {
   MonthlyReport,
   NotificationList,
   RangeEvidence,
+  RouterView,
   SpeedTestEvent,
   StartupState,
   TestTargetsResponse,
@@ -148,6 +149,7 @@ export const api = {
     return evidenceZip(`from=${encodeURIComponent(from)}${to ? `&to=${encodeURIComponent(to)}` : ""}`);
   },
   insights: (days: number, signal?: AbortSignal) => get<Insight[]>(`/api/insights?days=${days}`, signal),
+  router: (signal?: AbortSignal) => get<RouterView>("/api/router", signal),
   sendWeekly: () => post<{ ok: boolean }>("/api/weekly/send"),
   timeline: (hours: number, signal?: AbortSignal) => get<Timeline>(`/api/timeline?hours=${hours}`, signal),
   speedHistory: (date: string, signal?: AbortSignal) =>

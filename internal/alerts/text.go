@@ -56,6 +56,22 @@ func NudgeText(lang string, outages, days int) (title, body string) {
 		i18n.T(lang, "notify.nudge.body", i18n.Vars{"outages": outages, "days": days})
 }
 
+func QuotaText(lang string, q Quota) (title, body string) {
+	key := "notify.quota.title_near"
+	if q.Pct >= 100 {
+		key = "notify.quota.title_over"
+	}
+	return i18n.T(lang, key, i18n.Vars{"pct": q.Pct}),
+		i18n.T(lang, "notify.quota.body", i18n.Vars{"used": gb(q.UsedGB), "quota": gb(q.QuotaGB), "days": q.DaysLeft})
+}
+
+func gb(v float64) string {
+	if v < 10 {
+		return fmt.Sprintf("%.1f", v)
+	}
+	return fmt.Sprintf("%.0f", v)
+}
+
 func WeeklyText(lang string, w types.WeeklySummary) (title, body string) {
 	title = i18n.T(lang, "notify.weekly.title", nil)
 	if w.Outages == 0 {

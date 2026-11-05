@@ -136,7 +136,16 @@ export interface NotificationSettings {
   reminder_minutes: number;
 }
 
-export type AlertKind = "down" | "degraded" | "restored" | "reminder" | "speed" | "test" | "weekly" | "nudge";
+export type AlertKind =
+  | "down"
+  | "degraded"
+  | "restored"
+  | "reminder"
+  | "speed"
+  | "test"
+  | "weekly"
+  | "nudge"
+  | "quota";
 export type AlertChannel = "desktop" | "sound" | "webhook" | "telegram" | "ntfy";
 export type MuteReason = "disabled" | "quiet_hours" | "sound_off" | "short_outage" | "startup";
 
@@ -188,6 +197,7 @@ export interface Config {
   use_icmp: boolean;
   auto_update_check: boolean;
   seal_timestamp?: boolean;
+  router_status?: boolean;
   tsa_url?: string;
   language: string;
   speed_test: SpeedTestConfig;
@@ -236,6 +246,40 @@ export interface ReportEventRow {
   on_battery?: boolean;
   link?: string;
   wifi_signal?: number;
+  router?: RouterCause;
+}
+
+export type RouterCause = "line_down" | "session_down" | "router_restarted" | "router_online";
+
+export interface RouterStatus {
+  timestamp: string;
+  model?: string;
+  access_type?: string;
+  link_up?: boolean;
+  sync_down_kbps?: number;
+  sync_up_kbps?: number;
+  connected?: boolean;
+  uptime_seconds?: number;
+  has_counters?: boolean;
+}
+
+export interface PlanUsage {
+  from: string;
+  to: string;
+  used_bytes: number;
+  quota_bytes: number;
+  used_pct: number;
+  elapsed_pct: number;
+  projected_bytes: number;
+  days_left: number;
+}
+
+export interface RouterView {
+  enabled: boolean;
+  found: boolean;
+  status?: RouterStatus;
+  error?: string;
+  usage?: PlanUsage;
 }
 
 export interface ReportRoute {
@@ -353,6 +397,8 @@ export interface CaseProfile {
   plan_upload_mbps: number;
   monthly_price?: number;
   currency?: string;
+  quota_gb?: number;
+  quota_reset_day?: number;
   line_number: string;
   account_number: string;
 }
