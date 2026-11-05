@@ -80,10 +80,10 @@
     "description": "Internet Monitor'ü ücretsiz indirin ve Windows, Mac, Linux ve Raspberry Pi için basit adımlarla birkaç dakikada kurun.",
     "eyebrow": "Ücretsiz indirme",
     "h1": "Internet Monitor'ü indirin",
-    "intro": "Ücretsiz, hesap gerekmez. Aşağıdan bilgisayarınızı seçin, tek bir dosya indirin ve kısa adımları izleyin.",
+    "intro": "Ücretsiz, hesap gerekmez. Bilgisayarınıza uygun dosyayı biz seçiyoruz. Büyük düğmeye basın ve kısa adımları izleyin.",
     "latest": "En son sürüm {version}, {date} tarihinde yayınlandı",
-    "detected": "Görünüşe göre {os} kullanıyorsunuz. Size uygun dosya bu:",
-    "pick": "Aşağıdan sisteminizi seçin.",
+    "detected": "{os} kullanıyorsunuz. Bu düğme size uygun.",
+    "detected_pi": "Bu bir Raspberry Pi gibi görünüyor. Sayfanın altındaki Gelişmiş bölümüne bakın.",
     "phone": "Internet Monitor bir bilgisayarda çalışır. İndirmek için bu sayfayı bilgisayarınızda açın. Sonra paneli telefonunuzdan da görebilirsiniz.",
     "os": {
       "windows": "Windows",
@@ -97,13 +97,19 @@
       "linux": "Ubuntu, Debian ve benzerleri",
       "pi": "7/24 çalışır, telefondan veya bilgisayardan açarsınız"
     },
-    "tray": "Simge sürümü (önerilen)",
-    "tray_desc": "Saatin yanında küçük bir simgeyle arka planda sessizce çalışır. Hiçbir kesintiyi kaçırmamak için en iyisi.",
-    "window": "Pencere sürümü",
-    "window_desc": "Diğer uygulamalar gibi kendi penceresinde açılır.",
-    "mac_arm": "Apple çipli Mac (M1, M2, M3, M4…)",
-    "mac_intel": "Intel işlemcili Mac",
+    "get": "{os} için indir",
+    "tray": "Arka planda çalışır (önerilen)",
+    "tray_desc": "Saatin yanında küçük bir simge durur. Tıklayınca paneli istediğiniz zaman açarsınız. Çoğu kişi için en iyi seçim.",
+    "window": "Normal bir program gibi açılır",
+    "window_desc": "Kendi penceresinde açılır. Windows'ta pencereyi saatin yanına küçültebilirsiniz. Mac ve Linux'ta pencereyi kapatırsanız durur.",
+    "pick_first": "Emin değil misiniz? İlkini seçin.",
+    "second_title": "Normal bir program mı istiyorsunuz?",
+    "mac_arm": "Apple çip",
+    "mac_arm_sub": "M1, M2, M3, M4 ve sonrası",
+    "mac_intel": "Intel çip",
+    "mac_intel_sub": "Eski Mac'ler",
     "mac_which": "Hangi Mac'iniz olduğundan emin değil misiniz? Apple menüsüne, sonra **Bu Mac Hakkında**'ya tıklayın. **Çip: Apple** yazıyorsa Apple çipi, **İşlemci: Intel** yazıyorsa Intel'i seçin.",
+    "mac_show_both": "Doğru değil mi? İkisini de göster",
     "pi_64": "Raspberry Pi 4 veya 5 (64 bit)",
     "pi_32": "Raspberry Pi 2 veya 3 ya da 32 bit sistem",
     "pi_amd64": "Diğer Linux bilgisayar veya sunucu (64 bit)",
@@ -114,30 +120,26 @@
     "preview_title": "Sonraki sürümü deneyin (ön sürüm)",
     "preview_body": "{version} sürümü ({date}) en yeni özellikleri içeren bir test sürümüdür ve hâlâ hatalar içerebilir. Uygulama kendiliğinden asla ön sürüme geçmez.",
     "preview_btn": "Ön sürüm dosyalarını gör",
-    "install_title": "Nasıl kurulur",
-    "install_sub": "Yaklaşık iki dakika sürer ve yalnızca bir kez yapılır.",
+    "install_title": "Nasıl başlatılır",
+    "install_sub": "Birkaç hızlı adım, yalnızca ilk seferde.",
     "steps": {
       "windows": [
-        "Yukarıdaki dosyayı indirin.",
-        "Belgeler içinde örneğin **Internet Monitor** adlı yeni bir klasör açın ve dosyayı içine taşıyın. Uygulama kayıtlarını kendi yanında tutar.",
-        "Başlatmak için dosyaya çift tıklayın.",
-        "**Windows bilgisayarınızı korudu** yazan mavi bir pencere çıkarsa **Ek bilgi**'ye, sonra **Yine de çalıştır**'a tıklayın. Bu uyarı bir sorun olduğu için değil, uygulama yeni ve imzasız olduğu için çıkar.",
-        "Saatin yanında küçük bir simge belirir (görmüyorsanız **^** okuna tıklayın). Simgeye tıklayıp **Paneli aç**'ı seçin.",
-        "Panelde **Ayarlar → Uygulama**'yı açın ve **Windows ile başlat**'ı açın; böylece bilgisayar yeniden başladıktan sonra da izlemeye devam eder."
+        "Yukarıdaki büyük düğmeyle dosyayı indirin.",
+        "Başlatmak için çift tıklayın.",
+        "Saatin yanında küçük bir simge arayın. Görmüyorsanız **^** okuna tıklayın.",
+        "Simgeye tıklayın ve **Paneli aç**'ı seçin."
       ],
       "mac": [
-        "Yukarıdan Mac'inize uygun dosyayı indirin.",
-        "Belgeler içinde örneğin **Internet Monitor** adlı yeni bir klasör açın ve dosyayı içine taşıyın.",
-        "**Terminal**'i açın (Spotlight ile arayın), **chmod +x** yazıp bir boşluk bırakın, dosyayı Terminal penceresine sürükleyin ve Enter'a basın. Bu, dosyanın çalışmasına izin verir.",
-        "Dosyaya sağ tıklayın (veya Control ile tıklayın), **Aç**'ı seçin, sonra yine **Aç**'a tıklayın. Bu yalnızca ilk sefer gerekir.",
-        "Mac'iniz dosyanın **tanımlanamayan bir geliştiriciden geldiği için açılamadığını** söyler ve Aç düğmesi göstermezse **Sistem Ayarları → Gizlilik ve Güvenlik**'e gidin, aşağı kaydırın ve **Yine de Aç**'a tıklayın.",
-        "Üstteki menü çubuğunda bir simge belirir. Ona tıklayıp **Paneli aç**'ı seçin."
+        "Mac'inize uygun dosyayı indirin.",
+        "Çalışmasına izin verin, yalnızca bir kez.",
+        "Dosyaya sağ tıklayın, **Aç**'ı seçin, sonra yine **Aç**'a tıklayın.",
+        "Ekranın üstündeki küçük simgeye tıklayın ve **Paneli aç**'ı seçin."
       ],
       "linux": [
-        "Yukarıdaki dosyayı indirin ve ayrı bir klasöre taşıyın.",
-        "Dosyaya sağ tıklayın, **Özellikler → İzinler**'i seçin ve **Dosyanın program olarak çalıştırılmasına izin ver**'i işaretleyin. Ya da terminalde dosya üzerinde **chmod +x** çalıştırın.",
-        "Dosyaya çift tıklayın veya terminalden çalıştırın.",
-        "Paneli simgeden ya da pencere sürümünde uygulama penceresinden açın."
+        "Dosyayı indirin.",
+        "Çalışmasına izin verin, yalnızca bir kez.",
+        "Başlatmak için dosyaya çift tıklayın.",
+        "Küçük simgeye tıklayın ve **Paneli aç**'ı seçin. Normal program sürümünde pencere kendiliğinden açılır."
       ],
       "pi": [
         "Yukarıdan cihazınıza uygun dosyayı indirin.",
@@ -146,11 +148,28 @@
         "Elektrik kesintisinden sonra kendiliğinden başlaması için tam rehberi izleyin."
       ]
     },
+    "warn": {
+      "windows": "**Windows bilgisayarınızı korudu** yazan mavi bir pencere çıkabilir. **Ek bilgi**'ye, sonra **Yine de çalıştır**'a tıklayın. Bu uyarı bir sorun olduğu için değil, uygulama yeni olduğu için çıkar.",
+      "mac": "Mac'iniz dosyanın tanımlanamayan bir geliştiriciden geldiği için açılamadığını söylerse **Sistem Ayarları → Gizlilik ve Güvenlik**'e gidin, aşağı kaydırın ve **Yine de Aç**'a tıklayın."
+    },
+    "more": {
+      "mac": "**Terminal** uygulamasını açın (Spotlight ile arayın). **chmod +x** yazın, bir boşluk bırakın, indirdiğiniz dosyayı pencerenin içine sürükleyin ve Enter'a basın.",
+      "linux": "Dosyaya sağ tıklayın, **Özellikler → İzinler**'i seçin ve **Dosyanın program olarak çalıştırılmasına izin ver**'i işaretleyin. Ya da terminalde dosya üzerinde **chmod +x** çalıştırın."
+    },
+    "folder_tip": "İpucu: Dosyayı kendi klasörüne koyun, örneğin Belgeler içinde **Internet Monitor**. Uygulama kayıtlarını dosyanın yanına kaydeder.",
+    "more_btn": "Nasıl yapılır?",
+    "file_label": "Dosya adı:",
+    "other_title": "Sisteminizi seçin",
+    "other_title_alt": "Başka bir cihaz mı kullanıyorsunuz?",
+    "other_sub": "İndirme düğmesini görmek için başka bir sistem seçin.",
+    "advanced_title": "Gelişmiş",
+    "advanced_sub": "Raspberry Pi, ev sunucuları ve ayrıntıları kontrol etmeyi sevenler için.",
+    "pi_note": "Bu sürümlerin penceresi yoktur. Paneli ağınızdaki başka bir cihazdan açarsınız.",
     "pi_guide": "Tam Raspberry Pi rehberi",
-    "advanced_title": "İleri düzey kullanıcılar için",
     "advanced_sums": "İndirdiğiniz dosyayı SHA256SUMS ile doğrulayın",
     "advanced_all": "GitHub'da tüm sürümler ve sürüm notları",
-    "advanced_source": "Kaynak koddan kendiniz derleyin"
+    "advanced_source": "Kaynak koddan kendiniz derleyin",
+    "help": "Yardım mı lazım? Adım adım rehbere bakın."
   },
   "tutorial": {
     "title": "Video eğitim — Internet Monitor",
@@ -167,48 +186,55 @@
     "next": "Adım adım rehberi okuyun"
   },
   "guide": {
-    "title": "Başlangıç rehberi — 5 adımda ilk şikayetiniz",
+    "title": "Başlangıç rehberi — ilk şikayetiniz 6 adımda",
     "description": "Internet Monitor için basit bir rehber: kurun, açık bırakın ve sağlayıcınıza gerçek ölçümlerle desteklenen bir şikayet gönderin.",
     "eyebrow": "Başlangıç rehberi",
-    "h1": "5 adımda ilk şikayetiniz",
-    "intro": "Teknik bilgi gerekmez. \"İnternetim sürekli kopuyor\"dan sağlayıcınızın geçiştiremeyeceği bir şikayete böyle ulaşırsınız.",
+    "h1": "İlk şikayetiniz 6 adımda",
+    "intro": "Teknik bilgi gerekmez. Resimleri izleyin; \"internetim sürekli kopuyor\"dan operatörünüzün görmezden gelemeyeceği bir şikayete ulaşın.",
     "steps": [
       {
-        "title": "Kurun",
-        "body": "Uygulamayı bilgisayarınıza indirin ve başlatın. İki dakika sürer ve indirme sayfası size yol gösterir."
+        "title": "İndirin ve açın",
+        "body": "İndirme sayfasındaki büyük düğmeye basın, sonra dosyaya çift tıklayın.",
+        "alt": "İndirilen Internet Monitor dosyası, açılmaya hazır"
+      },
+      {
+        "title": "Küçük simgeyi bulun",
+        "body": "Saatin yanına bakın, simgeye tıklayın ve **Paneli aç**'ı seçin.",
+        "alt": "Saatin yanındaki çubukta Internet Monitor simgesi ve Paneli aç yazan menüsü"
       },
       {
         "title": "Açık bırakın",
-        "body": "Her gün arka planda çalışsın. İnterneti birkaç saniyede bir kontrol eder. En iyi kanıtı açık kalan ve modeme kabloyla bağlı bir bilgisayar verir. Bilgisayarın kapalı ya da uykuda olduğu zamanlar kesinti olarak değil, \"izlenmedi\" olarak işaretlenir."
+        "body": "Bilgisayarı açık tutun. Uygulama gün boyu internetinizi kontrol eder ve her kopmayı not eder.",
+        "alt": "Bağlı yazan ana ekran"
       },
       {
         "title": "Hat bilgilerinizi girin",
-        "body": "Panelde **Şikayetler**'i açın ve ülkenizi, sağlayıcınızı, paket hızınızı ve hat numaranızı girin. Bunlar yalnızca bilgisayarınızda saklanır ve şikayetinizi doldurmak için kullanılır."
+        "body": "**Şikayetler**'i açın ve operatörünüzü ve tarifenizi yazın. Bunlar yalnızca bilgisayarınızda kalır.",
+        "alt": "Şikayetler sayfasındaki İnternet hattınız formu"
       },
       {
-        "title": "Kesinti olunca Şikayetler'i açın",
-        "body": "**Son 7 günde hattınız** kartı neler olduğunu gösterir. Hattınız koptuysa şikayet kaydetmenizi önerir. Sağlayıcınızı arayın ve size verdikleri şikayet numarasını not edin."
+        "title": "İnternet koptuğunda Şikayetler'i açın",
+        "body": "Son 7 gündeki her kopmayı listeler.",
+        "alt": "Şikayetler menüsü ve son 7 günü gösteren kart, Şikayet kaydet düğmesinin yanında"
       },
       {
-        "title": "Kanıtı gönderin",
-        "body": "Şikayetinizi açın ve kesintilerinizi, sürelerini ve hızınızı içeren hazır bir mesaj için **Metni kopyala**'ya basın. Kanıt dosyası için **Kanıtı indir (ZIP)**'e basın ve ikisini de sağlayıcınıza gönderin. Zamanında yanıt vermezlerse sayfa, düzenleyici kuruma nasıl başvuracağınızı gösterir."
+        "title": "Metni kopyalayın, kanıtı indirin",
+        "body": "**Metni kopyala** ve **Kanıtı indir (ZIP)** düğmelerine basın, sonra ikisini de operatörünüze gönderin.",
+        "alt": "Metni kopyala ve Kanıtı indir (ZIP) düğmeleri"
       }
     ],
+    "art": {
+      "file": "internet-monitor",
+      "clock": "12:30",
+      "menu": "Paneli aç"
+    },
     "tip_title": "Bilmekte fayda var",
     "tips": [
       "Aylık rapor (Geçmiş → Aylık rapor → Yazdır veya PDF olarak kaydet) tüm ayı tek sayfada özetler.",
-      "Hızınızı tek seferlik değil zaman içinde göstermek için Ayarlar'dan zamanlanmış hız testlerini açın.",
       "İnternet kesildiğinde uyarılar Telegram, Discord veya ntfy ile telefonunuza gelebilir."
     ],
-    "pi_title": "Raspberry Pi'de 7/24 çalıştırın",
-    "pi_intro": "En güçlü kanıt hiç uyumayan bir cihazdan gelir. Uykuya geçen bir dizüstü bilgisayar boşluklar bırakır. Modeme kabloyla bağlı küçük bir Raspberry Pi gece gündüz izler ve paneli telefonunuzdan açarsınız.",
-    "pi_steps": [
-      "Raspberry Pi dosyasını indirin: Pi 4 veya 5 için **arm64**, Pi 2 veya 3 için **armv7**.",
-      "Çalıştırılabilir yapın ve evdeki diğer cihazlar erişebilsin diye **--listen 0.0.0.0** ile başlatın.",
-      "Özel anahtarınızı içeren bir bağlantı (ve bir QR kodu) yazdırır. Telefon kamerasıyla okutun, panel açılır. Bu bağlantıyı kimseyle paylaşmayın.",
-      "Tam rehberdeki birkaç satırla elektrik kesintisinden sonra kendiliğinden başlamasını sağlayın. Docker ile de çalışır."
-    ],
-    "pi_more": "Tam Raspberry Pi ve Docker rehberi (İngilizce)",
+    "advanced_note": "7/24 bir Raspberry Pi'de çalışsın mı? İndirme sayfasındaki Gelişmiş bölümüne bakın.",
+    "advanced_btn": "Gelişmiş: Raspberry Pi",
     "cta": "Internet Monitor'ü indir"
   },
   "faq": {

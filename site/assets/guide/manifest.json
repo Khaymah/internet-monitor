@@ -1,0 +1,162 @@
+{
+ "ar/details-dark": {
+  "w": 900,
+  "h": 1064
+ },
+ "ar/details-light": {
+  "w": 900,
+  "h": 1064
+ },
+ "ar/send-dark": {
+  "w": 900,
+  "h": 427
+ },
+ "ar/send-light": {
+  "w": 900,
+  "h": 427
+ },
+ "ar/status-dark": {
+  "w": 900,
+  "h": 149
+ },
+ "ar/status-light": {
+  "w": 900,
+  "h": 149
+ },
+ "ar/trouble-dark": {
+  "w": 900,
+  "h": 363
+ },
+ "ar/trouble-light": {
+  "w": 900,
+  "h": 363
+ },
+ "en/details-dark": {
+  "w": 900,
+  "h": 1090
+ },
+ "en/details-light": {
+  "w": 900,
+  "h": 1090
+ },
+ "en/send-dark": {
+  "w": 900,
+  "h": 426
+ },
+ "en/send-light": {
+  "w": 900,
+  "h": 426
+ },
+ "en/status-dark": {
+  "w": 900,
+  "h": 149
+ },
+ "en/status-light": {
+  "w": 900,
+  "h": 149
+ },
+ "en/trouble-dark": {
+  "w": 900,
+  "h": 364
+ },
+ "en/trouble-light": {
+  "w": 900,
+  "h": 364
+ },
+ "fr/details-dark": {
+  "w": 900,
+  "h": 1114
+ },
+ "fr/details-light": {
+  "w": 900,
+  "h": 1114
+ },
+ "fr/send-dark": {
+  "w": 900,
+  "h": 426
+ },
+ "fr/send-light": {
+  "w": 900,
+  "h": 426
+ },
+ "fr/status-dark": {
+  "w": 900,
+  "h": 149
+ },
+ "fr/status-light": {
+  "w": 900,
+  "h": 149
+ },
+ "fr/trouble-dark": {
+  "w": 900,
+  "h": 384
+ },
+ "fr/trouble-light": {
+  "w": 900,
+  "h": 384
+ },
+ "tr/details-dark": {
+  "w": 900,
+  "h": 1090
+ },
+ "tr/details-light": {
+  "w": 900,
+  "h": 1090
+ },
+ "tr/send-dark": {
+  "w": 900,
+  "h": 426
+ },
+ "tr/send-light": {
+  "w": 900,
+  "h": 426
+ },
+ "tr/status-dark": {
+  "w": 900,
+  "h": 149
+ },
+ "tr/status-light": {
+  "w": 900,
+  "h": 149
+ },
+ "tr/trouble-dark": {
+  "w": 900,
+  "h": 384
+ },
+ "tr/trouble-light": {
+  "w": 900,
+  "h": 384
+ },
+ "ur/details-dark": {
+  "w": 900,
+  "h": 1113
+ },
+ "ur/details-light": {
+  "w": 900,
+  "h": 1113
+ },
+ "ur/send-dark": {
+  "w": 900,
+  "h": 427
+ },
+ "ur/send-light": {
+  "w": 900,
+  "h": 427
+ },
+ "ur/status-dark": {
+  "w": 900,
+  "h": 149
+ },
+ "ur/status-light": {
+  "w": 900,
+  "h": 149
+ },
+ "ur/trouble-dark": {
+  "w": 900,
+  "h": 375
+ },
+ "ur/trouble-light": {
+  "w": 900,
+  "h": 375
+ }
+}
