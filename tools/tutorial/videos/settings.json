@@ -1,7 +1,8 @@
 {
-  "voice": "en_US-lessac-medium (rhasspy/piper-voices v1.0.0)",
+  "title": "Internet Monitor: the Settings page",
+  "path": "/settings",
+  "ready": ".settings-layout",
   "css": "#phone .phone-qr-code, #phone bdi { filter: blur(9px); }",
-  "say": {"ntfy": "notify", "TCP": "T C P", "HTTP": "H T T P", "DNS": "D N S", "URLs": "U R Ls", "MP3": "M P 3", "WAV": "wave", "ID": "I D", "GitHub": "Git Hub"},
   "scenes": [
     {
       "id": "welcome", "caption": "Settings", "path": "/settings",
@@ -437,13 +438,13 @@
     },
     {
       "id": "again", "caption": "Watch again", "path": "/settings",
-      "targets": [{"css": ".page-head a", "text": "Watch the settings tour"}, {"css": ".about-nav a", "text": "Settings tour"}],
+      "targets": [".page-head .tour-link", {"css": ".about-nav a", "text": "Video tours"}],
       "text": {
-        "en": "To watch this tour again, press Watch the settings tour at the top of Settings, or Settings tour in the sidebar. Thanks for watching!",
-        "ar": "عشان تتفرّج على الجولة دي تاني، دوس «اتفرّج على جولة الإعدادات» فوق في الإعدادات، أو «جولة في الإعدادات» في القايمة الجانبية. شكراً إنك اتفرّجت!",
-        "fr": "Pour revoir cette visite : « Regarder la visite des paramètres » en haut des Paramètres, ou « Visite des paramètres » dans la barre latérale. Merci d'avoir regardé !",
-        "tr": "Bu turu yeniden izlemek için Ayarlar'ın üstündeki “Ayarlar turunu izle”ye ya da kenar çubuğundaki “Ayarlar turu”na basın. İzlediğiniz için teşekkürler!",
-        "ur": "یہ تعارف دوبارہ دیکھنے کے لیے سیٹنگز کے اوپر “سیٹنگز کا تعارف دیکھیں” دبائیں، یا سائیڈ بار میں “سیٹنگز کا تعارف”۔ دیکھنے کا شکریہ!"
+        "en": "To watch this tour again, press How this page works at the top of Settings, or open Video tours in the sidebar, where every page has its own video. Thanks for watching!",
+        "ar": "عشان تتفرّج على الجولة دي تاني، دوس «الصفحة دي بتشتغل إزاي» فوق في الإعدادات، أو افتح «جولات بالفيديو» في القايمة الجانبية، وهتلاقي فيديو لكل صفحة. شكراً إنك اتفرّجت!",
+        "fr": "Pour revoir cette visite : « Comment marche cette page » en haut des Paramètres, ou « Visites en vidéo » dans la barre latérale, avec une vidéo pour chaque page. Merci d'avoir regardé !",
+        "tr": "Bu turu yeniden izlemek için Ayarlar'ın üstündeki “Bu sayfa nasıl çalışır”a basın ya da kenar çubuğunda, her sayfanın kendi videosunun olduğu “Video turlar”ı açın. İzlediğiniz için teşekkürler!",
+        "ur": "یہ تعارف دوبارہ دیکھنے کے لیے سیٹنگز کے اوپر “یہ صفحہ کیسے کام کرتا ہے” دبائیں، یا سائیڈ بار میں “ویڈیو تعارف” کھولیں، جہاں ہر صفحے کی اپنی ویڈیو ہے۔ دیکھنے کا شکریہ!"
       }
     }
   ]

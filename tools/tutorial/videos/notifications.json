@@ -1,0 +1,140 @@
+{
+  "title": "Internet Monitor: the Notification history page",
+  "path": "/notifications",
+  "ready": ".notice",
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Notification history", "poster": true,
+      "targets": [".page-head"],
+      "text": {
+        "en": "Notification history lists every alert the app raised, where it was sent, and what was held back. Open it from Notifications in the sidebar, or from the bell at the top.",
+        "ar": "«سجل الإشعارات» فيه كل تنبيه طلّعه التطبيق، واتبعت فين، وإيه اللي اتحجب. افتحه من «الإشعارات» في القايمة الجانبية، أو من الجرس اللي فوق.",
+        "fr": "L'« Historique des notifications » liste chaque alerte de l'application, où elle a été envoyée, et ce qui a été retenu. Ouvrez-le depuis « Notifications » dans la barre latérale, ou depuis la cloche en haut.",
+        "tr": "“Bildirim geçmişi”, uygulamanın verdiği her uyarıyı, nereye gönderildiğini ve neyin bekletildiğini listeler. Kenar çubuğundaki “Bildirimler”den ya da üstteki zilden açın.",
+        "ur": "“نوٹیفکیشن ہسٹری” میں ایپ کا ہر الرٹ ہے، وہ کہاں بھیجا گیا، اور کیا روکا گیا۔ اسے سائیڈ بار میں “نوٹیفکیشنز” سے، یا اوپر والی گھنٹی سے کھولیں۔"
+      }
+    },
+    {
+      "id": "days", "caption": "Grouped by day",
+      "targets": [".notice-day-title", {"css": ".notice", "index": 0}, {"css": ".notice", "index": 1}],
+      "text": {
+        "en": "Alerts are grouped by day, newest first. The New label marks the ones you haven't seen yet.",
+        "ar": "التنبيهات متقسّمة بالأيام، الأحدث الأول. وعلامة «جديد» على اللي لسه ماشفتهاش.",
+        "fr": "Les alertes sont regroupées par jour, les plus récentes d'abord. L'étiquette « Nouveau » marque celles que vous n'avez pas encore vues.",
+        "tr": "Uyarılar güne göre gruplanır, en yenisi önce gelir. “Yeni” etiketi henüz görmediklerinizi işaretler.",
+        "ur": "الرٹس دن کے حساب سے گروپ ہوتے ہیں، نئے سب سے پہلے۔ “نیا” کا لیبل ان پر ہوتا ہے جو آپ نے ابھی نہیں دیکھے۔"
+      }
+    },
+    {
+      "id": "alert", "caption": "One alert",
+      "targets": [{"css": ".notice", "text": "08:41"}],
+      "text": {
+        "en": "Each alert shows its type, its time, and a short detail. Here the connection was lost because every check failed.",
+        "ar": "كل تنبيه بيوضح نوعه، ووقته، وتفصيلة صغيرة. هنا «النت قطع» عشان كل الفحوصات فشلت.",
+        "fr": "Chaque alerte montre son type, son heure et un court détail. Ici, « Connexion perdue », parce que toutes les vérifications ont échoué.",
+        "tr": "Her uyarı türünü, saatini ve kısa bir ayrıntıyı gösterir. Burada tüm kontroller başarısız olduğu için “Bağlantı kesildi”.",
+        "ur": "ہر الرٹ اپنی قسم، وقت اور ایک مختصر تفصیل دکھاتا ہے۔ یہاں “کنکشن ٹوٹ گیا”، کیونکہ ہر چیک ناکام ہوا۔"
+      }
+    },
+    {
+      "id": "sent", "caption": "Where it went",
+      "targets": [{"css": ".notice", "text": "08:41", "find": ".notice-channels"}],
+      "text": {
+        "en": "The small tags show where it went. A tick means it was sent: to this computer's desktop, as a sound, to Telegram, to a webhook, or to your phone through ntfy.",
+        "ar": "العلامات الصغيرة بتوضح التنبيه راح فين. علامة الصح معناها إنه اتبعت: لسطح المكتب على الكمبيوتر ده، أو كصوت، أو لتليجرام، أو لويب هوك، أو للموبايل عن طريق ntfy.",
+        "fr": "Les petites étiquettes montrent où elle est partie. Une coche veut dire envoyée : sur le bureau de cet ordinateur, en son, sur Telegram, vers un webhook, ou sur votre téléphone via ntfy.",
+        "tr": "Küçük etiketler nereye gittiğini gösterir. Onay işareti gönderildiği anlamına gelir: bu bilgisayarın masaüstüne, ses olarak, Telegram'a, bir webhook'a ya da ntfy ile telefonunuza.",
+        "ur": "چھوٹے ٹیگ بتاتے ہیں کہ الرٹ کہاں گیا۔ ٹک کا مطلب ہے بھیج دیا گیا: اس کمپیوٹر کے ڈیسک ٹاپ پر، آواز کی صورت میں، ٹیلی گرام پر، کسی ویب ہک پر، یا ntfy کے ذریعے آپ کے فون پر۔"
+      }
+    },
+    {
+      "id": "held", "caption": "Held back",
+      "targets": [{"css": ".notice", "text": "03:10"}],
+      "text": {
+        "en": "A crossed-out bell means that channel was held back, with the reason. This outage happened at night, so quiet hours kept the desktop and the sound silent, while Telegram and the phone still got it.",
+        "ar": "الجرس المشطوب معناه إن القناة دي اتحجبت، ومكتوب السبب. الانقطاع ده حصل بالليل، فـ«ساعات الهدوء» سكّتت سطح المكتب والصوت، وفي نفس الوقت تليجرام والموبايل وصلهم.",
+        "fr": "Une cloche barrée veut dire que ce canal a été retenu, avec la raison. Cette coupure a eu lieu la nuit : les heures de silence ont fait taire le bureau et le son, mais Telegram et le téléphone l'ont reçue.",
+        "tr": "Üstü çizili zil, o kanalın bekletildiğini ve nedenini gösterir. Bu kesinti gece oldu; sessiz saatler masaüstünü ve sesi susturdu, ama Telegram ve telefon yine de aldı.",
+        "ur": "کٹی ہوئی گھنٹی کا مطلب ہے کہ وہ چینل روکا گیا، اور وجہ لکھی ہے۔ یہ بندش رات کو ہوئی، اس لیے خاموش اوقات نے ڈیسک ٹاپ اور آواز کو چپ رکھا، جبکہ ٹیلی گرام اور فون کو الرٹ پہنچ گیا۔"
+      }
+    },
+    {
+      "id": "reasons", "caption": "Held back",
+      "targets": [{"css": ".notice", "text": "short outage"}],
+      "text": {
+        "en": "Other reasons are a channel you turned off, or an outage shorter than the wait you set. Held-back alerts are still recorded here, so nothing is lost.",
+        "ar": "وفيه أسباب تانية: قناة إنت قافلها، أو انقطاع أقصر من مدة الانتظار اللي حددتها. والتنبيهات اللي اتحجبت بتتسجّل هنا برضه، فمفيش حاجة بتضيع.",
+        "fr": "D'autres raisons : un canal que vous avez désactivé, ou une coupure plus courte que l'attente que vous avez réglée. Les alertes retenues sont quand même enregistrées ici, rien n'est perdu.",
+        "tr": "Diğer nedenler, kapattığınız bir kanal ya da ayarladığınız bekleme süresinden kısa bir kesintidir. Bekletilen uyarılar yine de burada kaydedilir; hiçbir şey kaybolmaz.",
+        "ur": "دوسری وجوہات میں وہ چینل ہے جو آپ نے بند کیا، یا ایسی بندش جو آپ کے مقرر کردہ انتظار سے چھوٹی ہو۔ روکے گئے الرٹس بھی یہاں درج رہتے ہیں، کچھ ضائع نہیں ہوتا۔"
+      }
+    },
+    {
+      "id": "kinds", "caption": "Other alerts",
+      "targets": [{"css": ".notice", "text": "03:20"}],
+      "text": {
+        "en": "You also see Still offline reminders during a long outage, speed test results, the weekly summary, and reminders to follow up on a complaint.",
+        "ar": "وهتلاقي كمان تذكير «النت لسه مقطوع» وقت الانقطاع الطويل، ونتايج قياس السرعة، و«ملخص الأسبوع»، وتذكير إنك تتابع الشكوى.",
+        "fr": "Vous voyez aussi les rappels « Toujours hors ligne » pendant une longue coupure, les résultats des tests de débit, le résumé hebdomadaire, et les rappels pour suivre une réclamation.",
+        "tr": "Uzun bir kesinti sırasında “Hâlâ çevrimdışı” hatırlatmalarını, hız testi sonuçlarını, haftalık özeti ve bir şikayeti takip etme hatırlatmalarını da görürsünüz.",
+        "ur": "آپ لمبی بندش کے دوران “ابھی تک آف لائن” کی یاد دہانیاں، اسپیڈ ٹیسٹ کے نتائج، ہفتہ وار خلاصہ، اور شکایت کی پیروی کی یاد دہانیاں بھی دیکھتے ہیں۔"
+      }
+    },
+    {
+      "id": "filters", "caption": "Filters",
+      "targets": [".notice-filters"],
+      "text": {
+        "en": "Use the filters to show one type of alert, or only the ones that were sent, or only the ones held back.",
+        "ar": "استخدم الفلاتر عشان تعرض نوع واحد من التنبيهات، أو اللي اتبعتت بس، أو اللي اتحجب بس.",
+        "fr": "Utilisez les filtres pour n'afficher qu'un type d'alerte, ou seulement celles envoyées, ou seulement celles retenues.",
+        "tr": "Filtrelerle yalnızca bir uyarı türünü, yalnızca gönderilenleri ya da yalnızca bekletilenleri gösterin.",
+        "ur": "فلٹرز سے صرف ایک قسم کے الرٹ دکھائیں، یا صرف بھیجے گئے، یا صرف روکے گئے۔"
+      }
+    },
+    {
+      "id": "held-only", "caption": "Filters",
+      "setup": [{"click": {"css": ".segmented button", "text": "Held back"}}, {"wait": 500}],
+      "targets": [".notice-filters", {"css": ".notice", "index": 0}, {"css": ".notice", "index": 1}],
+      "text": {
+        "en": "For example, Held back shows only what quiet hours or your settings kept quiet. It's a quick way to check you didn't miss anything important.",
+        "ar": "مثلاً، «اللي اتحجب» بيعرض بس اللي ساعات الهدوء أو إعداداتك سكّتته. طريقة سريعة تتأكد بيها إن مفيش حاجة مهمة فاتتك.",
+        "fr": "Par exemple, « Retenu » n'affiche que ce que les heures de silence ou vos réglages ont fait taire. Un moyen rapide de vérifier que vous n'avez rien manqué d'important.",
+        "tr": "Örneğin “Bekletildi”, yalnızca sessiz saatlerin ya da ayarlarınızın susturduklarını gösterir. Önemli bir şeyi kaçırmadığınızı kontrol etmenin hızlı yoludur.",
+        "ur": "مثلاً “روکے گئے” صرف وہ دکھاتا ہے جو خاموش اوقات یا آپ کی سیٹنگز نے چپ کرائے۔ یہ دیکھنے کا تیز طریقہ ہے کہ کوئی اہم بات رہ تو نہیں گئی۔"
+      }
+    },
+    {
+      "id": "read", "caption": "Mark all as read",
+      "targets": [{"css": ".page-head button", "text": "Mark all as read"}, ".topbar-actions"],
+      "text": {
+        "en": "Mark all as read clears the New labels and the number on the bell at the top.",
+        "ar": "«علّم الكل كمقروء» بيشيل علامات «جديد» والرقم اللي على الجرس فوق.",
+        "fr": "« Tout marquer comme lu » enlève les étiquettes « Nouveau » et le chiffre sur la cloche en haut.",
+        "tr": "“Tümünü okundu say”, “Yeni” etiketlerini ve üstteki zilin üzerindeki sayıyı temizler.",
+        "ur": "“سب کو پڑھا ہوا نشان زد کریں” “نیا” کے لیبل اور اوپر گھنٹی پر لکھا نمبر صاف کر دیتا ہے۔"
+      }
+    },
+    {
+      "id": "settings", "caption": "Choose what goes where",
+      "targets": [{"css": ".sidebar a", "text": "Settings"}],
+      "text": {
+        "en": "To choose what is sent where, set quiet hours, or wait before alerting about short outages, open Settings and go to Notifications. The video tour of Settings explains each option.",
+        "ar": "عشان تختار إيه اللي يتبعت وفين، أو تظبط ساعات الهدوء، أو تستنى شوية قبل ما ينبّهك على الانقطاعات القصيرة، افتح الإعدادات وروح لقسم «الإشعارات». وفيديو الإعدادات بيشرح كل اختيار.",
+        "fr": "Pour choisir quoi envoyer et où, régler les heures de silence, ou attendre avant d'alerter pour les coupures courtes, ouvrez les Paramètres, section « Notifications ». La visite des Paramètres explique chaque option.",
+        "tr": "Neyin nereye gönderileceğini seçmek, sessiz saatleri ayarlamak ya da kısa kesintilerde uyarmadan önce beklemek için Ayarlar'ı açıp “Bildirimler” bölümüne gidin. Ayarlar turu her seçeneği anlatır.",
+        "ur": "کیا کہاں بھیجنا ہے، خاموش اوقات، یا مختصر بندشوں پر الرٹ سے پہلے انتظار طے کرنے کے لیے سیٹنگز کھولیں اور “نوٹیفکیشنز” والے حصے میں جائیں۔ سیٹنگز کی ویڈیو ہر آپشن سمجھاتی ہے۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours",
+      "targets": [".page-head .tour-link"],
+      "text": {
+        "en": "Press How this page works on any page to watch its video. Thanks for watching!",
+        "ar": "دوس «الصفحة دي بتشتغل إزاي» في أي صفحة عشان تتفرّج على الفيديو بتاعها. شكراً إنك اتفرّجت!",
+        "fr": "Appuyez sur « Comment marche cette page » sur n'importe quelle page pour voir sa vidéo. Merci d'avoir regardé !",
+        "tr": "Videosunu izlemek için herhangi bir sayfada “Bu sayfa nasıl çalışır”a basın. İzlediğiniz için teşekkürler!",
+        "ur": "کسی بھی صفحے کی ویڈیو دیکھنے کے لیے وہاں “یہ صفحہ کیسے کام کرتا ہے” دبائیں۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

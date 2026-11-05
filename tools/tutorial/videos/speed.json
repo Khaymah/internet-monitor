@@ -1,0 +1,131 @@
+{
+  "title": "Internet Monitor: the Speed test page",
+  "path": "/speed",
+  "ready": ".page-head",
+  "settle": 1500,
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Speed test",
+      "targets": [".page-head"],
+      "text": {
+        "en": "The Speed test page measures how fast your internet really is, using Cloudflare's servers.",
+        "ar": "صفحة «قياس السرعة» بتقيس النت بتاعك سريع قد إيه فعلاً، عن طريق سيرفرات Cloudflare.",
+        "fr": "La page « Test de débit » mesure la vitesse réelle de votre internet, avec les serveurs de Cloudflare.",
+        "tr": "“Hız testi” sayfası, Cloudflare'in sunucularını kullanarak internetinizin gerçekte ne kadar hızlı olduğunu ölçer.",
+        "ur": "“اسپیڈ ٹیسٹ” کا صفحہ Cloudflare کے سرورز کے ذریعے ناپتا ہے کہ آپ کا انٹرنیٹ اصل میں کتنا تیز ہے۔"
+      }
+    },
+    {
+      "id": "start", "caption": "Start test",
+      "targets": [{"css": "button", "text": "Start test"}],
+      "text": {
+        "en": "Press Start test. A test takes about a minute and uses some data, so on a small data plan, don't run it too often.",
+        "ar": "دوس «ابدأ القياس». القياس بياخد حوالي دقيقة وبيصرف شوية من الباقة، فلو باقتك صغيرة ماتعملهوش كتير.",
+        "fr": "Appuyez sur « Lancer le test ». Un test dure environ une minute et consomme des données : avec un petit forfait, ne le lancez pas trop souvent.",
+        "tr": "“Testi başlat”a basın. Bir test yaklaşık bir dakika sürer ve biraz veri kullanır; küçük bir paketiniz varsa çok sık çalıştırmayın.",
+        "ur": "“ٹیسٹ شروع کریں” دبائیں۔ ایک ٹیسٹ تقریباً ایک منٹ لیتا ہے اور کچھ ڈیٹا خرچ کرتا ہے، اس لیے چھوٹے ڈیٹا پلان پر اسے بار بار نہ چلائیں۔"
+      }
+    },
+    {
+      "id": "running", "caption": "Testing",
+      "setup": [{"click": {"css": "button", "text": "Start test"}}, {"wait": 9000}],
+      "targets": ["[aria-labelledby='speed-status']", ".phases"],
+      "text": {
+        "en": "First the app measures latency, then download, then upload. The gauge shows the live speed in megabits per second, and the box that is lit is the step running now.",
+        "ar": "التطبيق بيقيس الأول زمن الاستجابة، وبعدين التنزيل، وبعدين الرفع. العدّاد بيعرض السرعة على الهوا بالميجابت في الثانية، والمربع المنوّر هو الخطوة اللي شغالة دلوقتي.",
+        "fr": "L'application mesure d'abord la latence, puis le téléchargement, puis l'envoi. La jauge montre la vitesse en direct, en mégabits par seconde, et la case allumée est l'étape en cours.",
+        "tr": "Uygulama önce gecikmeyi, sonra indirmeyi, sonra yüklemeyi ölçer. Gösterge canlı hızı saniyede megabit olarak gösterir; parlayan kutu şu an çalışan adımdır.",
+        "ur": "ایپ پہلے لیٹنسی ناپتی ہے، پھر ڈاؤن لوڈ، پھر اپ لوڈ۔ میٹر میگابٹ فی سیکنڈ میں لائیو اسپیڈ دکھاتا ہے، اور روشن خانہ وہ مرحلہ ہے جو ابھی چل رہا ہے۔"
+      }
+    },
+    {
+      "id": "result", "caption": "The result", "keep": true,
+      "setup": [{"waitFor": ".bufferbloat", "timeout": 150000}, {"wait": 800}],
+      "targets": ["[aria-labelledby='speed-status']"],
+      "text": {
+        "en": "When it finishes, the gauge shows your download speed. If it is below the alert level you set in Settings, a warning says so, and the app can tell you on your phone too.",
+        "ar": "لما يخلص، العدّاد بيعرض سرعة التنزيل. ولو أقل من حد التنبيه اللي حددته في الإعدادات، هيظهرلك تحذير، والتطبيق ممكن يبعتلك على الموبايل كمان.",
+        "fr": "À la fin, la jauge affiche votre débit de téléchargement. S'il est sous le seuil d'alerte réglé dans les Paramètres, un avertissement le signale, et l'application peut aussi vous prévenir sur votre téléphone.",
+        "tr": "Test bitince gösterge indirme hızınızı gösterir. Ayarlar'da belirlediğiniz uyarı sınırının altındaysa bir uyarı bunu söyler; uygulama telefonunuza da haber verebilir.",
+        "ur": "ٹیسٹ ختم ہونے پر میٹر آپ کی ڈاؤن لوڈ اسپیڈ دکھاتا ہے۔ اگر یہ سیٹنگز میں رکھی الرٹ کی حد سے کم ہو تو ایک انتباہ بتاتا ہے، اور ایپ آپ کے فون پر بھی خبر دے سکتی ہے۔"
+      }
+    },
+    {
+      "id": "phases", "caption": "The result", "keep": true,
+      "targets": [".phases"],
+      "text": {
+        "en": "These three boxes hold the results: latency, download and upload. Compare download and upload with the speeds in your contract.",
+        "ar": "المربعات التلاتة دي فيها النتايج: زمن الاستجابة، والتنزيل، والرفع. قارن التنزيل والرفع بالسرعات اللي في عقدك.",
+        "fr": "Ces trois cases contiennent les résultats : latence, téléchargement et envoi. Comparez le téléchargement et l'envoi avec les débits de votre contrat.",
+        "tr": "Bu üç kutu sonuçları tutar: gecikme, indirme ve yükleme. İndirme ve yüklemeyi sözleşmenizdeki hızlarla karşılaştırın.",
+        "ur": "ان تین خانوں میں نتائج ہیں: لیٹنسی، ڈاؤن لوڈ اور اپ لوڈ۔ ڈاؤن لوڈ اور اپ لوڈ کا اپنے کنٹریکٹ کی اسپیڈ سے موازنہ کریں۔"
+      }
+    },
+    {
+      "id": "bufferbloat", "caption": "Lag under load", "keep": true, "poster": true,
+      "targets": [".bufferbloat"],
+      "text": {
+        "en": "Lag under load is graded from A plus to F. It shows how much slower replies get while the line is busy. A or B is good. C or worse means calls and games lag when someone downloads or uploads.",
+        "ar": "«اللاج وقت الضغط» ليه درجة من A+ لحد F. بيوضح الرد بيتأخر قد إيه لما الخط يبقى مشغول. A أو B كويس. C أو أوحش معناه إن المكالمات والألعاب بتهنّج لما حد ينزّل أو يرفع حاجة.",
+        "fr": "La latence sous charge est notée de A+ à F. Elle montre combien les réponses ralentissent quand la ligne est occupée. A ou B, c'est bien. C ou pire veut dire que les appels et les jeux saccadent quand quelqu'un télécharge ou envoie.",
+        "tr": "Yük altında gecikme A+ ile F arasında notlanır. Hat meşgulken yanıtların ne kadar yavaşladığını gösterir. A ya da B iyidir. C ya da daha kötüsü, biri indirme ya da yükleme yaparken aramaların ve oyunların takıldığı anlamına gelir.",
+        "ur": "لوڈ کے دوران لیگ کو A+ سے F تک گریڈ ملتا ہے۔ یہ بتاتا ہے کہ لائن مصروف ہو تو جواب کتنے سست ہو جاتے ہیں۔ A یا B اچھا ہے۔ C یا اس سے برا ہو تو جب کوئی ڈاؤن لوڈ یا اپ لوڈ کرے، کالز اور گیمز اٹکتی ہیں۔"
+      }
+    },
+    {
+      "id": "bufferbloat-fix", "caption": "Lag under load", "keep": true,
+      "targets": [".bufferbloat"],
+      "text": {
+        "en": "The numbers show the delay when idle, while downloading, and while uploading. With a poor grade, turning on SQM or QoS in the router usually fixes it. If the router has no such option, ask your provider.",
+        "ar": "الأرقام بتوضح التأخير والخط فاضي، ووقت التنزيل، ووقت الرفع. لو الدرجة وحشة، تشغيل SQM أو QoS في الراوتر غالباً بيحلها. ولو الراوتر مفيهوش الاختيار ده، اسأل الشركة.",
+        "fr": "Les chiffres montrent le délai au repos, pendant le téléchargement et pendant l'envoi. Avec une mauvaise note, activer SQM ou QoS sur le routeur règle souvent le problème. Si le routeur n'a pas cette option, demandez à votre fournisseur.",
+        "tr": "Sayılar boştayken, indirirken ve yüklerken oluşan gecikmeyi gösterir. Not kötüyse modemde SQM ya da QoS'u açmak genellikle sorunu çözer. Modemde böyle bir seçenek yoksa sağlayıcınıza sorun.",
+        "ur": "نمبر بتاتے ہیں کہ لائن خالی ہو، ڈاؤن لوڈ ہو رہا ہو، اور اپ لوڈ ہو رہا ہو تو کتنی تاخیر ہوتی ہے۔ برا گریڈ ہو تو راؤٹر میں SQM یا QoS آن کرنے سے عموماً ٹھیک ہو جاتا ہے۔ اگر راؤٹر میں یہ آپشن نہ ہو تو پرووائیڈر سے پوچھیں۔"
+      }
+    },
+    {
+      "id": "today", "caption": "Today's tests", "keep": true,
+      "targets": ["[aria-labelledby='speed-history']"],
+      "text": {
+        "en": "Today's tests lists every test from today with its lag grade, and whether you started it yourself or it ran on a schedule.",
+        "ar": "«قياسات النهارده» فيها كل قياسات اليوم بدرجة اللاج بتاعتها، وهل إنت اللي بدأته ولا اشتغل تلقائي.",
+        "fr": "« Tests du jour » liste chaque test d'aujourd'hui avec sa note de latence, et indique si vous l'avez lancé vous-même ou s'il était programmé.",
+        "tr": "“Bugünkü testler”, bugünün her testini gecikme notuyla ve onu sizin mi başlattığınızı yoksa zamanlanmış olarak mı çalıştığını göstererek listeler.",
+        "ur": "“آج کے ٹیسٹ” میں آج کا ہر ٹیسٹ اس کے لیگ گریڈ کے ساتھ ہے، اور یہ کہ آپ نے خود چلایا یا شیڈول کے مطابق چلا۔"
+      }
+    },
+    {
+      "id": "schedule", "caption": "Automatic tests", "keep": true,
+      "targets": [{"css": "[aria-labelledby='speed-history'] tbody tr", "text": "Scheduled"}, {"css": "[aria-labelledby='speed-history'] tbody tr", "text": "Scheduled", "index": 1}],
+      "text": {
+        "en": "To test automatically, for example every two hours, set Run automatically every in Settings. Tests at different times of day show when your line slows down, such as in the evening.",
+        "ar": "عشان يقيس لوحده، مثلاً كل ساعتين، اضبط «قياس تلقائي كل» في الإعدادات. القياسات في أوقات مختلفة من اليوم بتبيّن الخط بيبطأ إمتى، زي بالليل مثلاً.",
+        "fr": "Pour tester automatiquement, par exemple toutes les deux heures, réglez « Lancer automatiquement toutes les » dans les Paramètres. Des tests à différents moments montrent quand votre ligne ralentit, par exemple le soir.",
+        "tr": "Otomatik test için, örneğin iki saatte bir, Ayarlar'da “Otomatik çalıştırma aralığı”nı ayarlayın. Günün farklı saatlerindeki testler hattınızın ne zaman yavaşladığını gösterir; örneğin akşamları.",
+        "ur": "خود بخود ٹیسٹ کے لیے، مثلاً ہر دو گھنٹے بعد، سیٹنگز میں “خود بخود چلائیں، ہر” سیٹ کریں۔ دن کے مختلف اوقات کے ٹیسٹ دکھاتے ہیں کہ لائن کب سست ہوتی ہے، جیسے شام کو۔"
+      }
+    },
+    {
+      "id": "evidence", "caption": "Evidence", "keep": true,
+      "targets": ["[aria-labelledby='speed-history']"],
+      "text": {
+        "en": "Every test is saved. The monthly report compares them with the speed you pay for, which is strong evidence for a complaint.",
+        "ar": "كل قياس بيتحفظ. والتقرير الشهري بيقارنهم بالسرعة اللي بتدفع تمنها، وده إثبات قوي في الشكوى.",
+        "fr": "Chaque test est enregistré. Le rapport mensuel les compare au débit que vous payez, ce qui est une preuve solide pour une réclamation.",
+        "tr": "Her test kaydedilir. Aylık rapor bunları parasını ödediğiniz hızla karşılaştırır; bu da şikayet için güçlü bir kanıttır.",
+        "ur": "ہر ٹیسٹ محفوظ ہوتا ہے۔ ماہانہ رپورٹ ان کا موازنہ اس اسپیڈ سے کرتی ہے جس کے آپ پیسے دیتے ہیں، جو شکایت کے لیے مضبوط ثبوت ہے۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours", "keep": true,
+      "targets": [".page-head .tour-link"],
+      "text": {
+        "en": "Press How this page works on any page to watch its video. Thanks for watching!",
+        "ar": "دوس «الصفحة دي بتشتغل إزاي» في أي صفحة عشان تتفرّج على الفيديو بتاعها. شكراً إنك اتفرّجت!",
+        "fr": "Appuyez sur « Comment marche cette page » sur n'importe quelle page pour voir sa vidéo. Merci d'avoir regardé !",
+        "tr": "Videosunu izlemek için herhangi bir sayfada “Bu sayfa nasıl çalışır”a basın. İzlediğiniz için teşekkürler!",
+        "ur": "کسی بھی صفحے کی ویڈیو دیکھنے کے لیے وہاں “یہ صفحہ کیسے کام کرتا ہے” دبائیں۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

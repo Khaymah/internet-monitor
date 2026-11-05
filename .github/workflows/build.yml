@@ -557,13 +557,22 @@ jobs:
             dist/SHA256SUMS
           body_path: release-notes.md
 
-      - name: Upload the settings tour video
+      - name: Upload the video tours
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.version.outputs.new_tag }}
         run: |
-          gh release upload "$TAG" docs/tutorial/internet-monitor-tutorial.mp4 \
-            --repo "$GITHUB_REPOSITORY" --clobber
+          shopt -s nullglob
+          videos=(docs/tutorial/*.mp4)
+          if [ ${#videos[@]} -eq 0 ]; then
+            echo "::error::No videos in docs/tutorial/"
+            exit 1
+          fi
+          mkdir -p tours
+          for f in "${videos[@]}"; do
+            cp "$f" "tours/internet-monitor-tour-$(basename "$f")"
+          done
+          gh release upload "$TAG" tours/*.mp4 --repo "$GITHUB_REPOSITORY" --clobber
 
       # IMPORTANT: a release made with GITHUB_TOKEN does not trigger other workflows, so the website is rebuilt here.
       - name: Update the website
