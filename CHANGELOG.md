@@ -15,6 +15,10 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Website redesign and SEO** (rc.11): site pages reuse the app's styles, icons and
+  content (FAQ, What's new, Privacy, plus new About, Contact, Support, Terms), the app's
+  theme animation, per-page SEO metadata, JSON-LD, OG images, `llms.txt`; the link check
+  also checks SEO.
 - **Search engine verification** (rc.11): the website adds Google, Bing and Yandex
   verification tags from the repository variables of the same names.
 - **Website** (rc.9): `site/`, a static GitHub Pages site in five languages (home,
