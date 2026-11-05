@@ -18,9 +18,9 @@
   "col_event": "ایونٹ",
   "col_duration": "دورانیہ",
   "col_cause": "وجہ",
-  "export_day": "دن ایکسپورٹ کریں (CSV)",
-  "export_7": "پچھلے 7 دن (CSV)",
-  "export_30": "پچھلے 30 دن (CSV)",
+  "export_day": "دن ایکسپورٹ کریں (Excel/CSV)",
+  "export_7": "پچھلے 7 دن (Excel/CSV)",
+  "export_30": "پچھلے 30 دن (Excel/CSV)",
   "export_partial": "کچھ دن پڑھے نہیں جا سکے — ہو سکتا ہے ایکسپورٹ نامکمل ہو",
   "export_done": "{n} ایونٹس ایکسپورٹ ہو گئے"
 }

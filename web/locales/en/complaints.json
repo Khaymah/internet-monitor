@@ -61,7 +61,7 @@
   "c_guide_title": "How to escalate ({country})",
   "c_guide_1": "Complain to your provider first and write down the complaint number, date and agent name.",
   "c_guide_2": "Give them {window} to fix it. Keep Internet Monitor running so every drop in that time is recorded.",
-  "c_guide_4": "Open the complaint below, copy the ready-made text and attach the evidence ZIP. Every file in it has a SHA-256 checksum so anyone can confirm nothing was edited.",
+  "c_guide_4": "Open the complaint below, copy the ready-made text and attach the evidence ZIP. Every file in it has a SHA-256 fingerprint (a checksum) so anyone can confirm nothing was edited.",
   "c_guide_note": "Rules differ between countries and can change. Check your regulator's website for the exact steps.",
   "c_open_report": "Open this month's report",
   "c_country": "Country",

@@ -14,11 +14,11 @@
     },
     "what": {
       "q": "Que fait Internet Monitor ?",
-      "a": "Il vérifie votre connexion toutes les quelques secondes, de trois façons : il se connecte à des serveurs DNS, charge une petite page web et résout des noms de sites. Chaque coupure est enregistrée avec son heure exacte de début, sa durée et la partie qui a échoué. Vous pouvez ensuite en faire un rapport pour votre fournisseur d'accès."
+      "a": "Il vérifie votre connexion toutes les quelques secondes, de trois façons : il contacte des serveurs connus d'internet, charge une petite page web et recherche le nom d'un site (le DNS, l'annuaire d'internet). Chaque coupure est enregistrée avec son heure exacte de début, sa durée et la partie qui a échoué. Vous pouvez ensuite en faire un rapport pour votre fournisseur d'accès."
     },
     "open": {
       "q": "Comment ouvrir le tableau de bord ?",
-      "a": "Cliquez sur l'icône dans la zone de notification et choisissez « Ouvrir le tableau de bord », ou utilisez la fenêtre de l'application si vous avez installé la version avec fenêtre. Si vous tapez vous-même l'adresse dans le navigateur, vous verrez une page verrouillée, car le tableau de bord demande une clé qui change à chaque démarrage de l'application."
+      "a": "Si vous avez installé la version en arrière-plan, cliquez sur la petite icône à côté de l'horloge (sur Mac, l'icône en haut de l'écran) et choisissez « Ouvrir le tableau de bord ». Si vous avez installé la version programme classique, ouvrez la fenêtre du programme. Si vous tapez vous-même l'adresse dans le navigateur, vous verrez une page verrouillée, car le tableau de bord demande une clé qui change à chaque démarrage de l'application."
     },
     "platforms": {
       "q": "Est-ce que ça marche sous macOS et Linux ?",
@@ -34,7 +34,7 @@
     },
     "unstable": {
       "q": "Que signifie « Instable » ?",
-      "a": "Vous êtes en ligne, mais la connexion est mauvaise : plus de 20 % des paquets sont perdus, ou les réponses prennent plus de 500 ms. Ces deux limites peuvent être modifiées dans [Paramètres → Surveillance](settings#monitoring)."
+      "a": "Vous êtes en ligne, mais la connexion est mauvaise : plus de 20 % des données envoyées se perdent en route, ou les réponses prennent plus d'une demi-seconde (500 ms). Ces deux limites peuvent être modifiées dans [Paramètres → Surveillance](settings#monitoring)."
     },
     "layers": {
       "q": "Quelle est la différence entre un problème DNS et une coupure complète ?",
@@ -42,11 +42,11 @@
     },
     "router": {
       "q": "Le problème vient-il de mon routeur ou de mon fournisseur ?",
-      "a": "L'application vérifie aussi votre routeur (la passerelle locale). Si le routeur répond mais pas internet, le diagnostic désigne votre fournisseur. Si le routeur ne répond pas non plus, le problème est dans votre réseau domestique : le Wi-Fi, les câbles ou le routeur lui-même."
+      "a": "L'application vérifie aussi votre routeur. Si le routeur répond mais pas internet, le diagnostic désigne votre fournisseur. Si le routeur ne répond pas non plus, le problème est dans votre réseau domestique : le Wi-Fi, les câbles ou le routeur lui-même."
     },
     "targets": {
       "q": "Puis-je changer ce qui est vérifié ?",
-      "a": "Oui. [Paramètres → Cibles de vérification](settings#targets) contient trois listes : des serveurs DNS (8.8.8.8 et 1.1.1.1 par défaut), des pages web et des noms à résoudre. Chaque liste contient jusqu'à 10 entrées, et vous pouvez les tester avant d'enregistrer."
+      "a": "Oui. [Paramètres → Cibles de vérification](settings#targets) contient trois listes : des serveurs DNS (les annuaires d'internet ; 8.8.8.8 et 1.1.1.1 par défaut), des pages web et des noms à rechercher. Chaque liste contient jusqu'à 10 entrées, et vous pouvez les tester avant d'enregistrer."
     },
     "data": {
       "q": "Combien de données internet consomme-t-il ?",
@@ -54,7 +54,7 @@
     },
     "where": {
       "q": "Où les alertes apparaissent-elles ?",
-      "a": "Sous forme de notification système, avec un son, sur cet ordinateur. Vous pouvez aussi les envoyer dans un salon Discord ou Slack avec un webhook, ou sur Telegram. Configurez-les dans [Paramètres → Alertes](settings#alerts) et utilisez le bouton de test pour vérifier qu'elles arrivent bien."
+      "a": "Sous forme de notification système, avec un son, sur cet ordinateur. Vous pouvez aussi les envoyer dans un salon Discord ou Slack avec un webhook (un lien spécial qui permet à une application d'y publier des messages), ou sur Telegram. Configurez-les dans [Paramètres → Alertes](settings#alerts) et utilisez le bouton de test pour vérifier qu'elles arrivent bien."
     },
     "telegram": {
       "q": "Comment configurer les alertes Telegram ?",
@@ -82,11 +82,11 @@
     },
     "proof": {
       "q": "Comment envoyer des preuves à mon fournisseur d'accès ?",
-      "a": "Dans [Historique](history), appuyez sur « Rapport mensuel » et choisissez « Imprimer ou enregistrer en PDF ». Le rapport liste chaque coupure avec son heure, sa durée et sa cause. Pour les données brutes, exportez un CSV depuis l'Historique sur un jour, 7 jours ou 30 jours."
+      "a": "Dans [Historique](history), appuyez sur « Rapport mensuel » et choisissez « Imprimer ou enregistrer en PDF ». Le rapport liste chaque coupure avec son heure, sa durée et sa cause. Pour tous les chiffres en détail, exportez un fichier tableur (CSV, qui s'ouvre dans Excel) depuis l'Historique sur un jour, 7 jours ou 30 jours."
     },
     "retention": {
       "q": "Combien de temps mon historique est-il conservé ?",
-      "a": "90 jours. Les fichiers journaux plus anciens sont supprimés automatiquement. Les journaux se trouvent dans le dossier « logs », à côté de l'application. Choisissez « Ouvrir le dossier des journaux » dans le menu de la zone de notification pour les trouver."
+      "a": "90 jours. Les fichiers journaux plus anciens sont supprimés automatiquement. Les journaux se trouvent dans le dossier « logs », à côté de l'application. Pour les trouver, cliquez sur la petite icône à côté de l'horloge et choisissez « Ouvrir le dossier des journaux »."
     },
     "speedserver": {
       "q": "Quel serveur le test de débit utilise-t-il ?",
@@ -110,7 +110,7 @@
     },
     "updates": {
       "q": "Comment fonctionnent les mises à jour ?",
-      "a": "L'application cherche une nouvelle version sur GitHub toutes les 6 heures, ou tout de suite quand vous appuyez sur « Rechercher les mises à jour ». Vous pouvez désactiver la recherche automatique dans [Paramètres → Application](settings#app). Avant l'installation, elle vérifie le téléchargement avec les sommes de contrôle de la version. Les versions de test (préversions) ne sont jamais proposées automatiquement."
+      "a": "L'application cherche une nouvelle version sur GitHub toutes les 6 heures, ou tout de suite quand vous appuyez sur « Rechercher les mises à jour ». Vous pouvez désactiver la recherche automatique dans [Paramètres → Application](settings#app). Avant l'installation, elle vérifie que le fichier téléchargé est bien celui que nous avons publié (grâce aux sommes de contrôle de la version). Les versions de test (préversions) ne sont jamais proposées automatiquement."
     },
     "bug": {
       "q": "J'ai trouvé un bug. Où le signaler ?",

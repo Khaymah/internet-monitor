@@ -22,6 +22,14 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
   `internet-monitor-tour-<id>.mp4`, and subtitles and posters ship in
   `web/public/tutorial/<id>/`. The website lists all seven and falls back to
   `internet-monitor-tutorial.mp4` for the Settings video of older releases.
+- **Verification codes in the site** (rc.12): the Google and Bing verification codes are
+  built-in defaults; `vars.*` or `secrets.*` of the same names override them.
+- **Website redesign and SEO** (rc.11): site pages reuse the app's styles, icons and
+  content (FAQ, What's new, Privacy, plus new About, Contact, Support, Terms), the app's
+  theme animation, per-page SEO metadata, JSON-LD, OG images, `llms.txt`; the link check
+  also checks SEO.
+- **Search engine verification** (rc.11): the website adds Google, Bing and Yandex
+  verification tags from the repository variables of the same names.
 - **Website** (rc.9): `site/`, a static GitHub Pages site in five languages (home,
   download, guide, tutorial, FAQ, privacy, what's new), rebuilt by `pages.yml` on every
   release; see `docs/website.md`.
@@ -129,6 +137,11 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
   to turn off the background update check. The manual button keeps working.
 - README section listing every server the app contacts, how often, and the
   setting that changes or disables it.
+
+### Fixed
+- Router page reading works with routers that serve it only over HTTPS with an old TLS
+  setup (Huawei HG630 V2): https first, then http, legacy TLS for the home router only,
+  and the test shows why it failed (rc.10).
 
 ## [2.0.0] - 2026-10-24
 

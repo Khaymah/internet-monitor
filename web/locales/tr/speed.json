@@ -32,7 +32,7 @@
   "bb_good": "Bir şey indirilirken bile aramalar, oyunlar ve videolar akıcı kalır.",
   "bb_ok": "Hat meşgulken biraz ek gecikme var. Çoğu arama ve oyun sorunsuz çalışır.",
   "bb_bad": "Hat meşgulken belirgin gecikme var: biri indirme veya yükleme yaptığında görüntülü aramalar takılabilir, oyunlarda gecikme olabilir.",
-  "bb_worse": "Hat meşgulken ağır gecikme var. Bu genellikle modemin kuyruğundan kaynaklanır (bufferbloat). Modemde SQM veya QoS'u açmak ya da sağlayıcıya sormak genellikle sorunu çözer.",
+  "bb_worse": "Hat meşgulken ağır gecikme var. Bu genellikle modemin içinde oluşan trafik sıkışıklığından kaynaklanır (bufferbloat denir). Modemde SQM veya QoS'u (trafiği düzenleyen modem ayarları) açmak ya da sağlayıcıya sormak genellikle sorunu çözer.",
   "bb_idle": "Boşta {ms}",
   "bb_down": "indirirken {ms}",
   "bb_up": "yüklerken {ms}",

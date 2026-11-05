@@ -1,24 +1,6 @@
-.notice {
-  display: flex;
-  flex-wrap: wrap;
+.page-body .banner {
   align-items: center;
-  gap: 12px;
-  padding: 16px 18px;
-  border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--accent-amber) 12%, var(--color-surface));
-  box-shadow: inset 3px 0 0 var(--accent-amber);
-}
-
-:root[dir="rtl"] .notice {
-  box-shadow: inset -3px 0 0 var(--accent-amber);
-}
-
-.notice .icon {
-  color: var(--accent-amber);
-}
-
-.notice p {
-  flex: 1 1 260px;
+  flex-wrap: wrap;
 }
 
 .detect {
@@ -120,9 +102,7 @@
   padding-top: 8px;
 }
 
-.install summary,
-.faq-item summary,
-.release summary {
+.install summary {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -132,9 +112,7 @@
   font-weight: 500;
 }
 
-.install summary::-webkit-details-marker,
-.faq-item summary::-webkit-details-marker,
-.release summary::-webkit-details-marker {
+.install summary::-webkit-details-marker {
   display: none;
 }
 
@@ -333,92 +311,6 @@ details[open] > summary .chev {
   gap: 12px 20px;
 }
 
-.faq-section {
-  display: grid;
-  gap: 10px;
-}
-
-.faq-section h2 {
-  font-size: 22px;
-  margin: 12px 0 4px;
-}
-
-.faq-list {
-  display: grid;
-  gap: 10px;
-}
-
-.faq-item {
-  padding: 6px 20px;
-}
-
-.faq-item[open] {
-  padding-bottom: 18px;
-}
-
-.faq-item summary span {
-  padding-block: 8px;
-}
-
-.faq-item p {
-  color: var(--text-secondary);
-}
-
-.legal-layout {
-  display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
-}
-
-.legal-toc {
-  position: sticky;
-  top: calc(var(--header-h) + 20px);
-  font-size: 14px;
-}
-
-.legal-toc-title {
-  color: var(--text-tertiary);
-  margin-bottom: 8px;
-}
-
-.legal-toc ul {
-  display: grid;
-  gap: 2px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.legal-toc a {
-  display: block;
-  padding: 6px 10px;
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-  text-decoration: none;
-}
-
-.legal-toc a:hover {
-  background: var(--color-surface-raised);
-  color: var(--text-primary);
-}
-
-.legal-body {
-  display: grid;
-  gap: 28px;
-  padding: 32px;
-}
-
-.legal-body h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.legal-body p + p {
-  margin-top: 10px;
-}
-
-.legal-body ul,
 .md ul,
 .md ol {
   display: grid;
@@ -428,45 +320,30 @@ details[open] > summary .chev {
   color: var(--text-secondary);
 }
 
-.legal-body p,
 .md p {
   color: var(--text-secondary);
-}
-
-.md-card h2 {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.release {
-  padding: 6px 24px;
-}
-
-.release[open] {
-  padding-bottom: 20px;
-}
-
-.release + .release {
-  margin-top: 12px;
-}
-
-.release-tag {
-  font-size: 18px;
 }
 
 .md {
   overflow-wrap: anywhere;
 }
 
-.md h3 {
-  font-size: 18px;
+.md h3,
+.md h4 {
+  font-size: var(--text-lg);
   margin: 20px 0 8px;
+  color: var(--text-primary);
 }
 
-.md h4,
-.md h5 {
-  font-size: 16px;
+.md h5,
+.md h6 {
+  font-size: var(--text-md);
   margin: 16px 0 6px;
+  color: var(--text-primary);
+}
+
+.md > :first-child {
+  margin-top: 0;
 }
 
 .md p {
@@ -512,20 +389,6 @@ details[open] > summary .chev {
   text-align: start;
 }
 
-@media (max-width: 960px) {
-  .legal-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .legal-toc {
-    position: static;
-  }
-
-  .legal-toc ul {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
 @media (max-width: 600px) {
   .file .btn {
     width: 100%;
@@ -542,17 +405,4 @@ details[open] > summary .chev {
     font-size: 18px;
   }
 
-  .legal-body {
-    padding: 20px;
-  }
-
-  .release,
-  .faq-item {
-    padding-inline: 16px;
-  }
-}
-
-.page-body .section-title {
-  font-size: 22px;
-  margin-bottom: 14px;
 }

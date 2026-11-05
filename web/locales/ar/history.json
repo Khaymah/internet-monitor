@@ -18,9 +18,9 @@
   "col_event": "الحدث",
   "col_duration": "المدة",
   "col_cause": "السبب",
-  "export_day": "تصدير اليوم (CSV)",
-  "export_7": "آخر 7 أيام (CSV)",
-  "export_30": "آخر 30 يوم (CSV)",
+  "export_day": "تصدير اليوم (Excel/CSV)",
+  "export_7": "آخر 7 أيام (Excel/CSV)",
+  "export_30": "آخر 30 يوم (Excel/CSV)",
   "export_partial": "مقدرناش نقرا بعض الأيام — ممكن التصدير يبقى ناقص",
   "export_done": "اتصدّر {n} حدث"
 }

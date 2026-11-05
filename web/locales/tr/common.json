@@ -46,7 +46,7 @@
   "err_unavailable": "Bu özellik bu sürümde yok.",
   "err_duplicate": "Zaten listede",
   "gate_unauth_title": "Paneli uygulamadan açın",
-  "gate_unauth_body": "Güvenliğiniz için panel yalnızca Internet Monitor üzerinden açılır. Tepsi simgesine (veya uygulama penceresine) tıklayın ve “Paneli aç”ı seçin.",
+  "gate_unauth_body": "Güvenliğiniz için panel yalnızca Internet Monitor üzerinden açılır. Saatin yanındaki küçük simgeye (Mac'te ekranın üstündeki simgeye) tıklayın ya da programın penceresini açın ve “Paneli aç”ı seçin.",
   "gate_busy_title": "Çok fazla panel penceresi açık",
   "gate_busy_body": "Diğer panel sekmelerinden birkaçını kapatın, sonra tekrar deneyin.",
   "gate_offline_title": "Internet Monitor'e ulaşılamıyor",

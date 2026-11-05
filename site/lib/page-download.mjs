@@ -1,5 +1,6 @@
 import { icon } from "./icons.mjs";
 import { pageUrl } from "./layout.mjs";
+import { hero } from "./page-docs.mjs";
 import { PLATFORMS, resolveAsset } from "./releases.mjs";
 import { esc } from "./util.mjs";
 
@@ -65,7 +66,7 @@ export function renderDownload(ctx) {
     : "";
   const fallback = releases.ok
     ? ""
-    : `<div class="notice" role="note">${icon("alert", { size: 20 })}<p>${ctx.e("download.fallback")}</p><a class="btn btn-edge btn-sm" href="${esc(releases.page)}" rel="noopener">${ctx.e("download.fallback_btn")}</a></div>`;
+    : `<div class="banner warn" role="note">${icon("alert", { size: 18 })}<div class="banner-body">${ctx.e("download.fallback")}</div><div class="banner-actions"><a class="btn btn-edge btn-sm" href="${esc(releases.page)}" rel="noopener">${ctx.e("download.fallback_btn")}</a></div></div>`;
   const detect = ["windows", "mac", "linux", "pi"]
     .map(
       (os) =>
@@ -83,13 +84,7 @@ export function renderDownload(ctx) {
 </aside>`
     : "";
   const sums = resolveAsset(releases, "SHA256SUMS");
-  const body = `<section class="page-hero">
-<div class="wrap">
-<h1>${ctx.e("download.h1")}</h1>
-<p class="lead">${ctx.e("download.intro")}</p>
-${latest}
-</div>
-</section>
+  const body = `${hero(ctx.e("download.h1"), ctx.e("download.intro"), latest, ctx.e("download.eyebrow"))}
 <div class="wrap page-body">
 ${fallback}
 <div class="detect" aria-live="polite">

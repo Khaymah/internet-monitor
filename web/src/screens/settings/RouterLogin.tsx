@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TextField } from "../../components/Field";
 import { toast } from "../../components/Toast";
 import { Button } from "../../components/ui";
-import { api } from "../../lib/api";
+import { ApiError, api } from "../../lib/api";
 import { errorKey } from "../../lib/errors";
 import { formatNumber } from "../../lib/format";
 import { useI18n } from "../../lib/i18n";
@@ -30,7 +30,10 @@ export function RouterLogin({ draft, set, err, base }: SectionProps & { base: Co
         "ok",
       );
     } catch (e) {
-      toast(t(errorKey(e, "rt_web_unreachable")), "error");
+      const key = errorKey(e, "rt_web_unreachable");
+      const detail =
+        e instanceof ApiError && key === "rt_web_unreachable" ? e.message.replace(/\n/g, " · ") : "";
+      toast(detail ? `${t(key)} ${detail}` : t(key), "error");
     } finally {
       setBusy(false);
     }

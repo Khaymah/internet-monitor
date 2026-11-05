@@ -12,7 +12,7 @@
     },
     "degraded": {
       "title": "⚠️ İnternet kararsız",
-      "body": "Kayıp: %{loss} — gecikme: {ms}"
+      "body": "Veri kaybı: %{loss} — gecikme: {ms}"
     },
     "down": {
       "title": "🔴 İnternet bağlantısı kesildi",
@@ -65,7 +65,7 @@
     "tcp": "TCP ping",
     "http": "HTTP",
     "dns": "DNS",
-    "loss": "Paket kaybı",
+    "loss": "Veri kaybı",
     "latency": "Gecikme",
     "duration": "Süre",
     "ok": "Tamam",

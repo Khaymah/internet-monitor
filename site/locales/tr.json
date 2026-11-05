@@ -25,8 +25,8 @@
     "languages": "Diller"
   },
   "home": {
-    "title": "Internet Monitor — Kesintilerinizi belgeleyin. Kanıtla şikayet edin.",
-    "description": "Windows, Mac ve Linux için her internet kesintisini ve yavaşlamayı kaydeden, bunu sağlayıcınıza gönderebileceğiniz kanıta dönüştüren ücretsiz bir uygulama. Hesap yok, takip yok.",
+    "title": "Internet Monitor — İnternet kesintilerini kanıtlayın",
+    "description": "Windows, Mac ve Linux için ücretsiz uygulama: her internet kesintisini ve yavaşlamayı kaydeder, sağlayıcınıza kanıt olarak sunar. Hesap yok, takip yok.",
     "eyebrow": "Ücretsiz · Windows, Mac, Linux · Hesap gerekmez",
     "hero_title": "Kesintilerinizi belgeleyin. Kanıtla şikayet edin.",
     "hero_sub": "Internet Monitor evinizdeki interneti sessizce izler. İnternet her kesildiğinde ya da yavaşladığında ne zaman, ne kadar sürdüğünü ve nedenini not eder. Sağlayıcınızı aradığınızda elinizde sadece bir his değil, gerçekler olur.",
@@ -78,6 +78,7 @@
   "download": {
     "title": "Internet Monitor'ü indir — Windows, Mac, Linux, Raspberry Pi",
     "description": "Internet Monitor'ü ücretsiz indirin ve Windows, Mac, Linux ve Raspberry Pi için basit adımlarla birkaç dakikada kurun.",
+    "eyebrow": "Ücretsiz indirme",
     "h1": "Internet Monitor'ü indirin",
     "intro": "Ücretsiz, hesap gerekmez. Aşağıdan bilgisayarınızı seçin, tek bir dosya indirin ve kısa adımları izleyin.",
     "latest": "En son sürüm {version}, {date} tarihinde yayınlandı",
@@ -168,6 +169,7 @@
   "guide": {
     "title": "Başlangıç rehberi — 5 adımda ilk şikayetiniz",
     "description": "Internet Monitor için basit bir rehber: kurun, açık bırakın ve sağlayıcınıza gerçek ölçümlerle desteklenen bir şikayet gönderin.",
+    "eyebrow": "Başlangıç rehberi",
     "h1": "5 adımda ilk şikayetiniz",
     "intro": "Teknik bilgi gerekmez. \"İnternetim sürekli kopuyor\"dan sağlayıcınızın geçiştiremeyeceği bir şikayete böyle ulaşırsınız.",
     "steps": [
@@ -211,30 +213,131 @@
   },
   "faq": {
     "title": "Sorular ve yanıtlar — Internet Monitor",
-    "description": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık karşılaşılan sorunların nasıl çözüleceği hakkında kısa yanıtlar.",
-    "from_app": "Bunlar uygulamanın içindeki yanıtların aynısıdır.",
-    "more": "Yanıtınızı bulamadınız mı? GitHub'da bize sorun"
+    "description": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık karşılaşılan sorunların nasıl çözüleceği hakkında kısa yanıtlar."
   },
   "privacy": {
     "title": "Gizlilik politikası — Internet Monitor",
     "description": "Internet Monitor verilerinizi bilgisayarınızda tutar. Hesap yok, analiz yok, takip yok. Sakladığı her şey ve bağlandığı her yer burada.",
-    "from_app": "Bu, uygulamanın içinde gösterilen gizlilik politikasının aynısıdır.",
     "site_title": "Bu web sitesi hakkında",
-    "site_body": "Bu sitede çerez, izleyici ya da dışarıdan yüklenen betik veya yazı tipi yoktur. Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
+    "site_body": "Bu sitede çerez ve izleyici yoktur, başka sitelerden de hiçbir şey yüklenmez (dışarıdan kod ya da yazı tipi yok). Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
   },
   "changelog": {
     "title": "Yenilikler — Internet Monitor",
     "description": "Internet Monitor'deki son değişiklikler: yeni özellikler, düzeltmeler ve ön sürüm notları.",
-    "h1": "Yenilikler",
-    "intro": "Her sürümde neler değişti. Aşağıdaki notlar İngilizcedir.",
-    "summary": "Özet",
-    "previews": "Ön sürüm notları, en yenisi önce",
+    "preview_title": "Ön sürüm, notlar İngilizce",
     "on_github": "Bu sürümü GitHub'da görün"
+  },
+  "about": {
+    "title": "Internet Monitor hakkında — ücretsiz, açık, gizli",
+    "description": "Internet Monitor neden var, neye önem veriyor ve kim yapıyor: her internet kesintisini kendi bilgisayarınızda kaydeden ücretsiz bir uygulama."
+  },
+  "contact": {
+    "title": "Internet Monitor iletişim — WhatsApp, Discord, e-posta",
+    "description": "Sorunuz, fikriniz ya da bir sorununuz mu var? WhatsApp, Discord, e-posta veya GitHub üzerinden size uyan yoldan bize ulaşın."
+  },
+  "support": {
+    "title": "Internet Monitor'ü destekleyin — ücretsiz kalsın",
+    "description": "Internet Monitor ücretsizdir ve öyle kalacak. İşinize yaradıysa PayPal, Vodafone Cash veya InstaPay ile destek olabilirsiniz. Tamamen isteğe bağlı."
+  },
+  "terms": {
+    "title": "Kullanım koşulları — Internet Monitor",
+    "description": "Internet Monitor kullanım koşulları: Elastic License 2.0 ile kişisel ve ticari kullanım için ücretsiz, garanti verilmez."
   },
   "notfound": {
     "title": "Sayfa bulunamadı — Internet Monitor",
     "h1": "Bu sayfa yok",
     "body": "Bağlantı eski ya da yanlış yazılmış olabilir. Şu sayfalar yardımcı olabilir:"
+  },
+  "seo": {
+    "og_alt": "Internet Monitor: internet kesintilerinizi kaydedin, kanıtla şikayet edin",
+    "keywords": [
+      "internet monitor",
+      "internet kesinti takibi",
+      "internet kesintisi kanıtı",
+      "internet sağlayıcı şikayet",
+      "bağlantı izleme",
+      "ücretsiz uygulama"
+    ],
+    "page_keywords": {
+      "home": [
+        "internet kesinti kaydı",
+        "sağlayıcı şikayet kanıtı",
+        "çalışma süresi izleme",
+        "paket kaybı"
+      ],
+      "download": [
+        "internet monitor indir",
+        "windows internet izleme",
+        "mac internet izleme",
+        "raspberry pi"
+      ],
+      "guide": [
+        "internet kesintisi nasıl kanıtlanır",
+        "sağlayıcı şikayet rehberi",
+        "başlangıç rehberi",
+        "şikayet adımları"
+      ],
+      "tutorial": [
+        "internet monitor video",
+        "ayarlar turu",
+        "video eğitim",
+        "internet monitor kullanımı"
+      ],
+      "faq": [
+        "sık sorulan sorular",
+        "internet neden kopuyor",
+        "DNS sorunu",
+        "modem mi sağlayıcı mı"
+      ],
+      "changelog": [
+        "yenilikler",
+        "sürüm notları",
+        "yeni sürüm",
+        "güncellemeler"
+      ],
+      "about": [
+        "hakkında",
+        "açık kaynak",
+        "elastic license",
+        "Khaymah"
+      ],
+      "contact": [
+        "iletişim",
+        "internet monitor yardım",
+        "whatsapp grubu",
+        "discord"
+      ],
+      "support": [
+        "bağış",
+        "projeyi destekle",
+        "paypal",
+        "instapay"
+      ],
+      "privacy": [
+        "gizlilik politikası",
+        "takip yok",
+        "yerel veri",
+        "hesap yok"
+      ],
+      "terms": [
+        "kullanım koşulları",
+        "elastic license 2.0",
+        "ticari kullanım ücretsiz",
+        "garanti yok"
+      ]
+    },
+    "answer": {
+      "download": "Internet Monitor; Windows 10 ve 11, macOS, Linux ve Raspberry Pi için ücretsiz indirilir. Tek bir dosyayı indirip başlatın, internet kesintilerinizi hemen kaydetmeye başlar.",
+      "guide": "İnternetinizin koptuğunu kanıtlamak için Internet Monitor'ü kurun, çalışır bırakın ve kendi ölçümlerinden hazırladığı raporu ve kanıt dosyasını sağlayıcınıza gönderin.",
+      "tutorial": "Bu video Internet Monitor'ün ayarlarını tek tek anlatır; İngilizce, Arapça, Fransızca, Türkçe ve Urduca altyazılıdır.",
+      "faq": "Internet Monitor bağlantınızı birkaç saniyede bir üç yolla kontrol eder ve her kesintiyi zamanı, süresi ve nedeniyle kaydeder. Bu yanıtlar nasıl çalıştığını anlatır.",
+      "changelog": "Internet Monitor'ün tüm sürümleri, en yenisi önce: yeni özellikler, iyileştirmeler, düzeltmeler ve güvenlik güncellemeleri, ayrıca şu an denenen sürümün notları.",
+      "about": "Internet Monitor, Khaymah'ın kendi bilgisayarınızda çalışan ücretsiz uygulamasıdır; her internet kesintisini kaydeder ve sorunun evde mi sağlayıcıda mı olduğunu söyler.",
+      "contact": "Internet Monitor ekibine WhatsApp, Discord, e-posta veya GitHub üzerinden ulaşabilirsiniz. Hata bildirimleri ve özellik istekleri, başkaları da takip edebilsin diye GitHub'a gider.",
+      "support": "Internet Monitor herkes için ücretsizdir. PayPal, Vodafone Cash veya InstaPay ile bağış isteğe bağlıdır ve ücretsiz kalmasına yardım eder.",
+      "privacy": "Internet Monitor tüm verilerini bilgisayarınızda tutar. Hesap, analiz ve takip yoktur; yalnızca aşağıda listelenen yerlere bağlanır.",
+      "terms": "Internet Monitor, Elastic License 2.0 ile kişisel ve ticari kullanım için ücretsizdir ve garantisiz sunulur."
+    }
   },
   "root": {
     "title": "Internet Monitor — dilinizi seçin",

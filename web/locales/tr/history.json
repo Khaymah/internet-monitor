@@ -18,9 +18,9 @@
   "col_event": "Olay",
   "col_duration": "Süre",
   "col_cause": "Neden",
-  "export_day": "Günü dışa aktar (CSV)",
-  "export_7": "Son 7 gün (CSV)",
-  "export_30": "Son 30 gün (CSV)",
+  "export_day": "Günü dışa aktar (Excel/CSV)",
+  "export_7": "Son 7 gün (Excel/CSV)",
+  "export_30": "Son 30 gün (Excel/CSV)",
   "export_partial": "Bazı günler okunamadı — dışa aktarılan dosya eksik olabilir",
   "export_done": "Dışa aktarılan olay sayısı: {n}"
 }
