@@ -1,11 +1,12 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { guideImageUrl } from "./guide-art.mjs";
 import { esc } from "./util.mjs";
 
 const SOURCES = {
   home: ["site/locales", "site/lib/page-home.mjs", "docs/store"],
   download: ["site/locales", "site/lib/page-download.mjs"],
-  guide: ["site/locales", "site/lib/page-docs.mjs"],
+  guide: ["site/locales", "site/lib/page-docs.mjs", "site/lib/guide-art.mjs", "site/assets/guide"],
   tutorial: ["site/locales", "web/public/tutorial"],
   faq: ["web/src/content/faq.ts", "web/locales/*/faq.json"],
   changelog: ["web/src/content/changelog.ts", "web/locales/*/changelog.json", "docs/releases"],
@@ -131,13 +132,21 @@ function software(ctx, url) {
 }
 
 function howTo(name, description, steps, url, lang) {
+  const image = steps.find((s) => s.image)?.image;
   return {
     "@type": "HowTo",
     name,
     description,
     inLanguage: lang,
     url,
-    step: steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.text })),
+    ...(image ? { image } : {}),
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+      ...(s.image ? { image: s.image } : {}),
+    })),
   };
 }
 
@@ -198,7 +207,9 @@ export function structuredData(ctx, pageId, title, description) {
   graph.push(page);
   if (pageId === "home" || pageId === "download") graph.push(software(ctx, url));
   if (pageId === "guide") {
-    const steps = ctx.raw("guide.steps").map((s) => ({ name: s.title, text: plain(s.body) }));
+    const steps = ctx
+      .raw("guide.steps")
+      .map((s, i) => ({ name: s.title, text: plain(s.body), image: guideImageUrl(ctx, i) }));
     graph.push(howTo(ctx.t("guide.h1"), ctx.t("guide.intro"), steps, url, lang));
   }
   if (pageId === "download") {
