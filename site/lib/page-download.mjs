@@ -1,7 +1,7 @@
 import { icon } from "./icons.mjs";
 import { pageUrl } from "./layout.mjs";
 import { hero } from "./page-docs.mjs";
-import { PI_FILES, PLATFORMS, resolveAsset } from "./releases.mjs";
+import { MAC_RAW_FILES, PI_FILES, PLATFORMS, resolveAsset } from "./releases.mjs";
 import { esc } from "./util.mjs";
 
 function sizeOf(ctx, asset) {
@@ -17,30 +17,22 @@ function previewBadge(ctx, asset) {
 function downloadButton(ctx, platform, variant, primary) {
   const asset = resolveAsset(ctx.releases, variant.asset);
   const size = sizeOf(ctx, asset);
-  const chip = variant.arch ? ctx.t(`download.mac_${variant.arch}`) : "";
-  const sub = [chip, size ? `‎${size}` : ""].filter(Boolean).join(" · ");
+  const sub = size ? `‎${size}` : "";
   const label = primary ? ctx.e("download.get", { os: ctx.t(`download.os.${platform.id}`) }) : ctx.e("download.btn");
-  const arch = variant.arch ? ` data-arch="${variant.arch}"` : "";
   const cls = primary ? "btn btn-aurora btn-xl dl-btn" : "btn btn-edge dl-btn dl-btn-second";
-  return `<a class="${cls}"${arch} href="${esc(asset.url)}" rel="noopener">${icon("download", { size: primary ? 24 : 18 })}<span class="dl-btn-text"><strong>${label}</strong>${sub ? `<small>${esc(sub)}</small>` : ""}</span></a>`;
+  return `<a class="${cls}" href="${esc(asset.url)}" rel="noopener">${icon("download", { size: primary ? 24 : 18 })}<span class="dl-btn-text"><strong>${label}</strong>${sub ? `<small>${esc(sub)}</small>` : ""}</span></a>`;
 }
 
 function fileNames(ctx, variants) {
-  const names = variants.map((v) => `<code dir="ltr"${v.arch ? ` data-arch="${v.arch}"` : ""}>${esc(v.asset)}</code>`).join(" ");
+  const names = variants.map((v) => `<code dir="ltr">${esc(v.asset)}</code>`).join(" ");
   return `<p class="hint dl-files">${ctx.e("download.file_label")} ${names}</p>`;
 }
 
 function primaryBlock(ctx, platform) {
   const tray = platform.editions.tray;
   const badge = previewBadge(ctx, resolveAsset(ctx.releases, tray[0].asset));
-  const mac =
-    platform.id === "mac"
-      ? `<p class="hint mac-hint">${ctx.md("download.mac_which")}</p>
-<button type="button" class="text-link mac-switch" hidden>${ctx.e("download.mac_show_both")}</button>`
-      : "";
   return `<div class="dl-primary">
 <div class="dl-variants">${tray.map((v) => downloadButton(ctx, platform, v, true)).join("")}</div>
-${mac}
 <p class="dl-edition"><strong>${ctx.e("download.tray")}</strong><span>${ctx.e("download.tray_desc")}</span>${badge}</p>
 ${fileNames(ctx, tray)}
 <p class="hint dl-pick">${ctx.e("download.pick_first")}</p>
@@ -74,11 +66,13 @@ function stepsBlock(ctx, platform) {
   const note = warn
     ? `<p class="dl-note">${icon("alert", { size: 18 })}<span>${ctx.md(`download.warn.${platform.id}`)}</span></p>`
     : "";
+  const tip =
+    platform.id === "mac" ? "" : `<p class="hint">${icon("folder", { size: 16 })} ${ctx.md("download.folder_tip")}</p>`;
   return `<div class="dl-steps-wrap">
 <h3>${ctx.e("download.install_title")}</h3>
 <ol class="dl-steps">${items}</ol>
 ${note}
-<p class="hint">${icon("folder", { size: 16 })} ${ctx.md("download.folder_tip")}</p>
+${tip}
 </div>`;
 }
 
@@ -111,6 +105,13 @@ function chooser(ctx) {
 </details>`;
 }
 
+function macRawList(ctx) {
+  const items = MAC_RAW_FILES.map((f) => piFile(ctx, f)).join("");
+  return `<h3>${ctx.e("download.mac_raw_title")}</h3>
+<p>${ctx.md("download.mac_raw_note")}</p>
+<ul class="dl-pi-files">${items}</ul>`;
+}
+
 function piFile(ctx, file) {
   const asset = resolveAsset(ctx.releases, file.asset);
   const size = sizeOf(ctx, asset);
@@ -135,6 +136,7 @@ function advanced(ctx) {
 <ul class="dl-pi-files">${PI_FILES.map((f) => piFile(ctx, f)).join("")}</ul>
 <ol class="steps">${steps}</ol>
 <p><a class="text-link" href="${site.repoUrl}/blob/master/docs/headless.md" rel="noopener">${ctx.e("download.pi_guide")}${icon("arrow", { size: 16, cls: "flip-rtl" })}</a></p>
+${macRawList(ctx)}
 <ul class="link-list">
 <li><a href="${esc(sums.url)}" rel="noopener">${icon("key", { size: 16 })}${ctx.e("download.advanced_sums")}</a></li>
 <li><a href="${esc(releases.all)}" rel="noopener">${icon("github", { size: 16 })}${ctx.e("download.advanced_all")}</a></li>

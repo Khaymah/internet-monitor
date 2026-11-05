@@ -159,7 +159,7 @@ function UpdateBanner() {
       actions={
         info?.has_update ? (
           <Button variant="solid" size="sm" busy={busy} onClick={install}>
-            {t("update_install")}
+            {t(info.managed === "bundle" ? "update_download" : "update_install")}
           </Button>
         ) : null
       }

@@ -73,16 +73,10 @@ export const PLATFORMS = [
   {
     id: "mac",
     icon: "apple",
-    stepIcons: ["download", "shield", "pointer", "gauge"],
+    stepIcons: ["download", "folder", "shield", "gauge"],
     editions: {
-      tray: [
-        { arch: "arm", asset: "internet-monitor-macos-arm64" },
-        { arch: "intel", asset: "internet-monitor-macos-intel" },
-      ],
-      window: [
-        { arch: "arm", asset: "internet-monitor-gui-macos-arm64" },
-        { arch: "intel", asset: "internet-monitor-gui-macos-intel" },
-      ],
+      tray: [{ asset: "internet-monitor-macos.dmg" }],
+      window: [{ asset: "internet-monitor-gui-macos.dmg" }],
     },
   },
   {
@@ -94,6 +88,13 @@ export const PLATFORMS = [
       window: [{ asset: "internet-monitor-gui-linux" }],
     },
   },
+];
+
+export const MAC_RAW_FILES = [
+  { asset: "internet-monitor-macos-arm64", label: "mac_arm" },
+  { asset: "internet-monitor-macos-intel", label: "mac_intel" },
+  { asset: "internet-monitor-gui-macos-arm64", label: "mac_arm" },
+  { asset: "internet-monitor-gui-macos-intel", label: "mac_intel" },
 ];
 
 export const PI_FILES = [

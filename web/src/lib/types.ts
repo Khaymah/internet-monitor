@@ -40,7 +40,8 @@ export interface Availability {
 }
 
 export interface UpdateInfo {
-  managed?: "store";
+  managed?: "store" | "bundle";
+  page_url?: string;
   has_update: boolean;
   latest_version: string;
   current_version: string;

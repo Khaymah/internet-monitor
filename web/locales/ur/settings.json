@@ -97,6 +97,7 @@
   "update_latest": "آپ کے پاس تازہ ترین ورژن ہے",
   "update_available": "ورژن {v} دستیاب ہے",
   "update_install": "انسٹال کریں اور ری اسٹارٹ کریں",
+  "update_download": "ڈاؤن لوڈ صفحہ کھولیں",
   "update_downloading": "اپ ڈیٹ ڈاؤن لوڈ ہو رہی ہے…",
   "update_restarting": "ری اسٹارٹ ہو رہا ہے…",
   "update_failed": "اپ ڈیٹ ناکام: {error}",

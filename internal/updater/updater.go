@@ -35,6 +35,7 @@ type Info struct {
 	DownloadURL    string `json:"download_url"`
 	ReleaseNotes   string `json:"release_notes"`
 	Managed        string `json:"managed,omitempty"`
+	PageURL        string `json:"page_url,omitempty"`
 }
 
 type ghRelease struct {
@@ -80,6 +81,26 @@ func pinnedClient(timeout time.Duration) *http.Client {
 			return trustedURL(req.URL.String())
 		},
 	}
+}
+
+const (
+	ManagedBundle = "bundle"
+	siteBase      = "https://khaymah.github.io/internet-monitor/"
+)
+
+var siteLangs = map[string]bool{"en": true, "ar": true, "fr": true, "tr": true, "ur": true}
+
+func PageURL(lang string) string {
+	lang = strings.ToLower(strings.TrimSpace(lang))
+	if !siteLangs[lang] {
+		lang = "en"
+	}
+	return siteBase + lang + "/download/"
+}
+
+func MarkBundled(info *Info, lang string) {
+	info.Managed = ManagedBundle
+	info.PageURL = PageURL(lang)
 }
 
 func IsPrerelease(version string) bool {

@@ -194,29 +194,6 @@
     other.open = false;
   }
 
-  function pickMacChip() {
-    var mac = document.getElementById("os-mac");
-    var data = navigator.userAgentData;
-    if (!mac || mac.getAttribute("data-checked") || !data || !data.getHighEntropyValues) return;
-    mac.setAttribute("data-checked", "1");
-    var back = mac.querySelector(".mac-switch");
-    data
-      .getHighEntropyValues(["architecture"])
-      .then(function (v) {
-        var arch = v.architecture === "arm" ? "arm" : v.architecture === "x86" ? "intel" : null;
-        if (!arch) return;
-        mac.setAttribute("data-arch", arch);
-        if (back) {
-          back.hidden = false;
-          back.addEventListener("click", function () {
-            mac.removeAttribute("data-arch");
-            back.hidden = true;
-          });
-        }
-      })
-      .catch(function () {});
-  }
-
   function fromHash() {
     var id = /^#os-(windows|mac|linux|pi)$/.exec(location.hash);
     if (!id) return false;
@@ -226,7 +203,6 @@
       if (adv) adv.open = true;
     } else {
       activate(id[1]);
-      if (id[1] === "mac") pickMacChip();
     }
     return true;
   }
@@ -245,7 +221,6 @@
         showMessage(os);
         activate(os);
         collapseChooser();
-        if (os === "mac") pickMacChip();
       }
     }
     window.addEventListener("hashchange", fromHash);

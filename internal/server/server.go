@@ -26,6 +26,7 @@ type Hooks struct {
 	CheckUpdate      func() (*updater.Info, error)
 	ApplyUpdate      func(downloadURL string) error
 	Restart          func()
+	OpenPage         func(url string)
 	SpeedResult      func(event logger.SpeedTestEvent, thresholdMbps float64, below bool)
 	SendWeekly       func() bool
 	Router           func() router.Snapshot

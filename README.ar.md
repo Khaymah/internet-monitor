@@ -99,8 +99,10 @@
 | ----- | ------------ | ------ |
 | `internet-monitor-windows.exe` | Windows 10/11 | System Tray |
 | `internet-monitor-gui-windows.exe` | Windows 10/11 | نافذة مستقلة |
-| `internet-monitor-macos-arm64` | macOS M1/M2/M3 | System Tray |
-| `internet-monitor-macos-intel` | macOS Intel | System Tray |
+| `internet-monitor-macos.dmg` | macOS (شريحة Apple وIntel) | System Tray، مثبّت (موصى به) |
+| `internet-monitor-gui-macos.dmg` | macOS (شريحة Apple وIntel) | نافذة مستقلة، مثبّت |
+| `internet-monitor-macos-arm64` | macOS M1/M2/M3 | System Tray، ملف واحد |
+| `internet-monitor-macos-intel` | macOS Intel | System Tray، ملف واحد |
 | `internet-monitor-linux` | Ubuntu/Debian | System Tray |
 
 **Windows — شغّل مرة واحدة، ثم انقر بالزر الأيمن على أيقونة الـ Tray ← فتح لوحة التحكم:**
@@ -115,7 +117,16 @@ internet-monitor-windows.exe
 scripts\install.cmd
 ```
 
-**macOS / Linux:**
+**macOS — تثبيت التطبيق بدون Terminal:**
+
+1. حمّل `internet-monitor-macos.dmg` (ملف واحد يناسب أجهزة شريحة Apple وIntel).
+2. افتحه واسحب **Internet Monitor** إلى مجلد **Applications**.
+3. افتح **Internet Monitor** من Applications. في أول مرة قد يقول macOS إنه لا يستطيع التحقق من التطبيق: افتح **System Settings ← Privacy & Security**، ثم انزل للأسفل واضغط **Open Anyway**. في إصدارات macOS الحديثة لم يعد النقر بالزر الأيمن ثم Open يتجاوز هذا التحذير.
+4. اضغط على الأيقونة أعلى الشاشة واختر **فتح لوحة التحكم**.
+
+بيانات التطبيق و`config.json` تُحفظ في `~/Library/Application Support/Internet Monitor`. النسخة المثبّتة من `.dmg` لا تستبدل نفسها: عند صدور إصدار جديد يفتح شريط التحديث صفحة التحميل.
+
+**ملفات macOS المفردة (متقدم) / Linux:**
 
 ```bash
 chmod +x internet-monitor-*

@@ -73,6 +73,8 @@ func (s *Server) serveUpdateGet(w http.ResponseWriter, _ *http.Request) {
 		"latest_version":  info.LatestVersion,
 		"current_version": info.CurrentVersion,
 		"release_notes":   info.ReleaseNotes,
+		"managed":         info.Managed,
+		"page_url":        info.PageURL,
 		"status":          status,
 		"error":           errMsg,
 	})
@@ -96,6 +98,13 @@ func (s *Server) serveUpdateCheck(w http.ResponseWriter, _ *http.Request) {
 func (s *Server) serveUpdateApply(w http.ResponseWriter, _ *http.Request) {
 	if s.hooks.ApplyUpdate == nil {
 		writeError(w, http.StatusNotImplemented, "unavailable", "updater not configured")
+		return
+	}
+	if cur, _, _ := s.update.get(); cur != nil && cur.HasUpdate && cur.Managed == updater.ManagedBundle {
+		if s.hooks.OpenPage != nil && cur.PageURL != "" {
+			s.hooks.OpenPage(cur.PageURL)
+		}
+		writeJSON(w, http.StatusOK, map[string]interface{}{"ok": true, "status": updateIdle, "opened": cur.PageURL})
 		return
 	}
 	info, code := s.update.begin()

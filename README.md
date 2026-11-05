@@ -98,8 +98,10 @@ Download the latest pre-built binary from [**Releases**](https://github.com/Khay
 | ---- | -- | ---- |
 | `internet-monitor-windows.exe` | Windows 10/11 | System Tray |
 | `internet-monitor-gui-windows.exe` | Windows 10/11 | Standalone window |
-| `internet-monitor-macos-arm64` | macOS M1/M2/M3 | System Tray |
-| `internet-monitor-macos-intel` | macOS Intel | System Tray |
+| `internet-monitor-macos.dmg` | macOS (Apple chip and Intel) | System Tray, installer (recommended) |
+| `internet-monitor-gui-macos.dmg` | macOS (Apple chip and Intel) | Standalone window, installer |
+| `internet-monitor-macos-arm64` | macOS M1/M2/M3 | System Tray, single file |
+| `internet-monitor-macos-intel` | macOS Intel | System Tray, single file |
 | `internet-monitor-linux` | Ubuntu/Debian | System Tray |
 
 **Windows — run once, then right-click the tray icon → Open Dashboard:**
@@ -114,7 +116,16 @@ internet-monitor-windows.exe
 scripts\install.cmd
 ```
 
-**macOS / Linux:**
+**macOS — install the app, no Terminal needed:**
+
+1. Download `internet-monitor-macos.dmg` (one file for both Apple chip and Intel Macs).
+2. Open it and drag **Internet Monitor** onto the **Applications** folder.
+3. Open **Internet Monitor** from Applications. The first time, macOS may say it can't verify the app: open **System Settings → Privacy & Security**, scroll down and press **Open Anyway**. On recent macOS versions, right-click → Open no longer skips this.
+4. Click the icon at the top of the screen and choose **Open dashboard**.
+
+The app has no Apple Developer ID, so it is only ad-hoc signed; that is why macOS asks once. Records and `config.json` live in `~/Library/Application Support/Internet Monitor`. A copy installed from the `.dmg` does not replace itself: when a new version is out, the update banner opens the download page instead. Prefer a regular window with a Dock icon? Use `internet-monitor-gui-macos.dmg` instead.
+
+**macOS single files (advanced) / Linux:**
 
 ```bash
 chmod +x internet-monitor-*
@@ -238,7 +249,7 @@ Web UI        →  typecheck, lint, test, build (bun 1.3.14); uploads web/dist a
 Quality       →  gofmt, go vet, go test, golangci-lint (needs Web UI)
 Windows Tray  →  cross-compiled on Linux (CGO disabled)
 Windows GUI   →  windows-latest runner
-macOS         →  macos-latest (arm64 native + intel cross-compile; tray + GUI)
+macOS         →  macos-latest (arm64 native + intel cross-compile; tray + GUI; universal .app bundles in .dmg via packaging/macos/build-dmg.sh)
 Linux         →  ubuntu-22.04 (WebKitGTK 4.0; tray + GUI)
 ```
 
