@@ -10,7 +10,8 @@ import { useI18n } from "../../lib/i18n";
 import { useLive } from "../../lib/live";
 import { type Theme, useTheme } from "../../lib/theme";
 import { changeThemeWithTransition } from "../../lib/themeTransition";
-import type { StartupState } from "../../lib/types";
+import type { ConfigView, StartupState } from "../../lib/types";
+import { RouterLogin } from "./RouterLogin";
 import type { SectionProps } from "./Sections";
 
 function StartupRow() {
@@ -90,7 +91,7 @@ function UpdatesRow() {
   );
 }
 
-export function AppSection({ draft, set, err }: SectionProps) {
+export function AppSection({ draft, set, err, base }: SectionProps & { base: ConfigView }) {
   const { t } = useI18n();
   const theme = useTheme();
 
@@ -177,6 +178,7 @@ export function AppSection({ draft, set, err }: SectionProps) {
             describedBy="router-hint"
           />
         </div>
+        {draft.router_status ? <RouterLogin draft={draft} set={set} err={err} base={base} /> : null}
         <UpdatesRow />
       </div>
     </Card>

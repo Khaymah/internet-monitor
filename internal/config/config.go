@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"internet-monitor/internal/i18n"
+	"net"
 	"net/url"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -38,6 +40,9 @@ type Config struct {
 	AutoUpdateCheck     bool            `json:"auto_update_check"`
 	SealTimestamp       bool            `json:"seal_timestamp"`
 	RouterStatus        bool            `json:"router_status"`
+	RouterAddress       string          `json:"router_address"`
+	RouterUser          string          `json:"router_user"`
+	RouterPassword      string          `json:"router_password"`
 	TSAURL              string          `json:"tsa_url"`
 	Language            string          `json:"language"`
 	SpeedTest           SpeedTestConfig `json:"speed_test"`
@@ -221,6 +226,17 @@ func (c Config) ValidateChanges(prev Config, all bool) error {
 			return fieldError("ntfy_url", "use the full topic address, like https://ntfy.sh/my-topic")
 		}
 	}
+	if all || c.RouterAddress != prev.RouterAddress {
+		if c.RouterAddress != "" && !IsPrivateHost(c.RouterAddress) {
+			return fieldError("router_address", "use the router's address on your home network, like 192.168.1.1")
+		}
+	}
+	if len(c.RouterUser) > 64 {
+		return fieldError("router_user", "at most 64 characters")
+	}
+	if len(c.RouterPassword) > 128 {
+		return fieldError("router_password", "at most 128 characters")
+	}
 	if len(c.PingTargets) == 0 && len(c.HTTPTargets) == 0 && len(c.DNSTargets) == 0 {
 		return fieldError("targets", "at least one target is required")
 	}
@@ -259,4 +275,16 @@ func (c *Config) CheckInterval() time.Duration {
 		return time.Second
 	}
 	return time.Duration(c.CheckIntervalSec) * time.Second
+}
+
+func IsPrivateHost(addr string) bool {
+	host := addr
+	if h, port, err := net.SplitHostPort(addr); err == nil {
+		if n, err := strconv.Atoi(port); err != nil || n < 1 || n > 65535 {
+			return false
+		}
+		host = h
+	}
+	ip := net.ParseIP(host)
+	return ip != nil && (ip.IsPrivate() || ip.IsLoopback() || ip.IsLinkLocalUnicast())
 }

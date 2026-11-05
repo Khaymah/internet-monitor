@@ -54,6 +54,7 @@
   "route_stopped": "Route: stopped after hop {hop} ({addr}) inside the provider's network",
   "router_line_down": "Router: the line to the provider was down",
   "router_session_down": "Router: the line was up but the provider dropped the internet session",
+  "router_provider_dropped": "Router: the line was up and the provider ended the internet session (ISP disconnect)",
   "router_router_restarted": "Router: it restarted during the outage",
   "router_router_online": "Router: it said it was connected, so the fault was further inside the provider's network",
   "seal_title": "Log integrity",

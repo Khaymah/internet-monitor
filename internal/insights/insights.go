@@ -27,6 +27,8 @@ type Input struct {
 	QuotaUsedPct          float64
 	QuotaProjectedPct     float64
 	QuotaDaysLeft         int
+	SNRDown               float64
+	HasSNR                bool
 }
 
 func Analyze(in Input) []Insight {
@@ -40,7 +42,7 @@ func Analyze(in Input) []Insight {
 		add("coverage_low", Warn, map[string]any{"pct": math.Round(s.CoveragePct)})
 	}
 
-	providerSide, power, routerOnly, lineDown, restarts := 0, 0, 0, 0, 0
+	providerSide, power, routerOnly, lineDown, restarts, dropped := 0, 0, 0, 0, 0, 0
 	for _, e := range s.Events {
 		if e.Type != "disconnected" {
 			continue
@@ -55,6 +57,8 @@ func Analyze(in Input) []Insight {
 			lineDown++
 		case "router_restarted":
 			restarts++
+		case "provider_dropped":
+			dropped++
 		}
 		if e.Route != nil && !e.Route.Reached && e.Route.LastHop == 1 {
 			routerOnly++
@@ -72,6 +76,14 @@ func Analyze(in Input) []Insight {
 
 	if lineDown >= 1 {
 		add("line_sync", Warn, map[string]any{"n": lineDown})
+	}
+
+	if in.HasSNR && in.SNRDown < 6 {
+		add("snr_low", Warn, map[string]any{"db": math.Round(in.SNRDown*10) / 10})
+	}
+
+	if dropped >= 1 {
+		add("provider_dropped", Warn, map[string]any{"n": dropped})
 	}
 
 	if restarts >= 2 {

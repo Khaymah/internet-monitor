@@ -29,6 +29,8 @@ type SpeedSummary struct {
 	PeakTests        int     `json:"peak_tests"`
 }
 
+func Median(v []float64) float64 { return medianOf(v) }
+
 func medianOf(v []float64) float64 {
 	if len(v) == 0 {
 		return 0

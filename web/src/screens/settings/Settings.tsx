@@ -378,7 +378,7 @@ export function Settings() {
           <RemoteAlertsCard />
           <SoundCard />
           <SpeedSection {...props} />
-          <AppSection {...props} />
+          <AppSection {...props} base={state.base} />
           <PhoneCard />
         </div>
       </div>

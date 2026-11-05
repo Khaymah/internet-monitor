@@ -303,3 +303,13 @@ func TestStoreNoopUpdateKeepsRevision(t *testing.T) {
 		t.Errorf("subscribers notified %d times for a no-op update", calls)
 	}
 }
+
+func TestRouterAddressMustBeLocal(t *testing.T) {
+	for addr, ok := range map[string]bool{"": true, "192.168.1.1": true, "10.0.0.138:8080": true, "8.8.8.8": false, "router.example.com": false, "192.168.1.1:99999": false} {
+		c := Default()
+		c.RouterAddress = addr
+		if err := c.Validate(); (err == nil) != ok {
+			t.Errorf("%q: err = %v", addr, err)
+		}
+	}
+}

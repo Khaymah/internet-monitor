@@ -29,6 +29,7 @@ type Hooks struct {
 	SpeedResult      func(event logger.SpeedTestEvent, thresholdMbps float64, below bool)
 	SendWeekly       func() bool
 	Router           func() router.Snapshot
+	TestRouter       func(user, password string) (router.WebStats, error)
 }
 
 type Options struct {
@@ -145,6 +146,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/seals", s.serveSeals)
 	mux.HandleFunc("GET /api/insights", s.serveInsights)
 	mux.HandleFunc("GET /api/router", s.serveRouter)
+	mux.HandleFunc("POST /api/test-router", s.serveTestRouter)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)

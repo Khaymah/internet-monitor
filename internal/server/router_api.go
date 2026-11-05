@@ -1,7 +1,12 @@
 package server
 
 import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
+	"strings"
 	"time"
 
 	"internet-monitor/internal/jsonl"
@@ -23,11 +28,13 @@ type PlanUsage struct {
 }
 
 type routerView struct {
-	Enabled bool           `json:"enabled"`
-	Found   bool           `json:"found"`
-	Status  *router.Status `json:"status,omitempty"`
-	Error   string         `json:"error,omitempty"`
-	Usage   *PlanUsage     `json:"usage,omitempty"`
+	Enabled  bool           `json:"enabled"`
+	Found    bool           `json:"found"`
+	Status   *router.Status `json:"status,omitempty"`
+	Error    string         `json:"error,omitempty"`
+	Usage    *PlanUsage     `json:"usage,omitempty"`
+	WebOK    bool           `json:"web_ok,omitempty"`
+	WebError string         `json:"web_error,omitempty"`
 }
 
 func (s *Server) PlanUsage(now time.Time) (PlanUsage, bool) {
@@ -63,6 +70,7 @@ func (s *Server) serveRouter(w http.ResponseWriter, _ *http.Request) {
 	if s.hooks.Router != nil {
 		snap := s.hooks.Router()
 		view.Found, view.Status, view.Error = snap.Found, snap.Status, snap.Error
+		view.WebOK, view.WebError = snap.WebOK, snap.WebError
 	}
 	if u, ok := s.PlanUsage(time.Now()); ok {
 		view.Usage = &u
@@ -85,4 +93,50 @@ func attachRouter(rows []report.EventRow, samples []router.Status) {
 		end := start.Add(time.Duration(rows[i].DurationSecs * float64(time.Second)))
 		rows[i].Router = router.Classify(samples, start, end)
 	}
+}
+
+func (s *Server) serveTestRouter(w http.ResponseWriter, r *http.Request) {
+	var req struct {
+		User     string `json:"user"`
+		Password string `json:"password"`
+	}
+	body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 4096))
+	if err != nil {
+		writeError(w, http.StatusRequestEntityTooLarge, "too_large", "request body too large")
+		return
+	}
+	if len(bytes.TrimSpace(body)) > 0 && json.Unmarshal(body, &req) != nil {
+		writeError(w, http.StatusBadRequest, "invalid_json", "invalid JSON body")
+		return
+	}
+	if s.hooks.TestRouter == nil {
+		writeError(w, http.StatusServiceUnavailable, "unavailable", "router reading is not available")
+		return
+	}
+	if !s.tester.allow("test-router") {
+		writeError(w, http.StatusTooManyRequests, "rate_limited", "please wait a minute before testing again")
+		return
+	}
+	stats, err := s.hooks.TestRouter(strings.TrimSpace(req.User), req.Password)
+	if err != nil {
+		s.tester.forget("test-router")
+		code := "router_unreachable"
+		switch {
+		case errors.Is(err, router.ErrWrongPassword):
+			code = "router_wrong_password"
+		case errors.Is(err, router.ErrRouterBusy):
+			code = "router_busy"
+		case errors.Is(err, router.ErrWebUnknown):
+			code = "router_unsupported"
+		}
+		writeError(w, http.StatusBadGateway, code, err.Error())
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]any{
+		"ok":           true,
+		"down_kbps":    stats.DownKbps,
+		"up_kbps":      stats.UpKbps,
+		"snr_down_db":  stats.SNRDown,
+		"has_counters": stats.HasCounters,
+	})
 }

@@ -74,11 +74,18 @@ func TestAnalyzeRouterAndQuota(t *testing.T) {
 			{Type: "disconnected", Router: "router_restarted"},
 			{Type: "disconnected", Router: "router_restarted"},
 			{Type: "disconnected", Router: "line_down", OnBattery: true},
+			{Type: "disconnected", Router: "provider_dropped"},
 		},
 	}
-	got := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 62, QuotaProjectedPct: 140, QuotaDaysLeft: 12}))
+	got := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 62, QuotaProjectedPct: 140, QuotaDaysLeft: 12, SNRDown: 4.24, HasSNR: true}))
+	if got["snr_low"].Vars["db"] != 4.2 {
+		t.Errorf("snr_low = %v", got["snr_low"])
+	}
 	if got["line_sync"].Vars["n"] != 1 {
 		t.Errorf("line_sync must count only outages not explained by power: %v", got["line_sync"])
+	}
+	if got["provider_dropped"].Vars["n"] != 1 {
+		t.Errorf("provider_dropped = %v", got["provider_dropped"])
 	}
 	if got["router_restarts"].Vars["n"] != 2 {
 		t.Errorf("router_restarts = %v", got["router_restarts"])
@@ -86,8 +93,11 @@ func TestAnalyzeRouterAndQuota(t *testing.T) {
 	if q := got["quota_pace"]; q.Vars["pct"] != 62.0 || q.Vars["days"] != 12 {
 		t.Errorf("quota_pace = %v", q)
 	}
-	calm := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 40, QuotaProjectedPct: 90, QuotaDaysLeft: 12}))
+	calm := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 40, QuotaProjectedPct: 90, QuotaDaysLeft: 12, SNRDown: 9, HasSNR: true}))
 	if _, ok := calm["quota_pace"]; ok {
 		t.Error("no quota warning when the plan will last")
+	}
+	if _, ok := calm["snr_low"]; ok {
+		t.Error("no SNR warning on a healthy margin")
 	}
 }

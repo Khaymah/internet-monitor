@@ -54,6 +54,7 @@
   "route_stopped": "Rota: sağlayıcının ağı içinde {hop}. atlamadan ({addr}) sonra durdu",
   "router_line_down": "Modem: sağlayıcıya giden hat kesikti",
   "router_session_down": "Modem: hat çalışıyordu ama sağlayıcı internet oturumunu düşürdü",
+  "router_provider_dropped": "Modem: hat açıktı ve sağlayıcı internet oturumunu sonlandırdı (ISP disconnect)",
   "router_router_restarted": "Modem: kesinti sırasında yeniden başladı",
   "router_router_online": "Modem: bağlı olduğunu bildirdi, yani arıza sağlayıcının ağının daha içindeydi",
   "seal_title": "Kayıt bütünlüğü",

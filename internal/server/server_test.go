@@ -390,16 +390,16 @@ func TestSessionRequiredForAPIAndLaunchSetsCookie(t *testing.T) {
 func TestConfigGetMasksSecrets(t *testing.T) {
 	e := newTestEnv(t)
 	secret := "https://hooks.slack.com/services/T000/B000/SECRETSECRET"
-	if r := e.do(t, "POST", "/api/config", `{"webhook_url":"`+secret+`","telegram_bot_token":"123:abc","ntfy_url":"https://ntfy.sh/PRIVATETOPIC","ntfy_token":"tk_NTFYSECRET"}`, nil); r.StatusCode != http.StatusOK {
+	if r := e.do(t, "POST", "/api/config", `{"webhook_url":"`+secret+`","telegram_bot_token":"123:abc","ntfy_url":"https://ntfy.sh/PRIVATETOPIC","ntfy_token":"tk_NTFYSECRET","router_password":"ROUTERPASS"}`, nil); r.StatusCode != http.StatusOK {
 		t.Fatalf("save secrets: %d", r.StatusCode)
 	}
 	body, _ := io.ReadAll(e.do(t, "GET", "/api/config", "", nil).Body)
-	for _, leak := range []string{"SECRETSECRET", "123:abc", "PRIVATETOPIC", "NTFYSECRET"} {
+	for _, leak := range []string{"SECRETSECRET", "123:abc", "PRIVATETOPIC", "NTFYSECRET", "ROUTERPASS"} {
 		if strings.Contains(string(body), leak) {
 			t.Fatalf("secret %q leaked: %s", leak, body)
 		}
 	}
-	if !strings.Contains(string(body), `"secret_set":{"ntfy_token":true,"ntfy_url":true,"telegram_bot_token":true,"webhook_url":true}`) {
+	if !strings.Contains(string(body), `"secret_set":{"ntfy_token":true,"ntfy_url":true,"router_password":true,"telegram_bot_token":true,"webhook_url":true}`) {
 		t.Errorf("secret_set missing: %s", body)
 	}
 	if r := e.do(t, "POST", "/api/config", `{"check_interval_sec":9}`, nil); r.StatusCode != http.StatusOK {

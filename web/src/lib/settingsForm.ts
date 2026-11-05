@@ -14,6 +14,9 @@ export interface Draft {
   auto_update_check: boolean;
   seal_timestamp: boolean;
   router_status: boolean;
+  router_address: string;
+  router_user: string;
+  router_password: SecretDraft;
   ping_targets: string[];
   http_targets: string[];
   dns_targets: string[];
@@ -85,6 +88,9 @@ export function draftFrom(c: ConfigView): Draft {
     auto_update_check: c.auto_update_check ?? true,
     seal_timestamp: c.seal_timestamp ?? false,
     router_status: c.router_status ?? true,
+    router_address: c.router_address ?? "",
+    router_user: c.router_user ?? "",
+    router_password: { mode: "keep" },
     ping_targets: [...(c.ping_targets ?? [])],
     http_targets: [...(c.http_targets ?? [])],
     dns_targets: [...(c.dns_targets ?? [])],
@@ -360,6 +366,10 @@ export function buildChanges(d: Draft, base: ConfigView): Record<string, unknown
   if (d.ntfy_url.mode === "clear") out.ntfy_url = "";
   if (d.ntfy_token.mode === "set") out.ntfy_token = d.ntfy_token.value.trim();
   if (d.ntfy_token.mode === "clear") out.ntfy_token = "";
+  if (d.router_address.trim() !== (base.router_address ?? "")) out.router_address = d.router_address.trim();
+  if (d.router_user.trim() !== (base.router_user ?? "")) out.router_user = d.router_user.trim();
+  if (d.router_password.mode === "set") out.router_password = d.router_password.value;
+  if (d.router_password.mode === "clear") out.router_password = "";
 
   const st = base.speed_test;
   const speed: Record<string, unknown> = {};
@@ -410,7 +420,15 @@ const SECTION_FIELDS: Record<string, FieldKey[]> = {
     "speed_download_targets",
     "speed_upload_target",
   ],
-  app: ["dashboard_port", "log_dir", "auto_update_check", "seal_timestamp", "router_status"],
+  app: [
+    "dashboard_port",
+    "log_dir",
+    "auto_update_check",
+    "seal_timestamp",
+    "router_status",
+    "router_user",
+    "router_password",
+  ],
 };
 
 export function sectionOfField(field: FieldKey): string {
@@ -455,6 +473,9 @@ export function rebaseDraft(
     }
     if (key === "ntfy_url") theirs = oldBase.secret_set.ntfy_url !== newBase.secret_set.ntfy_url;
     if (key === "ntfy_token") theirs = oldBase.secret_set.ntfy_token !== newBase.secret_set.ntfy_token;
+    if (key === "router_password") {
+      theirs = oldBase.secret_set.router_password !== newBase.secret_set.router_password;
+    }
     if (theirs && !same(draft[key], after[key])) conflicts.push(key);
     Object.assign(out, { [key]: draft[key] });
   }
