@@ -2,6 +2,7 @@ package router
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"io"
@@ -166,5 +167,31 @@ func TestClassifyLineRetrain(t *testing.T) {
 	}
 	if got := Classify(samples, at(10), at(13)); got != CauseLineDown {
 		t.Fatalf("a line that resynced during the outage went down: got %q", got)
+	}
+}
+
+func TestWebReadOldHTTPSOnlyRouter(t *testing.T) {
+	f := &fakeWeb{password: "s3cret"}
+	srv := httptest.NewUnstartedServer(f.handler(t))
+	srv.TLS = &tls.Config{
+		MinVersion:   tls.VersionTLS10,
+		MaxVersion:   tls.VersionTLS10,
+		CipherSuites: []uint16{tls.TLS_RSA_WITH_AES_128_CBC_SHA},
+	}
+	srv.StartTLS()
+	defer srv.Close()
+	st, err := WebReader{Host: strings.TrimPrefix(srv.URL, "https://"), Password: "s3cret"}.Read(context.Background())
+	if err != nil {
+		t.Fatalf("an https-only router with an old TLS setup must still be read: %v", err)
+	}
+	if st.SNRDown != 6 || !st.HasCounters {
+		t.Fatalf("stats %+v", st)
+	}
+}
+
+func TestWebReadReportsEveryAttempt(t *testing.T) {
+	_, err := WebReader{Host: "127.0.0.1:1", Password: "x", Timeout: time.Second}.Read(context.Background())
+	if err == nil || !strings.Contains(err.Error(), "https://127.0.0.1:1") || !strings.Contains(err.Error(), "http://127.0.0.1:1") {
+		t.Fatalf("the error must name both attempts, got %v", err)
 	}
 }

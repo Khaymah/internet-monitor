@@ -123,6 +123,11 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 - README section listing every server the app contacts, how often, and the
   setting that changes or disables it.
 
+### Fixed
+- Router page reading works with routers that serve it only over HTTPS with an old TLS
+  setup (Huawei HG630 V2): https first, then http, legacy TLS for the home router only,
+  and the test shows why it failed (rc.10).
+
 ## [2.0.0] - 2026-10-24
 
 The v2 rebuild.
