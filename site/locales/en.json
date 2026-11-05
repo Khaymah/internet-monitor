@@ -105,11 +105,9 @@
     "pick_first": "Not sure? Choose the first one.",
     "second_title": "Prefer a regular program?",
     "mac_arm": "Apple chip",
-    "mac_arm_sub": "M1, M2, M3, M4 and newer",
     "mac_intel": "Intel chip",
-    "mac_intel_sub": "Older Macs",
-    "mac_which": "Not sure which Mac you have? Click the Apple menu, then **About This Mac**. If it says **Chip: Apple**, pick Apple chip. If it says **Processor: Intel**, pick Intel.",
-    "mac_show_both": "Not the right one? Show both",
+    "mac_raw_title": "Mac, plain files",
+    "mac_raw_note": "For advanced users: single files with no installer, one for each type of chip. Allow them to run first with **chmod +x**. The apps above are easier for most people.",
     "pi_64": "Raspberry Pi 4 or 5 (64-bit)",
     "pi_32": "Raspberry Pi 2 or 3, or 32-bit system",
     "pi_amd64": "Other Linux PC or server (64-bit)",
@@ -130,10 +128,10 @@
         "Click the icon and choose **Open dashboard**."
       ],
       "mac": [
-        "Download the file made for your Mac.",
-        "Allow it to run, one time only.",
-        "Right-click the file, choose **Open**, then **Open** again.",
-        "Click the small icon at the top of the screen and choose **Open dashboard**."
+        "Download the file with the big button above.",
+        "Open the downloaded file and drag **Internet Monitor** onto the **Applications** folder.",
+        "Open **Internet Monitor** from Applications. The first time, your Mac may say it can't verify the app. If it does, open **System Settings → Privacy & Security**, scroll down and press **Open Anyway**. On recent versions of macOS, right-clicking and choosing Open no longer works for this.",
+        "Click the small icon at the top of the screen and choose **Open dashboard**. In the regular program edition, the window opens by itself."
       ],
       "linux": [
         "Download the file.",
@@ -149,11 +147,9 @@
       ]
     },
     "warn": {
-      "windows": "Windows may show a blue box saying **Windows protected your PC**. Click **More info**, then **Run anyway**. It shows up because the app is new, not because anything is wrong.",
-      "mac": "If your Mac says it can't be opened because the developer is unknown, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**."
+      "windows": "Windows may show a blue box saying **Windows protected your PC**. Click **More info**, then **Run anyway**. It shows up because the app is new, not because anything is wrong."
     },
     "more": {
-      "mac": "Open the **Terminal** app (find it with Spotlight). Type **chmod +x** and a space, drag the downloaded file into the window, then press Enter.",
       "linux": "Right-click the file, choose **Properties → Permissions**, and tick **Allow executing file as program**. Or run **chmod +x** on it in a terminal."
     },
     "folder_tip": "Tip: keep the file in its own folder, for example **Internet Monitor** inside Documents. The app saves its records next to the file.",
@@ -175,7 +171,7 @@
     "title": "Video tours — Internet Monitor",
     "description": "Short narrated videos, one for each page of Internet Monitor: what every part shows, what it means and what to do with it.",
     "h1": "Watch how each page works",
-    "intro": "Seven short videos with an English voice and subtitles in five languages. Pick a page and press play.",
+    "intro": "Pick the page you want to understand and press play.",
     "video_label": "Video tour: {title}",
     "subtitles": "Subtitles: {langs}. Use the CC button in the player.",
     "no_subtitles": "Subtitles are on the way.",

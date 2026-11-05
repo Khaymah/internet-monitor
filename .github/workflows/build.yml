@@ -353,7 +353,7 @@ jobs:
           if-no-files-found: ignore
 
   macos:
-    name: "🍎 macOS (arm64 + intel)"
+    name: "🍎 macOS (universal apps + DMGs)"
     runs-on: macos-latest
     needs: [version, quality, web]
     if: ${{ always() && needs.quality.result == 'success' && needs.web.result == 'success' }}
@@ -374,6 +374,7 @@ jobs:
         env:
           CGO_ENABLED: 1
           GOARCH: arm64
+          MACOSX_DEPLOYMENT_TARGET: "13.0"
           VERSION: ${{ needs.version.outputs.new_tag || needs.web.outputs.dev_version }}
         run: |
           go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-macos-arm64 ./cmd/tray
@@ -385,19 +386,32 @@ jobs:
           GOARCH: amd64
           CGO_CFLAGS: "-arch x86_64"
           CGO_LDFLAGS: "-arch x86_64"
+          MACOSX_DEPLOYMENT_TARGET: "13.0"
           VERSION: ${{ needs.version.outputs.new_tag || needs.web.outputs.dev_version }}
         run: |
           go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-macos-intel ./cmd/tray
           go build -ldflags="-s -w -X main.Version=$VERSION" -o internet-monitor-gui-macos-intel ./cmd/gui/
 
+      - name: Universal apps and DMGs (lipo, ad-hoc codesign, hdiutil)
+        env:
+          VERSION: ${{ needs.version.outputs.new_tag || needs.web.outputs.dev_version }}
+        run: |
+          lipo -create -output internet-monitor-macos-universal internet-monitor-macos-arm64 internet-monitor-macos-intel
+          lipo -create -output internet-monitor-gui-macos-universal internet-monitor-gui-macos-arm64 internet-monitor-gui-macos-intel
+          packaging/macos/build-dmg.sh tray internet-monitor-macos-universal "$VERSION" internal/assets/favicon.png internet-monitor-macos.dmg
+          packaging/macos/build-dmg.sh gui internet-monitor-gui-macos-universal "$VERSION" internal/assets/favicon.png internet-monitor-gui-macos.dmg
+
       - uses: actions/upload-artifact@v7
         with:
           name: macos
+          if-no-files-found: error
           path: |
             internet-monitor-macos-arm64
             internet-monitor-macos-intel
             internet-monitor-gui-macos-arm64
             internet-monitor-gui-macos-intel
+            internet-monitor-macos.dmg
+            internet-monitor-gui-macos.dmg
 
   # ── Linux — AppIndicator (systray) + WebKitGTK (native GUI) ──
   linux:
@@ -474,8 +488,8 @@ jobs:
       - name: Verify every release binary is present
         run: |
           count=$(ls dist/internet-monitor-* | wc -l)
-          if [ "$count" -ne 11 ]; then
-            echo "Expected 11 binaries, found $count:"; ls -la dist; exit 1
+          if [ "$count" -ne 13 ]; then
+            echo "Expected 13 binaries, found $count:"; ls -la dist; exit 1
           fi
 
       - name: Make Linux/macOS binaries executable
@@ -514,17 +528,19 @@ jobs:
             | ---- | -- | ---- |
             | `internet-monitor-windows.exe` | Windows 10/11 | System Tray |
             | `internet-monitor-gui-windows.exe` | Windows 10/11 | Standalone window |
-            | `internet-monitor-macos-arm64` | macOS M1/M2/M3 | System Tray |
-            | `internet-monitor-macos-intel` | macOS Intel | System Tray |
-            | `internet-monitor-gui-macos-arm64` | macOS M1/M2/M3 | Standalone window |
-            | `internet-monitor-gui-macos-intel` | macOS Intel | Standalone window |
+            | `internet-monitor-macos.dmg` | macOS, Apple chip and Intel | System Tray (recommended) |
+            | `internet-monitor-gui-macos.dmg` | macOS, Apple chip and Intel | Standalone window |
+            | `internet-monitor-macos-arm64` | macOS M1/M2/M3 (raw file) | System Tray |
+            | `internet-monitor-macos-intel` | macOS Intel (raw file) | System Tray |
+            | `internet-monitor-gui-macos-arm64` | macOS M1/M2/M3 (raw file) | Standalone window |
+            | `internet-monitor-gui-macos-intel` | macOS Intel (raw file) | Standalone window |
             | `internet-monitor-linux` | Linux | System Tray |
             | `internet-monitor-gui-linux` | Linux | Standalone window |
             | `internet-monitor-headless-linux-amd64` | Linux server / Docker | Headless, 24/7 |
             | `internet-monitor-headless-linux-arm64` | Raspberry Pi 4/5 (64-bit) | Headless, 24/7 |
             | `internet-monitor-headless-linux-armv7` | Raspberry Pi 2/3 (32-bit) | Headless, 24/7 |
 
-            > Download the binary only — `config.json` is created automatically on first run.
+            > On a Mac, open the `.dmg` and drag the app to Applications. The first time, macOS may say it can't verify the app: open System Settings, Privacy & Security, and press "Open Anyway". Everywhere else, download the binary only — `config.json` is created automatically on first run.
 
             ---
 
@@ -549,6 +565,8 @@ jobs:
             dist/internet-monitor-macos-arm64
             dist/internet-monitor-gui-macos-intel
             dist/internet-monitor-gui-macos-arm64
+            dist/internet-monitor-macos.dmg
+            dist/internet-monitor-gui-macos.dmg
             dist/internet-monitor-linux
             dist/internet-monitor-gui-linux
             dist/internet-monitor-headless-linux-amd64

@@ -52,6 +52,15 @@ type App struct {
 	once sync.Once
 }
 
+const supportFolder = "Internet Monitor"
+
+func dataDir(exe, home string) string {
+	if pkgid.InBundle(exe) && home != "" {
+		return filepath.Join(home, "Library", "Application Support", supportFolder)
+	}
+	return filepath.Dir(exe)
+}
+
 func Dir() string {
 	if pkgid.Packaged() {
 		if base := os.Getenv("LOCALAPPDATA"); base != "" {
@@ -66,7 +75,8 @@ func Dir() string {
 	if resolved, err := filepath.EvalSymlinks(exe); err == nil {
 		exe = resolved
 	}
-	return filepath.Dir(exe)
+	home, _ := os.UserHomeDir()
+	return dataDir(exe, home)
 }
 
 func New(opts Options) (*App, error) {
@@ -136,8 +146,9 @@ func New(opts Options) (*App, error) {
 			PlaySound:        sound.PlayAt,
 			TestWebhook:      lgr.SendTestWebhook,
 			TestNtfy:         lgr.SendTestNtfy,
-			CheckUpdate:      func() (*updater.Info, error) { return checkUpdate(opts.Version) },
+			CheckUpdate:      func() (*updater.Info, error) { return checkUpdate(opts.Version, store.Get().Language) },
 			ApplyUpdate:      applyUpdate,
+			OpenPage:         tray.OpenURL,
 			Restart:          updater.Restart,
 			SpeedResult:      func(ev logger.SpeedTestEvent, threshold float64, below bool) { al.OnSpeedResult(ev, threshold, below) },
 			SendWeekly:       wk.SendNow,
@@ -280,11 +291,18 @@ func (a *App) Run(notifiers ...core.Notifier) {
 	go a.Weekly.Run(a.stop)
 }
 
-func checkUpdate(version string) (*updater.Info, error) {
+func checkUpdate(version, lang string) (*updater.Info, error) {
 	if pkgid.Packaged() {
 		return &updater.Info{CurrentVersion: version, LatestVersion: version, Managed: "store"}, nil
 	}
-	return updater.Check(version)
+	info, err := updater.Check(version)
+	if err != nil {
+		return nil, err
+	}
+	if pkgid.Bundled() {
+		updater.MarkBundled(info, lang)
+	}
+	return info, nil
 }
 
 func applyUpdate(downloadURL string) error {
@@ -305,7 +323,7 @@ func (a *App) updateLoop() {
 	}
 	for {
 		if a.Store.Get().AutoUpdateCheck {
-			if info, err := updater.Check(a.Version); err == nil && info.HasUpdate {
+			if info, err := checkUpdate(a.Version, a.Store.Get().Language); err == nil && info.HasUpdate {
 				a.Log.AppLog("UPDATE available: %s (current: %s)", info.LatestVersion, info.CurrentVersion)
 				a.Server.SetUpdateInfo(info)
 			}

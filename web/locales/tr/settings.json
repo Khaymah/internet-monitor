@@ -97,6 +97,7 @@
   "update_latest": "Güncelsiniz",
   "update_available": "Sürüm {v} hazır",
   "update_install": "Yükle ve yeniden başlat",
+  "update_download": "İndirme sayfasını aç",
   "update_downloading": "Güncelleme indiriliyor…",
   "update_restarting": "Yeniden başlatılıyor…",
   "update_failed": "Güncelleme başarısız: {error}",

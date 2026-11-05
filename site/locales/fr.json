@@ -105,11 +105,9 @@
     "pick_first": "Pas sûr ? Choisissez le premier.",
     "second_title": "Vous préférez un programme classique ?",
     "mac_arm": "Puce Apple",
-    "mac_arm_sub": "M1, M2, M3, M4 et plus récent",
     "mac_intel": "Puce Intel",
-    "mac_intel_sub": "Anciens Mac",
-    "mac_which": "Vous ne savez pas quel Mac vous avez ? Cliquez sur le menu Pomme, puis **À propos de ce Mac**. S'il est écrit **Puce : Apple**, choisissez puce Apple. S'il est écrit **Processeur : Intel**, choisissez Intel.",
-    "mac_show_both": "Ce n'est pas le bon ? Afficher les deux",
+    "mac_raw_title": "Mac, fichiers simples",
+    "mac_raw_note": "Pour les utilisateurs avancés : des fichiers seuls, sans installeur, un par type de puce. Autorisez-les d'abord avec **chmod +x**. Les apps ci-dessus sont plus simples pour la plupart des gens.",
     "pi_64": "Raspberry Pi 4 ou 5 (64 bits)",
     "pi_32": "Raspberry Pi 2 ou 3, ou système 32 bits",
     "pi_amd64": "Autre PC ou serveur Linux (64 bits)",
@@ -130,10 +128,10 @@
         "Cliquez sur l'icône et choisissez **Ouvrir le tableau de bord**."
       ],
       "mac": [
-        "Téléchargez le fichier fait pour votre Mac.",
-        "Autorisez-le à s'exécuter, une seule fois.",
-        "Faites un clic droit sur le fichier, choisissez **Ouvrir**, puis **Ouvrir** à nouveau.",
-        "Cliquez sur la petite icône en haut de l'écran et choisissez **Ouvrir le tableau de bord**."
+        "Téléchargez le fichier avec le grand bouton ci-dessus.",
+        "Ouvrez le fichier téléchargé et glissez **Internet Monitor** dans le dossier **Applications**.",
+        "Ouvrez **Internet Monitor** depuis Applications. La première fois, votre Mac peut dire qu'il ne peut pas vérifier l'app. Dans ce cas, ouvrez **Réglages Système → Confidentialité et sécurité**, descendez et cliquez sur **Ouvrir quand même**. Sur les versions récentes de macOS, le clic droit puis Ouvrir ne fonctionne plus pour cela.",
+        "Cliquez sur la petite icône en haut de l'écran et choisissez **Ouvrir le tableau de bord**. Dans l'édition programme classique, la fenêtre s'ouvre toute seule."
       ],
       "linux": [
         "Téléchargez le fichier.",
@@ -149,11 +147,9 @@
       ]
     },
     "warn": {
-      "windows": "Windows peut afficher une fenêtre bleue **Windows a protégé votre ordinateur**. Cliquez sur **Informations complémentaires**, puis **Exécuter quand même**. Elle apparaît parce que l'appli est nouvelle, pas parce que quelque chose ne va pas.",
-      "mac": "Si votre Mac dit qu'il ne peut pas être ouvert car il provient d'un développeur non identifié, allez dans **Réglages Système → Confidentialité et sécurité**, descendez et cliquez sur **Ouvrir quand même**."
+      "windows": "Windows peut afficher une fenêtre bleue **Windows a protégé votre ordinateur**. Cliquez sur **Informations complémentaires**, puis **Exécuter quand même**. Elle apparaît parce que l'appli est nouvelle, pas parce que quelque chose ne va pas."
     },
     "more": {
-      "mac": "Ouvrez l'app **Terminal** (cherchez-la avec Spotlight). Tapez **chmod +x** et une espace, glissez le fichier téléchargé dans la fenêtre, puis appuyez sur Entrée.",
       "linux": "Faites un clic droit sur le fichier, choisissez **Propriétés → Permissions** et cochez **Autoriser l'exécution du fichier comme un programme**. Ou lancez **chmod +x** dessus dans un terminal."
     },
     "folder_tip": "Astuce : gardez le fichier dans son propre dossier, par exemple **Internet Monitor** dans Documents. L'appli enregistre ses données à côté du fichier.",
@@ -175,7 +171,7 @@
     "title": "Visites en vidéo — Internet Monitor",
     "description": "De courtes vidéos commentées, une pour chaque page d'Internet Monitor : ce que montre chaque partie, ce qu'elle signifie et quoi en faire.",
     "h1": "Voyez comment marche chaque page",
-    "intro": "Sept courtes vidéos, commentées en anglais et sous-titrées en cinq langues. Choisissez une page et appuyez sur lecture.",
+    "intro": "Choisissez la page que vous voulez comprendre et lancez la vidéo.",
     "video_label": "Visite en vidéo : {title}",
     "subtitles": "Sous-titres : {langs}. Utilisez le bouton CC du lecteur.",
     "no_subtitles": "Les sous-titres arrivent bientôt.",

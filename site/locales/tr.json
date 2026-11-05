@@ -105,11 +105,9 @@
     "pick_first": "Emin değil misiniz? İlkini seçin.",
     "second_title": "Normal bir program mı istiyorsunuz?",
     "mac_arm": "Apple çip",
-    "mac_arm_sub": "M1, M2, M3, M4 ve sonrası",
     "mac_intel": "Intel çip",
-    "mac_intel_sub": "Eski Mac'ler",
-    "mac_which": "Hangi Mac'iniz olduğundan emin değil misiniz? Apple menüsüne, sonra **Bu Mac Hakkında**'ya tıklayın. **Çip: Apple** yazıyorsa Apple çipi, **İşlemci: Intel** yazıyorsa Intel'i seçin.",
-    "mac_show_both": "Doğru değil mi? İkisini de göster",
+    "mac_raw_title": "Mac, düz dosyalar",
+    "mac_raw_note": "İleri düzey kullanıcılar için: yükleyicisi olmayan tek dosyalar, her çip türü için bir tane. Önce **chmod +x** ile çalışmasına izin verin. Çoğu kişi için yukarıdaki uygulamalar daha kolaydır.",
     "pi_64": "Raspberry Pi 4 veya 5 (64 bit)",
     "pi_32": "Raspberry Pi 2 veya 3 ya da 32 bit sistem",
     "pi_amd64": "Diğer Linux bilgisayar veya sunucu (64 bit)",
@@ -130,10 +128,10 @@
         "Simgeye tıklayın ve **Paneli aç**'ı seçin."
       ],
       "mac": [
-        "Mac'inize uygun dosyayı indirin.",
-        "Çalışmasına izin verin, yalnızca bir kez.",
-        "Dosyaya sağ tıklayın, **Aç**'ı seçin, sonra yine **Aç**'a tıklayın.",
-        "Ekranın üstündeki küçük simgeye tıklayın ve **Paneli aç**'ı seçin."
+        "Yukarıdaki büyük düğmeyle dosyayı indirin.",
+        "İndirdiğiniz dosyayı açın ve **Internet Monitor**'ü **Uygulamalar** klasörüne sürükleyin.",
+        "**Internet Monitor**'ü Uygulamalar'dan açın. İlk seferde Mac'iniz uygulamayı doğrulayamadığını söyleyebilir. Öyleyse **Sistem Ayarları → Gizlilik ve Güvenlik**'i açın, aşağı kaydırın ve **Yine de Aç**'a tıklayın. macOS'in yeni sürümlerinde sağ tıklayıp Aç'ı seçmek bunun için artık işe yaramıyor.",
+        "Ekranın üstündeki küçük simgeye tıklayın ve **Paneli aç**'ı seçin. Normal program sürümünde pencere kendiliğinden açılır."
       ],
       "linux": [
         "Dosyayı indirin.",
@@ -149,11 +147,9 @@
       ]
     },
     "warn": {
-      "windows": "**Windows bilgisayarınızı korudu** yazan mavi bir pencere çıkabilir. **Ek bilgi**'ye, sonra **Yine de çalıştır**'a tıklayın. Bu uyarı bir sorun olduğu için değil, uygulama yeni olduğu için çıkar.",
-      "mac": "Mac'iniz dosyanın tanımlanamayan bir geliştiriciden geldiği için açılamadığını söylerse **Sistem Ayarları → Gizlilik ve Güvenlik**'e gidin, aşağı kaydırın ve **Yine de Aç**'a tıklayın."
+      "windows": "**Windows bilgisayarınızı korudu** yazan mavi bir pencere çıkabilir. **Ek bilgi**'ye, sonra **Yine de çalıştır**'a tıklayın. Bu uyarı bir sorun olduğu için değil, uygulama yeni olduğu için çıkar."
     },
     "more": {
-      "mac": "**Terminal** uygulamasını açın (Spotlight ile arayın). **chmod +x** yazın, bir boşluk bırakın, indirdiğiniz dosyayı pencerenin içine sürükleyin ve Enter'a basın.",
       "linux": "Dosyaya sağ tıklayın, **Özellikler → İzinler**'i seçin ve **Dosyanın program olarak çalıştırılmasına izin ver**'i işaretleyin. Ya da terminalde dosya üzerinde **chmod +x** çalıştırın."
     },
     "folder_tip": "İpucu: Dosyayı kendi klasörüne koyun, örneğin Belgeler içinde **Internet Monitor**. Uygulama kayıtlarını dosyanın yanına kaydeder.",
@@ -175,7 +171,7 @@
     "title": "Video turlar — Internet Monitor",
     "description": "Internet Monitor'ün her sayfası için kısa, sesli bir video: her bölüm ne gösterir, ne anlama gelir ve onunla ne yapmalısınız.",
     "h1": "Her sayfanın nasıl çalıştığını izleyin",
-    "intro": "İngilizce anlatımlı ve beş dilde altyazılı yedi kısa video. Bir sayfa seçip oynat'a basın.",
+    "intro": "Anlamak istediğiniz sayfayı seçin ve oynat'a basın.",
     "video_label": "Video tur: {title}",
     "subtitles": "Altyazılar: {langs}. Oynatıcıdaki CC düğmesini kullanın.",
     "no_subtitles": "Altyazılar yolda.",

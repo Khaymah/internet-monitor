@@ -130,3 +130,18 @@ func TestPrereleaseChannel(t *testing.T) {
 		t.Fatal("no releases must report none")
 	}
 }
+
+func TestMarkBundledPointsToTheDownloadPage(t *testing.T) {
+	for lang, want := range map[string]string{
+		"ar":    "https://khaymah.github.io/internet-monitor/ar/download/",
+		"FR":    "https://khaymah.github.io/internet-monitor/fr/download/",
+		"":      "https://khaymah.github.io/internet-monitor/en/download/",
+		"../xx": "https://khaymah.github.io/internet-monitor/en/download/",
+	} {
+		info := &Info{HasUpdate: true}
+		MarkBundled(info, lang)
+		if info.Managed != ManagedBundle || info.PageURL != want {
+			t.Errorf("lang %q: managed=%q page=%q, want %q", lang, info.Managed, info.PageURL, want)
+		}
+	}
+}

@@ -291,6 +291,28 @@ func TestUpdateApplyIsSingleFlight(t *testing.T) {
 	}
 }
 
+func TestUpdateApplyInBundleOpensDownloadPage(t *testing.T) {
+	e := newTestEnv(t)
+	opened := make(chan string, 2)
+	e.s.hooks.OpenPage = func(u string) { opened <- u }
+	e.s.hooks.ApplyUpdate = func(string) error {
+		t.Error("a bundled copy must not self-replace")
+		return nil
+	}
+	info := &updater.Info{HasUpdate: true, LatestVersion: "v10", DownloadURL: "https://github.com/x"}
+	updater.MarkBundled(info, "ar")
+	e.s.SetUpdateInfo(info)
+	if r := e.do(t, "POST", "/api/update", "", nil); r.StatusCode != http.StatusOK {
+		t.Fatalf("apply: %d", r.StatusCode)
+	}
+	if got := <-opened; got != "https://khaymah.github.io/internet-monitor/ar/download/" {
+		t.Errorf("opened %q", got)
+	}
+	if _, status, _ := e.s.update.get(); status != updateIdle {
+		t.Errorf("status = %q, want idle", status)
+	}
+}
+
 func TestServeMetrics(t *testing.T) {
 	e := newTestEnv(t)
 	e.s.UpdateTick(types.CheckResult{TCPPingOK: true, HTTPOK: true, DNSOK: true, LatencyMs: 42, Timestamp: time.Now()}, types.StatusConnected)

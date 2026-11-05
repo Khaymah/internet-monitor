@@ -66,7 +66,7 @@
       "targets": [".bufferbloat"],
       "text": {
         "en": "Lag under load is graded from A plus to F. It shows how much slower replies get while the line is busy. A or B is good. C or worse means calls and games lag when someone downloads or uploads.",
-        "ar": "«اللاج وقت الضغط» ليه درجة من A+ لحد F. بيوضح الرد بيتأخر قد إيه لما الخط يبقى مشغول. A أو B كويس. C أو أوحش معناه إن المكالمات والألعاب بتهنّج لما حد ينزّل أو يرفع حاجة.",
+        "ar": "«البطء وقت الضغط» ليه درجة من A+ لحد F. بيوضح الرد بيتأخر قد إيه لما الخط يبقى مشغول. A أو B كويس. C أو أوحش معناه إن المكالمات والألعاب بتهنّج لما حد ينزّل أو يرفع حاجة.",
         "fr": "Le « Temps de réponse sous charge » est noté de A+ à F. Il montre combien les réponses ralentissent quand la ligne est occupée. A ou B, c'est bien. C ou pire veut dire que les appels et les jeux saccadent quand quelqu'un télécharge ou envoie.",
         "tr": "Yük altında gecikme A+ ile F arasında notlanır. Hat meşgulken yanıtların ne kadar yavaşladığını gösterir. A ya da B iyidir. C ya da daha kötüsü, biri indirme ya da yükleme yaparken aramaların ve oyunların takıldığı anlamına gelir.",
         "ur": "لوڈ کے دوران لیگ کو A+ سے F تک گریڈ ملتا ہے۔ یہ بتاتا ہے کہ لائن مصروف ہو تو جواب کتنے سست ہو جاتے ہیں۔ A یا B اچھا ہے۔ C یا اس سے برا ہو تو جب کوئی ڈاؤن لوڈ یا اپ لوڈ کرے، کالز اور گیمز اٹکتی ہیں۔"
@@ -88,7 +88,7 @@
       "targets": ["[aria-labelledby='speed-history']"],
       "text": {
         "en": "Today's tests lists every test from today with its lag grade, and whether you started it yourself or it ran on a schedule.",
-        "ar": "«قياسات النهارده» فيها كل قياسات اليوم بدرجة اللاج بتاعتها، وهل إنت اللي بدأته ولا اشتغل تلقائي.",
+        "ar": "«قياسات النهارده» فيها كل قياسات اليوم بدرجة البطء بتاعتها، وهل إنت اللي بدأته ولا اشتغل تلقائي.",
         "fr": "« Tests du jour » liste chaque test d'aujourd'hui avec sa note de temps de réponse sous charge, et indique si vous l'avez lancé vous-même ou s'il était programmé.",
         "tr": "“Bugünkü testler”, bugünün her testini gecikme notuyla ve onu sizin mi başlattığınızı yoksa zamanlanmış olarak mı çalıştığını göstererek listeler.",
         "ur": "“آج کے ٹیسٹ” میں آج کا ہر ٹیسٹ اس کے لیگ گریڈ کے ساتھ ہے، اور یہ کہ آپ نے خود چلایا یا شیڈول کے مطابق چلا۔"
