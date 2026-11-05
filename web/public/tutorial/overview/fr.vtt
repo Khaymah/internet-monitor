@@ -52,218 +52,223 @@ vérification a eu lieu, et à quelle
 fréquence l'application vérifie.
 
 11
-00:00:33.300 --> 00:00:35.917
+00:00:33.300 --> 00:00:35.835
 Ces quatre tuiles sont les
 chiffres derrière l'état.
 
 12
-00:00:35.917 --> 00:00:40.296
-La « Latence » est le temps de réponse,
-en millisecondes : plus c'est bas, mieux c'est.
+00:00:35.835 --> 00:00:38.322
+Le « Temps de réponse » est
+le délai d'une réponse,
 
 13
-00:00:40.296 --> 00:00:42.762
-La « Gigue » indique à
-quel point ce temps varie.
+00:00:38.322 --> 00:00:40.614
+en millisecondes :
+plus c'est bas, mieux c'est.
 
 14
-00:00:42.762 --> 00:00:46.536
-La « Perte de paquets » est la part des
-vérifications restées sans réponse.
+00:00:40.614 --> 00:00:43.442
+Les « Variations » indiquent
+à quel point ce temps change.
 
 15
-00:00:46.536 --> 00:00:48.852
+00:00:43.442 --> 00:00:47.148
+Les « Données perdues » sont la part
+des vérifications restées sans réponse.
+
+16
+00:00:47.148 --> 00:00:49.390
 La disponibilité est la
 part des vérifications
 
-16
-00:00:48.852 --> 00:00:51.167
+17
+00:00:49.390 --> 00:00:51.633
 réussies depuis le
 démarrage de l'application.
 
-17
-00:00:51.567 --> 00:00:56.164
+18
+00:00:52.033 --> 00:00:56.631
 La « Chronologie des coupures » montre les
 dernières 24 heures sur une seule barre.
 
-18
-00:00:56.164 --> 00:00:59.211
+19
+00:00:56.631 --> 00:00:59.677
 Vert : connecté, orange :
 instable, rouge : déconnecté.
 
-19
-00:00:59.211 --> 00:01:03.975
+20
+00:00:59.677 --> 00:01:04.441
 Le gris hachuré veut dire que l'application
 ne tournait pas, donc rien n'a été mesuré.
 
-20
-00:01:03.975 --> 00:01:06.633
+21
+00:01:04.441 --> 00:01:07.100
 Passez à « 7 jours » pour
 voir toute la semaine.
 
-21
-00:01:07.033 --> 00:01:10.566
+22
+00:01:07.500 --> 00:01:11.032
 Pointez n'importe quelle partie rouge ou
 orange de la barre pour voir exactement
 
-22
-00:01:10.566 --> 00:01:13.833
+23
+00:01:11.032 --> 00:01:14.300
 quand elle a commencé, quand elle a fini,
 et combien de temps elle a duré.
 
-23
-00:01:14.233 --> 00:01:16.701
+24
+00:01:14.700 --> 00:01:17.168
 « Ce que disent vos données »
 lit les 30 derniers
 
-24
-00:01:16.701 --> 00:01:18.766
+25
+00:01:17.168 --> 00:01:19.233
 jours pour vous et signale ce qui compte.
 
-25
-00:01:18.766 --> 00:01:22.191
+26
+00:01:19.233 --> 00:01:22.657
 Chaque conseil explique ce que cela
 veut dire et quoi faire ensuite,
 
-26
-00:01:22.191 --> 00:01:25.767
+27
+00:01:22.657 --> 00:01:26.233
 par exemple ouvrir une réclamation
 quand la panne vient du fournisseur.
 
-27
-00:01:26.167 --> 00:01:29.525
+28
+00:01:26.633 --> 00:01:29.991
 La carte « Votre routeur » lit votre
 routeur sur le réseau de la maison.
 
-28
-00:01:29.525 --> 00:01:32.650
+29
+00:01:29.991 --> 00:01:33.116
 « Ligne vers le fournisseur » dit
 si la ligne elle-même fonctionne.
 
-29
-00:01:32.650 --> 00:01:35.728
+30
+00:01:33.116 --> 00:01:36.195
 Le débit de la ligne est la vitesse
 à laquelle elle est connectée,
 
-30
-00:01:35.728 --> 00:01:37.967
+31
+00:01:36.195 --> 00:01:38.433
 et le débit atteignable
 est le maximum possible.
 
-31
-00:01:38.367 --> 00:01:41.041
+32
+00:01:38.833 --> 00:01:41.508
 La « Marge de bruit (SNR) »
 montre la propreté
 
-32
-00:01:41.041 --> 00:01:43.774
+33
+00:01:41.508 --> 00:01:44.241
 de la ligne : plus elle
 est haute, mieux c'est.
 
-33
-00:01:43.774 --> 00:01:46.623
+34
+00:01:44.241 --> 00:01:47.090
 En dessous d'environ 6 dB,
 une ligne DSL décroche
 
-34
-00:01:46.623 --> 00:01:49.531
+35
+00:01:47.090 --> 00:01:49.997
 facilement, et c'est au
 fournisseur de la réparer.
 
-35
-00:01:49.531 --> 00:01:53.833
+36
+00:01:49.997 --> 00:01:54.300
 L'atténuation indique combien le signal
 s'affaiblit en arrivant chez vous.
 
-36
-00:01:54.233 --> 00:01:58.259
+37
+00:01:54.700 --> 00:01:58.726
 En dessous, la quantité de données utilisée
 depuis le renouvellement de votre forfait.
 
-37
-00:01:58.259 --> 00:02:00.459
+38
+00:01:58.726 --> 00:02:00.926
 Indiquez la limite de
 données de votre forfait,
 
-38
-00:02:00.459 --> 00:02:03.033
+39
+00:02:00.926 --> 00:02:03.500
 et l'application vous prévient
 à 80 et à 100 pour cent.
 
-39
-00:02:03.433 --> 00:02:07.072
-Le graphique de latence montre les
-dernières vérifications une par une.
-
 40
-00:02:07.072 --> 00:02:09.686
+00:02:03.900 --> 00:02:07.736
+Le graphique « Temps de réponse » montre
+les dernières vérifications une par une.
+
+41
+00:02:07.736 --> 00:02:10.151
 Une ligne basse et plate,
 c'est ce que vous voulez.
 
-41
-00:02:09.686 --> 00:02:12.300
+42
+00:02:10.151 --> 00:02:12.567
 De grands pics veulent dire
 que la connexion peine.
 
-42
-00:02:12.700 --> 00:02:16.608
+43
+00:02:12.967 --> 00:02:16.875
 « Événements récents » liste chaque changement
 depuis le démarrage de l'application :
 
-43
-00:02:16.608 --> 00:02:19.872
+44
+00:02:16.875 --> 00:02:20.139
 quand la connexion a coupé,
 ce qui a échoué, et quand elle est revenue.
 
-44
-00:02:19.872 --> 00:02:22.033
+45
+00:02:20.139 --> 00:02:22.300
 « Voir l'historique »
 ouvre le journal complet.
 
-45
-00:02:22.433 --> 00:02:26.091
+46
+00:02:22.700 --> 00:02:26.358
 « Disponibilité » montre pendant
 quelle part du temps votre internet a
 
-46
-00:02:26.091 --> 00:02:30.167
+47
+00:02:26.358 --> 00:02:30.433
 fonctionné aujourd'hui, sur les 7 derniers
 jours et sur les 30 derniers jours.
 
-47
-00:02:30.567 --> 00:02:33.527
+48
+00:02:30.833 --> 00:02:33.794
 « Cibles de vérification » liste
 les serveurs que l'application
 
-48
-00:02:33.527 --> 00:02:36.299
+49
+00:02:33.794 --> 00:02:36.566
 teste toutes les quelques secondes,
 et si chacun a répondu.
 
-49
-00:02:36.299 --> 00:02:38.367
+50
+00:02:36.566 --> 00:02:38.633
 Vous pouvez les changer dans les Paramètres.
 
-50
-00:02:38.767 --> 00:02:41.358
+51
+00:02:39.033 --> 00:02:41.625
 La pastille d'état en haut
 reste sur chaque page,
 
-51
-00:02:41.358 --> 00:02:43.685
+52
+00:02:41.625 --> 00:02:43.952
 et la cloche contient vos dernières alertes.
 
-52
-00:02:43.685 --> 00:02:46.700
+53
+00:02:43.952 --> 00:02:46.967
 Le chiffre dessus compte celles
 que vous n'avez pas vues.
 
-53
-00:02:47.100 --> 00:02:50.979
+54
+00:02:47.367 --> 00:02:51.246
 Chaque page a un bouton
 « Comment marche cette page » comme celui-ci.
 
-54
-00:02:50.979 --> 00:02:54.633
+55
+00:02:51.246 --> 00:02:54.900
 Il ouvre une courte vidéo sur cette page.
 Merci d'avoir regardé !

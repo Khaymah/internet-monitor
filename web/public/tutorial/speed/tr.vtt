@@ -27,122 +27,122 @@ küçük bir paketiniz varsa
 çok sık çalıştırmayın.
 
 6
-00:00:14.167 --> 00:00:18.184
+00:00:14.167 --> 00:00:18.433
 Uygulama önce gecikmeyi,
 sonra indirmeyi, sonra yüklemeyi ölçer.
 
 7
-00:00:18.184 --> 00:00:23.833
+00:00:18.433 --> 00:00:24.433
 Gösterge canlı hızı saniyede megabit olarak
 gösterir; parlayan kutu şu an çalışan adımdır.
 
 8
-00:00:24.233 --> 00:00:27.082
+00:00:24.833 --> 00:00:27.682
 Test bitince gösterge
 indirme hızınızı gösterir.
 
 9
-00:00:27.082 --> 00:00:30.406
+00:00:27.682 --> 00:00:31.006
 Ayarlar'da belirlediğiniz
 uyarı sınırının altındaysa bir
 
 10
-00:00:30.406 --> 00:00:33.967
+00:00:31.006 --> 00:00:34.567
 uyarı bunu söyler; uygulama
 telefonunuza da haber verebilir.
 
 11
-00:00:34.367 --> 00:00:38.100
+00:00:34.967 --> 00:00:39.022
 Bu üç kutu sonuçları tutar:
 gecikme, indirme ve yükleme.
 
 12
-00:00:38.100 --> 00:00:42.100
+00:00:39.022 --> 00:00:43.367
 İndirme ve yüklemeyi sözleşmenizdeki
 hızlarla karşılaştırın.
 
 13
-00:00:42.500 --> 00:00:45.205
+00:00:43.767 --> 00:00:46.472
 Yük altında gecikme A+
 ile F arasında notlanır.
 
 14
-00:00:45.205 --> 00:00:49.523
+00:00:46.472 --> 00:00:50.789
 Hat meşgulken yanıtların ne kadar
 yavaşladığını gösterir. A ya da B iyidir.
 
 15
-00:00:49.523 --> 00:00:52.746
+00:00:50.789 --> 00:00:54.013
 C ya da daha kötüsü,
 biri indirme ya da yükleme yaparken
 
 16
-00:00:52.746 --> 00:00:55.567
+00:00:54.013 --> 00:00:56.833
 aramaların ve oyunların
 takıldığı anlamına gelir.
 
 17
-00:00:55.967 --> 00:01:00.960
+00:00:57.233 --> 00:01:02.227
 Sayılar boştayken, indirirken ve
 yüklerken oluşan gecikmeyi gösterir.
 
 18
-00:01:00.960 --> 00:01:05.737
+00:01:02.227 --> 00:01:07.003
 Not kötüyse modemde SQM ya da QoS'u
 açmak genellikle sorunu çözer.
 
 19
-00:01:05.737 --> 00:01:09.500
+00:01:07.003 --> 00:01:10.767
 Modemde böyle bir seçenek
 yoksa sağlayıcınıza sorun.
 
 20
-00:01:09.900 --> 00:01:13.408
+00:01:11.167 --> 00:01:14.675
 “Bugünkü testler”, bugünün her testini
 gecikme notuyla ve onu sizin mi
 
 21
-00:01:13.408 --> 00:01:17.167
+00:01:14.675 --> 00:01:18.433
 başlattığınızı yoksa zamanlanmış olarak
 mı çalıştığını göstererek listeler.
 
 22
-00:01:17.567 --> 00:01:20.060
+00:01:18.833 --> 00:01:21.327
 Otomatik test için, örneğin iki saatte bir,
 
 23
-00:01:20.060 --> 00:01:23.133
+00:01:21.327 --> 00:01:24.400
 Ayarlar'da “Otomatik çalıştırma aralığı”nı
 ayarlayın.
 
 24
-00:01:23.133 --> 00:01:25.917
+00:01:24.400 --> 00:01:27.183
 Günün farklı saatlerindeki
 testler hattınızın ne
 
 25
-00:01:25.917 --> 00:01:28.700
+00:01:27.183 --> 00:01:29.967
 zaman yavaşladığını gösterir;
 örneğin akşamları.
 
 26
-00:01:29.100 --> 00:01:30.320
+00:01:30.367 --> 00:01:31.587
 Her test kaydedilir.
 
 27
-00:01:30.320 --> 00:01:33.981
+00:01:31.587 --> 00:01:35.248
 Aylık rapor bunları parasını
 ödediğiniz hızla karşılaştırır;
 
 28
-00:01:33.981 --> 00:01:36.300
+00:01:35.248 --> 00:01:37.567
 bu da şikayet için güçlü bir kanıttır.
 
 29
-00:01:36.700 --> 00:01:40.367
+00:01:37.967 --> 00:01:41.634
 Videosunu izlemek için herhangi bir
 sayfada “Bu sayfa nasıl çalışır”a basın.
 
 30
-00:01:40.367 --> 00:01:41.767
+00:01:41.634 --> 00:01:43.033
 İzlediğiniz için teşekkürler!

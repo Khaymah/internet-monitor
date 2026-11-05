@@ -31,11 +31,11 @@
       "setup": [{"click": {"css": "button", "text": "Start test"}}, {"wait": 9000}],
       "targets": ["[aria-labelledby='speed-status']", ".phases"],
       "text": {
-        "en": "First the app measures latency, then download, then upload. The gauge shows the live speed in megabits per second, and the box that is lit is the step running now.",
+        "en": "First the app measures the response time, then download, then upload. The gauge shows the live speed in megabits per second, and the box that is lit is the step running now.",
         "ar": "التطبيق بيقيس الأول زمن الاستجابة، وبعدين التنزيل، وبعدين الرفع. العدّاد بيعرض السرعة على الهوا بالميجابت في الثانية، والمربع المنوّر هو الخطوة اللي شغالة دلوقتي.",
-        "fr": "L'application mesure d'abord la latence, puis le téléchargement, puis l'envoi. La jauge montre la vitesse en direct, en mégabits par seconde, et la case allumée est l'étape en cours.",
+        "fr": "L'application mesure d'abord le temps de réponse, puis le téléchargement, puis l'envoi. La jauge montre la vitesse en direct, en mégabits par seconde, et la case allumée est l'étape en cours.",
         "tr": "Uygulama önce gecikmeyi, sonra indirmeyi, sonra yüklemeyi ölçer. Gösterge canlı hızı saniyede megabit olarak gösterir; parlayan kutu şu an çalışan adımdır.",
-        "ur": "ایپ پہلے لیٹنسی ناپتی ہے، پھر ڈاؤن لوڈ، پھر اپ لوڈ۔ میٹر میگابٹ فی سیکنڈ میں لائیو اسپیڈ دکھاتا ہے، اور روشن خانہ وہ مرحلہ ہے جو ابھی چل رہا ہے۔"
+        "ur": "ایپ پہلے جواب کا وقت ناپتی ہے، پھر ڈاؤن لوڈ، پھر اپ لوڈ۔ میٹر میگابٹ فی سیکنڈ میں لائیو اسپیڈ دکھاتا ہے، اور روشن خانہ وہ مرحلہ ہے جو ابھی چل رہا ہے۔"
       }
     },
     {
@@ -54,11 +54,11 @@
       "id": "phases", "caption": "The result", "keep": true,
       "targets": [".phases"],
       "text": {
-        "en": "These three boxes hold the results: latency, download and upload. Compare download and upload with the speeds in your contract.",
+        "en": "These three boxes hold the results: response time, download and upload. Compare download and upload with the speeds in your contract.",
         "ar": "المربعات التلاتة دي فيها النتايج: زمن الاستجابة، والتنزيل، والرفع. قارن التنزيل والرفع بالسرعات اللي في عقدك.",
-        "fr": "Ces trois cases contiennent les résultats : latence, téléchargement et envoi. Comparez le téléchargement et l'envoi avec les débits de votre contrat.",
+        "fr": "Ces trois cases contiennent les résultats : temps de réponse, téléchargement et envoi. Comparez le téléchargement et l'envoi avec les débits de votre contrat.",
         "tr": "Bu üç kutu sonuçları tutar: gecikme, indirme ve yükleme. İndirme ve yüklemeyi sözleşmenizdeki hızlarla karşılaştırın.",
-        "ur": "ان تین خانوں میں نتائج ہیں: لیٹنسی، ڈاؤن لوڈ اور اپ لوڈ۔ ڈاؤن لوڈ اور اپ لوڈ کا اپنے کنٹریکٹ کی اسپیڈ سے موازنہ کریں۔"
+        "ur": "ان تین خانوں میں نتائج ہیں: جواب کا وقت، ڈاؤن لوڈ اور اپ لوڈ۔ ڈاؤن لوڈ اور اپ لوڈ کا اپنے کنٹریکٹ کی اسپیڈ سے موازنہ کریں۔"
       }
     },
     {
@@ -67,7 +67,7 @@
       "text": {
         "en": "Lag under load is graded from A plus to F. It shows how much slower replies get while the line is busy. A or B is good. C or worse means calls and games lag when someone downloads or uploads.",
         "ar": "«اللاج وقت الضغط» ليه درجة من A+ لحد F. بيوضح الرد بيتأخر قد إيه لما الخط يبقى مشغول. A أو B كويس. C أو أوحش معناه إن المكالمات والألعاب بتهنّج لما حد ينزّل أو يرفع حاجة.",
-        "fr": "La latence sous charge est notée de A+ à F. Elle montre combien les réponses ralentissent quand la ligne est occupée. A ou B, c'est bien. C ou pire veut dire que les appels et les jeux saccadent quand quelqu'un télécharge ou envoie.",
+        "fr": "Le « Temps de réponse sous charge » est noté de A+ à F. Il montre combien les réponses ralentissent quand la ligne est occupée. A ou B, c'est bien. C ou pire veut dire que les appels et les jeux saccadent quand quelqu'un télécharge ou envoie.",
         "tr": "Yük altında gecikme A+ ile F arasında notlanır. Hat meşgulken yanıtların ne kadar yavaşladığını gösterir. A ya da B iyidir. C ya da daha kötüsü, biri indirme ya da yükleme yaparken aramaların ve oyunların takıldığı anlamına gelir.",
         "ur": "لوڈ کے دوران لیگ کو A+ سے F تک گریڈ ملتا ہے۔ یہ بتاتا ہے کہ لائن مصروف ہو تو جواب کتنے سست ہو جاتے ہیں۔ A یا B اچھا ہے۔ C یا اس سے برا ہو تو جب کوئی ڈاؤن لوڈ یا اپ لوڈ کرے، کالز اور گیمز اٹکتی ہیں۔"
       }
@@ -89,7 +89,7 @@
       "text": {
         "en": "Today's tests lists every test from today with its lag grade, and whether you started it yourself or it ran on a schedule.",
         "ar": "«قياسات النهارده» فيها كل قياسات اليوم بدرجة اللاج بتاعتها، وهل إنت اللي بدأته ولا اشتغل تلقائي.",
-        "fr": "« Tests du jour » liste chaque test d'aujourd'hui avec sa note de latence, et indique si vous l'avez lancé vous-même ou s'il était programmé.",
+        "fr": "« Tests du jour » liste chaque test d'aujourd'hui avec sa note de temps de réponse sous charge, et indique si vous l'avez lancé vous-même ou s'il était programmé.",
         "tr": "“Bugünkü testler”, bugünün her testini gecikme notuyla ve onu sizin mi başlattığınızı yoksa zamanlanmış olarak mı çalıştığını göstererek listeler.",
         "ur": "“آج کے ٹیسٹ” میں آج کا ہر ٹیسٹ اس کے لیگ گریڈ کے ساتھ ہے، اور یہ کہ آپ نے خود چلایا یا شیڈول کے مطابق چلا۔"
       }

@@ -1,11 +1,11 @@
 [
   {
     "id": "overview",
-    "seconds": 174.7
+    "seconds": 175
   },
   {
     "id": "history",
-    "seconds": 107.5
+    "seconds": 107.7
   },
   {
     "id": "notifications",
@@ -13,7 +13,7 @@
   },
   {
     "id": "speed",
-    "seconds": 101.9
+    "seconds": 103.1
   },
   {
     "id": "complaints",
@@ -25,6 +25,6 @@
   },
   {
     "id": "settings",
-    "seconds": 407.3
+    "seconds": 407.9
   }
 ]

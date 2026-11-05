@@ -41,11 +41,11 @@
       "id": "stats", "caption": "The numbers",
       "targets": [".grid-stats"],
       "text": {
-        "en": "These four tiles are the numbers behind the status. Latency is how long a reply takes, in milliseconds. Lower is better. Jitter is how much that time jumps around. Packet loss is the share of checks that got no answer. Uptime is the share of checks that passed since the app started.",
-        "ar": "المربعات الأربعة دي هي الأرقام اللي ورا الحالة. «زمن الاستجابة» هو الرد بياخد قد إيه بالمللي ثانية، وكل ما يقل يبقى أحسن. «التذبذب» هو الوقت ده بيتهز قد إيه. «فقدان الحزم» هو نسبة الفحوصات اللي ماجالهاش رد. ونسبة الاتصال هي نسبة الفحوصات اللي نجحت من ساعة ما التطبيق اشتغل.",
-        "fr": "Ces quatre tuiles sont les chiffres derrière l'état. La « Latence » est le temps de réponse, en millisecondes : plus c'est bas, mieux c'est. La « Gigue » indique à quel point ce temps varie. La « Perte de paquets » est la part des vérifications restées sans réponse. La disponibilité est la part des vérifications réussies depuis le démarrage de l'application.",
-        "tr": "Bu dört kutu, durumun arkasındaki sayılardır. “Gecikme”, bir yanıtın milisaniye cinsinden ne kadar sürdüğüdür; düşük olması iyidir. “Jitter”, bu sürenin ne kadar oynadığıdır. “Paket kaybı”, yanıt alınamayan kontrollerin oranıdır. Çevrimiçi süre ise uygulama başladığından beri geçen kontrollerin oranıdır.",
-        "ur": "یہ چار خانے اسٹیٹس کے پیچھے کے نمبر ہیں۔ “لیٹنسی” یہ ہے کہ جواب آنے میں کتنے ملی سیکنڈ لگتے ہیں، جتنا کم اتنا بہتر۔ “جِٹر” یہ ہے کہ یہ وقت کتنا اوپر نیچے ہوتا ہے۔ “پیکٹ لاس” ان چیکس کا حصہ ہے جن کا جواب نہیں آیا۔ اور اپ ٹائم ان چیکس کا حصہ ہے جو ایپ شروع ہونے سے اب تک کامیاب رہے۔"
+        "en": "These four tiles are the numbers behind the status. Response time is how long a reply takes, in milliseconds. Lower is better. Fluctuation is how much that time jumps around. Data loss is the share of checks that got no answer. Uptime is the share of checks that passed since the app started.",
+        "ar": "المربعات الأربعة دي هي الأرقام اللي ورا الحالة. «زمن الاستجابة» هو الرد بياخد قد إيه بالمللي ثانية، وكل ما يقل يبقى أحسن. «التذبذب» هو الوقت ده بيتهز قد إيه. «ضياع البيانات» هو نسبة الفحوصات اللي ماجالهاش رد. ونسبة الاتصال هي نسبة الفحوصات اللي نجحت من ساعة ما التطبيق اشتغل.",
+        "fr": "Ces quatre tuiles sont les chiffres derrière l'état. Le « Temps de réponse » est le délai d'une réponse, en millisecondes : plus c'est bas, mieux c'est. Les « Variations » indiquent à quel point ce temps change. Les « Données perdues » sont la part des vérifications restées sans réponse. La disponibilité est la part des vérifications réussies depuis le démarrage de l'application.",
+        "tr": "Bu dört kutu, durumun arkasındaki sayılardır. “Gecikme”, bir yanıtın milisaniye cinsinden ne kadar sürdüğüdür; düşük olması iyidir. “Dalgalanma”, bu sürenin ne kadar oynadığıdır. “Veri kaybı”, yanıt alınamayan kontrollerin oranıdır. Çevrimiçi süre ise uygulama başladığından beri geçen kontrollerin oranıdır.",
+        "ur": "یہ چار خانے اسٹیٹس کے پیچھے کے نمبر ہیں۔ “جواب کا وقت” یہ ہے کہ جواب آنے میں کتنے ملی سیکنڈ لگتے ہیں، جتنا کم اتنا بہتر۔ “اتار چڑھاؤ” یہ ہے کہ یہ وقت کتنا اوپر نیچے ہوتا ہے۔ “ڈیٹا کا نقصان” ان چیکس کا حصہ ہے جن کا جواب نہیں آیا۔ اور اپ ٹائم ان چیکس کا حصہ ہے جو ایپ شروع ہونے سے اب تک کامیاب رہے۔"
       }
     },
     {
@@ -117,14 +117,14 @@
       }
     },
     {
-      "id": "chart", "caption": "Latency",
+      "id": "chart", "caption": "Response time",
       "targets": ["[aria-labelledby='chart-title']"],
       "text": {
-        "en": "The latency chart shows the last checks one by one. A line that stays low and flat is what you want. Tall spikes mean the connection is struggling.",
+        "en": "The response time chart shows the last checks one by one. A line that stays low and flat is what you want. Tall spikes mean the connection is struggling.",
         "ar": "رسم «زمن الاستجابة» بيعرض آخر الفحوصات واحد ورا التاني. الخط اللي فاضل واطي ومستوي هو اللي إنت عايزه. والقمم العالية معناها إن الاتصال تعبان.",
-        "fr": "Le graphique de latence montre les dernières vérifications une par une. Une ligne basse et plate, c'est ce que vous voulez. De grands pics veulent dire que la connexion peine.",
+        "fr": "Le graphique « Temps de réponse » montre les dernières vérifications une par une. Une ligne basse et plate, c'est ce que vous voulez. De grands pics veulent dire que la connexion peine.",
         "tr": "Gecikme grafiği son kontrolleri tek tek gösterir. İstediğiniz, düşük ve düz kalan bir çizgidir. Yüksek sıçramalar bağlantının zorlandığını gösterir.",
-        "ur": "لیٹنسی کا چارٹ آخری چیکس ایک ایک کر کے دکھاتا ہے۔ نیچی اور سیدھی لائن ہی آپ چاہتے ہیں۔ اونچے ابھار کا مطلب ہے کہ کنکشن مشکل میں ہے۔"
+        "ur": "“جواب کا وقت” کا چارٹ آخری چیکس ایک ایک کر کے دکھاتا ہے۔ نیچی اور سیدھی لائن ہی آپ چاہتے ہیں۔ اونچے ابھار کا مطلب ہے کہ کنکشن مشکل میں ہے۔"
       }
     },
     {

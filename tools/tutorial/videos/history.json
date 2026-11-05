@@ -38,7 +38,7 @@
     },
     {
       "id": "export", "caption": "Export",
-      "targets": [{"css": "button", "text": "Export day (CSV)"}, {"css": "button", "text": "Last 7 days (CSV)"}, {"css": "button", "text": "Last 30 days (CSV)"}],
+      "targets": [{"css": "button", "text": "Export day (Excel/CSV)"}, {"css": "button", "text": "Last 7 days (Excel/CSV)"}, {"css": "button", "text": "Last 30 days (Excel/CSV)"}],
       "text": {
         "en": "Export day saves the day you picked as a CSV file, which opens in Excel or Google Sheets. You can also export the last 7 or 30 days in one file.",
         "ar": "«تصدير اليوم» بيحفظ اليوم اللي اخترته في ملف CSV بيتفتح في Excel أو Google Sheets. وتقدر كمان تصدّر آخر 7 أو 30 يوم في ملف واحد.",
@@ -93,13 +93,13 @@
     },
     {
       "id": "unstable", "caption": "Unstable",
-      "targets": [{"css": "tbody tr", "text": "packet loss", "index": 0}],
+      "targets": [{"css": "tbody tr", "text": "of data lost", "index": 0}],
       "text": {
-        "en": "Unstable means the line stayed up, but lost many packets or became very slow. Calls break up and pages load slowly during these periods.",
-        "ar": "«مش مستقر» معناها إن الخط فضل شغال، بس ضيّع حزم كتير أو بقى بطيء أوي. في الفترات دي المكالمات بتقطّع والصفحات بتحمّل ببطء.",
-        "fr": "« Instable » veut dire que la ligne est restée active, mais a perdu beaucoup de paquets ou est devenue très lente. Pendant ces périodes, les appels coupent et les pages chargent lentement.",
-        "tr": "“Kararsız”, hattın açık kaldığı ama çok paket kaybettiği ya da çok yavaşladığı anlamına gelir. Bu dönemlerde aramalar kesilir ve sayfalar yavaş yüklenir.",
-        "ur": "“غیر مستحکم” کا مطلب ہے کہ لائن چلتی رہی، مگر بہت سے پیکٹ ضائع ہوئے یا بہت سست ہو گئی۔ ان وقفوں میں کالز ٹوٹتی ہیں اور صفحے آہستہ کھلتے ہیں۔"
+        "en": "Unstable means the line stayed up, but lost a lot of data or became very slow. Calls break up and pages load slowly during these periods.",
+        "ar": "«مش مستقر» معناها إن الخط فضل شغال، بس ضيّع بيانات كتير أو بقى بطيء أوي. في الفترات دي المكالمات بتقطّع والصفحات بتحمّل ببطء.",
+        "fr": "« Instable » veut dire que la ligne est restée active, mais a perdu beaucoup de données ou est devenue très lente. Pendant ces périodes, les appels coupent et les pages chargent lentement.",
+        "tr": "“Kararsız”, hattın açık kaldığı ama çok veri kaybettiği ya da çok yavaşladığı anlamına gelir. Bu dönemlerde aramalar kesilir ve sayfalar yavaş yüklenir.",
+        "ur": "“غیر مستحکم” کا مطلب ہے کہ لائن چلتی رہی، مگر بہت سا ڈیٹا ضائع ہوا یا بہت سست ہو گئی۔ ان وقفوں میں کالز ٹوٹتی ہیں اور صفحے آہستہ کھلتے ہیں۔"
       }
     },
     {

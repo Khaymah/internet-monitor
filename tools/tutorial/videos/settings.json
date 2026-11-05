@@ -61,24 +61,24 @@
     },
     {
       "id": "limits", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
-      "targets": [{"field": "Packet loss limit"}, {"field": "Latency limit"}],
+      "targets": [{"field": "Data loss limit"}, {"field": "Response time limit"}],
       "text": {
-        "en": "Packet loss means messages that never arrive. Latency is the delay, in milliseconds. Above these limits, the connection is marked unstable. Raise them if your line is often slow but still usable.",
-        "ar": "فقدان الحزم معناه رسايل مابتوصلش. وزمن الاستجابة هو التأخير بالملّي ثانية. لو عدّوا الحدود دي، الاتصال بيتحسب مش مستقر. زوّدهم لو خطك غالباً بطيء بس شغال.",
-        "fr": "La perte de paquets, ce sont des messages qui n'arrivent jamais. La latence est le délai, en millisecondes. Au-delà de ces limites, la connexion est notée instable. Augmentez-les si votre ligne est souvent lente mais reste utilisable.",
-        "tr": "Paket kaybı, hiç ulaşmayan mesajlar demektir. Gecikme ise milisaniye cinsinden beklemedir. Bu sınırlar aşılırsa bağlantı kararsız sayılır. Hattınız sık sık yavaş ama yine de kullanılabilir durumdaysa sınırları artırın.",
-        "ur": "پیکٹ لاس کا مطلب ہے وہ پیغامات جو کبھی نہیں پہنچتے۔ لیٹنسی تاخیر ہے، ملی سیکنڈز میں۔ ان حدوں سے اوپر کنکشن غیر مستحکم مانا جاتا ہے۔ اگر آپ کی لائن اکثر سست مگر قابلِ استعمال رہتی ہے تو انہیں بڑھا دیں۔"
+        "en": "Data loss means messages that never arrive. Response time is the delay, in milliseconds. Above these limits, the connection is marked unstable. Raise them if your line is often slow but still usable.",
+        "ar": "«ضياع البيانات» معناه رسايل مابتوصلش. و«زمن الاستجابة» هو التأخير بالملّي ثانية. لو عدّوا الحدود دي، الاتصال بيتحسب مش مستقر. زوّدهم لو خطك غالباً بطيء بس شغال.",
+        "fr": "Les données perdues, ce sont des messages qui n'arrivent jamais. Le temps de réponse est le délai, en millisecondes. Au-delà de ces limites, la connexion est notée instable. Augmentez-les si votre ligne est souvent lente mais reste utilisable.",
+        "tr": "Veri kaybı, hiç ulaşmayan mesajlar demektir. Gecikme ise milisaniye cinsinden beklemedir. Bu sınırlar aşılırsa bağlantı kararsız sayılır. Hattınız sık sık yavaş ama yine de kullanılabilir durumdaysa sınırları artırın.",
+        "ur": "“ڈیٹا کا نقصان” سے مراد وہ پیغامات ہیں جو کبھی نہیں پہنچتے۔ “جواب کا وقت” تاخیر ہے، ملی سیکنڈز میں۔ ان حدوں سے اوپر کنکشن غیر مستحکم مانا جاتا ہے۔ اگر آپ کی لائن اکثر سست مگر قابلِ استعمال رہتی ہے تو انہیں بڑھا دیں۔"
       }
     },
     {
       "id": "icmp", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
-      "targets": [{"field": "Also ping the router (ICMP)"}],
+      "targets": [{"field": "Also check the router directly (ping)"}],
       "text": {
-        "en": "Also ping the router checks your own router too. That tells a problem in your home apart from a problem at your provider. It may need admin rights, meaning full control of the computer.",
-        "ar": "«افحص الراوتر كمان» بيفحص الراوتر بتاعك هو كمان. ده بيفرّق بين مشكلة جوه البيت ومشكلة عند شركة النت. ممكن يحتاج صلاحيات المسؤول، يعني تحكم كامل في الجهاز.",
-        "fr": "« Envoyer aussi un ping au routeur » vérifie aussi votre propre routeur. Cela distingue un problème chez vous d'un problème chez votre fournisseur. Il faut parfois les droits d'administrateur, c'est-à-dire le contrôle total de l'ordinateur.",
-        "tr": "“Modeme de ping at”, kendi modeminizi de kontrol eder. Böylece evinizdeki bir sorunu sağlayıcınızdaki bir sorundan ayırır. Yönetici hakları, yani bilgisayar üzerinde tam yetki gerekebilir.",
-        "ur": "“راؤٹر کو بھی پنگ کریں” آپ کے اپنے راؤٹر کو بھی چیک کرتا ہے۔ اس سے گھر کے اندر کا مسئلہ آپ کے پرووائیڈر کے مسئلے سے الگ پہچانا جاتا ہے۔ اس کے لیے ایڈمن رائٹس، یعنی کمپیوٹر کا پورا اختیار، چاہیے ہو سکتا ہے۔"
+        "en": "Also check the router directly pings your own router too. That tells a problem in your home apart from a problem at your provider. It may need admin rights, meaning full control of the computer.",
+        "ar": "«افحص الراوتر كمان بشكل مباشر» بيفحص الراوتر بتاعك هو كمان. ده بيفرّق بين مشكلة جوه البيت ومشكلة عند شركة النت. ممكن يحتاج صلاحيات المسؤول، يعني تحكم كامل في الجهاز.",
+        "fr": "« Vérifier aussi le routeur directement » teste aussi votre propre routeur. Cela distingue un problème chez vous d'un problème chez votre fournisseur. Il faut parfois les droits d'administrateur, c'est-à-dire le contrôle total de l'ordinateur.",
+        "tr": "“Modemi de doğrudan kontrol et”, kendi modeminizi de kontrol eder. Böylece evinizdeki bir sorunu sağlayıcınızdaki bir sorundan ayırır. Yönetici hakları, yani bilgisayar üzerinde tam yetki gerekebilir.",
+        "ur": "“راؤٹر کو بھی براہِ راست چیک کریں” آپ کا اپنا راؤٹر بھی چیک کرتا ہے۔ اس سے گھر کے اندر کے مسئلے اور پرووائیڈر کے مسئلے میں فرق پتا چلتا ہے۔ اس کے لیے ایڈمن اختیارات، یعنی کمپیوٹر پر مکمل کنٹرول، درکار ہو سکتے ہیں۔"
       }
     },
     {
