@@ -15,6 +15,11 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Settings tour video** (rc.8): a narrated walkthrough of every setting at `/tutorial`,
+  linked from Settings and the sidebar. The MP4 (`docs/tutorial/`, built by
+  `tools/tutorial/`) is a release asset streamed from GitHub only on play; WebVTT
+  subtitles in all five languages ship with the app. The CSP allows `media-src` from
+  GitHub's download hosts.
 - **Router sync speed and drop reason** (rc.8): `GetLinkLayerMaxBitRates` when the
   common link properties report no speed, `last_error` from `GetStatusInfo`, the
   `provider_dropped` outage cause and insight; router actions that fail with an HTTP

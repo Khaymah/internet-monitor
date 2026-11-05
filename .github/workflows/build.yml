@@ -533,3 +533,11 @@ jobs:
             dist/internet-monitor-headless-linux-armv7
             dist/SHA256SUMS
           body_path: release-notes.md
+
+      - name: Upload the settings tour video
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.version.outputs.new_tag }}
+        run: |
+          gh release upload "$TAG" docs/tutorial/internet-monitor-tutorial.mp4 \
+            --repo "$GITHUB_REPOSITORY" --clobber
