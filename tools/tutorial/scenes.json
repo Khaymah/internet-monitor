@@ -1,0 +1,450 @@
+{
+  "voice": "en_US-lessac-medium (rhasspy/piper-voices v1.0.0)",
+  "css": "#phone .phone-qr-code, #phone bdi { filter: blur(9px); }",
+  "say": {"ntfy": "notify", "TCP": "T C P", "HTTP": "H T T P", "DNS": "D N S", "URLs": "U R Ls", "MP3": "M P 3", "WAV": "wave", "ID": "I D", "GitHub": "Git Hub"},
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Settings", "path": "/settings",
+      "targets": [".page-head"],
+      "text": {
+        "en": "Welcome to Internet Monitor! This short tour explains every part of the Settings page, one section at a time.",
+        "ar": "أهلاً بيك في مراقب الإنترنت! الجولة القصيرة دي بتشرح كل جزء في صفحة الإعدادات، قسم ورا قسم.",
+        "fr": "Bienvenue dans Internet Monitor ! Cette courte visite explique chaque partie de la page Paramètres, section par section.",
+        "tr": "Internet Monitor'a hoş geldiniz! Bu kısa tur, Ayarlar sayfasının her bölümünü tek tek anlatıyor.",
+        "ur": "Internet Monitor میں خوش آمدید! یہ مختصر تعارف سیٹنگز کے صفحے کا ہر حصہ، ایک ایک کر کے سمجھاتا ہے۔"
+      }
+    },
+    {
+      "id": "nav", "caption": "Settings", "path": "/settings",
+      "targets": [".settings-nav"],
+      "text": {
+        "en": "The list on the left shows all the sections. Click a name to jump straight to it.",
+        "ar": "القايمة اللي على الجنب فيها كل الأقسام. دوس على أي اسم عشان تروح له على طول.",
+        "fr": "La liste à gauche montre toutes les sections. Cliquez sur un nom pour y aller directement.",
+        "tr": "Soldaki liste tüm bölümleri gösterir. Doğrudan gitmek için bir ada tıklayın.",
+        "ur": "سائیڈ کی فہرست میں سارے حصے ہیں۔ کسی نام پر کلک کریں اور سیدھے وہاں پہنچ جائیں۔"
+      }
+    },
+    {
+      "id": "monitoring", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
+      "targets": ["#monitoring"],
+      "text": {
+        "en": "Monitoring decides how closely the app watches your connection.",
+        "ar": "«المراقبة» بتحدد التطبيق بيراقب اتصالك بدقة قد إيه.",
+        "fr": "« Surveillance » détermine avec quelle attention l'application surveille votre connexion.",
+        "tr": "“İzleme”, uygulamanın bağlantınızı ne kadar yakından izleyeceğini belirler.",
+        "ur": "“نگرانی” طے کرتی ہے کہ ایپ آپ کے کنکشن پر کتنی باریکی سے نظر رکھے۔"
+      }
+    },
+    {
+      "id": "interval", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
+      "targets": [{"field": "Check every"}],
+      "text": {
+        "en": "Check every sets the seconds between checks. A smaller number spots a drop sooner. A bigger number puts less load on your network. Five seconds suits most homes.",
+        "ar": "«الفحص كل» بيحدد عدد الثواني بين كل فحص والتاني. الرقم الأصغر بيكتشف القطع أسرع. والرقم الأكبر بيخفف الضغط على الشبكة. خمس ثواني مناسبة لأغلب البيوت.",
+        "fr": "« Vérifier toutes les » fixe le nombre de secondes entre deux vérifications. Un petit nombre repère une coupure plus vite. Un grand nombre charge moins votre réseau. Cinq secondes conviennent à la plupart des foyers.",
+        "tr": "“Kontrol aralığı”, iki kontrol arasındaki saniyeyi belirler. Küçük bir sayı kesintiyi daha erken fark eder. Büyük bir sayı ağınızı daha az yorar. Çoğu ev için beş saniye uygundur.",
+        "ur": "“ہر اتنی دیر بعد چیک کریں” دو چیکس کے درمیان سیکنڈ طے کرتا ہے۔ چھوٹا نمبر کنکشن ٹوٹنے کو جلدی پکڑتا ہے۔ بڑا نمبر آپ کے نیٹ ورک پر کم بوجھ ڈالتا ہے۔ زیادہ تر گھروں کے لیے پانچ سیکنڈ ٹھیک ہیں۔"
+      }
+    },
+    {
+      "id": "fail", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
+      "targets": [{"field": "Failures before “disconnected”"}],
+      "text": {
+        "en": "Failures before disconnected is how many checks in a row must fail before the app calls it an outage. Raise it if tiny blips bother you.",
+        "ar": "«عدد مرات الفشل قبل مقطوع» هو عدد الفحوصات اللي لازم تفشل ورا بعض قبل ما التطبيق يعتبرها انقطاع. زوّده لو التقطيعات الصغيرة مضايقاك.",
+        "fr": "« Échecs avant déconnecté » est le nombre de vérifications ratées d'affilée avant que l'application parle de coupure. Augmentez-le si les micro-coupures vous dérangent.",
+        "tr": "“Bağlantı yok” öncesi hata sayısı, kesinti sayılması için art arda kaç kontrolün başarısız olacağıdır. Küçük takılmalar rahatsız ediyorsa artırın.",
+        "ur": "“منقطع” سے پہلے ناکامیاں بتاتی ہیں کہ ایپ کے بندش کہنے سے پہلے لگاتار کتنے چیکس ناکام ہونے چاہییں۔ اگر چھوٹی چھوٹی رکاوٹیں تنگ کریں تو اسے بڑھا دیں۔"
+      }
+    },
+    {
+      "id": "limits", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
+      "targets": [{"field": "Packet loss limit"}, {"field": "Latency limit"}],
+      "text": {
+        "en": "Packet loss means messages that never arrive. Latency is the delay, in milliseconds. Above these limits, the connection is marked unstable. Raise them if your line is often slow but still usable.",
+        "ar": "فقدان الحزم معناه رسايل مابتوصلش. وزمن الاستجابة هو التأخير بالملّي ثانية. لو عدّوا الحدود دي، الاتصال بيتحسب مش مستقر. زوّدهم لو خطك غالباً بطيء بس شغال.",
+        "fr": "La perte de paquets, ce sont des messages qui n'arrivent jamais. La latence est le délai, en millisecondes. Au-delà de ces limites, la connexion est notée instable. Augmentez-les si votre ligne est souvent lente mais reste utilisable.",
+        "tr": "Paket kaybı, hiç ulaşmayan mesajlar demektir. Gecikme ise milisaniye cinsinden beklemedir. Bu sınırlar aşılırsa bağlantı kararsız sayılır. Hattınız sık sık yavaş ama yine de kullanılabilir durumdaysa sınırları artırın.",
+        "ur": "پیکٹ لاس کا مطلب ہے وہ پیغامات جو کبھی نہیں پہنچتے۔ لیٹنسی تاخیر ہے، ملی سیکنڈز میں۔ ان حدوں سے اوپر کنکشن غیر مستحکم مانا جاتا ہے۔ اگر آپ کی لائن اکثر سست مگر قابلِ استعمال رہتی ہے تو انہیں بڑھا دیں۔"
+      }
+    },
+    {
+      "id": "icmp", "caption": "Monitoring", "nav": "Monitoring", "path": "/settings",
+      "targets": [{"field": "Also ping the router (ICMP)"}],
+      "text": {
+        "en": "Also ping the router checks your own router too. That tells a problem in your home apart from a problem at your provider. It may need admin rights, meaning full control of the computer.",
+        "ar": "«افحص الراوتر كمان» بيفحص الراوتر بتاعك هو كمان. ده بيفرّق بين مشكلة جوه البيت ومشكلة عند شركة النت. ممكن يحتاج صلاحيات المسؤول، يعني تحكم كامل في الجهاز.",
+        "fr": "« Envoyer aussi un ping au routeur » vérifie aussi votre propre routeur. Cela distingue un problème chez vous d'un problème chez votre fournisseur. Il faut parfois les droits d'administrateur, c'est-à-dire le contrôle total de l'ordinateur.",
+        "tr": "“Modeme de ping at”, kendi modeminizi de kontrol eder. Böylece evinizdeki bir sorunu sağlayıcınızdaki bir sorundan ayırır. Yönetici hakları, yani bilgisayar üzerinde tam yetki gerekebilir.",
+        "ur": "“راؤٹر کو بھی پنگ کریں” آپ کے اپنے راؤٹر کو بھی چیک کرتا ہے۔ اس سے گھر کے اندر کا مسئلہ آپ کے پرووائیڈر کے مسئلے سے الگ پہچانا جاتا ہے۔ اس کے لیے ایڈمن رائٹس، یعنی کمپیوٹر کا پورا اختیار، چاہیے ہو سکتا ہے۔"
+      }
+    },
+    {
+      "id": "targets", "caption": "Check targets", "nav": "Check targets", "path": "/settings",
+      "targets": ["#targets"],
+      "text": {
+        "en": "Check targets are the places the app contacts to test your internet. The defaults are large, reliable services, so most people never change them.",
+        "ar": "«أهداف الفحص» هي الأماكن اللي التطبيق بيكلمها عشان يختبر النت. الافتراضية خدمات كبيرة ومضمونة، فأغلب الناس مش محتاجين يغيّروها.",
+        "fr": "Les « Cibles de vérification » sont les endroits que l'application contacte pour tester Internet. Par défaut, ce sont de grands services fiables : la plupart des gens n'y touchent pas.",
+        "tr": "“Kontrol hedefleri”, uygulamanın internetinizi denemek için bağlandığı yerlerdir. Varsayılanlar büyük ve güvenilir hizmetlerdir; çoğu kişi bunları hiç değiştirmez.",
+        "ur": "“چیک کے ٹارگٹس” وہ جگہیں ہیں جن سے ایپ آپ کا انٹرنیٹ جانچنے کے لیے رابطہ کرتی ہے۔ ڈیفالٹ ٹارگٹس بڑی اور قابلِ اعتماد سروسز ہیں، اس لیے زیادہ تر لوگ انہیں کبھی نہیں بدلتے۔"
+      }
+    },
+    {
+      "id": "tcp", "caption": "Check targets", "nav": "Check targets", "path": "/settings",
+      "targets": [{"field": "TCP targets"}],
+      "text": {
+        "en": "TCP targets are a computer's address plus a port, which is like a door number. The app knocks and waits for an answer.",
+        "ar": "أهداف TCP هي عنوان جهاز ومعاه port، والـ port زي رقم الباب. التطبيق بيخبّط ويستنى حد يرد.",
+        "fr": "Les cibles TCP sont l'adresse d'un ordinateur plus un port, une sorte de numéro de porte. L'application frappe et attend une réponse.",
+        "tr": "TCP hedefleri, bir bilgisayarın adresi ve bir porttur; port bir kapı numarası gibidir. Uygulama kapıyı çalar ve yanıt bekler.",
+        "ur": "TCP ٹارگٹس کسی کمپیوٹر کا پتا اور ایک پورٹ ہوتے ہیں، اور پورٹ دروازے کے نمبر جیسا ہے۔ ایپ دستک دیتی ہے اور جواب کا انتظار کرتی ہے۔"
+      }
+    },
+    {
+      "id": "http-dns", "caption": "Check targets", "nav": "Check targets", "path": "/settings",
+      "targets": [{"field": "HTTP targets"}, {"field": "DNS names"}],
+      "text": {
+        "en": "HTTP targets are web pages that must give a quick OK reply. DNS names are looked up in DNS, the internet's phone book. If websites fail while everything else works, DNS is often why.",
+        "ar": "أهداف HTTP صفحات ويب لازم ترد بسرعة بـ OK. وأسماء DNS بيدوّر عليها في الـ DNS، اللي هو دليل تليفونات الإنترنت. لو المواقع مش بتفتح وكل حاجة تانية شغالة، غالباً المشكلة في الـ DNS.",
+        "fr": "Les cibles HTTP sont des pages web qui doivent répondre vite par un OK. Les noms DNS sont cherchés dans le DNS, l'annuaire d'Internet. Si les sites ne s'ouvrent plus alors que tout le reste marche, c'est souvent le DNS.",
+        "tr": "HTTP hedefleri, hızlıca OK yanıtı vermesi gereken web sayfalarıdır. DNS adları ise internetin telefon rehberi olan DNS'te aranır. Her şey çalışırken web siteleri açılmıyorsa sebep çoğu zaman DNS'tir.",
+        "ur": "HTTP ٹارگٹس ویب صفحات ہیں جنہیں جلدی سے OK جواب دینا ہوتا ہے۔ DNS نام DNS میں ڈھونڈے جاتے ہیں، جو انٹرنیٹ کی ٹیلی فون ڈائریکٹری ہے۔ اگر باقی سب چل رہا ہو مگر ویب سائٹس نہ کھلیں تو اکثر وجہ DNS ہوتی ہے۔"
+      }
+    },
+    {
+      "id": "test-targets", "caption": "Check targets", "nav": "Check targets", "path": "/settings",
+      "setup": [{"click": {"css": "#targets button", "text": "Test targets"}}, {"wait": 3000}],
+      "targets": [{"css": "#targets button", "text": "targets"}, {"field": "TCP targets"}, {"field": "HTTP targets"}, {"field": "DNS names"}],
+      "scroll": [0, 3],
+      "text": {
+        "en": "Press Test targets to try them all now. Each one shows its reply time, or why it failed.",
+        "ar": "دوس «جرّب الأهداف» عشان تجربهم كلهم دلوقتي. كل واحد هيبيّن وقت الرد، أو سبب الفشل.",
+        "fr": "Appuyez sur « Tester les cibles » pour toutes les essayer maintenant. Chacune affiche son temps de réponse, ou la raison de l'échec.",
+        "tr": "Hepsini şimdi denemek için “Hedefleri test et”e basın. Her biri yanıt süresini ya da neden başarısız olduğunu gösterir.",
+        "ur": "سب کو ابھی آزمانے کے لیے “ٹارگٹس ٹیسٹ کریں” دبائیں۔ ہر ایک اپنا جواب کا وقت، یا ناکامی کی وجہ دکھاتا ہے۔"
+      }
+    },
+    {
+      "id": "alerts", "caption": "Alerts", "nav": "Alerts", "path": "/settings",
+      "targets": ["#alerts .card-head"],
+      "text": {
+        "en": "Alerts send a message when your internet drops. Test desktop alert shows a sample pop-up on this computer.",
+        "ar": "«التنبيهات» بتبعت رسالة لما النت يقطع. و«جرّب تنبيه سطح المكتب» بيوريك شكل التنبيه على الجهاز ده.",
+        "fr": "Les « Alertes » envoient un message quand votre Internet coupe. « Tester l'alerte de bureau » affiche un exemple de notification sur cet ordinateur.",
+        "tr": "“Uyarılar”, internetiniz kesildiğinde bir mesaj gönderir. “Masaüstü uyarısını test et”, bu bilgisayarda örnek bir bildirim gösterir.",
+        "ur": "“الرٹس” انٹرنیٹ ٹوٹنے پر پیغام بھیجتے ہیں۔ “ڈیسک ٹاپ الرٹ ٹیسٹ کریں” اس کمپیوٹر پر ایک نمونہ پاپ اپ دکھاتا ہے۔"
+      }
+    },
+    {
+      "id": "webhook", "caption": "Alerts", "nav": "Alerts", "path": "/settings",
+      "targets": [{"field": "Webhook (Discord, Slack or any service)"}, {"css": "#alerts button", "text": "Send test"}],
+      "text": {
+        "en": "A webhook is a web address that accepts messages. Paste one from Discord or Slack, and every outage is posted to that channel. Home automation tools can use it too. Send test checks that it works.",
+        "ar": "الـ webhook عنوان ويب بيستقبل رسايل. حط واحد من Discord أو Slack، وكل انقطاع هيتبعت للقناة دي. وأدوات البيت الذكي تقدر تستخدمه كمان. و«ابعت تجربة» بتتأكد إنه شغال.",
+        "fr": "Un webhook est une adresse web qui reçoit des messages. Collez-en une de Discord ou Slack, et chaque coupure est publiée dans ce salon. Les outils de maison connectée peuvent aussi l'utiliser. « Envoyer un test » vérifie qu'il fonctionne.",
+        "tr": "Webhook, mesaj kabul eden bir web adresidir. Discord ya da Slack'ten bir tane yapıştırın; her kesinti o kanala gönderilir. Akıllı ev araçları da bunu kullanabilir. “Test gönder”, çalıştığını kontrol eder.",
+        "ur": "ویب ہُک ایک ویب ایڈریس ہے جو پیغامات وصول کرتا ہے۔ Discord یا Slack سے ایک پیسٹ کریں، اور ہر بندش اس چینل پر پوسٹ ہو جائے گی۔ اسمارٹ ہوم ٹولز بھی اسے استعمال کر سکتے ہیں۔ “ٹیسٹ بھیجیں” چیک کرتا ہے کہ یہ کام کر رہا ہے۔"
+      }
+    },
+    {
+      "id": "telegram", "caption": "Alerts", "nav": "Alerts", "path": "/settings",
+      "targets": [{"field": "Telegram bot token"}, {"field": "Telegram chat ID"}],
+      "text": {
+        "en": "For Telegram, paste your bot's token, which works like its password, and the chat ID, which says where to send alerts.",
+        "ar": "عشان Telegram، حط توكن البوت، وده زي الباسورد بتاعه، ومعرّف المحادثة، اللي بيحدد التنبيهات تروح فين.",
+        "fr": "Pour Telegram, collez le jeton de votre bot, qui fait office de mot de passe, et l'ID de discussion, qui indique où envoyer les alertes.",
+        "tr": "Telegram için botunuzun token'ını, yani bir tür şifresini, ve uyarıların nereye gideceğini söyleyen sohbet kimliğini yapıştırın.",
+        "ur": "Telegram کے لیے اپنے بوٹ کا ٹوکن پیسٹ کریں، جو اس کے پاس ورڈ جیسا ہے، اور چیٹ ID، جو بتاتی ہے کہ الرٹس کہاں جائیں۔"
+      }
+    },
+    {
+      "id": "ntfy", "caption": "Alerts", "nav": "Alerts", "path": "/settings",
+      "targets": [{"field": "ntfy topic (phone notifications)"}, {"field": "ntfy access token (optional)"}, {"css": "#alerts button", "text": "Send test", "index": 1}],
+      "text": {
+        "en": "ntfy is a free phone app for alerts. Install it, subscribe to a topic with a name that's hard to guess, and paste its address here. The token is only needed for a protected topic.",
+        "ar": "ntfy تطبيق مجاني للموبايل بيوصّلك التنبيهات. نزّله، واشترك في topic باسم صعب حد يخمّنه، وحط عنوانه هنا. التوكن محتاجه بس لو الـ topic محمي.",
+        "fr": "ntfy est une application gratuite qui envoie les alertes sur votre téléphone. Installez-la, abonnez-vous à un sujet au nom difficile à deviner, et collez son adresse ici. Le jeton n'est utile que pour un sujet protégé.",
+        "tr": "ntfy, uyarıları telefonunuza getiren ücretsiz bir uygulamadır. Kurun, tahmin edilmesi zor adlı bir konuya abone olun ve adresini buraya yapıştırın. Token yalnızca korumalı bir konu için gerekir.",
+        "ur": "ntfy فون پر الرٹس کے لیے ایک مفت ایپ ہے۔ اسے انسٹال کریں، ایسے نام کے ٹاپک کو سبسکرائب کریں جس کا اندازہ لگانا مشکل ہو، اور اس کا پتا یہاں پیسٹ کریں۔ ٹوکن صرف محفوظ ٹاپک کے لیے چاہیے۔"
+      }
+    },
+    {
+      "id": "sound-volume", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": ["#notifications .card-head", {"field": "Play a sound"}, {"field": "Volume"}],
+      "text": {
+        "en": "Notifications decide what reaches you, where, and when. Play a sound adds a sound to desktop alerts. Set the volume, then press Try this volume to hear it.",
+        "ar": "«الإشعارات» بتحدد إيه اللي يوصلك، وفين، وإمتى. «شغّل صوت» بيضيف صوت لتنبيهات سطح المكتب. ظبّط مستوى الصوت، ودوس «جرّب المستوى ده» عشان تسمعه.",
+        "fr": "Les « Notifications » décident de ce qui vous parvient, où et quand. « Jouer un son » ajoute un son aux alertes de bureau. Réglez le volume, puis appuyez sur « Essayer ce volume » pour l'entendre.",
+        "tr": "“Bildirimler”, size neyin, nereye ve ne zaman ulaşacağını belirler. “Ses çal”, masaüstü uyarılarına ses ekler. Ses düzeyini ayarlayın, sonra duymak için “Bu ses düzeyini dene”ye basın.",
+        "ur": "“نوٹیفکیشنز” طے کرتے ہیں کہ آپ تک کیا، کہاں اور کب پہنچے۔ “آواز چلائیں” ڈیسک ٹاپ الرٹس کے ساتھ آواز شامل کرتا ہے۔ والیوم سیٹ کریں، پھر سننے کے لیے “یہ والیوم آزمائیں” دبائیں۔"
+      }
+    },
+    {
+      "id": "quiet", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"field": "Quiet hours"}, {"field": "From"}, {"field": "To"}],
+      "text": {
+        "en": "Quiet hours keep alerts calm while you sleep or work. Turn them on, then set when they start and end.",
+        "ar": "«ساعات الهدوء» بتخلّي التنبيهات هادية وإنت نايم أو بتشتغل. شغّلها، وحدد بتبدأ إمتى وبتخلص إمتى.",
+        "fr": "Les « Heures de silence » gardent les alertes discrètes pendant votre sommeil ou votre travail. Activez-les, puis réglez l'heure de début et de fin.",
+        "tr": "“Sessiz saatler”, uyurken ya da çalışırken uyarıları sakin tutar. Açın, sonra ne zaman başlayıp biteceğini ayarlayın.",
+        "ur": "“خاموش اوقات” آپ کے سونے یا کام کے وقت الرٹس کو پرسکون رکھتے ہیں۔ انہیں آن کریں، پھر شروع اور ختم ہونے کا وقت سیٹ کریں۔"
+      }
+    },
+    {
+      "id": "quiet-days", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"field": "Days"}, {"field": "During quiet hours"}],
+      "text": {
+        "en": "Pick the days they apply. Then choose to mute the sound, or to hold desktop alerts until quiet hours end. Webhook and Telegram messages are still sent.",
+        "ar": "اختار الأيام اللي تتطبّق فيها. وبعدين اختار تكتم الصوت بس، أو تحجب تنبيهات سطح المكتب لحد ما ساعات الهدوء تخلص. رسايل الـ webhook وTelegram بتتبعت عادي.",
+        "fr": "Choisissez les jours concernés. Puis choisissez de couper le son, ou de retenir les alertes de bureau jusqu'à la fin des heures de silence. Les messages webhook et Telegram partent quand même.",
+        "tr": "Geçerli olacağı günleri seçin. Sonra sesi kapatmayı ya da sessiz saatler bitene kadar masaüstü uyarılarını bekletmeyi seçin. Webhook ve Telegram mesajları yine de gönderilir.",
+        "ur": "وہ دن چنیں جن پر یہ لاگو ہوں۔ پھر چنیں کہ صرف آواز بند ہو، یا خاموش اوقات ختم ہونے تک ڈیسک ٹاپ الرٹس روک کر رکھے جائیں۔ ویب ہُک اور Telegram کے پیغامات پھر بھی بھیجے جاتے ہیں۔"
+      }
+    },
+    {
+      "id": "matrix", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"field": "What to send where"}],
+      "text": {
+        "en": "What to send where is a grid. Each row is an event, like Connection lost or Back online. Each column is a place to send it. Switch on just the ones you want. A column stays off until you set it up under Alerts.",
+        "ar": "«إيه اللي يتبعت وفين» عبارة عن جدول. كل صف حدث، زي «النت قطع» أو «النت رجع». وكل عمود مكان تبعته له. شغّل بس اللي إنت عايزه. والعمود بيفضل مقفول لحد ما تظبطه في «التنبيهات».",
+        "fr": "« Quoi envoyer, et où » est un tableau. Chaque ligne est un événement, comme « Connexion perdue » ou « De retour en ligne ». Chaque colonne est une destination. Activez seulement ce que vous voulez. Une colonne reste éteinte tant qu'elle n'est pas configurée dans les Alertes.",
+        "tr": "“Ne nereye gönderilsin” bir tablodur. Her satır “Bağlantı kesildi” ya da “Yeniden çevrimiçi” gibi bir olaydır. Her sütun gönderilecek bir yerdir. Yalnızca istediklerinizi açın. Bir sütun, Uyarılar bölümünde kurulana kadar kapalı kalır.",
+        "ur": "“کیا کہاں بھیجنا ہے” ایک جدول ہے۔ ہر قطار ایک واقعہ ہے، جیسے “کنکشن ٹوٹ گیا” یا “دوبارہ آن لائن”۔ ہر کالم بھیجنے کی ایک جگہ ہے۔ صرف وہی آن کریں جو آپ چاہتے ہیں۔ کوئی کالم تب تک بند رہتا ہے جب تک آپ اسے الرٹس میں سیٹ اپ نہ کریں۔"
+      }
+    },
+    {
+      "id": "weekly", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"css": "#notifications .row", "text": "Send last 7 days now"}],
+      "text": {
+        "en": "Every Monday at nine, you also get a weekly summary. Press Send last 7 days now to see one right away.",
+        "ar": "وكل يوم اتنين الساعة تسعة، بيوصلك ملخص أسبوعي كمان. دوس «ابعت ملخص آخر 7 أيام دلوقتي» عشان تشوف واحد على طول.",
+        "fr": "Chaque lundi à neuf heures, vous recevez aussi un résumé de la semaine. « Envoyer les 7 derniers jours maintenant » en montre un tout de suite.",
+        "tr": "Her pazartesi saat dokuzda haftalık bir özet de alırsınız. Hemen bir tane görmek için “Son 7 günü şimdi gönder”e basın.",
+        "ur": "ہر پیر صبح نو بجے آپ کو ہفتہ وار خلاصہ بھی ملتا ہے۔ ابھی ایک دیکھنے کے لیے “پچھلے 7 دن ابھی بھیجیں” دبائیں۔"
+      }
+    },
+    {
+      "id": "min-outage", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"field": "Wait before alerting"}],
+      "text": {
+        "en": "Wait before alerting sets how many seconds a drop must last before you're told. Shorter drops are still saved in your history, they just don't disturb you. Zero alerts at once.",
+        "ar": "«استنى قبل ما تنبّهني» بيحدد القطع لازم يطوّل كام ثانية قبل ما تتبلّغ. القطعات الأقصر بتتسجل في السجل عادي، بس مش هتزعجك. والصفر معناه نبّهني فوراً.",
+        "fr": "« Délai avant l'alerte » fixe combien de secondes une coupure doit durer avant qu'on vous prévienne. Les coupures plus courtes restent dans l'historique, elles ne vous dérangent simplement pas. Zéro alerte tout de suite.",
+        "tr": "“Uyarmadan önce bekle”, size haber verilmeden önce bir kesintinin kaç saniye sürmesi gerektiğini belirler. Daha kısa kesintiler geçmişinize yine kaydedilir, sadece sizi rahatsız etmez. Sıfır, hemen uyarır.",
+        "ur": "“الرٹ سے پہلے انتظار” طے کرتا ہے کہ آپ کو بتانے سے پہلے بندش کتنے سیکنڈ چلے۔ چھوٹی بندشیں پھر بھی ہسٹری میں محفوظ ہوتی ہیں، بس آپ کو تنگ نہیں کرتیں۔ صفر کا مطلب ہے فوراً الرٹ۔"
+      }
+    },
+    {
+      "id": "reminder", "caption": "Notifications", "nav": "Notifications", "path": "/settings",
+      "targets": [{"field": "Remind while down"}],
+      "text": {
+        "en": "Remind while down repeats the alert every few minutes until the internet is back. Zero turns reminders off.",
+        "ar": "«فكّرني طول ما النت قاطع» بيكرر التنبيه كل كام دقيقة لحد ما النت يرجع. والصفر بيوقف التذكير.",
+        "fr": "« Rappeler pendant la coupure » répète l'alerte toutes les quelques minutes jusqu'au retour d'Internet. Zéro désactive les rappels.",
+        "tr": "“Kesinti sürerken hatırlat”, internet geri gelene kadar uyarıyı birkaç dakikada bir tekrarlar. Sıfır, hatırlatmaları kapatır.",
+        "ur": "“بندش کے دوران یاد دہانی” انٹرنیٹ واپس آنے تک ہر چند منٹ بعد الرٹ دہراتی ہے۔ صفر یاد دہانیاں بند کر دیتا ہے۔"
+      }
+    },
+    {
+      "id": "remote-alerts", "caption": "Coming soon", "nav": "Notifications", "path": "/settings",
+      "targets": ["#remote-alerts"],
+      "text": {
+        "en": "This card is about an idea for later. Today, an alert can only leave your home once the internet is back. An outside service could warn your phone even during a power cut. If you want that, press I want this. It opens a page on GitHub, and the app itself sends nothing.",
+        "ar": "الكارت ده عن فكرة لبعدين. النهارده، التنبيه مايقدرش يخرج من البيت غير لما النت يرجع. خدمة من برّه ممكن تنبّه موبايلك حتى والكهربا قاطعة. لو عايز ده، دوس «عايز ده». هيفتح صفحة على GitHub، والتطبيق نفسه مش بيبعت حاجة.",
+        "fr": "Cette carte parle d'une idée pour plus tard. Aujourd'hui, une alerte ne peut quitter votre maison qu'au retour d'Internet. Un service extérieur pourrait prévenir votre téléphone même pendant une coupure de courant. Si cela vous intéresse, appuyez sur « Ça m'intéresse ». Une page GitHub s'ouvre, et l'application elle-même n'envoie rien.",
+        "tr": "Bu kart, ileriye dönük bir fikirle ilgili. Bugün bir uyarı evinizden ancak internet geri geldiğinde çıkabilir. Dışarıdaki bir hizmet, elektrik kesintisinde bile telefonunuzu uyarabilir. Bunu istiyorsanız “Bunu istiyorum”a basın. GitHub'da bir sayfa açılır; uygulamanın kendisi hiçbir şey göndermez.",
+        "ur": "یہ کارڈ بعد کے ایک خیال کے بارے میں ہے۔ آج الرٹ آپ کے گھر سے تب ہی نکل سکتا ہے جب انٹرنیٹ واپس آ جائے۔ باہر کی کوئی سروس بجلی جانے کے دوران بھی آپ کے فون کو خبردار کر سکتی ہے۔ اگر آپ یہ چاہتے ہیں تو “مجھے یہ چاہیے” دبائیں۔ اس سے GitHub کا ایک صفحہ کھلتا ہے، اور ایپ خود کچھ نہیں بھیجتی۔"
+      }
+    },
+    {
+      "id": "sound", "caption": "Sound", "nav": "Sound", "path": "/settings",
+      "targets": ["#sound"],
+      "text": {
+        "en": "Alert sound lets you use your own sound. Upload an MP3 or WAV file, up to thirty seconds long. Try the sound plays it here. Play like a real alert plays it just as an alert would. After an upload, Use default brings back the built-in sound.",
+        "ar": "«صوت التنبيه» بيخليك تستخدم صوتك إنت. ارفع ملف MP3 أو WAV، لحد تلاتين ثانية. «جرّب الصوت» بيشغّله هنا. و«شغّله كأنه تنبيه حقيقي» بيشغّله بالظبط زي التنبيه. وبعد ما ترفع صوت، «استخدم الافتراضي» بيرجّع الصوت الأصلي.",
+        "fr": "« Son d'alerte » vous permet d'utiliser votre propre son. Importez un fichier MP3 ou WAV de trente secondes maximum. « Essayer le son » le joue ici. « Jouer comme une vraie alerte » le joue exactement comme une alerte. Après un import, « Utiliser le son par défaut » remet le son d'origine.",
+        "tr": "“Uyarı sesi”, kendi sesinizi kullanmanızı sağlar. En fazla otuz saniyelik bir MP3 ya da WAV dosyası yükleyin. “Sesi dene” sesi burada çalar. “Gerçek bir uyarı gibi çal”, tam bir uyarı gibi çalar. Yükledikten sonra “Varsayılanı kullan” yerleşik sese geri döner.",
+        "ur": "“الرٹ کی آواز” آپ کو اپنی آواز استعمال کرنے دیتی ہے۔ تیس سیکنڈ تک کی MP3 یا WAV فائل اپ لوڈ کریں۔ “آواز سنیں” اسے یہیں چلاتا ہے۔ “اصلی الرٹ کی طرح چلائیں” اسے بالکل الرٹ کی طرح چلاتا ہے۔ اپ لوڈ کے بعد “ڈیفالٹ استعمال کریں” اصل آواز واپس لے آتا ہے۔"
+      }
+    },
+    {
+      "id": "speed", "caption": "Speed test", "nav": "Speed test", "path": "/settings",
+      "targets": ["#speed .card-head", {"field": "Test length"}, {"field": "Parallel connections"}],
+      "text": {
+        "en": "Speed test controls how your speed is measured. Test length is how long each test runs. Longer is more accurate on fast lines. Parallel connections are downloads running side by side, which helps fill a fast line.",
+        "ar": "«قياس السرعة» بيتحكم في طريقة قياس سرعتك. «مدة القياس» هي القياس بياخد قد إيه. الأطول أدق على الخطوط السريعة. و«الاتصالات المتوازية» تنزيلات شغالة جنب بعض، ودي بتساعد تملا الخط السريع.",
+        "fr": "« Test de débit » règle la façon de mesurer votre débit. « Durée du test » est le temps de chaque test. Plus long, c'est plus précis sur les lignes rapides. Les « Connexions parallèles » sont des téléchargements simultanés, qui aident à remplir une ligne rapide.",
+        "tr": "“Hız testi”, hızınızın nasıl ölçüleceğini belirler. “Test süresi”, her testin ne kadar süreceğidir. Hızlı hatlarda daha uzun test daha doğrudur. “Paralel bağlantılar”, yan yana çalışan indirmelerdir ve hızlı bir hattı doldurmaya yardım eder.",
+        "ur": "“اسپیڈ ٹیسٹ” طے کرتا ہے کہ آپ کی اسپیڈ کیسے ناپی جائے۔ “ٹیسٹ کی لمبائی” بتاتی ہے کہ ہر ٹیسٹ کتنی دیر چلے۔ تیز لائنوں پر لمبا ٹیسٹ زیادہ درست ہوتا ہے۔ “متوازی کنکشنز” ساتھ ساتھ چلنے والے ڈاؤن لوڈز ہیں، جو تیز لائن کو پوری طرح بھرنے میں مدد دیتے ہیں۔"
+      }
+    },
+    {
+      "id": "speed-alert", "caption": "Speed test", "nav": "Speed test", "path": "/settings",
+      "targets": [{"field": "Alert below"}, {"field": "Run automatically every"}],
+      "text": {
+        "en": "Alert below warns you when a test is slower than this many megabits per second. Run automatically every runs a test on a schedule, in minutes, so you collect proof over time. Zero turns either one off.",
+        "ar": "«نبّهني لو السرعة قلّت عن» بينبّهك لما القياس يطلع أبطأ من العدد ده من الميجابت في الثانية. و«قياس تلقائي كل» بيعمل قياس بجدول، بالدقايق، عشان تجمّع دليل مع الوقت. والصفر بيقفل أي واحد فيهم.",
+        "fr": "« Alerte en dessous de » vous prévient quand un test est plus lent que ce nombre de mégabits par seconde. « Lancer automatiquement toutes les » lance un test selon un horaire, en minutes, pour accumuler des preuves avec le temps. Zéro désactive l'un ou l'autre.",
+        "tr": "“Şunun altında uyar”, bir test saniyede bu kadar megabitten yavaş çıkınca sizi uyarır. “Otomatik çalıştırma aralığı”, dakika cinsinden bir programla test yapar; böylece zamanla kanıt toplarsınız. Sıfır, ikisini de kapatır.",
+        "ur": "“اس سے کم پر الرٹ” تب خبردار کرتا ہے جب کوئی ٹیسٹ اتنے میگابٹ فی سیکنڈ سے سست آئے۔ “خود بخود چلائیں، ہر” منٹوں کے شیڈول پر ٹیسٹ چلاتا ہے، تاکہ وقت کے ساتھ ثبوت جمع ہو۔ صفر دونوں میں سے کسی کو بھی بند کر دیتا ہے۔"
+      }
+    },
+    {
+      "id": "speed-data", "caption": "Speed test", "nav": "Speed test", "path": "/settings",
+      "targets": [{"css": "#speed p.field-hint", "text": "Each test uses"}],
+      "text": {
+        "en": "This line estimates how much data the tests use. That matters if your plan has a monthly limit.",
+        "ar": "السطر ده بيقدّر القياسات بتاكل قد إيه من الباقة. وده مهم لو باقتك ليها حد شهري.",
+        "fr": "Cette ligne estime la quantité de données utilisée par les tests. C'est important si votre forfait a une limite mensuelle.",
+        "tr": "Bu satır, testlerin ne kadar veri kullandığını tahmin eder. Paketinizin aylık bir sınırı varsa bu önemlidir.",
+        "ur": "یہ لائن اندازہ لگاتی ہے کہ ٹیسٹ کتنا ڈیٹا استعمال کرتے ہیں۔ اگر آپ کے پلان کی ماہانہ حد ہے تو یہ اہم ہے۔"
+      }
+    },
+    {
+      "id": "speed-urls", "caption": "Speed test", "nav": "Speed test", "path": "/settings",
+      "targets": [{"field": "Download URLs"}, {"field": "Upload URL"}],
+      "text": {
+        "en": "Download and upload URLs are the test servers. Leave the upload address empty to skip the upload test.",
+        "ar": "روابط التنزيل والرفع هي سيرفرات القياس. سيب رابط الرفع فاضي لو عايز تتخطى قياس الرفع.",
+        "fr": "Les URL de téléchargement et d'envoi sont les serveurs de test. Laissez l'adresse d'envoi vide pour sauter le test d'envoi.",
+        "tr": "İndirme ve yükleme URL'leri test sunucularıdır. Yükleme testini atlamak için yükleme adresini boş bırakın.",
+        "ur": "ڈاؤن لوڈ اور اپ لوڈ URLs ٹیسٹ سرورز ہیں۔ اپ لوڈ ٹیسٹ چھوڑنے کے لیے اپ لوڈ کا پتا خالی رہنے دیں۔"
+      }
+    },
+    {
+      "id": "app", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": ["#app .card-head", {"field": "Language"}, {"field": "Theme"}],
+      "text": {
+        "en": "App holds general options. Language changes the words on every screen. Theme switches between dark and light. Both apply right away.",
+        "ar": "«التطبيق» فيه الاختيارات العامة. «اللغة» بتغيّر الكلام في كل الشاشات. و«المظهر» بيبدّل بين الغامق والفاتح. والاتنين بيتطبّقوا على طول.",
+        "fr": "« Application » regroupe les options générales. « Langue » change les mots de tous les écrans. « Thème » passe du sombre au clair. Les deux s'appliquent tout de suite.",
+        "tr": "“Uygulama” genel seçenekleri içerir. “Dil”, tüm ekranlardaki yazıları değiştirir. “Tema”, koyu ile açık arasında geçiş yapar. İkisi de hemen uygulanır.",
+        "ur": "“ایپ” میں عام آپشنز ہیں۔ “زبان” ہر اسکرین کے الفاظ بدل دیتی ہے۔ “تھیم” ڈارک اور لائٹ کے درمیان بدلتی ہے۔ دونوں فوراً لاگو ہوتے ہیں۔"
+      }
+    },
+    {
+      "id": "startup", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Start with Windows"}],
+      "text": {
+        "en": "Start with Windows opens the app when your computer starts, so it never misses an outage. Where that isn't possible, it says so here.",
+        "ar": "«التشغيل مع Windows» بيفتح التطبيق أول ما الجهاز يشتغل، عشان مايفوّتش أي انقطاع. ولو ده مش ممكن على جهازك، هيقولك هنا.",
+        "fr": "« Lancer avec Windows » ouvre l'application au démarrage de l'ordinateur, pour ne manquer aucune coupure. Quand ce n'est pas possible, c'est indiqué ici.",
+        "tr": "“Windows ile başlat”, bilgisayar açılınca uygulamayı başlatır; böylece hiçbir kesintiyi kaçırmaz. Bu mümkün değilse burada belirtilir.",
+        "ur": "“Windows کے ساتھ شروع کریں” کمپیوٹر آن ہوتے ہی ایپ کھول دیتا ہے، تاکہ کوئی بندش نہ چھوٹے۔ جہاں یہ ممکن نہ ہو، یہاں بتا دیا جاتا ہے۔"
+      }
+    },
+    {
+      "id": "port-logs", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Dashboard port"}, {"field": "Log folder"}],
+      "text": {
+        "en": "Dashboard port is the number at the end of this page's address. Change it only if another program uses the same number, then restart the app. Log folder is where your history is kept.",
+        "ar": "«بورت لوحة التحكم» هو الرقم اللي في آخر عنوان الصفحة دي. غيّره بس لو برنامج تاني بيستخدم نفس الرقم، وبعدين شغّل التطبيق من جديد. و«فولدر السجلات» هو المكان اللي سجلك متحفوظ فيه.",
+        "fr": "Le « Port du tableau de bord » est le nombre à la fin de l'adresse de cette page. Ne le changez que si un autre programme utilise le même, puis redémarrez l'application. Le « Dossier des journaux » est l'endroit où votre historique est gardé.",
+        "tr": "“Panel portu”, bu sayfanın adresinin sonundaki sayıdır. Yalnızca başka bir program aynı sayıyı kullanıyorsa değiştirin, sonra uygulamayı yeniden başlatın. “Kayıt klasörü”, geçmişinizin tutulduğu yerdir.",
+        "ur": "“ڈیش بورڈ پورٹ” اس صفحے کے پتے کے آخر کا نمبر ہے۔ اسے صرف تب بدلیں جب کوئی اور پروگرام یہی نمبر استعمال کر رہا ہو، پھر ایپ دوبارہ شروع کریں۔ “لاگ فولڈر” وہ جگہ ہے جہاں آپ کی ہسٹری رکھی جاتی ہے۔"
+      }
+    },
+    {
+      "id": "auto-update", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Check for updates automatically"}],
+      "text": {
+        "en": "Check for updates automatically asks GitHub for a new version every six hours. You can turn it off and check by hand instead.",
+        "ar": "«دوّر على التحديثات تلقائياً» بيسأل GitHub عن إصدار جديد كل ست ساعات. وتقدر تقفله وتدوّر بإيدك بدل كده.",
+        "fr": "« Rechercher les mises à jour automatiquement » demande à GitHub toutes les six heures s'il existe une nouvelle version. Vous pouvez le désactiver et vérifier vous-même.",
+        "tr": "“Güncellemeleri otomatik denetle”, altı saatte bir GitHub'a yeni sürüm olup olmadığını sorar. Kapatıp elle de denetleyebilirsiniz.",
+        "ur": "“اپ ڈیٹس خود بخود چیک کریں” ہر چھ گھنٹے بعد GitHub سے نئے ورژن کا پوچھتا ہے۔ آپ اسے بند کر کے خود بھی چیک کر سکتے ہیں۔"
+      }
+    },
+    {
+      "id": "seal", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Timestamp the sealed logs"}],
+      "text": {
+        "en": "Every day, your logs are sealed, so any change would show. Timestamp the sealed logs adds an independent date stamp to each seal. It proves your records weren't edited later, which helps in a complaint. Only a tiny fingerprint is sent, never your data.",
+        "ar": "كل يوم، سجلاتك بتتختم، فأي تعديل هيبان. و«ختم السجلات بتوقيت مستقل» بيضيف ختم تاريخ من جهة مستقلة لكل ختم. وده بيثبت إن سجلاتك ماتعدّلتش بعدين، وده بيفيد في الشكوى. اللي بيتبعت بصمة صغيرة بس، عمر بياناتك ما بتخرج.",
+        "fr": "Chaque jour, vos journaux sont scellés, donc toute modification se verrait. « Horodater les journaux scellés » ajoute une date indépendante à chaque sceau. Cela prouve que vos données n'ont pas été modifiées après coup, ce qui aide pour une réclamation. Seule une petite empreinte est envoyée, jamais vos données.",
+        "tr": "Kayıtlarınız her gün mühürlenir, böylece her değişiklik fark edilir. “Mühürlü kayıtlara zaman damgası ekle”, her mühre bağımsız bir tarih damgası ekler. Bu, kayıtlarınızın sonradan değiştirilmediğini kanıtlar ve şikâyette işe yarar. Yalnızca küçük bir parmak izi gönderilir, verileriniz asla.",
+        "ur": "ہر روز آپ کے لاگز سیل کیے جاتے ہیں، اس لیے کوئی بھی تبدیلی نظر آ جائے گی۔ “سیل شدہ لاگز پر ٹائم اسٹیمپ لگائیں” ہر سیل پر ایک آزاد تاریخ کی مہر لگاتا ہے۔ اس سے ثابت ہوتا ہے کہ آپ کے ریکارڈ بعد میں نہیں بدلے گئے، جو شکایت میں کام آتا ہے۔ صرف ایک چھوٹا سا فنگر پرنٹ بھیجا جاتا ہے، آپ کا ڈیٹا کبھی نہیں۔"
+      }
+    },
+    {
+      "id": "router", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Read the router's status"}],
+      "text": {
+        "en": "Read the router's status asks your router about the line, its speed and your data use, once a minute. It stays inside your home network, and helps explain each outage.",
+        "ar": "«اقرا حالة الراوتر» بيسأل الراوتر عن الخط وسرعته واستهلاكك، كل دقيقة. وده بيفضل جوه شبكة البيت، وبيساعد يفسّر كل انقطاع.",
+        "fr": "« Lire l'état du routeur » interroge votre routeur sur la ligne, son débit et votre consommation, une fois par minute. Tout reste sur votre réseau local, et cela aide à expliquer chaque coupure.",
+        "tr": "“Modemin durumunu oku”, dakikada bir modeminize hattı, hızını ve veri kullanımınızı sorar. Bu, ev ağınızın içinde kalır ve her kesintiyi açıklamaya yardım eder.",
+        "ur": "“راؤٹر کی حالت پڑھیں” ہر منٹ آپ کے راؤٹر سے لائن، اس کی اسپیڈ اور آپ کے ڈیٹا کے استعمال کا پوچھتا ہے۔ یہ آپ کے گھر کے نیٹ ورک کے اندر رہتا ہے، اور ہر بندش کی وضاحت میں مدد دیتا ہے۔"
+      }
+    },
+    {
+      "id": "router-login", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"css": "#app p.field-hint", "text": "Optional: with the router"}, {"field": "Router address"}, {"field": "Router user name"}, {"field": "Router password"}],
+      "text": {
+        "en": "Add the router's password to read deeper line details, like the noise margin, which shows signal quality. The address and user name usually work as they are. The password stays on this computer and goes only to your router.",
+        "ar": "حط باسورد الراوتر عشان تقرا تفاصيل أعمق عن الخط، زي هامش الإشارة، اللي بيبيّن جودة الإشارة. العنوان واسم المستخدم غالباً شغالين زي ما هم. والباسورد بيفضل على الجهاز ده ومابيروحش غير للراوتر بتاعك.",
+        "fr": "Ajoutez le mot de passe du routeur pour lire plus de détails sur la ligne, comme la marge de bruit, qui montre la qualité du signal. L'adresse et le nom d'utilisateur conviennent en général tels quels. Le mot de passe reste sur cet ordinateur et n'est envoyé qu'à votre routeur.",
+        "tr": "Hat hakkında daha ayrıntılı bilgi okumak için modem şifresini ekleyin; örneğin sinyal kalitesini gösteren gürültü payı. Adres ve kullanıcı adı genellikle olduğu gibi çalışır. Şifre bu bilgisayarda kalır ve yalnızca modeminize gönderilir.",
+        "ur": "لائن کی گہری تفصیلات پڑھنے کے لیے راؤٹر کا پاس ورڈ شامل کریں، جیسے نوائز مارجن، جو سگنل کا معیار دکھاتا ہے۔ پتا اور یوزر نیم عام طور پر جیسے ہیں ویسے ہی کام کرتے ہیں۔ پاس ورڈ اسی کمپیوٹر پر رہتا ہے اور صرف آپ کے راؤٹر کو جاتا ہے۔"
+      }
+    },
+    {
+      "id": "router-test", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"css": "#app button", "text": "Test the router password"}],
+      "text": {
+        "en": "Test the router password checks it once. If the router rejects it, the app stops trying, so it can't lock you out.",
+        "ar": "«جرّب باسورد الراوتر» بيجربه مرة واحدة. ولو الراوتر رفضه، التطبيق بيبطّل يحاول، عشان مايقفلش عليك الراوتر.",
+        "fr": "« Tester le mot de passe du routeur » le vérifie une fois. Si le routeur le refuse, l'application arrête d'essayer, pour ne pas vous bloquer l'accès.",
+        "tr": "“Modem şifresini dene”, şifreyi bir kez dener. Modem reddederse uygulama denemeyi bırakır, böylece sizi kilitleyemez.",
+        "ur": "“راؤٹر پاس ورڈ آزمائیں” اسے ایک بار آزماتا ہے۔ اگر راؤٹر اسے رد کر دے تو ایپ کوشش چھوڑ دیتی ہے، تاکہ آپ کو لاک نہ کر دے۔"
+      }
+    },
+    {
+      "id": "updates", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": [{"field": "Updates"}],
+      "text": {
+        "en": "Updates shows your version. Check for updates looks for a newer one right now.",
+        "ar": "«التحديثات» بتبيّن الإصدار بتاعك. و«دوّر على تحديثات» بيدوّر على إصدار أحدث دلوقتي.",
+        "fr": "« Mises à jour » affiche votre version. « Rechercher les mises à jour » en cherche une plus récente.",
+        "tr": "“Güncellemeler” sürümünüzü gösterir. “Güncellemeleri denetle”, hemen daha yeni bir sürüm arar.",
+        "ur": "“اپ ڈیٹس” آپ کا ورژن دکھاتا ہے۔ “اپ ڈیٹس چیک کریں” ابھی نیا ورژن ڈھونڈتا ہے۔"
+      }
+    },
+    {
+      "id": "phone", "caption": "Phone", "nav": "App", "path": "/settings",
+      "targets": ["#phone"],
+      "text": {
+        "en": "Open on your phone appears only when the dashboard is open to your home network, for example on a Raspberry Pi. Scan the code with your phone's camera to open the dashboard there. Don't share a photo of it, because it contains your access key.",
+        "ar": "«افتح لوحة التحكم على موبايلك» بيظهر بس لما لوحة التحكم تكون مفتوحة على شبكة البيت، زي مثلاً على Raspberry Pi. صوّر الكود بكاميرا موبايلك عشان تفتح لوحة التحكم عليه. وماتشاركش صورته، لأن فيه مفتاح الدخول بتاعك.",
+        "fr": "« Ouvrir sur votre téléphone » n'apparaît que si le tableau de bord est ouvert à votre réseau local, par exemple sur un Raspberry Pi. Scannez le code avec l'appareil photo du téléphone pour y ouvrir le tableau de bord. Ne partagez pas de photo du code, car il contient votre clé d'accès.",
+        "tr": "“Telefonunuzda açın”, yalnızca panel ev ağınıza açıkken görünür; örneğin bir Raspberry Pi'de. Paneli telefonunuzda açmak için kodu telefonun kamerasıyla okutun. Fotoğrafını paylaşmayın, çünkü erişim anahtarınızı içerir.",
+        "ur": "“اپنے فون پر کھولیں” صرف تب نظر آتا ہے جب ڈیش بورڈ آپ کے گھر کے نیٹ ورک پر کھلا ہو، مثلاً Raspberry Pi پر۔ ڈیش بورڈ فون پر کھولنے کے لیے فون کے کیمرے سے کوڈ اسکین کریں۔ اس کی تصویر شیئر نہ کریں، کیونکہ اس میں آپ کی ایکسیس کی ہے۔"
+      }
+    },
+    {
+      "id": "save", "caption": "Saving", "path": "/settings",
+      "setup": [{"fill": {"field": "Check every"}, "value": "10"}, {"wait": 400}],
+      "targets": [".savebar"],
+      "text": {
+        "en": "When you change a setting, this bar appears at the bottom. Press Save changes to keep your edits, or Discard to undo them. If you try to leave first, the app asks before throwing them away.",
+        "ar": "لما تغيّر أي إعداد، الشريط ده بيظهر تحت. دوس «احفظ التغييرات» عشان تحفظ تعديلاتك، أو «تجاهل» عشان تلغيها. ولو حاولت تخرج قبلها، التطبيق هيسألك قبل ما يرميها.",
+        "fr": "Quand vous changez un réglage, cette barre apparaît en bas. Appuyez sur « Enregistrer » pour garder vos modifications, ou sur « Abandonner » pour les annuler. Si vous essayez de partir avant, l'application demande confirmation avant de les perdre.",
+        "tr": "Bir ayarı değiştirdiğinizde altta bu çubuk görünür. Düzenlemelerinizi tutmak için “Değişiklikleri kaydet”e, geri almak için “Vazgeç”e basın. Önce çıkmaya çalışırsanız uygulama, değişiklikleri atmadan önce sorar.",
+        "ur": "جب آپ کوئی سیٹنگ بدلتے ہیں تو نیچے یہ پٹی آ جاتی ہے۔ اپنی تبدیلیاں رکھنے کے لیے “تبدیلیاں محفوظ کریں” دبائیں، یا انہیں واپس لینے کے لیے “ختم کریں”۔ اگر آپ پہلے صفحہ چھوڑنے کی کوشش کریں تو ایپ انہیں ضائع کرنے سے پہلے پوچھتی ہے۔"
+      }
+    },
+    {
+      "id": "again", "caption": "Watch again", "path": "/settings",
+      "targets": [{"css": ".page-head a", "text": "Watch the settings tour"}, {"css": ".about-nav a", "text": "Settings tour"}],
+      "text": {
+        "en": "To watch this tour again, press Watch the settings tour at the top of Settings, or Settings tour in the sidebar. Thanks for watching!",
+        "ar": "عشان تتفرّج على الجولة دي تاني، دوس «اتفرّج على جولة الإعدادات» فوق في الإعدادات، أو «جولة في الإعدادات» في القايمة الجانبية. شكراً إنك اتفرّجت!",
+        "fr": "Pour revoir cette visite : « Regarder la visite des paramètres » en haut des Paramètres, ou « Visite des paramètres » dans la barre latérale. Merci d'avoir regardé !",
+        "tr": "Bu turu yeniden izlemek için Ayarlar'ın üstündeki “Ayarlar turunu izle”ye ya da kenar çubuğundaki “Ayarlar turu”na basın. İzlediğiniz için teşekkürler!",
+        "ur": "یہ تعارف دوبارہ دیکھنے کے لیے سیٹنگز کے اوپر “سیٹنگز کا تعارف دیکھیں” دبائیں، یا سائیڈ بار میں “سیٹنگز کا تعارف”۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

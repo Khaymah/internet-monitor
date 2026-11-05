@@ -47,6 +47,7 @@ export const PRIVACY: LegalDoc = {
         "privacy.network.li4",
         "privacy.network.li5",
         "privacy.network.li6",
+        "privacy.network.li7",
       ],
     },
     {

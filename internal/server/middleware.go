@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-const contentSecurityPolicy = "default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+const contentSecurityPolicy = "default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; media-src 'self' https://github.com https://objects.githubusercontent.com https://release-assets.githubusercontent.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
 
 func (s *Server) allowedHost(host string) bool {
 	host = strings.ToLower(host)

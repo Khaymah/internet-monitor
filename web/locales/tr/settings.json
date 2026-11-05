@@ -149,5 +149,14 @@
   "phone_qr_alt": "Paneli telefonunuzda açan QR kod",
   "phone_address": "Ağınızdaki adres",
   "phone_warning_title": "Bu kod erişim anahtarınızı içerir",
-  "phone_warning": "Ağınızda bu kodu tarayan herkes panelinizi açabilir, bu yüzden fotoğrafını paylaşmayın. Telefonunuz daha sonra paneli uygulamadan açmanızı söylerse anahtar değişmiştir: kodu yeniden tarayın."
+  "phone_warning": "Ağınızda bu kodu tarayan herkes panelinizi açabilir, bu yüzden fotoğrafını paylaşmayın. Telefonunuz daha sonra paneli uygulamadan açmanızı söylerse anahtar değişmiştir: kodu yeniden tarayın.",
+  "tour_watch": "Ayarlar turunu izle",
+  "tut_title": "Ayarlar sayfasında bir tur",
+  "tut_intro": "Her ayarı anlatan kısa, sesli bir video: ne işe yarar ve neden değiştirmek isteyebilirsiniz.",
+  "tut_stream_note": "Video yalnızca oynat düğmesine bastığınızda GitHub'dan oynatılır. Öncesinde hiçbir şey indirilmez.",
+  "tut_subtitles_note": "Anlatım İngilizcedir; uygulamanın tüm dillerinde altyazı vardır. Altyazıları videonun altyazı (CC) menüsünden açıp değiştirebilirsiniz.",
+  "tut_error": "Video GitHub'dan yüklenemedi. Biraz sonra tekrar deneyin veya GitHub'da açın.",
+  "tut_error_offline": "Çevrimdışı görünüyorsunuz. İnternete bağlanıp tekrar deneyin.",
+  "tut_open_github": "GitHub'da aç",
+  "tut_open_settings": "Ayarlara git"
 }

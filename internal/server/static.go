@@ -35,8 +35,11 @@ func (s *Server) serveUI(w http.ResponseWriter, r *http.Request) {
 			} else {
 				w.Header().Set("Cache-Control", "no-cache")
 			}
-			if path.Ext(name) == ".webmanifest" {
+			switch path.Ext(name) {
+			case ".webmanifest":
 				w.Header().Set("Content-Type", "application/manifest+json")
+			case ".vtt":
+				w.Header().Set("Content-Type", "text/vtt; charset=utf-8")
 			}
 			http.ServeContent(w, r, name, time.Time{}, bytes.NewReader(data))
 			return
