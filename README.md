@@ -557,6 +557,8 @@ in Settings automatically.
 ## 📄 License
 
 [Elastic License 2.0](LICENSE) — free for personal and commercial use, and the source is public.
+
+Privacy: [PRIVACY.md](PRIVACY.md). No account, no analytics, no tracking.
 You may not offer it to others as a hosted or managed service, and you must keep its license and
 copyright notices. Versions before 2.0.0 were released under the MIT license.
 

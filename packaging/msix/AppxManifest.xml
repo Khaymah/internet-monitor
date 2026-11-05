@@ -9,7 +9,7 @@
   <Identity Name="{{IDENTITY_NAME}}" Publisher="{{PUBLISHER}}" Version="{{VERSION}}" ProcessorArchitecture="x64" />
 
   <Properties>
-    <DisplayName>Internet Monitor</DisplayName>
+    <DisplayName>{{DISPLAY_NAME}}</DisplayName>
     <PublisherDisplayName>{{PUBLISHER_DISPLAY_NAME}}</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -26,7 +26,7 @@
   <Applications>
     <Application Id="App" Executable="InternetMonitor.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
-        DisplayName="Internet Monitor"
+        DisplayName="{{DISPLAY_NAME}}"
         Description="Monitors your internet connection and keeps proof of every outage for complaints to your provider."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"

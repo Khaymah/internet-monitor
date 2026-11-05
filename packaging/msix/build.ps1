@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 $identity = Get-Content (Join-Path $here 'identity.json') -Raw | ConvertFrom-Json
-foreach ($field in 'identity_name', 'publisher', 'publisher_display_name') {
+foreach ($field in 'identity_name', 'publisher', 'publisher_display_name', 'display_name') {
   if ([string]::IsNullOrWhiteSpace($identity.$field)) {
     Write-Host "::notice::packaging/msix/identity.json has no $field yet; skipping the MSIX package."
     exit 0
@@ -32,6 +32,7 @@ $manifest = Get-Content (Join-Path $here 'AppxManifest.xml') -Raw
 $manifest = $manifest.Replace('{{IDENTITY_NAME}}', (Escape-Xml $identity.identity_name))
 $manifest = $manifest.Replace('{{PUBLISHER}}', (Escape-Xml $identity.publisher))
 $manifest = $manifest.Replace('{{PUBLISHER_DISPLAY_NAME}}', (Escape-Xml $identity.publisher_display_name))
+$manifest = $manifest.Replace('{{DISPLAY_NAME}}', (Escape-Xml $identity.display_name))
 $manifest = $manifest.Replace('{{VERSION}}', $msixVersion)
 Set-Content -Path (Join-Path $stage 'AppxManifest.xml') -Value $manifest -Encoding UTF8
 

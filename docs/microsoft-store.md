@@ -7,7 +7,7 @@ so Store users never see the SmartScreen warning.
 
 1. In Partner Center, open **Apps and games → New product → MSIX or PWA app** and
    reserve the name.
-2. Open the product → **Product management → Product identity** and copy three values
+2. Open the product → **Product management → Product identity** and copy four values
    into `packaging/msix/identity.json`:
 
    | identity.json | Partner Center |
@@ -15,9 +15,11 @@ so Store users never see the SmartScreen warning.
    | `identity_name` | `Package/Identity/Name` |
    | `publisher` | `Package/Identity/Publisher` (starts with `CN=`) |
    | `publisher_display_name` | `Package/Properties/PublisherDisplayName` |
+   | `display_name` | The reserved app name, exactly as reserved (`Package/Properties/DisplayName`) |
 
    They are public (they appear in every installed package), so they live in the repo.
-   Until they are filled in, CI skips the MSIX step.
+   Until they are filled in, CI skips the MSIX step. The Store rejects the package if
+   `display_name` differs from the reserved name in any way, even a space for a hyphen.
 
 ## Each Store release
 
@@ -31,9 +33,11 @@ so Store users never see the SmartScreen warning.
    suitable answer: "Internet Monitor is a desktop app (Win32) that runs a local
    monitoring service, shows a tray icon, and runs the system's tracert and netsh
    tools to diagnose outages."
-4. **Privacy policy URL:** the in-app Privacy page text is also in the repository. Link to
-   `https://github.com/Khaymah/internet-monitor` or a hosted copy. The app collects no
-   personal data and has no telemetry.
+4. **Privacy policy URL:** `https://github.com/Khaymah/internet-monitor/blob/master/PRIVACY.md`.
+   It's the same text as the in-app Privacy page (`web/locales/*/legal.json`), in English and
+   Arabic. The in-app page itself can't be used, since it's only served on 127.0.0.1. The
+   link works once `PRIVACY.md` is on `master`; when the app's data or connections change,
+   update both and the date.
 
 ## What changes in the Store build
 

@@ -11,12 +11,13 @@
     },
     "stored": {
       "title": "What's stored on your computer",
-      "p1": "Everything is kept in the app's folder, except two small preferences kept by your browser.",
-      "li1": "config.json: your settings. This includes your webhook URL, Telegram token and chat ID, saved as plain text. Don't share this file.",
-      "li2": "The logs folder: every check, outage and speed test result, plus app.log, a diagnostic log of what the app did. Files older than 90 days are deleted automatically.",
+      "p1": "Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\\InternetMonitor for the Microsoft Store version), except two small preferences kept by your browser.",
+      "li1": "config.json: your settings. This includes your webhook URL, Telegram token and chat ID, and ntfy topic and token, saved as plain text. Don't share this file.",
+      "li2": "The logs folder: every check, outage, speed test and traceroute result, the daily seals that prove the logs weren't edited, plus app.log, a diagnostic log of what the app did. Files older than 90 days are deleted automatically.",
       "li3": "notification.wav: your custom alert sound, if you uploaded one.",
       "li4": ".session: the dashboard key for the current launch. It's replaced every time the app starts.",
-      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it."
+      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it.",
+      "li6": "case.json: what you enter on the Complaints page, such as your provider, plan, price, line and account numbers, and your complaint tickets. It's only used to fill your complaint text and evidence pack, and never leaves your computer unless you share them."
     },
     "network": {
       "title": "What leaves your computer",
@@ -24,15 +25,17 @@
       "li1": "Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router.",
       "li2": "Speed tests go to speed.cloudflare.com by default, and only when you start one or schedule them. The test data contains nothing that identifies your device.",
       "li3": "Update checks go to GitHub (api.github.com) every 6 hours (you can turn this off in Settings), or when you press “Check for updates”. Installing an update downloads it from GitHub.",
-      "li4": "Alerts go to Discord, Slack or Telegram only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address."
+      "li4": "Alerts and the weekly summary go to Discord, Slack, a webhook of your choice, Telegram or ntfy only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address.",
+      "li5": "Log timestamps go to freetsa.org only if you turn on “Timestamp the sealed logs” in Settings. It receives a 32-byte hash of the day's seal, never your logs.",
+      "li6": "When an outage starts, the app runs a traceroute toward your first check target to see where the connection stops. The routers along the way see these packets, as with any traceroute."
     },
     "dashboard": {
       "title": "The dashboard",
-      "p1": "The dashboard is served by the app on this computer (127.0.0.1). Other devices on your network can't open it. It uses one cookie, which holds the key for the current launch. It loads no outside scripts, fonts or images."
+      "p1": "The dashboard is served by the app on this computer (127.0.0.1). Other devices on your network can't open it, unless you run the headless version with a network address on purpose. It uses one cookie, which holds the key for the current launch. It loads no outside scripts, fonts or images."
     },
     "control": {
       "title": "You're in control",
-      "p1": "You can delete the logs folder at any time to erase your history. Deleting config.json resets your settings. To remove the app completely, turn off “Start with Windows” in Settings → App, quit the app, and delete its folder."
+      "p1": "You can delete the logs folder at any time to erase your history. Deleting config.json resets your settings, and deleting case.json erases your complaint details. To remove the app completely, turn off “Start with Windows” in Settings → App, quit the app, and delete its folder. The Microsoft Store version is removed from Windows Settings → Apps, and then you can delete %LOCALAPPDATA%\\InternetMonitor."
     },
     "changes": {
       "title": "Changes to this page",
@@ -40,7 +43,7 @@
     },
     "contact": {
       "title": "Questions",
-      "p1": "Reach us through any channel on the Contact page. Don't send your config.json or logs unless we ask, since they may contain your webhook, token or history."
+      "p1": "Reach us through any channel on the Contact page, or open an issue at github.com/Khaymah/internet-monitor. Don't send your config.json, case.json or logs unless we ask, since they may contain your webhook, token, account details or history."
     }
   },
   "terms": {
