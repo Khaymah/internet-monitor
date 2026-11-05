@@ -1,0 +1,174 @@
+{
+  "cl_eyebrow": "Sürüm geçmişi",
+  "cl_title": "Tüm güncellemeler, sırasıyla",
+  "cl_intro": "Internet Monitor'de değişen her şey, en yenisi en üstte.",
+  "cl_stat_releases": "Sürümler",
+  "cl_stat_new": "Yeni özellikler",
+  "cl_stat_improved": "İyileştirmeler",
+  "cl_stat_fixed": "Düzeltmeler ve güvenlik",
+  "cl_filter": "Değişiklikleri göster",
+  "cl_all": "Tümü",
+  "kind_new": "Yeni",
+  "kind_improved": "İyileştirildi",
+  "kind_fixed": "Düzeltildi",
+  "kind_security": "Güvenlik",
+  "cl_next": "Sonraki sürüm",
+  "cl_latest": "En son",
+  "wn_eyebrow": "Yenilikler",
+  "wn_title": "Sürüm {v} çıktı",
+  "wn_all": "Tüm değişiklikleri gör",
+  "wn_close": "Anladım",
+  "cl_installed": "Sizin sürümünüz",
+  "cl_versions": "v{from} – v{to}",
+  "changelog": {
+    "v2.0.0": {
+      "title": "Sürüm 2: baştan yeniden yazıldı",
+      "items": {
+        "1": "Canlı durum, sade dilde teşhis, gecikme grafiği, jitter, paket kaybı ve bugün, 7 gün ve 30 gün için erişilebilirlik içeren yeni bir panel.",
+        "2": "Her gün için bir kayıt, filtreler ve bir günlük, 7 günlük veya 30 günlük CSV dışa aktarma sunan bir Geçmiş ekranı.",
+        "3": "“Yazdır veya PDF olarak kaydet” seçeneğiyle, internet sağlayıcınıza göndermeye hazır aylık rapor sayfası.",
+        "4": "Canlı gösterge, bugünkü testler, zamanlanmış testler ve uyarı eşiği içeren bir Hız testi ekranı.",
+        "5": "Geçişte dairesel bir açılma efektiyle koyu ve açık temalar, ayrıca sağdan sola düzenle tam Arapça ve İngilizce desteği.",
+        "6": "Uygulama içi sayfalar: Yenilikler, SSS, Gizlilik ve Kullanım koşulları.",
+        "7": "Yeni, daha yumuşak bir varsayılan uyarı sesi.",
+        "8": "Ayarlar, özel sesinizin etkin olup olmadığını ve ne kadar uzun olduğunu “Sesi dene” ve “Gerçek bir uyarı gibi çal” seçenekleriyle gösteriyor.",
+        "9": "Ayarlar, iki pencere aynı anda değiştirse bile güvenle kaydediliyor ve kaydedilmemiş değişikliklerle çıkmadan önce sizi uyarıyor.",
+        "10": "Düzen telefon boyutundaki pencerelerde de çalışıyor.",
+        "11": "Yüklenen özel uyarı sesleri sessizce varsayılana dönüyordu. Yüklemeler artık kontrol edilip dönüştürülüyor ve çalan ses yüklediğiniz ses oluyor.",
+        "12": "Otomatik güncelleyici artık tepsi kurulumu için pencereli (GUI) sürümü seçmiyor.",
+        "13": "Panele yalnızca bu bilgisayardan ulaşılabiliyor ve her gün değişen özel bir anahtar gerekiyor; böylece açık bir panel uygulama yeniden başladıktan sonra kendiliğinden yeniden bağlanıyor. Paneli tepsi menüsünden veya uygulama penceresinden açın.",
+        "14": "Webhook URL'niz ve Telegram token'ınız asla tarayıcıya geri gönderilmiyor. Ayarlar bunları “Kaydedildi — gizlendi” olarak gösteriyor.",
+        "15": "Webhook URL'leri https kullanmalı ve Discord'u veya Slack'i göstermeli.",
+        "16": "Güncellemeler yalnızca GitHub'dan indiriliyor; Go ağ ve şifreleme kütüphaneleri güncellendi.",
+        "17": "Bildirim ayarları: sesi açıp kapatın ve ses düzeyini ayarlayın, sessiz saatler belirleyin, hangi olayların masaüstüne, webhook'a veya Telegram'a gideceğini seçin, kısa kesintileri atlayın ve bağlantı kesik kaldığı sürece hatırlatma alın.",
+        "18": "Her uyarıyı, nereye gönderildiğini ve neyin neden bekletildiğini listeleyen bir bildirim zili ve Bildirimler sayfası.",
+        "19": "Windows uyarıları bağlantı durumu simgesini ve bir Aç düğmesini gösteriyor; yeni bir bağlantı uyarısı üst üste birikmek yerine öncekinin yerini alıyor.",
+        "20": "Webhook ve Telegram mesajları uygulamanın dilinde yazılıyor.",
+        "21": "Her grafik, üzerine gelindiğinde, dokunulduğunda veya klavyeyle odaklanıldığında tam değerleri gösteriyor.",
+        "22": "Aylık rapor, ekranda gördüğünüz temayla yazdırılıyor.",
+        "23": "Her açılır liste artık arama, klavye ve dokunma desteği ile doğru sağdan sola yerleşimi olan yeni bir seçici.",
+        "24": "Yenilikler aylara göre gruplanıyor ve sürümler arasında geçmek için yan tarafta bir harita var.",
+        "25": "Bir güncellemeden sonra kısa bir pencere yeni sürümde nelerin değiştiğini gösteriyor.",
+        "26": "SSS yanıtları bahsettikleri ayara doğrudan bağlantı veriyor ve onu sizin için vurguluyor.",
+        "27": "Hata mesajları gerçekte neyin ters gittiğini söylüyor ve kesinti olduğunda erişilebilirlik asla %100'e yuvarlanmıyor.",
+        "28": "Yeni bir lisans, Elastic License 2.0: uygulama kişisel ve ticari kullanım için hâlâ ücretsiz ve kodu hâlâ herkese açık.",
+        "29": "Arapça arayüz, uyarılar ve Webhook/Telegram mesajları artık gündelik Mısır Arapçasıyla yazılıyor.",
+        "30": "Üst çubuktaki dil düğmesi tek bir simge oldu; bu da telefonlarda daha fazla yer bırakıyor.",
+        "31": "Uygulamanın ücretsiz kalmasına yardım etmek isteyenler için PayPal, Vodafone Cash ve InstaPay içeren bir Bizi destekleyin sayfası.",
+        "32": "Yanıt süreleri doğal okunuyor: bir saniyenin altında milisaniye, sonra saniye, sonra dakika (1.057 ms yerine 1,06 sn); uygulamada, uyarılarda ve Webhook/Telegram mesajlarında."
+      }
+    },
+    "v0.10.1": {
+      "title": "Belgeler yenilendi",
+      "items": {
+        "1": "README ve ekran görüntüleri artık en yeni özellikleri kapsıyor."
+      }
+    },
+    "v0.10.0": {
+      "title": "İstediğiniz zaman güncelleme denetimi",
+      "items": {
+        "1": "Panelde bir “Güncellemeleri denetle” düğmesi; artık arka plandaki denetimi beklemeniz gerekmiyor.",
+        "2": "Yeni bir sürüm yalnızca her platformda başarıyla derlendiğinde yayımlanıyor.",
+        "3": "Başlamadan duran sürüm derlemeleri ve Linux'ta başarısız olan derleme kontrolleri."
+      }
+    },
+    "v0.9.4": {
+      "title": "Sağlayıcınıza gönderebileceğiniz kesinti raporları",
+      "items": {
+        "1": "Ay seçici, grafikler, sıralı olay kaydı ve her kesintinin nedenini içeren aylık kesinti raporu (PDF). Varsayılan olarak tarafsızdır, isteğe bağlı bir marka alt bilgisi eklenebilir.",
+        "2": "İndirme ve ping'in yanında, dairesel bir göstergede canlı ilerlemeyle yükleme hız testi.",
+        "3": "Zamanlanmış otomatik hız testleri.",
+        "4": "Telegram bildirimleri ve seçtiğiniz dilde sistem bildirimleri.",
+        "5": "DNS, web sitesi ve tam kesintileri birbirinden ayırıyor, sorunun yerel ağınızda mı sağlayıcınızda mı olduğunu söylüyor; ayrıca isteğe bağlı ICMP ping, jitter ve bir Prometheus /metrics uç noktası ekliyor.",
+        "6": "Erişilebilirlik bileşeni, özeti kopyalama ve bir tarih aralığı için CSV dışa aktarma.",
+        "7": "Ayar değişiklikleri yeniden başlatma gerekmeden hemen uygulanıyor.",
+        "8": "Tüm uyarılar için tek bir ses oynatıcı. Önceki ses her zaman önce duruyor, böylece sesler asla üst üste binmiyor; yüklenen MP3'ler sistem bildirimlerinin çalabilmesi için dönüştürülüyor.",
+        "9": "Yeni aya taşan kesintiler her iki ayda da doğru sayılıyor.",
+        "10": "Daha doğru gecikme, captive portal (giriş sayfası) algılama, çevrimiçi süre ve açılışta daha az yanlış alarm. Hız testleri artık birbiriyle çakışmıyor.",
+        "11": "İndirilen güncellemeler yüklenmeden önce sürümün SHA256SUMS dosyasıyla karşılaştırılıyor.",
+        "12": "Yerel panel API'si siteler arası isteklere ve aşırı büyük isteklere karşı korunuyor."
+      }
+    },
+    "v0.8.1": {
+      "title": "Yerel Windows bildirimleri",
+      "items": {
+        "1": "Bildirimler PowerShell yerine Windows'un kendi balon bildirimini kullanıyor ve uygulama, Windows'un bunları göstermesine izin verdiğinden emin oluyor.",
+        "2": "Pencere ve tepsi simgeleri bağlantı durumuna göre değişiyor."
+      }
+    },
+    "v0.7.0": {
+      "title": "Kendi uyarı sesiniz",
+      "items": {
+        "1": "Özel bir bildirim sesi yükleyin."
+      }
+    },
+    "v0.6.0": {
+      "title": "Yeni bir logo",
+      "items": {
+        "1": "Yeni bir uygulama logosu: nabız çizgili bir dünya.",
+        "2": "Üst üste çıkan bildirimler, durmadan tekrar çalan sesler ve boş bildirim metinleri."
+      }
+    },
+    "v0.5.0": {
+      "title": "Hız testi",
+      "items": {
+        "1": "Kendi indirme hedefleriniz ve zaman aşımınızla bir Hız testi sekmesi.",
+        "2": "Son 20 kontrolün tablosu.",
+        "3": "Ayarlar dört sekmeye ayrıldı: izleme, hedefler, bildirimler ve hız testi.",
+        "4": "Yeniden yazılmış bir izleme motoru ve İngilizce ile Arapça tam bir README.",
+        "5": "Hız testi ilerleme çubuğu belirlediğiniz zaman aşımını izliyor."
+      }
+    },
+    "v0.4.3": {
+      "title": "Canlı güncelleme bildirimleri",
+      "items": {
+        "1": "Panel, yeni bir sürüm çıktığında bunu canlı olarak gösteriyor.",
+        "2": "Güncelleme bandındaki kapatma düğmesi.",
+        "3": "Go şifreleme kütüphanesi güncellendi."
+      }
+    },
+    "v0.3.2": {
+      "title": "Windows ile başlat",
+      "items": {
+        "1": "Uygulamayı Windows ile birlikte başlatma seçeneği.",
+        "2": "Sürümler otomatik numaralandırılıyor; böylece güncelleyici her zaman en yenisini buluyor.",
+        "3": "Windows'ta tepsiden çıkarken uygulama donabiliyordu."
+      }
+    },
+    "v0.2.0": {
+      "title": "Otomatik güncellemeler",
+      "items": {
+        "1": "Otomatik güncellemeler.",
+        "2": "Tek bir hedef yerine birden fazla web sitesi ve DNS hedefi.",
+        "3": "Webhook'unuzu test etmek için bir düğme ve aynı anda uygulamanın yalnızca bir kopyası çalışıyor.",
+        "4": "Hatalar ve kesinti nedenleri Arapça veya İngilizce gösteriliyor."
+      }
+    },
+    "v0.1.0": {
+      "title": "Tepsi simgesi ve uyarılar",
+      "items": {
+        "1": "Bağlantı durumuna göre renk değiştiren bir tepsi simgesi.",
+        "2": "Sesli uyarılar ve masaüstü bildirimleri."
+      }
+    },
+    "v0.0.1": {
+      "title": "İlk sürüm",
+      "items": {
+        "1": "Canlı durum, ayarlar ve kayıt görüntüleyici içeren bir web paneli.",
+        "2": "Discord ve Slack webhook uyarıları ve ilk çalıştırmada oluşturulan varsayılan bir yapılandırma.",
+        "3": "İki sürüm: biri tepside çalışan, biri kendi penceresi olan."
+      }
+    }
+  },
+  "cl_search": "Değişikliklerde ara",
+  "cl_search_placeholder": "Arayın, örneğin “Telegram” veya “0.9”",
+  "cl_results": "{releases} sürümde {changes} değişiklik",
+  "cl_no_results": "Aramanızla eşleşen bir şey yok.",
+  "cl_clear": "Aramayı ve filtreleri temizle",
+  "cl_in_progress": "Geliştiriliyor",
+  "cl_map": "Sürümler",
+  "cl_jump": "Bir sürüme git",
+  "cl_change_count": "{n} değişiklik",
+  "cl_expand_all": "Tümünü aç",
+  "cl_collapse_all": "Tümünü kapat"
+}

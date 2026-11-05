@@ -1,0 +1,63 @@
+{
+  "about_related": "İlgili sayfalar",
+  "about_eyebrow": "Hakkında",
+  "about_title": "İnternetiniz kesildiğinde bilin ve bunu kanıtlayın",
+  "about_principles": "Önem verdiklerimiz",
+  "about_details": "Ayrıntılar",
+  "about_publisher": "Yayıncı",
+  "about_developer": "Geliştirici",
+  "about_version": "Sürüm",
+  "about_license": "Lisans",
+  "about_source": "Kaynak kodu",
+  "about_contact_cta": "Bize ulaşın",
+  "contact_eyebrow": "İletişim",
+  "contact_title": "Yardım etmek için buradayız",
+  "contact_intro": "Sorular, sorunlar ya da fikirler: size en kolay geleni seçin.",
+  "contact_safety": "Biz istemedikçe config.json veya kayıt dosyalarınızı asla göndermeyin. Bu dosyalarda webhook adresiniz, Telegram token'ınız ve bağlantı geçmişiniz olabilir.",
+  "contact_open": "Aç: {name}",
+  "contact_copy": "Kopyala: {name}",
+  "contact_copied": "Panoya kopyalandı",
+  "contact_copy_failed": "Kopyalanamadı. Metni seçip kendiniz kopyalayın.",
+  "about": {
+    "story": {
+      "1": "Internet Monitor tanıdık bir sorunla başladı: internet sürekli kopuyor, sağlayıcınız ise hattın sorunsuz olduğunu söylüyor. Elinizde bir kayıt yoksa sizin sözünüz onların sözüne karşı kalır.",
+      "2": "Bu yüzden uygulama bağlantınızı arka planda sessizce izler, her kesintiyi tam saati, süresi ve nedeniyle kaydeder ve bunu gönderebileceğiniz bir rapora dönüştürür. Ayrıca sorunun ev ağınızda mı yoksa sağlayıcınızda mı olduğunu söyler; böylece kimi arayacağınızı bilirsiniz."
+    },
+    "principle": {
+      "local": {
+        "title": "Verileriniz sizde kalır",
+        "body": "Her şey bilgisayarınızda saklanır. Hesap yok, bulut yok, takip yok."
+      },
+      "open": {
+        "title": "Ücretsiz ve kodu açık",
+        "body": "Elastic License 2.0 kapsamında kişisel ve ticari kullanım için ücretsiz. Kodu herkes okuyabilir."
+      },
+      "proof": {
+        "title": "Tahmin değil, kanıt",
+        "body": "Tam saatler, süreler ve arızalanan katman; PDF veya CSV için hazır."
+      },
+      "bilingual": {
+        "title": "Beş dil",
+        "body": "Her ekran, uyarı ve rapor İngilizce, Arapça, Fransızca, Türkçe ve Urduca çalışır, sağdan sola yazım da dahil."
+      }
+    }
+  },
+  "contact": {
+    "whatsapp": {
+      "name": "WhatsApp",
+      "best": "Kısa sorular ve kurulumda yardım."
+    },
+    "discord": {
+      "name": "Discord",
+      "best": "Diğer kullanıcılarla sohbet edin, fikir paylaşın ve yeni sürümleri takip edin."
+    },
+    "email": {
+      "name": "E-posta",
+      "best": "İş, gizlilik soruları ve herkese açık yazmak istemediğiniz her şey."
+    },
+    "github": {
+      "name": "GitHub",
+      "best": "Hata bildirimleri ve özellik istekleri, herkese açık şekilde, böylece başkaları da takip edebilir."
+    }
+  }
+}

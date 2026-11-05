@@ -1,0 +1,23 @@
+{
+  "nav_support": "Bizi destekleyin",
+  "support_eyebrow": "Projeyi destekleyin",
+  "support_title": "Internet Monitor'ün ücretsiz kalmasına yardım edin",
+  "support_intro": "Internet Monitor ücretsizdir ve ücretsiz kalacak. Sizi sağlayıcınızla bir tartışmadan kurtardıysa, küçük bir bağış üzerinde çalışmaya devam etmemize yardımcı olur. Tamamen isteğe bağlıdır.",
+  "support_none": "Bağış bilgileri henüz hazır değil. Yardım etmek istediğiniz için teşekkürler!",
+  "support_thanks": "Teşekkür ederiz. Büyük ya da küçük, her katkı fark yaratır.",
+  "support_safety": "Bağışları yalnızca bu sayfadaki bilgiler üzerinden kabul ediyoruz. Sizden asla şifre, kart numarası veya doğrulama kodu istemeyiz.",
+  "support": {
+    "paypal": {
+      "name": "PayPal",
+      "how": "Her yerden, kartla veya PayPal bakiyenizle."
+    },
+    "vodafone": {
+      "name": "Vodafone Cash",
+      "how": "Vodafone Cash cüzdanınızdan bu numaraya gönderin."
+    },
+    "instapay": {
+      "name": "InstaPay",
+      "how": "InstaPay uygulaması üzerinden herhangi bir Mısır banka hesabından."
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "cl_eyebrow": "Historique des versions",
+  "cl_title": "Toutes les mises à jour, dans l'ordre",
+  "cl_intro": "Tout ce qui a changé dans Internet Monitor, du plus récent au plus ancien.",
+  "cl_stat_releases": "Versions",
+  "cl_stat_new": "Nouvelles fonctions",
+  "cl_stat_improved": "Améliorations",
+  "cl_stat_fixed": "Corrections et sécurité",
+  "cl_filter": "Afficher les changements",
+  "cl_all": "Tout",
+  "kind_new": "Nouveau",
+  "kind_improved": "Amélioré",
+  "kind_fixed": "Corrigé",
+  "kind_security": "Sécurité",
+  "cl_next": "Prochaine version",
+  "cl_latest": "Dernière",
+  "wn_eyebrow": "Nouveautés",
+  "wn_title": "La version {v} est arrivée",
+  "wn_all": "Voir tous les changements",
+  "wn_close": "Compris",
+  "cl_installed": "Votre version",
+  "cl_versions": "v{from} – v{to}",
+  "changelog": {
+    "v2.0.0": {
+      "title": "Version 2 : entièrement reconstruite",
+      "items": {
+        "1": "Un nouveau tableau de bord avec l'état en direct, un diagnostic en langage simple, un graphique de latence, la gigue, la perte de paquets et la disponibilité sur aujourd'hui, 7 jours et 30 jours.",
+        "2": "Un écran Historique avec un journal pour chaque jour, des filtres et un export CSV sur un jour, 7 jours ou 30 jours.",
+        "3": "Une page de rapport mensuel avec « Imprimer ou enregistrer en PDF », prête à envoyer à votre fournisseur d'accès.",
+        "4": "Un écran Test de débit avec une jauge en direct, les tests du jour, des tests programmés et un seuil d'alerte.",
+        "5": "Des thèmes sombre et clair avec une transition circulaire quand vous changez, plus l'arabe et l'anglais complets avec une mise en page de droite à gauche.",
+        "6": "Des pages dans l'application : Nouveautés, FAQ, Confidentialité et Conditions d'utilisation.",
+        "7": "Un nouveau son d'alerte par défaut, plus doux.",
+        "8": "Les Paramètres indiquent si votre son personnalisé est actif et sa durée, avec « Essayer le son » et « Jouer comme une vraie alerte ».",
+        "9": "Les Paramètres s'enregistrent sans risque même quand deux fenêtres les modifient en même temps, et vous préviennent avant de partir avec des modifications non enregistrées.",
+        "10": "La mise en page fonctionne dans des fenêtres de la taille d'un téléphone.",
+        "11": "Les sons d'alerte personnalisés importés revenaient discrètement au son par défaut. Les fichiers importés sont maintenant vérifiés et convertis, et c'est bien le son que vous importez qui est joué.",
+        "12": "Le système de mise à jour automatique ne choisit plus la version avec fenêtre (GUI) pour une installation dans la zone de notification.",
+        "13": "Le tableau de bord n'est accessible que depuis cet ordinateur et demande une clé privée qui change chaque jour ; un tableau de bord ouvert se reconnecte donc tout seul après le redémarrage de l'application. Ouvrez-le depuis le menu de la zone de notification ou la fenêtre de l'application.",
+        "14": "L'URL de votre webhook et votre jeton Telegram ne sont jamais renvoyés au navigateur. Les Paramètres les affichent comme « Enregistré — masqué ».",
+        "15": "Les URL de webhook doivent utiliser https et pointer vers Discord ou Slack.",
+        "16": "Les mises à jour ne se téléchargent que depuis GitHub, et les bibliothèques réseau et cryptographiques de Go ont été mises à jour.",
+        "17": "Réglages des notifications : activer ou couper le son et régler son volume, définir des heures de silence, choisir quels événements vont sur le bureau, le webhook ou Telegram, ignorer les coupures courtes, et recevoir des rappels tant que la connexion reste coupée.",
+        "18": "Une cloche de notifications et une page Notifications qui listent chaque alerte, où elle a été envoyée, et ce qui a été retenu et pourquoi.",
+        "19": "Les alertes Windows affichent l'icône d'état de la connexion et un bouton Ouvrir, et une nouvelle alerte de connexion remplace la précédente au lieu de s'empiler.",
+        "20": "Les messages webhook et Telegram sont écrits dans la langue de l'application.",
+        "21": "Chaque graphique affiche les valeurs exactes au survol, au toucher ou au focus clavier.",
+        "22": "Le rapport mensuel s'imprime avec le même thème que celui affiché à l'écran.",
+        "23": "Chaque liste déroulante est un nouveau sélecteur avec recherche, prise en charge du clavier et du tactile, et un placement correct de droite à gauche.",
+        "24": "Les Nouveautés sont regroupées par mois, avec un plan latéral pour passer d'une version à l'autre.",
+        "25": "Après une mise à jour, une petite fenêtre montre ce qui a changé dans la nouvelle version.",
+        "26": "Les réponses de la FAQ mènent directement au réglage dont elles parlent et le mettent en évidence pour vous.",
+        "27": "Les messages d'erreur disent ce qui s'est vraiment passé, et la disponibilité n'est jamais arrondie à 100 % quand il y a eu des coupures.",
+        "28": "Une nouvelle licence, l'Elastic License 2.0 : l'application reste gratuite pour un usage personnel et commercial, et son code reste public.",
+        "29": "L'interface arabe, les alertes et les messages webhook/Telegram sont maintenant écrits en arabe égyptien de tous les jours.",
+        "30": "Le bouton de langue dans la barre du haut est une simple icône, ce qui laisse plus de place sur téléphone.",
+        "31": "Une page Nous soutenir avec PayPal, Vodafone Cash et InstaPay, pour tous ceux qui veulent aider l'application à rester gratuite.",
+        "32": "Les temps de réponse se lisent naturellement : en millisecondes sous une seconde, puis en secondes, puis en minutes (1,06 s au lieu de 1 057 ms), dans l'application, les alertes et les messages webhook/Telegram."
+      }
+    },
+    "v0.10.1": {
+      "title": "Documentation rafraîchie",
+      "items": {
+        "1": "Le README et les captures d'écran couvrent maintenant les dernières fonctions."
+      }
+    },
+    "v0.10.0": {
+      "title": "Rechercher les mises à jour à la demande",
+      "items": {
+        "1": "Un bouton « Rechercher les mises à jour » dans le tableau de bord, pour ne pas avoir à attendre la vérification en arrière-plan.",
+        "2": "Une nouvelle version n'est publiée que si la compilation réussit sur toutes les plateformes.",
+        "3": "Les compilations de versions qui s'arrêtaient avant de commencer, et les vérifications de compilation qui échouaient sous Linux."
+      }
+    },
+    "v0.9.4": {
+      "title": "Des rapports de coupures à envoyer à votre fournisseur",
+      "items": {
+        "1": "Un rapport mensuel des coupures (PDF) avec un choix du mois, des graphiques, un journal des événements dans l'ordre et la cause de chaque coupure. Il est neutre par défaut, avec un pied de page de marque en option.",
+        "2": "Un test d'envoi avec progression en direct, à côté du téléchargement et du ping, sur une jauge circulaire.",
+        "3": "Des tests de débit automatiques programmés.",
+        "4": "Des notifications Telegram, et des notifications système dans la langue de votre choix.",
+        "5": "Distingue les pannes DNS, les pannes de site web et les coupures complètes, indique si le problème vient de votre réseau local ou de votre fournisseur, et ajoute en option le ping ICMP, la gigue et un point d'accès Prometheus /metrics.",
+        "6": "Un widget de disponibilité, la copie du résumé et l'export CSV sur une période donnée.",
+        "7": "Les changements de paramètres s'appliquent tout de suite, sans redémarrage.",
+        "8": "Un seul lecteur de son pour toutes les alertes. Le son précédent s'arrête toujours d'abord, pour que les sonneries ne se chevauchent jamais, et les MP3 importés sont convertis pour que les notifications système puissent les jouer.",
+        "9": "Les coupures qui débordent sur un nouveau mois sont comptées correctement dans les deux mois.",
+        "10": "Une latence plus précise, la détection des portails captifs (pages de connexion), la disponibilité, et moins de fausses alertes au démarrage. Les tests de débit ne se concurrencent plus.",
+        "11": "Les mises à jour téléchargées sont vérifiées avec le fichier SHA256SUMS de la version avant d'être installées.",
+        "12": "L'API locale du tableau de bord est protégée contre les requêtes intersites et les requêtes trop volumineuses."
+      }
+    },
+    "v0.8.1": {
+      "title": "Notifications Windows natives",
+      "items": {
+        "1": "Les notifications utilisent la bulle native de Windows au lieu de PowerShell, et l'application s'assure que Windows l'autorise à les afficher.",
+        "2": "Les icônes de la fenêtre et de la zone de notification changent selon l'état de la connexion."
+      }
+    },
+    "v0.7.0": {
+      "title": "Votre propre son d'alerte",
+      "items": {
+        "1": "Importez un son de notification personnalisé."
+      }
+    },
+    "v0.6.0": {
+      "title": "Un nouveau logo",
+      "items": {
+        "1": "Un nouveau logo pour l'application : un globe avec une ligne de pouls.",
+        "2": "Les notifications qui se superposaient, les sons qui se rejouaient sans s'arrêter et le texte de notification vide."
+      }
+    },
+    "v0.5.0": {
+      "title": "Test de débit",
+      "items": {
+        "1": "Un onglet Test de débit avec vos propres cibles de téléchargement et votre propre délai d'expiration.",
+        "2": "Un tableau des 20 dernières vérifications.",
+        "3": "Les paramètres répartis en quatre onglets : surveillance, cibles, notifications et test de débit.",
+        "4": "Un moteur de surveillance réécrit, et un README complet en anglais et en arabe.",
+        "5": "La barre de progression du test de débit suit le délai d'expiration que vous avez choisi."
+      }
+    },
+    "v0.4.3": {
+      "title": "Avis de mise à jour en direct",
+      "items": {
+        "1": "Le tableau de bord indique en direct quand une nouvelle version est disponible.",
+        "2": "Le bouton de fermeture du bandeau de mise à jour.",
+        "3": "Mise à jour de la bibliothèque cryptographique de Go."
+      }
+    },
+    "v0.3.2": {
+      "title": "Lancement avec Windows",
+      "items": {
+        "1": "Une option pour lancer l'application avec Windows.",
+        "2": "Les versions sont numérotées automatiquement, pour que le système de mise à jour trouve toujours la plus récente.",
+        "3": "L'application pouvait se figer quand vous la quittiez depuis la zone de notification sous Windows."
+      }
+    },
+    "v0.2.0": {
+      "title": "Mises à jour automatiques",
+      "items": {
+        "1": "Mises à jour automatiques.",
+        "2": "Plusieurs cibles de site web et DNS au lieu d'une seule.",
+        "3": "Un bouton pour tester votre webhook, et une seule copie de l'application tourne à la fois.",
+        "4": "Les erreurs et les causes des coupures s'affichent en arabe ou en anglais."
+      }
+    },
+    "v0.1.0": {
+      "title": "Icône de notification et alertes",
+      "items": {
+        "1": "Une icône dans la zone de notification qui change de couleur selon l'état de la connexion.",
+        "2": "Des alertes sonores et des notifications de bureau."
+      }
+    },
+    "v0.0.1": {
+      "title": "Première version",
+      "items": {
+        "1": "Un tableau de bord web avec l'état en direct, les paramètres et une visionneuse de journaux.",
+        "2": "Des alertes par webhook Discord et Slack, et une configuration par défaut créée au premier lancement.",
+        "3": "Deux versions : une qui vit dans la zone de notification et une avec sa propre fenêtre."
+      }
+    }
+  },
+  "cl_search": "Rechercher dans les changements",
+  "cl_search_placeholder": "Rechercher, par exemple « Telegram » ou « 0.9 »",
+  "cl_results": "{changes} changements dans {releases} versions",
+  "cl_no_results": "Rien ne correspond à votre recherche.",
+  "cl_clear": "Effacer la recherche et les filtres",
+  "cl_in_progress": "En développement",
+  "cl_map": "Versions",
+  "cl_jump": "Aller à une version",
+  "cl_change_count": "{n} changements",
+  "cl_expand_all": "Tout déplier",
+  "cl_collapse_all": "Tout replier"
+}

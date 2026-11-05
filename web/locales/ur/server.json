@@ -1,0 +1,120 @@
+{
+  "notify": {
+    "test": {
+      "title": "ٹیسٹ نوٹیفکیشن",
+      "body": "🔔 نوٹیفکیشنز اور آواز کام کر رہے ہیں"
+    },
+    "restored": {
+      "title": "✅ انٹرنیٹ بحال ہو گیا",
+      "latency": "لیٹنسی: {ms}",
+      "ok": "سب چیکس ٹھیک ہیں",
+      "after": "{duration} بعد واپس آیا"
+    },
+    "degraded": {
+      "title": "⚠️ انٹرنیٹ کمزور ہے",
+      "body": "لاس: {loss}% — لیٹنسی: {ms}"
+    },
+    "down": {
+      "title": "🔴 انٹرنیٹ منقطع ہو گیا",
+      "failed": "ناکام: {layers}",
+      "lost": "کنکشن ٹوٹ گیا"
+    },
+    "reminder": {
+      "title": "⏰ ابھی تک آف لائن",
+      "body": "{duration} سے منقطع"
+    },
+    "speed": {
+      "title": "🚀 اسپیڈ ٹیسٹ مکمل",
+      "slow_title": "⚠️ اسپیڈ {threshold} Mbps سے کم",
+      "body": "↓ {down} Mbps · ↑ {up} Mbps · {ms}",
+      "body_down": "↓ {down} Mbps · {ms}"
+    },
+    "action": {
+      "open": "ڈیش بورڈ کھولیں"
+    },
+    "weekly": {
+      "title": "📊 اس ہفتے آپ کا انٹرنیٹ",
+      "body": "{outages} بندشیں، {downtime} آف لائن · اپ ٹائم {uptime}%",
+      "clear": "اس ہفتے کوئی بندش نہیں · اپ ٹائم {uptime}%"
+    },
+    "nudge": {
+      "title": "شکایت کا وقت؟",
+      "body": "پچھلے {days} دنوں میں آپ کی لائن {outages} بار گئی اور کوئی شکایت کھلی نہیں ہے۔ شکایات والے صفحے پر متن اور ثبوت تیار ہیں۔"
+    },
+    "quota": {
+      "title_near": "📶 آپ کے ڈیٹا پلان کا {pct}% استعمال ہو گیا",
+      "title_over": "📶 آپ کا ڈیٹا پلان ختم ہو گیا ({pct}%)",
+      "body": "{quota} GB میں سے {used} GB، تجدید میں {days} دن باقی۔"
+    }
+  },
+  "duration": {
+    "s": "{s} سیکنڈ",
+    "m": "{m} منٹ",
+    "ms": "{m} منٹ {s} سیکنڈ",
+    "h": "{h} گھنٹے",
+    "hm": "{h} گھنٹے {m} منٹ",
+    "millis": "{n} ms"
+  },
+  "remote": {
+    "title": {
+      "down": "انٹرنیٹ منقطع",
+      "degraded": "انٹرنیٹ غیر مستحکم",
+      "restored": "انٹرنیٹ بحال",
+      "reminder": "انٹرنیٹ ابھی تک منقطع"
+    },
+    "tcp": "TCP پنگ",
+    "http": "HTTP",
+    "dns": "DNS",
+    "loss": "پیکٹ لاس",
+    "latency": "لیٹنسی",
+    "duration": "دورانیہ",
+    "ok": "ٹھیک",
+    "failed": "ناکام",
+    "footer": "ایونٹ لاگ",
+    "download": "ڈاؤن لوڈ",
+    "upload": "اپ لوڈ",
+    "threshold": "حد",
+    "speed": {
+      "done": "اسپیڈ ٹیسٹ مکمل ہو گیا",
+      "drop": "اسپیڈ میں کمی نوٹ کی گئی"
+    },
+    "weekly": {
+      "title": "ہفتہ وار خلاصہ {period}",
+      "outages": "بندشیں",
+      "vs_prev": "{n} (پچھلا ہفتہ: {prev})",
+      "downtime": "کل ڈاؤن ٹائم",
+      "longest": "سب سے لمبی بندش",
+      "uptime": "اپ ٹائم",
+      "coverage": "نگرانی",
+      "speed": "عام ڈاؤن لوڈ",
+      "speed_plan": "{speed} (پلان کا {pct})"
+    },
+    "bufferbloat": "لوڈ کے دوران لیگ"
+  },
+  "tray": {
+    "starting": "شروع ہو رہا ہے…",
+    "status": {
+      "connected": "کنیکٹڈ",
+      "degraded": "غیر مستحکم",
+      "disconnected": "منقطع",
+      "checking": "چیک ہو رہا ہے…"
+    },
+    "detail": "لاس {loss}% · {ms}",
+    "last_change": "آخری تبدیلی: {time}",
+    "last_change_none": "آخری تبدیلی: —",
+    "open_dashboard": "ڈیش بورڈ کھولیں",
+    "open_dashboard_hint": "ڈیش بورڈ اپنے براؤزر میں کھولیں",
+    "open_window": "ونڈو کھولیں",
+    "open_window_hint": "مین ونڈو دکھائیں",
+    "open_logs": "لاگز کا فولڈر کھولیں",
+    "open_logs_hint": "وہ فولڈر کھولیں جس میں آپ کی لاگ فائلیں ہیں",
+    "exit": "باہر نکلیں",
+    "exit_hint": "نگرانی روکیں اور باہر نکلیں"
+  },
+  "webhook": {
+    "test": {
+      "title": "🔔 ویب ہُک ٹیسٹ",
+      "body": "Internet Monitor اس ویب ہُک تک پہنچ سکتا ہے ✅"
+    }
+  }
+}

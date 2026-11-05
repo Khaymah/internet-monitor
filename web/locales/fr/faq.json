@@ -1,0 +1,120 @@
+{
+  "faq_eyebrow": "Aide",
+  "faq_title": "Vos questions, nos réponses",
+  "faq_intro": "Des réponses courtes sur le fonctionnement d'Internet Monitor, ce qu'il conserve et comment régler les problèmes courants.",
+  "faq_q": "Q{n}",
+  "faq_more": "Vous n'avez pas trouvé votre réponse ? Contactez-nous",
+  "faq": {
+    "section": {
+      "start": "Premiers pas",
+      "monitoring": "Surveillance et coupures",
+      "alerts": "Alertes et son",
+      "reports": "Rapports et tests de débit",
+      "privacy": "Confidentialité et mises à jour"
+    },
+    "what": {
+      "q": "Que fait Internet Monitor ?",
+      "a": "Il vérifie votre connexion toutes les quelques secondes, de trois façons : il se connecte à des serveurs DNS, charge une petite page web et résout des noms de sites. Chaque coupure est enregistrée avec son heure exacte de début, sa durée et la partie qui a échoué. Vous pouvez ensuite en faire un rapport pour votre fournisseur d'accès."
+    },
+    "open": {
+      "q": "Comment ouvrir le tableau de bord ?",
+      "a": "Cliquez sur l'icône dans la zone de notification et choisissez « Ouvrir le tableau de bord », ou utilisez la fenêtre de l'application si vous avez installé la version avec fenêtre. Si vous tapez vous-même l'adresse dans le navigateur, vous verrez une page verrouillée, car le tableau de bord demande une clé qui change à chaque démarrage de l'application."
+    },
+    "platforms": {
+      "q": "Est-ce que ça marche sous macOS et Linux ?",
+      "a": "Oui. Il existe des versions pour Windows, macOS et Linux. L'option « Lancer avec Windows » n'existe que sous Windows."
+    },
+    "free": {
+      "q": "Est-ce gratuit ?",
+      "a": "Oui. C'est gratuit pour un usage personnel et commercial, et le code source est public sous Elastic License 2.0. Pas de compte, pas d'inscription."
+    },
+    "disconnected": {
+      "q": "Quand l'application indique-t-elle que je suis déconnecté ?",
+      "a": "Quand les vérifications échouent 3 fois de suite. Avec l'intervalle par défaut de 5 secondes, cela fait environ 15 secondes. Ainsi, une seule vérification perdue ne compte pas comme une coupure. Vous pouvez changer ces deux valeurs dans [Paramètres → Surveillance](settings#monitoring)."
+    },
+    "unstable": {
+      "q": "Que signifie « Instable » ?",
+      "a": "Vous êtes en ligne, mais la connexion est mauvaise : plus de 20 % des paquets sont perdus, ou les réponses prennent plus de 500 ms. Ces deux limites peuvent être modifiées dans [Paramètres → Surveillance](settings#monitoring)."
+    },
+    "layers": {
+      "q": "Quelle est la différence entre un problème DNS et une coupure complète ?",
+      "a": "Une coupure complète signifie que rien ne passe. Un problème DNS signifie que la ligne fonctionne mais que les noms des sites ne peuvent pas être résolus, donc les pages ne s'ouvrent pas. Un problème de site web signifie que les noms sont résolus mais que les pages ne se chargent pas. L'écran Historique et le rapport indiquent lequel s'est produit, ce qui est utile quand votre fournisseur dit que « la ligne fonctionnait »."
+    },
+    "router": {
+      "q": "Le problème vient-il de mon routeur ou de mon fournisseur ?",
+      "a": "L'application vérifie aussi votre routeur (la passerelle locale). Si le routeur répond mais pas internet, le diagnostic désigne votre fournisseur. Si le routeur ne répond pas non plus, le problème est dans votre réseau domestique : le Wi-Fi, les câbles ou le routeur lui-même."
+    },
+    "targets": {
+      "q": "Puis-je changer ce qui est vérifié ?",
+      "a": "Oui. [Paramètres → Cibles de vérification](settings#targets) contient trois listes : des serveurs DNS (8.8.8.8 et 1.1.1.1 par défaut), des pages web et des noms à résoudre. Chaque liste contient jusqu'à 10 entrées, et vous pouvez les tester avant d'enregistrer."
+    },
+    "data": {
+      "q": "Combien de données internet consomme-t-il ?",
+      "a": "Les vérifications régulières sont minuscules : une connexion, une page web vide et une résolution de nom. Les tests de débit, c'est différent. Un test fait passer autant de données que votre ligne le permet pendant sa durée limite ; sur une connexion rapide, un seul test peut donc consommer des centaines de mégaoctets. Si vos données sont limitées, ne programmez pas de tests de débit automatiques."
+    },
+    "where": {
+      "q": "Où les alertes apparaissent-elles ?",
+      "a": "Sous forme de notification système, avec un son, sur cet ordinateur. Vous pouvez aussi les envoyer dans un salon Discord ou Slack avec un webhook, ou sur Telegram. Configurez-les dans [Paramètres → Alertes](settings#alerts) et utilisez le bouton de test pour vérifier qu'elles arrivent bien."
+    },
+    "telegram": {
+      "q": "Comment configurer les alertes Telegram ?",
+      "a": "Créez un bot avec @BotFather dans Telegram et copiez son jeton. Envoyez n'importe quel message à votre bot, puis trouvez votre ID de discussion. Collez les deux dans [Paramètres → Alertes](settings#alerts) et appuyez sur le bouton de test."
+    },
+    "sound": {
+      "q": "Pourquoi mon son personnalisé ne se joue-t-il pas ?",
+      "a": "Ouvrez [Paramètres → Son](settings#sound). Vous y verrez si votre propre son est utilisé et sa durée. Les fichiers doivent être au format MP3 ou WAV, 30 secondes et 10 Mo maximum. « Jouer comme une vraie alerte » le joue exactement comme le ferait une alerte. Si vous n'entendez rien, vérifiez que le son de l'ordinateur n'est pas coupé."
+    },
+    "silent": {
+      "q": "Je n'ai pas reçu de notification sous Windows. Pourquoi ?",
+      "a": "Windows masque les notifications quand Ne pas déranger ou l'Assistant de concentration est activé, et permet de les désactiver application par application. Vérifiez Paramètres → Système → Notifications dans Windows. Dans tous les cas, la coupure reste enregistrée dans l'Historique."
+    },
+    "quiet": {
+      "q": "Comment fonctionnent les heures de silence ?",
+      "a": "Dans [Paramètres → Notifications](settings#n-quiet), activez les Heures de silence et choisissez les heures et les jours. Vous pouvez couper seulement le son ou retenir complètement les alertes de bureau. Une plage qui passe minuit, comme de 22:00 à 07:00, compte pour le jour où elle commence. Les messages webhook et Telegram sont quand même envoyés, et chaque alerte est quand même enregistrée."
+    },
+    "noise": {
+      "q": "Puis-je éviter les alertes pour les coupures très courtes ?",
+      "a": "Oui. Réglez [« Délai avant l'alerte »](settings#n-min-outage) dans Paramètres → Notifications. Les coupures plus courtes sont enregistrées dans l'Historique mais ne vous alertent pas. [« Rappeler pendant la coupure »](settings#n-reminder) répète l'alerte toutes les quelques minutes jusqu'au retour de la connexion."
+    },
+    "history": {
+      "q": "Où voir les anciennes notifications ?",
+      "a": "Cliquez sur la cloche en haut, ou ouvrez [Notifications](notifications) dans le menu. Chaque alerte indique où elle a été envoyée et, si quelque chose a été retenu, pourquoi : heures de silence ou canal désactivé, par exemple. L'application garde les 500 plus récentes."
+    },
+    "proof": {
+      "q": "Comment envoyer des preuves à mon fournisseur d'accès ?",
+      "a": "Dans [Historique](history), appuyez sur « Rapport mensuel » et choisissez « Imprimer ou enregistrer en PDF ». Le rapport liste chaque coupure avec son heure, sa durée et sa cause. Pour les données brutes, exportez un CSV depuis l'Historique sur un jour, 7 jours ou 30 jours."
+    },
+    "retention": {
+      "q": "Combien de temps mon historique est-il conservé ?",
+      "a": "90 jours. Les fichiers journaux plus anciens sont supprimés automatiquement. Les journaux se trouvent dans le dossier « logs », à côté de l'application. Choisissez « Ouvrir le dossier des journaux » dans le menu de la zone de notification pour les trouver."
+    },
+    "speedserver": {
+      "q": "Quel serveur le test de débit utilise-t-il ?",
+      "a": "Les serveurs de test de débit de Cloudflare, par défaut. Vous pouvez choisir d'autres serveurs dans [Paramètres → Test de débit](settings#speed)."
+    },
+    "schedule": {
+      "q": "Les tests de débit peuvent-ils se lancer tout seuls ?",
+      "a": "Oui. Réglez un intervalle dans [Paramètres → Test de débit](settings#speed). Vous pouvez aussi fixer un débit minimum. Les résultats sont envoyés à vos alertes Discord, Slack ou Telegram, et un résultat sous ce débit est marqué comme trop lent."
+    },
+    "send": {
+      "q": "Est-ce qu'il envoie mes données quelque part ?",
+      "a": "Non. Pas de compte, pas de pistage, pas de statistiques d'utilisation. Les seules connexions qu'il établit sont les vérifications elles-mêmes, les tests de débit, la recherche de mises à jour sur GitHub, et les alertes Discord, Slack ou Telegram que vous configurez. La page Confidentialité les liste une par une."
+    },
+    "lan": {
+      "q": "Quelqu'un d'autre sur mon réseau peut-il ouvrir le tableau de bord ?",
+      "a": "Non. Le tableau de bord n'accepte que les connexions venant de cet ordinateur, et même dans ce cas, il demande la clé que l'application crée à chaque démarrage."
+    },
+    "secrets": {
+      "q": "Où mes paramètres sont-ils stockés ?",
+      "a": "Dans config.json, à côté de l'application. L'URL de votre webhook et votre jeton Telegram y sont enregistrés en clair, alors ne partagez ni ce fichier ni ce dossier. Le tableau de bord ne les renvoie jamais au navigateur."
+    },
+    "updates": {
+      "q": "Comment fonctionnent les mises à jour ?",
+      "a": "L'application cherche une nouvelle version sur GitHub toutes les 6 heures, ou tout de suite quand vous appuyez sur « Rechercher les mises à jour ». Vous pouvez désactiver la recherche automatique dans [Paramètres → Application](settings#app). Avant l'installation, elle vérifie le téléchargement avec les sommes de contrôle de la version. Les versions de test (préversions) ne sont jamais proposées automatiquement."
+    },
+    "bug": {
+      "q": "J'ai trouvé un bug. Où le signaler ?",
+      "a": "Ouvrez un ticket (issue) sur la page GitHub du projet. Dites ce que vous attendiez, ce qui s'est passé, et votre version de l'application (affichée en bas de la barre latérale). Ne collez pas votre config.json, car il peut contenir votre webhook ou votre jeton. Vous pouvez aussi nous joindre par WhatsApp, Discord ou e-mail depuis la page Contact."
+    }
+  }
+}
