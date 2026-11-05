@@ -156,7 +156,7 @@ func TestUsageHandlesWrapAndReboot(t *testing.T) {
 		sample(5, 150, 20, 90),
 	}
 	got := Usage(samples, at(0), at(10))
-	want := uint64(2000+100) + uint64(counterWrap-100-3000+100) + uint64(500+50) + uint64(50+10) + uint64(100+10)
+	want := uint64(2000+100) + (counterWrap - 100 - 3000 + 100) + uint64(500+50) + uint64(50+10) + uint64(100+10)
 	if got != want {
 		t.Fatalf("usage %d, want %d", got, want)
 	}
