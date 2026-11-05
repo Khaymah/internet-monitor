@@ -4,6 +4,7 @@ config.json
 case.json
 case.json.tmp
 weekly-summary.json
+nudge-state.json
 *.exe*
 .serena
 .specify

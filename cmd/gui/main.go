@@ -6,9 +6,12 @@ import (
 	"internet-monitor/internal/alerts"
 	"internet-monitor/internal/app"
 	"internet-monitor/internal/assets"
+	"internet-monitor/internal/pkgid"
+	"internet-monitor/internal/server"
 	"internet-monitor/internal/tray"
 	"log"
 	"os"
+	"path/filepath"
 
 	webview "github.com/webview/webview_go"
 )
@@ -17,6 +20,9 @@ var Version = "dev"
 
 func main() {
 	if !app.AcquireSingleInstance() {
+		if info, ok := server.ReadSession(app.Dir()); ok {
+			tray.OpenURL(info.LaunchURL())
+		}
 		return
 	}
 
@@ -28,6 +34,9 @@ func main() {
 		log.Fatalf("startup failed: %v", err)
 	}
 
+	if pkgid.Packaged() {
+		_ = os.Setenv("WEBVIEW2_USER_DATA_FOLDER", filepath.Join(a.Dir, "WebView2"))
+	}
 	w := webview.New(false)
 	if w == nil {
 		a.Log.AppLog("webview unavailable; opening the dashboard in the browser instead")

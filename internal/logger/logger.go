@@ -328,7 +328,29 @@ func (l *Logger) SendWeekly(lang string, w types.WeeklySummary, to types.Targets
 	})
 }
 
+func (l *Logger) SendNudge(lang string, outages, days int, to types.Targets) {
+	title := i18n.T(lang, "notify.nudge.title", nil)
+	body := i18n.T(lang, "notify.nudge.body", i18n.Vars{"outages": outages, "days": days})
+	l.deliver(to, message{
+		kind:     "nudge",
+		title:    title,
+		telegram: "📝 *" + title + "*\n" + body,
+		data:     map[string]int{"outages": outages, "days": days},
+		at:       time.Now(),
+		webhook: func(url string) interface{} {
+			if IsDiscord(url) {
+				return map[string]interface{}{
+					"username": "Internet Monitor",
+					"embeds":   []map[string]interface{}{{"title": "📝 " + title, "description": body, "color": 0xEAB308}},
+				}
+			}
+			return map[string]interface{}{"text": "*📝 " + title + "*\n" + body}
+		},
+	})
+}
+
 var ntfyTags = map[string]string{
+	"nudge":      "memo",
 	"down":       "x",
 	"degraded":   "warning",
 	"restored":   "white_check_mark",

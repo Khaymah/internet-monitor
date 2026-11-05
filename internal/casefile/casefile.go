@@ -32,6 +32,8 @@ type Profile struct {
 	PlanName         string  `json:"plan_name"`
 	PlanDownloadMbps float64 `json:"plan_download_mbps"`
 	PlanUploadMbps   float64 `json:"plan_upload_mbps"`
+	MonthlyPrice     float64 `json:"monthly_price"`
+	Currency         string  `json:"currency"`
 	LineNumber       string  `json:"line_number"`
 	AccountNumber    string  `json:"account_number"`
 }
@@ -209,6 +211,8 @@ func (p Profile) clean() Profile {
 	p.AccountNumber = short(p.AccountNumber)
 	p.PlanDownloadMbps = clampMbps(p.PlanDownloadMbps)
 	p.PlanUploadMbps = clampMbps(p.PlanUploadMbps)
+	p.MonthlyPrice = clampMbps(p.MonthlyPrice)
+	p.Currency = strings.ToUpper(limit(strings.TrimSpace(p.Currency), 3))
 	return p
 }
 

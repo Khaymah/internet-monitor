@@ -5,6 +5,7 @@ import type {
   Complaint,
   ConfigSaveResponse,
   ConfigView,
+  Insight,
   LogEvent,
   MonthlyReport,
   NotificationList,
@@ -146,6 +147,7 @@ export const api = {
   evidenceRange(from: string, to?: string): Promise<Blob> {
     return evidenceZip(`from=${encodeURIComponent(from)}${to ? `&to=${encodeURIComponent(to)}` : ""}`);
   },
+  insights: (days: number, signal?: AbortSignal) => get<Insight[]>(`/api/insights?days=${days}`, signal),
   sendWeekly: () => post<{ ok: boolean }>("/api/weekly/send"),
   timeline: (hours: number, signal?: AbortSignal) => get<Timeline>(`/api/timeline?hours=${hours}`, signal),
   speedHistory: (date: string, signal?: AbortSignal) =>

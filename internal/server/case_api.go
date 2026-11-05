@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"internet-monitor/internal/casefile"
+	"internet-monitor/internal/insights"
 	"internet-monitor/internal/jsonl"
 	"internet-monitor/internal/report"
 	"internet-monitor/internal/seal"
@@ -95,6 +96,7 @@ type reportView struct {
 	Profile    casefile.Profile     `json:"profile"`
 	Complaints []casefile.Complaint `json:"complaints"`
 	Integrity  seal.Status          `json:"integrity"`
+	Comp       report.Compensation  `json:"compensation"`
 }
 
 func (s *Server) buildReport(month string, now time.Time) reportView {
@@ -120,6 +122,7 @@ func (s *Server) buildReport(month string, now time.Time) reportView {
 		Profile:        f.Profile,
 		Complaints:     casefile.InMonth(f.Complaints, month, now.Location()),
 		Integrity:      integrity,
+		Comp:           report.Compensate(sum, f.Profile.MonthlyPrice, f.Profile.Currency, f.Profile.Country, now),
 	}
 }
 
@@ -336,6 +339,7 @@ type rangeEvidence struct {
 	To      string                `json:"to"`
 	Summary report.MonthlySummary `json:"summary"`
 	Speed   report.SpeedSummary   `json:"speed"`
+	Comp    report.Compensation   `json:"compensation"`
 }
 
 func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
@@ -356,6 +360,7 @@ func (s *Server) evidenceFor(from, to, now time.Time) rangeEvidence {
 		To:      to.Format(time.RFC3339),
 		Summary: sum,
 		Speed:   report.SummarizeSpeed(speeds, "", f.Profile.PlanDownloadMbps),
+		Comp:    report.Compensate(sum, f.Profile.MonthlyPrice, f.Profile.Currency, f.Profile.Country, now),
 	}
 }
 
@@ -452,4 +457,39 @@ func (s *Server) serveSeals(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 	writeJSON(w, http.StatusOK, st)
+}
+
+func (s *Server) Insights(days int, now time.Time) []insights.Insight {
+	days = max(1, min(days, 90))
+	from := now.AddDate(0, 0, -days)
+	ev := s.evidenceFor(from, now, now)
+	attachRoutes(ev.Summary.Events, jsonl.DecodeDays[trace.Trace](s.logDir(), trace.Prefix, from, now))
+	var grades []string
+	for _, sp := range jsonl.DecodeDays[report.SpeedSample](s.logDir(), "speedtest_", now.AddDate(0, 0, -14), now) {
+		if sp.Bufferbloat != "" {
+			grades = append(grades, sp.Bufferbloat)
+		}
+	}
+	if len(grades) > 5 {
+		grades = grades[len(grades)-5:]
+	}
+	recent := false
+	if f, err := s.caseStore().Load(); err == nil {
+		for _, c := range f.Complaints {
+			opened, err := time.Parse(time.RFC3339, c.OpenedAt)
+			if c.Status == casefile.StatusOpen || c.Status == casefile.StatusEscalated || (err == nil && now.Sub(opened) < 7*24*time.Hour) {
+				recent = true
+			}
+		}
+	}
+	return insights.Analyze(insights.Input{Summary: ev.Summary, Speed: ev.Speed, Grades: grades, Days: days, OpenOrRecentComplaint: recent})
+}
+
+func (s *Server) serveInsights(w http.ResponseWriter, r *http.Request) {
+	days := parseLimit(r.URL.Query().Get("days"), 30, 90)
+	list := s.Insights(days, time.Now())
+	if list == nil {
+		list = []insights.Insight{}
+	}
+	writeJSON(w, http.StatusOK, list)
 }

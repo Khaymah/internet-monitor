@@ -125,5 +125,7 @@
   "f_ntfy_token_hint": "Only needed if your ntfy topic is protected.",
   "ntfy_ok": "Test sent to ntfy",
   "f_seal_ts": "Timestamp the sealed logs",
-  "f_seal_ts_hint": "Every day's logs are sealed with a hash chain. With this on, each day's seal is also timestamped by an independent authority (freetsa.org), which receives only a 32-byte hash, never your data. That timestamp lets anyone check that your logs existed in this exact form on that date."
+  "f_seal_ts_hint": "Every day's logs are sealed with a hash chain. With this on, each day's seal is also timestamped by an independent authority (freetsa.org), which receives only a 32-byte hash, never your data. That timestamp lets anyone check that your logs existed in this exact form on that date.",
+  "update_store": "This copy comes from the Microsoft Store, which installs updates for you.",
+  "f_startup_store": "Turn it on or off in Windows Settings → Apps → Startup."
 }

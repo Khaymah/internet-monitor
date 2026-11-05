@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { type CSSProperties, useEffect, useMemo, useState } from "react";
 import { ConfirmDialog } from "../../components/ConfirmDialog";
+import { InsightsCard } from "../../components/InsightsCard";
 import { toast } from "../../components/Toast";
 import { Banner, Button, Card, CardHead, Empty, Skeleton } from "../../components/ui";
 import { api } from "../../lib/api";
@@ -376,7 +377,10 @@ export function Complaints() {
             </Card>
             <ProfileCard key={profile.country + profile.provider} profile={profile} onSaved={setProfile} />
           </div>
-          <GuideCard profile={profile} />
+          <div className="stack">
+            <InsightsCard />
+            <GuideCard profile={profile} />
+          </div>
         </div>
       )}
 

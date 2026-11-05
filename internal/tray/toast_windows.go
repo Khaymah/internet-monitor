@@ -5,6 +5,7 @@ package tray
 import (
 	"fmt"
 	"internet-monitor/internal/assets"
+	"internet-monitor/internal/pkgid"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -89,7 +90,17 @@ func statusIconPath(name string, r, g, b uint8) string {
 	return path
 }
 
+func appUserModelID() string {
+	if id := pkgid.AUMID(); id != "" {
+		return id
+	}
+	return notifyAUMID
+}
+
 func registerAppID() error {
+	if pkgid.Packaged() {
+		return nil
+	}
 	registerAppIDOnce.Do(func() {
 		k, _, err := registry.CreateKey(registry.CURRENT_USER, aumidRegistryRoot+notifyAUMID, registry.SET_VALUE)
 		if err != nil {
@@ -175,7 +186,7 @@ func showToast(c ToastContent, tag, group string) error {
 	}
 	defer manager.release()
 
-	appID, err := newHString(notifyAUMID)
+	appID, err := newHString(appUserModelID())
 	if err != nil {
 		return err
 	}

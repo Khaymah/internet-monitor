@@ -15,6 +15,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import { type CSSProperties, useState } from "react";
+import { InsightsCard } from "../components/InsightsCard";
 import { LatencyChart } from "../components/LatencyChart";
 import { OutageTimeline } from "../components/OutageTimeline";
 import { Banner, Button, Card, CardHead, Empty, Ltr, Meter, Skeleton } from "../components/ui";
@@ -334,6 +335,7 @@ export function Overview() {
       <Hero snap={snap} />
       <Stats snap={snap} />
       <OutageTimeline />
+      <InsightsCard />
       <div className="grid grid-overview">
         <div className="stack">
           <Card labelledBy="chart-title" flare={tone.latency}>

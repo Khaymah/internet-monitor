@@ -3,6 +3,7 @@
 package startup
 
 import (
+	"internet-monitor/internal/pkgid"
 	"os"
 
 	"golang.org/x/sys/windows/registry"
@@ -11,7 +12,7 @@ import (
 const runKey = `SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
 const appName = "InternetMonitor"
 
-func Supported() bool { return true }
+func Supported() bool { return !pkgid.Packaged() }
 
 func IsEnabled() bool {
 	k, err := registry.OpenKey(registry.CURRENT_USER, runKey, registry.QUERY_VALUE)

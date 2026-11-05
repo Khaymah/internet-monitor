@@ -51,6 +51,11 @@ func SpeedText(lang string, s SpeedInfo) (title, body string) {
 
 func TestText(lang string) (title, body string) { return notifytext.TestMessage(lang) }
 
+func NudgeText(lang string, outages, days int) (title, body string) {
+	return i18n.T(lang, "notify.nudge.title", nil),
+		i18n.T(lang, "notify.nudge.body", i18n.Vars{"outages": outages, "days": days})
+}
+
 func WeeklyText(lang string, w types.WeeklySummary) (title, body string) {
 	title = i18n.T(lang, "notify.weekly.title", nil)
 	if w.Outages == 0 {

@@ -36,6 +36,10 @@
       "title": "📊 Your internet this week",
       "body": "{outages} outages, {downtime} offline · uptime {uptime}%",
       "clear": "No outages this week · uptime {uptime}%"
+    },
+    "nudge": {
+      "title": "Time to complain?",
+      "body": "Your line dropped {outages} times in the last {days} days and no complaint is open. The Complaints page has the text and the evidence ready."
     }
   },
   "duration": {

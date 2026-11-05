@@ -122,5 +122,11 @@
   "c_days_few": "{n} days",
   "c_days_many": "{n} days",
   "c_days_other": "{n} days",
-  "c_tx_wired": "The measurements were taken over a cable connected directly to the router, not over Wi-Fi."
+  "c_tx_wired": "The measurements were taken over a cable connected directly to the router, not over Wi-Fi.",
+  "c_price": "Monthly price",
+  "c_price_hint": "Used to estimate what the downtime is worth.",
+  "c_currency": "Currency",
+  "c_share_whatsapp": "WhatsApp",
+  "c_share_email": "Email",
+  "c_tx_comp": "Based on my monthly price of {price}, the downtime in this period is worth {amount}. I request a refund or compensation for it."
 }
