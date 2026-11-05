@@ -1,0 +1,95 @@
+.more-menu {
+  position: relative;
+}
+
+.more-menu summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  cursor: pointer;
+  list-style: none;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.more-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-menu summary:hover,
+.more-menu[open] summary,
+.more-menu.is-current summary {
+  color: var(--text-primary);
+  background: var(--color-surface-raised);
+}
+
+.more-list {
+  position: absolute;
+  inset-inline-start: 0;
+  top: calc(100% + 8px);
+  min-width: 200px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-overlay), 0 0 0 1px var(--border-default);
+  z-index: 60;
+}
+
+.more-list a,
+.nav-more a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.more-list a:hover,
+.more-list a[aria-current="page"],
+.nav-more a:hover,
+.nav-more a[aria-current="page"] {
+  background: var(--color-surface-top);
+  color: var(--text-primary);
+}
+
+.main-nav .nav-more {
+  display: none;
+}
+
+.main-nav .more-list {
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .js .main-nav .more-menu {
+    display: none;
+  }
+
+  .js .main-nav .nav-more {
+    display: flex;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .js .main-nav .nav-more a {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .no-js .main-nav .more-menu {
+    display: none;
+  }
+
+  .no-js .main-nav .nav-more {
+    display: flex;
+  }
+}
