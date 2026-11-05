@@ -1,18 +1,20 @@
 import { createHash } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { appFormat, loadApp } from "./lib/app.mjs";
 import { appCss } from "./lib/app-css.mjs";
 import { createContent } from "./lib/content.mjs";
-import { PAGES, THEME_BOOT, pageUrl, shell } from "./lib/layout.mjs";
+import { navLabel, PAGES, pageUrl, shell } from "./lib/layout.mjs";
 import { renderAbout, renderContact, renderFaq, renderPrivacy, renderSupport, renderTerms } from "./lib/page-app.mjs";
 import { renderChangelog } from "./lib/page-changelog.mjs";
 import { renderDownload } from "./lib/page-download.mjs";
 import { renderGuide, renderNotFound, renderTutorial } from "./lib/page-docs.mjs";
 import { renderHome } from "./lib/page-home.mjs";
 import { loadReleases } from "./lib/releases.mjs";
-import { esc, fill, formatDate, formatSize, inline, lookup, shape, verificationMeta, write } from "./lib/util.mjs";
+import { pageDates, vttDuration, withIntro } from "./lib/seo.mjs";
+import { llmsFull, llmsTxt, robots, rootPage, sitemap } from "./lib/seo-files.mjs";
+import { esc, fill, formatDate, formatSize, inline, lookup, shape, write } from "./lib/util.mjs";
 
 const SITE_DIR = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(SITE_DIR, "..");
@@ -70,6 +72,7 @@ function fontCss() {
 function copyAssets() {
   mkdirSync(join(OUT, "assets", "fonts"), { recursive: true });
   copyFileSync(join(ROOT, "internal", "assets", "favicon.png"), join(OUT, "assets", "favicon.png"));
+  cpSync(join(SITE_DIR, "assets", "og"), join(OUT, "assets", "og"), { recursive: true });
   const tokens = readFileSync(join(ROOT, "web", "src", "styles", "tokens.css"), "utf8");
   const app = appCss(join(ROOT, "web", "src", "styles", "app.css"));
   const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css"].map((f) =>
@@ -98,7 +101,7 @@ function copyAssets() {
   return { css: hash(css), js: scripts["site.js"], scripts, tracks };
 }
 
-function makeCtx(lang, dict, site, releases, tracks, appData) {
+function makeCtx(lang, dict, site, releases, tracks, appData, extra) {
   const intl = site.meta[lang].intl;
   const base = site.base;
   const t = (key, vars) => {
@@ -106,7 +109,7 @@ function makeCtx(lang, dict, site, releases, tracks, appData) {
     if (typeof value !== "string") throw new Error(`missing string ${key} in ${lang}.json`);
     return fill(value, vars);
   };
-  return {
+  const ctx = {
     lang,
     site,
     releases,
@@ -132,7 +135,11 @@ function makeCtx(lang, dict, site, releases, tracks, appData) {
       fmt: appFormat(intl),
       href: (id, anchor) => `${pageUrl(base, lang, id)}${anchor ? `#${anchor}` : ""}`,
     },
+    url: (id) => pageUrl(base, lang, id),
+    ...extra,
   };
+  ctx.navLabel = (id) => navLabel(ctx, id);
+  return ctx;
 }
 
 const RENDER = {
@@ -150,70 +157,7 @@ const RENDER = {
 };
 
 function ogImage(ctx) {
-  const f = ctx.shots.files[0];
-  return f ? `${ctx.site.base}assets/shots/${ctx.shots.lang}/${f}` : `${ctx.site.base}assets/favicon.png`;
-}
-
-function rootPage(site, dicts) {
-  const links = site.langs
-    .map(
-      (l) =>
-        `<li><a class="card" href="${site.base}${l}/" hreflang="${l}" lang="${l}" dir="${site.meta[l].dir}" data-lang="${l}">${esc(site.meta[l].name)}<span>${esc(dicts[l].root.pick)}</span></a></li>`,
-    )
-    .join("");
-  const alternates = site.langs
-    .map((l) => `<link rel="alternate" hreflang="${l}" href="${site.origin}${site.base}${l}/">`)
-    .join("\n");
-  const redirect = `(function(){var langs="${site.langs.join(",")}".split(",");var pick=null;try{var s=localStorage.getItem("im.site.lang");if(langs.indexOf(s)>=0)pick=s;}catch(e){}if(!pick){var list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];for(var i=0;i<list.length&&!pick;i++){var c=String(list[i]).toLowerCase().split("-")[0];if(langs.indexOf(c)>=0)pick=c;}}location.replace("${site.base}"+(pick||"en")+"/"+location.search+location.hash);})();`;
-  return `<!doctype html>
-<html lang="en" dir="ltr" class="no-js" data-theme="dark">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(dicts.en.root.title)}</title>
-<meta name="description" content="${esc(dicts.en.home.description)}">
-<link rel="canonical" href="${site.origin}${site.base}">
-${alternates}
-<link rel="alternate" hreflang="x-default" href="${site.origin}${site.base}">
-${verificationMeta()}
-<meta property="og:title" content="${esc(dicts.en.home.title)}">
-<meta property="og:description" content="${esc(dicts.en.home.description)}">
-<meta property="og:url" content="${site.origin}${site.base}">
-<meta property="og:image" content="${site.origin}${site.base}assets/shots/en/1-overview.png">
-<meta name="color-scheme" content="dark light">
-<link rel="icon" type="image/png" href="${site.base}assets/favicon.png">
-<link rel="stylesheet" href="${site.base}assets/site.css?v=${site.hash.css}">
-<script>${THEME_BOOT}${redirect}</script>
-</head>
-<body class="root-page">
-<main class="wrap root-main">
-<img src="${site.base}assets/favicon.png" alt="${esc(dicts.en.site.logo_alt)}" width="72" height="72">
-<h1 class="aurora-text">${esc(dicts.en.site.name)}</h1>
-<p class="lead">${esc(dicts.en.home.hero_title)}</p>
-<h2 class="sr-only">${esc(dicts.en.root.pick)}</h2>
-<ul class="root-langs">${links}</ul>
-</main>
-</body>
-</html>
-`;
-}
-
-function sitemap(site) {
-  const urls = PAGES.map((p) =>
-    site.langs
-      .map((l) => {
-        const alts = site.langs
-          .map((a) => `<xhtml:link rel="alternate" hreflang="${a}" href="${site.origin}${pageUrl(site.base, a, p.id)}"/>`)
-          .join("");
-        return `<url><loc>${site.origin}${pageUrl(site.base, l, p.id)}</loc>${alts}</url>`;
-      })
-      .join("\n"),
-  ).join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls}
-</urlset>
-`;
+  return `${ctx.site.base}assets/og/${ctx.lang}.png`;
 }
 
 async function main() {
@@ -236,22 +180,27 @@ async function main() {
     year: new Date().getUTCFullYear(),
     hash: { css: assets.css, js: assets.js, ...assets.scripts },
   };
+  const enTrack = assets.tracks.find((tr) => tr.lang === "en");
+  const extra = { dates: pageDates(ROOT, releases, appData), videoDuration: enTrack ? vttDuration(enTrack.file) : null };
   let count = 0;
   for (const lang of LANGS) {
-    const ctx = makeCtx(lang, dicts[lang], site, releases, assets.tracks, appData);
+    const ctx = makeCtx(lang, dicts[lang], site, releases, assets.tracks, appData, extra);
     for (const page of PAGES) {
       const out = RENDER[page.id](ctx);
+      out.body = withIntro(ctx, page.id, out.body);
       const html = shell(ctx, { pageId: page.id, image: ogImage(ctx), ...out });
       write(join(OUT, lang, page.path, "index.html"), html);
       count++;
     }
   }
-  const enCtx = makeCtx("en", dicts.en, site, releases, assets.tracks, appData);
+  const enCtx = makeCtx("en", dicts.en, site, releases, assets.tracks, appData, extra);
   const nf = renderNotFound(enCtx);
   write(join(OUT, "404.html"), shell(enCtx, { pageId: "notfound", image: ogImage(enCtx), notFound: true, ...nf }));
   write(join(OUT, "index.html"), rootPage(site, dicts));
-  write(join(OUT, "sitemap.xml"), sitemap(site));
-  write(join(OUT, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}${BASE}sitemap.xml\n`);
+  write(join(OUT, "sitemap.xml"), sitemap(site, extra.dates));
+  write(join(OUT, "robots.txt"), robots(site));
+  write(join(OUT, "llms.txt"), llmsTxt(enCtx));
+  write(join(OUT, "llms-full.txt"), llmsFull(enCtx));
   write(join(OUT, ".nojekyll"), "");
   const rel = releases.ok
     ? `stable ${releases.stable?.tag ?? "none"}, preview ${releases.preview?.tag ?? "none"}, video ${releases.tutorial ? releases.tutorial.release.tag : "none"}`

@@ -63,7 +63,7 @@ You need [bun](https://bun.sh).
 ```bash
 cd site && bun install --frozen-lockfile && cd ..
 bun site/build.mjs          # writes site/dist
-bun site/check-links.mjs    # checks every internal link, anchor and image alt
+bun site/check-links.mjs    # checks links, anchors, alt texts, meta tags and JSON-LD
 bun site/serve.mjs          # http://localhost:4173/internet-monitor/
 ```
 
@@ -76,6 +76,9 @@ Environment variables for the build:
 | `SITE_BASE` | `/internet-monitor/` | Path the site is served under |
 | `SITE_ORIGIN` | `https://khaymah.github.io` | Used for canonical links, Open Graph and the sitemap |
 | `SITE_REPO` | `Khaymah/internet-monitor` | Repository for releases and links |
+| `GOOGLE_SITE_VERIFICATION` | none | Google Search Console HTML-tag code, added to every page |
+| `BING_SITE_VERIFICATION` | none | Bing Webmaster Tools code (`msvalidate.01`), added to every page |
+| `YANDEX_VERIFICATION` | none | Yandex Webmaster code, added to every page |
 
 ## Pages
 
@@ -92,7 +95,7 @@ it when the system asks for reduced motion.
 
 The root `index.html` sends visitors to their browser's language (or the one they picked
 before), with English as the fallback, and lists all five languages. There's also a
-`404.html`, `sitemap.xml` and `robots.txt`. The site loads no outside scripts, fonts or
+`404.html`, `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt`. The site loads no outside scripts, fonts or
 trackers and sets no cookies; it only remembers the theme and language in the browser.
 
 ## Adding or changing text
@@ -102,3 +105,47 @@ trackers and sets no cookies; it only remembers the theme and language in the br
 - FAQ, about, contact, support, privacy and terms changes go in `web/locales/` and
   `web/src/content/`, as for the app.
 - Release notes for a prerelease go in `docs/releases/<tag>.md`, as before.
+
+## SEO and search engines
+
+Every page has its own title and description (from `site/locales`), keywords
+(`seo.keywords` for the whole site plus `seo.page_keywords.<page>`), canonical and
+`hreflang` links, Open Graph and Twitter cards, and JSON-LD: `WebSite`, the publisher
+and developer, a breadcrumb on inner pages, `SoftwareApplication` on home and download,
+`FAQPage` from the app's FAQ, `HowTo` on the guide and the install steps, `VideoObject`
+on the video page, and `AboutPage` / `ContactPage`. Each page starts with a short direct
+answer (`seo.answer.<page>`) and a visible "last updated" date taken from the last
+commit that touched its content (or the release / policy date). `robots.txt` allows the
+main search and AI crawlers, `sitemap.xml` has a `lastmod` and the language alternates
+for every page, and `llms.txt` / `llms-full.txt` give answer engines a plain-text summary.
+`bun site/check-links.mjs` fails the build when a page loses one of these.
+
+The share images (1200×630, one per language) are in `site/assets/og/`. After changing
+the tagline or the screenshots, rebuild them (needs Playwright with Chromium):
+
+```bash
+bun site/build.mjs && node site/tools/og-images.cjs
+```
+
+### Google Search Console
+
+1. Open [Google Search Console](https://search.google.com/search-console), **Add property**,
+   choose **URL prefix** and enter `https://khaymah.github.io/internet-monitor/`.
+2. Pick the **HTML tag** method and copy only the `content` value of the tag it shows.
+3. In the repository, open **Settings → Secrets and variables → Actions → Variables** and
+   add a variable named `GOOGLE_SITE_VERIFICATION` with that value.
+4. Run the website again: **Actions → Website → Run workflow**. When it finishes, press
+   **Verify** in Search Console.
+5. In Search Console, open **Sitemaps** and submit `sitemap.xml`.
+
+### Bing Webmaster Tools
+
+1. Open [Bing Webmaster Tools](https://www.bing.com/webmasters), add
+   `https://khaymah.github.io/internet-monitor/` and choose the **HTML meta tag** method
+   (or import the site from Search Console, which needs no code).
+2. Save the `content` value as the repository variable `BING_SITE_VERIFICATION`, run the
+   website workflow again, then press **Verify**.
+3. Submit `https://khaymah.github.io/internet-monitor/sitemap.xml` under **Sitemaps**.
+
+Yandex works the same way with `YANDEX_VERIFICATION`. The tags are on the root page and on
+every language page; an empty variable adds nothing.

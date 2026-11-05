@@ -103,3 +103,20 @@
 .cl-preview .md {
   margin-top: 8px;
 }
+
+.page-answer {
+  max-width: 64ch;
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .doc-cta .btn {
+    height: auto;
+    min-height: 38px;
+    padding-block: 8px;
+    white-space: normal;
+    text-align: center;
+  }
+}

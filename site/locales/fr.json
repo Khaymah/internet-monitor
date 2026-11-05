@@ -25,8 +25,8 @@
     "languages": "Langues"
   },
   "home": {
-    "title": "Internet Monitor — Notez vos coupures. Réclamez avec des preuves.",
-    "description": "Une appli gratuite pour Windows, Mac et Linux qui enregistre chaque coupure et chaque ralentissement d'internet, et en fait des preuves à envoyer à votre fournisseur. Sans compte, sans pistage.",
+    "title": "Internet Monitor — Prouvez vos coupures d'internet",
+    "description": "Appli gratuite pour Windows, Mac et Linux qui note chaque coupure et lenteur d'internet, preuves à l'appui pour votre FAI. Sans compte ni pistage.",
     "eyebrow": "Gratuit · Windows, Mac, Linux · Sans compte",
     "hero_title": "Notez vos coupures. Réclamez avec des preuves.",
     "hero_sub": "Internet Monitor surveille discrètement votre internet à la maison. À chaque coupure ou ralentissement, il note quand, combien de temps et pourquoi. Quand vous appelez votre fournisseur, vous avez des faits, pas juste une impression.",
@@ -76,7 +76,7 @@
     "final_sub": "Installez-la une fois, laissez-la tourner, et laissez les faits s'accumuler."
   },
   "download": {
-    "title": "Télécharger Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
+    "title": "Télécharger Internet Monitor — Windows, Mac, Linux, Pi",
     "description": "Téléchargez Internet Monitor gratuitement et installez-le en quelques minutes, avec des étapes simples pour Windows, Mac, Linux et Raspberry Pi.",
     "eyebrow": "Téléchargement gratuit",
     "h1": "Télécharger Internet Monitor",
@@ -217,7 +217,7 @@
   },
   "privacy": {
     "title": "Politique de confidentialité — Internet Monitor",
-    "description": "Internet Monitor garde vos données sur votre ordinateur. Pas de compte, pas de statistiques, pas de pistage. Voici tout ce qu'il enregistre et tous les endroits qu'il contacte.",
+    "description": "Internet Monitor garde vos données sur votre ordinateur : sans compte, sans statistiques, sans pistage. Ce qu'il enregistre et où il se connecte.",
     "site_title": "À propos de ce site",
     "site_body": "Ce site n'a ni cookies, ni traceurs, ni scripts ou polices externes. Il retient seulement votre thème et votre langue, dans votre propre navigateur. Les téléchargements viennent directement de GitHub."
   },
@@ -227,10 +227,117 @@
     "preview_title": "Préversion, notes en anglais",
     "on_github": "Voir cette version sur GitHub"
   },
+  "about": {
+    "title": "À propos d'Internet Monitor — gratuit, ouvert, privé",
+    "description": "Pourquoi Internet Monitor existe, ce qui compte pour nous et qui le fait : une appli gratuite qui note chaque coupure d'internet, sur votre ordinateur."
+  },
+  "contact": {
+    "title": "Contacter Internet Monitor — WhatsApp, Discord, e-mail",
+    "description": "Une question, une idée ou un problème ? Écrivez-nous sur WhatsApp, Discord, par e-mail ou sur GitHub, comme vous préférez."
+  },
+  "support": {
+    "title": "Soutenir Internet Monitor — pour rester gratuit",
+    "description": "Internet Monitor est gratuit et le restera. S'il vous a aidé, soutenez-le par PayPal, Vodafone Cash ou InstaPay. Entièrement facultatif."
+  },
+  "terms": {
+    "title": "Conditions d'utilisation — Internet Monitor",
+    "description": "Les conditions d'utilisation d'Internet Monitor : gratuit pour un usage personnel et commercial sous Elastic License 2.0, sans garantie."
+  },
   "notfound": {
     "title": "Page introuvable — Internet Monitor",
     "h1": "Cette page n'existe pas",
     "body": "Le lien est peut-être ancien ou mal tapé. Ces pages peuvent vous aider :"
+  },
+  "seo": {
+    "og_alt": "Internet Monitor : notez vos coupures d'internet et réclamez avec des preuves",
+    "keywords": [
+      "internet monitor",
+      "suivi des coupures internet",
+      "preuve coupure internet",
+      "réclamation fournisseur internet",
+      "surveillance connexion internet",
+      "logiciel gratuit"
+    ],
+    "page_keywords": {
+      "home": [
+        "journal des coupures",
+        "preuve pour le FAI",
+        "surveillance de disponibilité",
+        "perte de paquets"
+      ],
+      "download": [
+        "télécharger internet monitor",
+        "internet monitor windows",
+        "internet monitor mac",
+        "raspberry pi"
+      ],
+      "guide": [
+        "prouver une coupure internet",
+        "guide réclamation FAI",
+        "guide du débutant",
+        "étapes de réclamation"
+      ],
+      "tutorial": [
+        "vidéo internet monitor",
+        "visite des réglages",
+        "tutoriel vidéo",
+        "utiliser internet monitor"
+      ],
+      "faq": [
+        "questions fréquentes",
+        "internet se coupe",
+        "problème DNS",
+        "box ou fournisseur"
+      ],
+      "changelog": [
+        "nouveautés",
+        "notes de version",
+        "nouvelle version",
+        "mises à jour"
+      ],
+      "about": [
+        "à propos",
+        "code source ouvert",
+        "elastic license",
+        "Khaymah"
+      ],
+      "contact": [
+        "contact",
+        "aide internet monitor",
+        "groupe whatsapp",
+        "discord"
+      ],
+      "support": [
+        "faire un don",
+        "soutenir le projet",
+        "paypal",
+        "instapay"
+      ],
+      "privacy": [
+        "politique de confidentialité",
+        "sans pistage",
+        "données locales",
+        "sans compte"
+      ],
+      "terms": [
+        "conditions d'utilisation",
+        "elastic license 2.0",
+        "usage commercial gratuit",
+        "sans garantie"
+      ]
+    },
+    "answer": {
+      "download": "Internet Monitor se télécharge gratuitement pour Windows 10 et 11, macOS, Linux et Raspberry Pi. Un seul fichier à lancer, et il note vos coupures d'internet tout de suite.",
+      "guide": "Pour prouver que votre internet se coupe, installez Internet Monitor, laissez-le tourner et envoyez à votre fournisseur le rapport et le fichier de preuves qu'il crée à partir de ses propres mesures.",
+      "tutorial": "Cette vidéo présente les réglages d'Internet Monitor un par un, avec des sous-titres en anglais, arabe, français, turc et ourdou.",
+      "faq": "Internet Monitor vérifie votre connexion toutes les quelques secondes de trois façons et note chaque coupure avec son heure, sa durée et sa cause. Ces réponses expliquent son fonctionnement.",
+      "changelog": "Toutes les versions d'Internet Monitor, de la plus récente à la plus ancienne : nouveautés, améliorations, corrections et sécurité, avec les notes de la version en test.",
+      "about": "Internet Monitor est une appli gratuite de Khaymah qui tourne sur votre ordinateur, note chaque coupure d'internet et vous dit si le problème vient de chez vous ou de votre fournisseur.",
+      "contact": "Vous pouvez joindre l'équipe d'Internet Monitor sur WhatsApp, Discord, par e-mail ou sur GitHub. Les bugs et demandes de fonctions vont sur GitHub pour que d'autres puissent les suivre.",
+      "support": "Internet Monitor est gratuit pour tous. Les dons par PayPal, Vodafone Cash ou InstaPay sont facultatifs et l'aident à rester gratuit.",
+      "privacy": "Internet Monitor garde toutes ses données sur votre ordinateur. Pas de compte, pas de statistiques, pas de pistage, et il ne se connecte qu'aux endroits listés ci-dessous.",
+      "terms": "Internet Monitor est gratuit pour un usage personnel et commercial sous Elastic License 2.0, et fourni sans garantie."
+    }
   },
   "root": {
     "title": "Internet Monitor — choisissez votre langue",

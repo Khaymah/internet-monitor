@@ -122,8 +122,8 @@ ${support}
 <a class="btn btn-ghost" href="${a.repoUrl}" ${NEW_TAB}>GitHub${a.svg(L.ExternalLink, 15)}${newTab(a)}</a>
 </div>`;
   return {
-    title: `${a.t("nav_about")} — ${ctx.t("site.name")}`,
-    description: a.t("about.story.1"),
+    title: ctx.t("about.title"),
+    description: ctx.t("about.description"),
     body: appPage(body),
   };
 }
@@ -147,8 +147,8 @@ ${cards}
 </ul>
 ${banner(a, "warn", a.lucide.ShieldAlert, a.t("contact_safety"))}`;
   return {
-    title: `${a.t("contact_title")} — ${ctx.t("site.name")}`,
-    description: a.t("contact_intro"),
+    title: ctx.t("contact.title"),
+    description: ctx.t("contact.description"),
     body: appPage(body) + toaster(a),
   };
 }
@@ -178,8 +178,8 @@ ${banner(a, "warn", a.lucide.ShieldAlert, a.t("support_safety"))}
 ${list}
 <p class="secondary">${esc(a.t("support_thanks"))}</p>`;
   return {
-    title: `${a.t("support_title")} — ${ctx.t("site.name")}`,
-    description: a.t("support_intro"),
+    title: ctx.t("support.title"),
+    description: ctx.t("support.description"),
     body: appPage(body) + toaster(a),
   };
 }
@@ -277,10 +277,9 @@ export function renderPrivacy(ctx) {
 }
 
 export function renderTerms(ctx) {
-  const a = ctx.appx;
   return {
-    title: `${a.t("terms_title")} — ${ctx.t("site.name")}`,
-    description: a.t("terms.intro"),
+    title: ctx.t("terms.title"),
+    description: ctx.t("terms.description"),
     body: legalPage(ctx, "terms"),
   };
 }

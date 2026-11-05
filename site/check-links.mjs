@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkSeo } from "./lib/seo-check.mjs";
 import { resolve } from "./serve.mjs";
 
 const DIST = fileURLToPath(new URL("./dist/", import.meta.url));
@@ -51,9 +52,16 @@ for (const f of files) {
   }
 }
 
+const seo = checkSeo(DIST, files, BASE);
+problems.push(...seo.problems);
+
 if (problems.length) {
   console.error(problems.join("\n"));
   console.error(`\n${problems.length} problem(s) in ${files.length} pages`);
   process.exit(1);
 }
 console.log(`links ok: ${checked} internal links in ${files.length} pages`);
+const types = Object.entries(seo.stats.types)
+  .map(([t, n]) => `${t} ${n}`)
+  .join(", ");
+console.log(`seo ok: meta tags on ${seo.stats.pages} pages, ${seo.stats.ldBlocks} JSON-LD blocks (${types}), ${seo.stats.sitemapUrls} sitemap urls`);

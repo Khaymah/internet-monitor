@@ -1,4 +1,5 @@
 import { icon } from "./icons.mjs";
+import { keywords, ROBOTS, structuredData } from "./seo.mjs";
 import { esc, verificationMeta } from "./util.mjs";
 
 export const PAGES = [
@@ -61,12 +62,16 @@ export function pageUrl(base, lang, id) {
 
 export const THEME_BOOT = `(function(){var d=document.documentElement;d.className=d.className.replace("no-js","js");try{var t=localStorage.getItem("im.site.theme");if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.setAttribute("data-theme",t);}catch(e){}})();`;
 
-export function head({ ctx, title, description, canonical, alternates, image, extra = "", scripts = [] }) {
+const FONT = { arabic: "ibm-plex-sans-arabic-arabic-400-normal.woff2", latin: "poppins-latin-400-normal.woff2" };
+
+export function head({ ctx, pageId, title, description, canonical, alternates, image, notFound = false, scripts = [] }) {
   const { site } = ctx;
+  const font = FONT[site.meta[ctx.lang].dir === "rtl" ? "arabic" : "latin"];
+  const imageAlt = esc(ctx.t("seo.og_alt"));
   const alt = alternates
     .map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${esc(site.origin + a.href)}">`)
     .join("\n");
-  const ogAlt = alternates
+  const localeAlt = alternates
     .filter((a) => a.lang !== ctx.lang && OG_LOCALE[a.lang])
     .map((a) => `<meta property="og:locale:alternate" content="${OG_LOCALE[a.lang]}">`)
     .join("\n");
@@ -74,6 +79,10 @@ export function head({ ctx, title, description, canonical, alternates, image, ex
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
+<meta name="keywords" content="${esc(keywords(ctx, pageId))}">
+<meta name="robots" content="${notFound ? "noindex,follow" : ROBOTS}">
+<meta name="author" content="Khaymah">
+<meta name="application-name" content="${esc(ctx.t("site.name"))}">
 <link rel="canonical" href="${esc(site.origin + canonical)}">
 ${alt}
 <meta property="og:type" content="website">
@@ -82,21 +91,28 @@ ${alt}
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(site.origin + canonical)}">
 <meta property="og:image" content="${esc(site.origin + image)}">
-<meta property="og:image:width" content="1920">
-<meta property="og:image:height" content="1080">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${imageAlt}">
 <meta property="og:locale" content="${OG_LOCALE[ctx.lang] ?? "en_GB"}">
-${ogAlt}
+${localeAlt}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${esc(site.origin + image)}">
+<meta name="twitter:image:alt" content="${imageAlt}">
 ${verificationMeta()}
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0c1015">
 <link rel="icon" type="image/png" href="${site.base}assets/favicon.png">
 <link rel="apple-touch-icon" href="${site.base}assets/favicon.png">
+<link rel="preload" href="${site.base}assets/fonts/${font}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${site.base}assets/site.css?v=${site.hash.css}">
 <script>${THEME_BOOT}</script>
 <script src="${site.base}assets/site.js?v=${site.hash.js}" defer></script>
 ${scripts.map((f) => `<script src="${site.base}assets/${f}?v=${site.hash[f]}" defer></script>`).join("\n")}
-${extra}`;
+${notFound ? "" : structuredData(ctx, pageId, title, description)}`;
 }
 
 function langMenu(ctx, pageId) {
@@ -177,11 +193,10 @@ export function shell(ctx, { pageId, title, description, body, image, notFound =
         { lang: "x-default", href: pageId === "home" ? site.base : pageUrl(site.base, "en", pageId) },
       ];
   const canonical = notFound ? site.base : pageUrl(site.base, lang, pageId);
-  const extra = notFound ? '<meta name="robots" content="noindex">' : "";
   return `<!doctype html>
 <html lang="${lang}" dir="${m.dir}" class="no-js" data-theme="dark">
 <head>
-${head({ ctx, title, description, canonical, alternates, image, extra, scripts })}
+${head({ ctx, pageId, title, description, canonical, alternates, image, notFound, scripts })}
 </head>
 <body data-page="${pageId}">
 <a class="skip-link" href="#main">${esc(ctx.t("site.skip"))}</a>
