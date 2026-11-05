@@ -61,7 +61,7 @@
   "c_guide_title": "Şikayeti üst kuruma taşıma ({country})",
   "c_guide_1": "Önce sağlayıcınıza şikayette bulunun ve şikayet numarasını, tarihi ve temsilcinin adını not edin.",
   "c_guide_2": "Sorunu düzeltmeleri için onlara {window} süre tanıyın. Bu sürede her kopmanın kaydedilmesi için Internet Monitor'ü açık tutun.",
-  "c_guide_4": "Aşağıdaki şikayeti açın, hazır metni kopyalayın ve kanıt ZIP dosyasını ekleyin. İçindeki her dosyanın bir SHA-256 sağlama toplamı vardır; böylece herkes hiçbir şeyin değiştirilmediğini doğrulayabilir.",
+  "c_guide_4": "Aşağıdaki şikayeti açın, hazır metni kopyalayın ve kanıt ZIP dosyasını ekleyin. İçindeki her dosyanın bir SHA-256 parmak izi (sağlama toplamı) vardır; böylece herkes hiçbir şeyin değiştirilmediğini doğrulayabilir.",
   "c_guide_note": "Kurallar ülkeden ülkeye değişir ve zamanla değişebilir. Tam adımlar için düzenleyici kurumunuzun web sitesine bakın.",
   "c_open_report": "Bu ayın raporunu aç",
   "c_country": "Ülke",

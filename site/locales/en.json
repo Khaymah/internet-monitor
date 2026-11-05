@@ -34,7 +34,7 @@
     "cta_download_os": "Download for {os}",
     "cta_guide": "How it works",
     "version_note": "Version {version} · {date}",
-    "hero_alt": "The Internet Monitor dashboard: connection status, delay, outage timeline and tips about your line",
+    "hero_alt": "The Internet Monitor dashboard: connection status, response time, outage timeline and tips about your line",
     "benefits_title": "Why people use it",
     "benefits_sub": "Calling your provider without proof rarely works. This app gives you the proof.",
     "benefits": [
@@ -219,7 +219,7 @@
     "title": "Privacy policy — Internet Monitor",
     "description": "Internet Monitor keeps your data on your computer. No account, no analytics, no tracking. Here's everything it stores and every place it connects to.",
     "site_title": "About this website",
-    "site_body": "This website has no cookies, no trackers and no outside scripts or fonts. It only remembers your theme and language in your own browser. Downloads come straight from GitHub."
+    "site_body": "This website has no cookies, no trackers, and nothing loaded from other websites (no outside code or fonts). It only remembers your theme and language in your own browser. Downloads come straight from GitHub."
   },
   "changelog": {
     "title": "What's new — Internet Monitor",

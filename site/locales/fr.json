@@ -34,7 +34,7 @@
     "cta_download_os": "Télécharger pour {os}",
     "cta_guide": "Comment ça marche",
     "version_note": "Version {version} · {date}",
-    "hero_alt": "Le tableau de bord d'Internet Monitor : état de la connexion, délai, chronologie des coupures et conseils sur votre ligne",
+    "hero_alt": "Le tableau de bord d'Internet Monitor : état de la connexion, temps de réponse, chronologie des coupures et conseils sur votre ligne",
     "benefits_title": "Pourquoi l'utiliser",
     "benefits_sub": "Appeler son fournisseur sans preuve marche rarement. Cette appli vous donne la preuve.",
     "benefits": [
@@ -219,7 +219,7 @@
     "title": "Politique de confidentialité — Internet Monitor",
     "description": "Internet Monitor garde vos données sur votre ordinateur : sans compte, sans statistiques, sans pistage. Ce qu'il enregistre et où il se connecte.",
     "site_title": "À propos de ce site",
-    "site_body": "Ce site n'a ni cookies, ni traceurs, ni scripts ou polices externes. Il retient seulement votre thème et votre langue, dans votre propre navigateur. Les téléchargements viennent directement de GitHub."
+    "site_body": "Ce site n'a ni cookies, ni traceurs, et ne charge rien depuis d'autres sites (ni code, ni polices externes). Il retient seulement votre thème et votre langue, dans votre propre navigateur. Les téléchargements viennent directement de GitHub."
   },
   "changelog": {
     "title": "Nouveautés — Internet Monitor",

@@ -13,7 +13,7 @@
   "contact_eyebrow": "Contact",
   "contact_title": "We're here to help",
   "contact_intro": "Questions, problems or ideas: pick whichever is easiest for you.",
-  "contact_safety": "Never send your config.json or log files unless we ask. They can contain your webhook, Telegram token and connection history.",
+  "contact_safety": "Never send your config.json or log files unless we ask. They can contain your webhook (a private link), your Telegram token (a secret access code) and your connection history.",
   "contact_open": "Open {name}",
   "contact_copy": "Copy {name}",
   "contact_copied": "Copied to clipboard",
@@ -34,7 +34,7 @@
       },
       "proof": {
         "title": "Evidence, not guesses",
-        "body": "Exact times, durations and the layer that failed, ready for a PDF or CSV."
+        "body": "Exact times, durations and the part that failed, ready as a PDF or a spreadsheet file (CSV)."
       },
       "bilingual": {
         "title": "Five languages",

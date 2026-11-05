@@ -219,7 +219,7 @@
     "title": "Gizlilik politikası — Internet Monitor",
     "description": "Internet Monitor verilerinizi bilgisayarınızda tutar. Hesap yok, analiz yok, takip yok. Sakladığı her şey ve bağlandığı her yer burada.",
     "site_title": "Bu web sitesi hakkında",
-    "site_body": "Bu sitede çerez, izleyici ya da dışarıdan yüklenen betik veya yazı tipi yoktur. Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
+    "site_body": "Bu sitede çerez ve izleyici yoktur, başka sitelerden de hiçbir şey yüklenmez (dışarıdan kod ya da yazı tipi yok). Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
   },
   "changelog": {
     "title": "Yenilikler — Internet Monitor",

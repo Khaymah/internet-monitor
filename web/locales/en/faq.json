@@ -14,11 +14,11 @@
     },
     "what": {
       "q": "What does Internet Monitor do?",
-      "a": "It checks your connection every few seconds in three ways: it connects to DNS servers, loads a small web page, and looks up website names. Every outage is saved with its exact start time, how long it lasted, and which part failed. You can then turn that into a report for your internet provider."
+      "a": "It checks your connection every few seconds in three ways: it contacts well-known internet servers, opens a small web page, and looks up a website's name (DNS, the internet's address book). Every outage is saved with its exact start time, how long it lasted, and which part failed. You can then turn that into a report for your internet provider."
     },
     "open": {
       "q": "How do I open the dashboard?",
-      "a": "Click the tray icon and choose “Open dashboard”, or use the app window if you installed the window version. Typing the address into the browser yourself shows a locked page, because the dashboard needs a key that changes every time the app starts."
+      "a": "If you installed the background version, click the small icon next to the clock (on a Mac, the icon at the top of the screen) and choose “Open dashboard”. If you installed the regular-program version, open the program's window. Typing the address into the browser yourself shows a locked page, because the dashboard needs a key that changes every time the app starts."
     },
     "platforms": {
       "q": "Does it work on macOS and Linux?",
@@ -34,7 +34,7 @@
     },
     "unstable": {
       "q": "What does “Unstable” mean?",
-      "a": "You're online, but the connection is poor: more than 20% of packets are lost, or responses take longer than 500 ms. Both limits can be changed in [Settings → Monitoring](settings#monitoring)."
+      "a": "You're online, but the connection is poor: more than 20% of the data you send gets lost on the way, or replies take longer than half a second (500 ms). Both limits can be changed in [Settings → Monitoring](settings#monitoring)."
     },
     "layers": {
       "q": "What's the difference between a DNS problem and a full outage?",
@@ -42,11 +42,11 @@
     },
     "router": {
       "q": "Is the problem my router or my provider?",
-      "a": "The app also checks your router (the local gateway). If the router answers but the internet doesn't, the diagnosis points to your provider. If the router doesn't answer either, the problem is in your home network: Wi-Fi, cables, or the router itself."
+      "a": "The app also checks your router. If the router answers but the internet doesn't, the diagnosis points to your provider. If the router doesn't answer either, the problem is in your home network: Wi-Fi, cables, or the router itself."
     },
     "targets": {
       "q": "Can I change what it checks?",
-      "a": "Yes. [Settings → Check targets](settings#targets) has three lists: DNS servers (8.8.8.8 and 1.1.1.1 by default), web pages, and names to look up. Each list holds up to 10 entries, and you can test them before saving."
+      "a": "Yes. [Settings → Check targets](settings#targets) has three lists: DNS servers (the internet's address books; 8.8.8.8 and 1.1.1.1 by default), web pages, and names to look up. Each list holds up to 10 entries, and you can test them before saving."
     },
     "data": {
       "q": "How much internet data does it use?",
@@ -54,7 +54,7 @@
     },
     "where": {
       "q": "Where do alerts show up?",
-      "a": "As a system notification with a sound on this computer. You can also send them to a Discord or Slack channel with a webhook, or to Telegram. Set these up in [Settings → Alerts](settings#alerts) and use the test button to make sure they arrive."
+      "a": "As a system notification with a sound on this computer. You can also send them to a Discord or Slack channel with a webhook (a special link that lets an app post messages there), or to Telegram. Set these up in [Settings → Alerts](settings#alerts) and use the test button to make sure they arrive."
     },
     "telegram": {
       "q": "How do I set up Telegram alerts?",
@@ -82,11 +82,11 @@
     },
     "proof": {
       "q": "How do I send proof to my internet provider?",
-      "a": "In [History](history), press “Monthly report” and choose “Print or save as PDF”. It lists every outage with its time, duration and cause. For raw data, export CSV from History for one day, 7 days or 30 days."
+      "a": "In [History](history), press “Monthly report” and choose “Print or save as PDF”. It lists every outage with its time, duration and cause. For all the detailed numbers, export a spreadsheet file (CSV, opens in Excel) from History for one day, 7 days or 30 days."
     },
     "retention": {
       "q": "How long is my history kept?",
-      "a": "90 days. Older log files are deleted automatically. The logs live in the “logs” folder next to the app. Choose “Open logs folder” from the tray menu to find them."
+      "a": "90 days. Older log files are deleted automatically. The logs live in the “logs” folder next to the app. To find them, click the small icon next to the clock and choose “Open logs folder”."
     },
     "speedserver": {
       "q": "Which server does the speed test use?",
@@ -110,7 +110,7 @@
     },
     "updates": {
       "q": "How do updates work?",
-      "a": "The app checks GitHub for a new version every 6 hours, or right away when you press “Check for updates”. You can turn the automatic check off in [Settings → App](settings#app). Before installing, it checks the download against the release's checksums. Test (pre-release) versions are never offered automatically."
+      "a": "The app checks GitHub for a new version every 6 hours, or right away when you press “Check for updates”. You can turn the automatic check off in [Settings → App](settings#app). Before installing, it checks that the downloaded file is exactly the one we published (using the release's checksums). Test (pre-release) versions are never offered automatically."
     },
     "bug": {
       "q": "I found a bug. Where do I report it?",

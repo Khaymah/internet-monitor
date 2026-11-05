@@ -18,9 +18,9 @@
   "col_event": "Événement",
   "col_duration": "Durée",
   "col_cause": "Cause",
-  "export_day": "Exporter le jour (CSV)",
-  "export_7": "7 derniers jours (CSV)",
-  "export_30": "30 derniers jours (CSV)",
+  "export_day": "Exporter le jour (Excel/CSV)",
+  "export_7": "7 derniers jours (Excel/CSV)",
+  "export_30": "30 derniers jours (Excel/CSV)",
   "export_partial": "Certains jours n'ont pas pu être lus — l'export est peut-être incomplet",
   "export_done": "{n} événements exportés"
 }

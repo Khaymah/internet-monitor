@@ -13,7 +13,7 @@
   "contact_eyebrow": "Contact",
   "contact_title": "Nous sommes là pour vous aider",
   "contact_intro": "Questions, problèmes ou idées : choisissez le moyen le plus simple pour vous.",
-  "contact_safety": "N'envoyez jamais votre config.json ni vos fichiers journaux, sauf si nous vous le demandons. Ils peuvent contenir votre webhook, votre jeton Telegram et l'historique de votre connexion.",
+  "contact_safety": "N'envoyez jamais votre config.json ni vos fichiers journaux, sauf si nous vous le demandons. Ils peuvent contenir votre lien webhook privé, votre jeton Telegram (un code d'accès secret) et l'historique de votre connexion.",
   "contact_open": "Ouvrir {name}",
   "contact_copy": "Copier {name}",
   "contact_copied": "Copié dans le presse-papiers",
@@ -34,7 +34,7 @@
       },
       "proof": {
         "title": "Des preuves, pas des suppositions",
-        "body": "Heures exactes, durées et couche en panne, prêtes pour un PDF ou un CSV."
+        "body": "Heures exactes, durées et partie en panne, prêtes sous forme de PDF ou de fichier tableur (CSV)."
       },
       "bilingual": {
         "title": "Cinq langues",

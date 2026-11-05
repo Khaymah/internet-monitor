@@ -61,7 +61,7 @@
   "c_guide_title": "Comment aller plus loin ({country})",
   "c_guide_1": "Faites d'abord une réclamation auprès de votre fournisseur, et notez le numéro de réclamation, la date et le nom du conseiller.",
   "c_guide_2": "Laissez-lui {window} pour régler le problème. Laissez Internet Monitor tourner pour que chaque coupure pendant ce temps soit enregistrée.",
-  "c_guide_4": "Ouvrez la réclamation ci-dessous, copiez le texte tout prêt et joignez le ZIP de preuves. Chaque fichier qu'il contient a une somme de contrôle SHA-256, pour que chacun puisse vérifier que rien n'a été modifié.",
+  "c_guide_4": "Ouvrez la réclamation ci-dessous, copiez le texte tout prêt et joignez le ZIP de preuves. Chaque fichier qu'il contient a une empreinte SHA-256 (somme de contrôle), pour que chacun puisse vérifier que rien n'a été modifié.",
   "c_guide_note": "Les règles varient selon les pays et peuvent changer. Consultez le site de votre régulateur pour connaître les étapes exactes.",
   "c_open_report": "Ouvrir le rapport de ce mois",
   "c_country": "Pays",
