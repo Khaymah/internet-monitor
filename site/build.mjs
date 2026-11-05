@@ -74,9 +74,13 @@ function copyAssets() {
   mkdirSync(join(OUT, "assets", "fonts"), { recursive: true });
   copyFileSync(join(ROOT, "internal", "assets", "favicon.png"), join(OUT, "assets", "favicon.png"));
   cpSync(join(SITE_DIR, "assets", "og"), join(OUT, "assets", "og"), { recursive: true });
+  cpSync(join(SITE_DIR, "assets", "guide"), join(OUT, "assets", "guide"), {
+    recursive: true,
+    filter: (src) => !src.endsWith(".json"),
+  });
   const tokens = readFileSync(join(ROOT, "web", "src", "styles", "tokens.css"), "utf8");
   const app = appCss(join(ROOT, "web", "src", "styles", "app.css"));
-  const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css", "tours.css"].map((f) =>
+  const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css", "download.css", "guide.css", "tours.css"].map((f) =>
     readFileSync(join(SITE_DIR, "assets", f), "utf8"),
   );
   const css = [fontCss(), tokens, app, ...own].join("\n");

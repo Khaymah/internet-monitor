@@ -80,10 +80,10 @@
     "description": "Download Internet Monitor for free and install it in a few minutes, with simple steps for Windows, Mac, Linux and Raspberry Pi.",
     "eyebrow": "Free download",
     "h1": "Download Internet Monitor",
-    "intro": "Free, no account needed. Pick your computer below, download one file, and follow the short steps.",
+    "intro": "Free, no account needed. We pick the right file for your computer. Press the big button and follow the short steps.",
     "latest": "Latest version {version}, released {date}",
-    "detected": "Looks like you're on {os}. This is the file for you:",
-    "pick": "Pick your system below.",
+    "detected": "You're on {os}. This button is the one for you.",
+    "detected_pi": "This looks like a Raspberry Pi. Look at the Advanced section at the bottom of the page.",
     "phone": "Internet Monitor runs on a computer. Open this page on your computer to download it. You can then check the dashboard from your phone.",
     "os": {
       "windows": "Windows",
@@ -97,13 +97,19 @@
       "linux": "Ubuntu, Debian and similar",
       "pi": "Runs 24/7, you open it from your phone or PC"
     },
-    "tray": "Tray version (recommended)",
-    "tray_desc": "Runs quietly in the background with a small icon near the clock. Best for catching every outage.",
-    "window": "Window version",
-    "window_desc": "Opens in its own window, like any other app.",
-    "mac_arm": "Mac with Apple chip (M1, M2, M3, M4…)",
-    "mac_intel": "Mac with Intel processor",
+    "get": "Download for {os}",
+    "tray": "Runs in the background (recommended)",
+    "tray_desc": "A small icon sits next to the clock. Click it to open the dashboard whenever you like. This is the best choice for most people.",
+    "window": "Opens like a regular program",
+    "window_desc": "It opens in its own window. On Windows you can shrink it next to the clock. On Mac and Linux, closing the window stops it.",
+    "pick_first": "Not sure? Choose the first one.",
+    "second_title": "Prefer a regular program?",
+    "mac_arm": "Apple chip",
+    "mac_arm_sub": "M1, M2, M3, M4 and newer",
+    "mac_intel": "Intel chip",
+    "mac_intel_sub": "Older Macs",
     "mac_which": "Not sure which Mac you have? Click the Apple menu, then **About This Mac**. If it says **Chip: Apple**, pick Apple chip. If it says **Processor: Intel**, pick Intel.",
+    "mac_show_both": "Not the right one? Show both",
     "pi_64": "Raspberry Pi 4 or 5 (64-bit)",
     "pi_32": "Raspberry Pi 2 or 3, or 32-bit system",
     "pi_amd64": "Other Linux PC or server (64-bit)",
@@ -114,30 +120,26 @@
     "preview_title": "Try the next version (preview)",
     "preview_body": "Version {version} ({date}) is a test version with the newest features. It may still have bugs. The app never switches to a preview on its own.",
     "preview_btn": "See the preview files",
-    "install_title": "How to install",
-    "install_sub": "Takes about two minutes. You only do this once.",
+    "install_title": "How to start it",
+    "install_sub": "A few quick steps, only the first time.",
     "steps": {
       "windows": [
-        "Download the file above.",
-        "Make a new folder, for example **Internet Monitor** in your Documents, and move the file into it. The app keeps its records next to itself.",
-        "Double-click the file to start it.",
-        "If a blue window says **Windows protected your PC**, click **More info**, then **Run anyway**. This appears because the app is new and not signed, not because something is wrong.",
-        "A small icon appears near the clock (click the **^** arrow if you don't see it). Click it and choose **Open dashboard**.",
-        "In the dashboard, open **Settings → App** and turn on **Start with Windows**, so it keeps watching after a restart."
+        "Download the file with the big button above.",
+        "Double-click it to start it.",
+        "Look for a small icon next to the clock. Click the **^** arrow if you can't see it.",
+        "Click the icon and choose **Open dashboard**."
       ],
       "mac": [
-        "Download the file for your Mac above.",
-        "Make a new folder, for example **Internet Monitor** in your Documents, and move the file into it.",
-        "Open **Terminal** (search for it with Spotlight), type **chmod +x** and a space, drag the file into the Terminal window, and press Enter. This lets the file run.",
-        "Right-click the file (or Control-click) and choose **Open**, then **Open** again. You only need to do this the first time.",
-        "If your Mac says it **can't be opened because it's from an unidentified developer** and shows no Open button, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**.",
-        "An icon appears in the menu bar at the top. Click it and choose **Open dashboard**."
+        "Download the file made for your Mac.",
+        "Allow it to run, one time only.",
+        "Right-click the file, choose **Open**, then **Open** again.",
+        "Click the small icon at the top of the screen and choose **Open dashboard**."
       ],
       "linux": [
-        "Download the file above and move it to a folder of its own.",
-        "Right-click the file, choose **Properties → Permissions**, and tick **Allow executing file as program**. Or run **chmod +x** on it in a terminal.",
-        "Double-click the file, or run it from a terminal.",
-        "Open the dashboard from the tray icon, or from the app window in the window version."
+        "Download the file.",
+        "Allow it to run, one time only.",
+        "Double-click the file to start it.",
+        "Click the small icon and choose **Open dashboard**. In the regular program edition, the window opens by itself."
       ],
       "pi": [
         "Download the file for your device above.",
@@ -146,11 +148,28 @@
         "To start it automatically after a power cut, follow the full guide."
       ]
     },
+    "warn": {
+      "windows": "Windows may show a blue box saying **Windows protected your PC**. Click **More info**, then **Run anyway**. It shows up because the app is new, not because anything is wrong.",
+      "mac": "If your Mac says it can't be opened because the developer is unknown, go to **System Settings → Privacy & Security**, scroll down and click **Open Anyway**."
+    },
+    "more": {
+      "mac": "Open the **Terminal** app (find it with Spotlight). Type **chmod +x** and a space, drag the downloaded file into the window, then press Enter.",
+      "linux": "Right-click the file, choose **Properties → Permissions**, and tick **Allow executing file as program**. Or run **chmod +x** on it in a terminal."
+    },
+    "folder_tip": "Tip: keep the file in its own folder, for example **Internet Monitor** inside Documents. The app saves its records next to the file.",
+    "more_btn": "Show how",
+    "file_label": "File name:",
+    "other_title": "Choose your system",
+    "other_title_alt": "Using a different device?",
+    "other_sub": "Pick another system to see its download button.",
+    "advanced_title": "Advanced",
+    "advanced_sub": "For Raspberry Pi, home servers and people who like to check the details.",
+    "pi_note": "These versions have no window. You open the dashboard from another device on your network.",
     "pi_guide": "Full Raspberry Pi guide",
-    "advanced_title": "For advanced users",
     "advanced_sums": "Check your download with the SHA256SUMS file",
     "advanced_all": "All versions and release notes on GitHub",
-    "advanced_source": "Build it yourself from the source code"
+    "advanced_source": "Build it yourself from the source code",
+    "help": "Need a hand? Read the step-by-step guide."
   },
   "tutorial": {
     "title": "Video tours — Internet Monitor",
@@ -167,48 +186,55 @@
     "next": "Read the step-by-step guide"
   },
   "guide": {
-    "title": "Beginner's guide — your first complaint in 5 steps",
+    "title": "Beginner's guide — your first complaint in 6 steps",
     "description": "A simple guide to Internet Monitor: install it, leave it running, and send your provider a complaint backed by real measurements.",
     "eyebrow": "Beginner's guide",
-    "h1": "Your first complaint in 5 steps",
-    "intro": "No technical knowledge needed. Here's how to go from \"my internet keeps dropping\" to a complaint your provider can't brush off.",
+    "h1": "Your first complaint in 6 steps",
+    "intro": "No tech skills needed. Follow the pictures, from \"my internet keeps dropping\" to a complaint your provider can't ignore.",
     "steps": [
       {
-        "title": "Install it",
-        "body": "Download the app for your computer and start it. It takes two minutes, and the download page walks you through it."
+        "title": "Download and open it",
+        "body": "Press the big button on the download page, then double-click the file.",
+        "alt": "A downloaded Internet Monitor file, ready to open"
+      },
+      {
+        "title": "Find the small icon",
+        "body": "Look next to the clock, click the icon and choose **Open dashboard**.",
+        "alt": "The bar next to the clock with the Internet Monitor icon and its menu showing Open dashboard"
       },
       {
         "title": "Leave it running",
-        "body": "Keep it running in the background, every day. It checks your internet every few seconds. A computer that stays on and is plugged into the router by cable gives the best proof. Times when the computer was off or asleep are marked as \"not monitored\", never as outages."
+        "body": "Keep your computer on. The app checks your internet all day and writes down every drop.",
+        "alt": "The home screen saying Connected, highlighted"
       },
       {
-        "title": "Fill in your line details",
-        "body": "Open **Complaints** in the dashboard and enter your country, your provider, your plan speed and your line number. This is saved only on your computer and is used to fill in your complaint."
+        "title": "Add your line details",
+        "body": "Open **Complaints** and fill in your company and plan. They stay on your computer.",
+        "alt": "The Your internet line form on the Complaints page, highlighted"
       },
       {
-        "title": "When outages happen, open Complaints",
-        "body": "The **Your line in the last 7 days** card shows what happened. When your line has dropped, it suggests logging a complaint. Call your provider, then write down the complaint number they give you."
+        "title": "When the internet drops, open Complaints",
+        "body": "It lists every drop from the last 7 days.",
+        "alt": "The Complaints menu item and the card with your last 7 days, next to the Log a complaint button"
       },
       {
-        "title": "Send the proof",
-        "body": "Open your complaint and press **Copy text** to get a ready-made message with your outages, downtime and speed. Press **Download evidence (ZIP)** to get the proof file, and send both to your provider. If they don't answer in time, the page shows you how to go to the regulator."
+        "title": "Copy the text and the proof",
+        "body": "Press **Copy text** and **Download evidence (ZIP)**, then send both to your provider.",
+        "alt": "The Copy text and Download evidence (ZIP) buttons, highlighted"
       }
     ],
+    "art": {
+      "file": "internet-monitor",
+      "clock": "12:30",
+      "menu": "Open dashboard"
+    },
     "tip_title": "Good to know",
     "tips": [
       "The monthly report (History → Monthly report → Print or save as PDF) covers the whole month in one page.",
-      "Turn on scheduled speed tests in Settings to show your speed over time, not just once.",
       "Alerts can reach your phone through Telegram, Discord or ntfy when the internet drops."
     ],
-    "pi_title": "Run it 24/7 on a Raspberry Pi",
-    "pi_intro": "The strongest proof comes from a device that never sleeps. A laptop that goes to sleep leaves gaps. A small Raspberry Pi plugged into your router by cable watches all day and night, and you open the dashboard from your phone.",
-    "pi_steps": [
-      "Download the Raspberry Pi file: **arm64** for a Pi 4 or 5, **armv7** for a Pi 2 or 3.",
-      "Make it runnable and start it with **--listen 0.0.0.0**, so other devices at home can reach it.",
-      "It prints a link (and a QR code) with your private key. Scan it with your phone's camera and the dashboard opens. Keep this link private.",
-      "Set it to start on its own after a power cut, using the few lines in the full guide. It also runs with Docker."
-    ],
-    "pi_more": "Full Raspberry Pi and Docker guide (in English)",
+    "advanced_note": "Want it to run all day on a Raspberry Pi? See the Advanced section on the download page.",
+    "advanced_btn": "Advanced: Raspberry Pi",
     "cta": "Download Internet Monitor"
   },
   "faq": {

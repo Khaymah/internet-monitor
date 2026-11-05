@@ -172,41 +172,82 @@
     if (label) labels[i].textContent = label;
   }
 
-  function show(selector, visible) {
-    var el = document.querySelector(selector);
-    if (el) el.hidden = !visible;
+  function showMessage(key) {
+    var msgs = document.querySelectorAll("[data-os-msg]");
+    for (var m = 0; m < msgs.length; m++) msgs[m].hidden = msgs[m].getAttribute("data-os-msg") !== key;
   }
 
-  function openPlatform(id) {
-    var card = document.getElementById("os-" + id);
-    if (!card) return null;
-    var details = card.querySelector("details.install");
-    if (details) details.open = true;
-    return card;
+  function activate(id) {
+    var panels = document.querySelectorAll(".dl-os");
+    for (var p = 0; p < panels.length; p++) {
+      panels[p].classList.toggle("is-active", panels[p].getAttribute("data-os") === id);
+    }
+    var tiles = document.querySelectorAll(".dl-tiles li");
+    for (var t = 0; t < tiles.length; t++) tiles[t].hidden = tiles[t].getAttribute("data-os") === id;
+  }
+
+  function collapseChooser() {
+    var other = document.getElementById("dl-other");
+    var label = other && other.querySelector("[data-alt]");
+    if (!label) return;
+    label.textContent = label.getAttribute("data-alt");
+    other.open = false;
+  }
+
+  function pickMacChip() {
+    var mac = document.getElementById("os-mac");
+    var data = navigator.userAgentData;
+    if (!mac || mac.getAttribute("data-checked") || !data || !data.getHighEntropyValues) return;
+    mac.setAttribute("data-checked", "1");
+    var back = mac.querySelector(".mac-switch");
+    data
+      .getHighEntropyValues(["architecture"])
+      .then(function (v) {
+        var arch = v.architecture === "arm" ? "arm" : v.architecture === "x86" ? "intel" : null;
+        if (!arch) return;
+        mac.setAttribute("data-arch", arch);
+        if (back) {
+          back.hidden = false;
+          back.addEventListener("click", function () {
+            mac.removeAttribute("data-arch");
+            back.hidden = true;
+          });
+        }
+      })
+      .catch(function () {});
+  }
+
+  function fromHash() {
+    var id = /^#os-(windows|mac|linux|pi)$/.exec(location.hash);
+    if (!id) return false;
+    showMessage("");
+    if (id[1] === "pi") {
+      var adv = document.getElementById("os-pi");
+      if (adv) adv.open = true;
+    } else {
+      activate(id[1]);
+      if (id[1] === "mac") pickMacChip();
+    }
+    return true;
   }
 
   if (document.body.getAttribute("data-page") === "download") {
-    if (os === "phone") {
-      show('[data-os-msg="phone"]', true);
-    } else if (os) {
-      var card = openPlatform(os);
-      if (card) {
-        card.classList.add("is-detected");
-        card.parentNode.insertBefore(card, card.parentNode.firstChild);
-        show('[data-os-msg="none"]', false);
-        show('[data-os-msg="' + os + '"]', true);
-      }
-      if (os === "mac" && navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-        navigator.userAgentData
-          .getHighEntropyValues(["architecture"])
-          .then(function (v) {
-            var arch = v.architecture === "arm" ? "arm" : v.architecture === "x86" ? "intel" : null;
-            var group = arch && document.querySelector('[data-arch="' + arch + '"]');
-            if (group) group.classList.add("is-detected");
-          })
-          .catch(function () {});
+    if (!fromHash()) {
+      if (os === "phone") {
+        showMessage("phone");
+        collapseChooser();
+      } else if (os === "pi") {
+        showMessage("pi");
+        var advanced = document.getElementById("os-pi");
+        if (advanced) advanced.open = true;
+        collapseChooser();
+      } else if (os) {
+        showMessage(os);
+        activate(os);
+        collapseChooser();
+        if (os === "mac") pickMacChip();
       }
     }
-    if (/^#os-/.test(location.hash)) openPlatform(location.hash.slice(4));
+    window.addEventListener("hashchange", fromHash);
   }
 })();
