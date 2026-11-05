@@ -145,7 +145,11 @@ func New(opts Options) (*App, error) {
 			TestRouter: func(user, password string) (router.WebStats, error) {
 				ctx, cancel := context.WithTimeout(context.Background(), 40*time.Second)
 				defer cancel()
-				return poller.TestWeb(ctx, router.WebReader{Host: store.Get().RouterAddress, User: user, Password: password})
+				stats, err := poller.TestWeb(ctx, router.WebReader{Host: store.Get().RouterAddress, User: user, Password: password})
+				if err != nil {
+					lgr.AppLog("ROUTER page test failed: %v", err)
+				}
+				return stats, err
 			},
 		},
 	})
