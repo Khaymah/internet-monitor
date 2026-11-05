@@ -78,6 +78,7 @@
   "download": {
     "title": "Download Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
     "description": "Download Internet Monitor for free and install it in a few minutes, with simple steps for Windows, Mac, Linux and Raspberry Pi.",
+    "eyebrow": "Free download",
     "h1": "Download Internet Monitor",
     "intro": "Free, no account needed. Pick your computer below, download one file, and follow the short steps.",
     "latest": "Latest version {version}, released {date}",
@@ -168,6 +169,7 @@
   "guide": {
     "title": "Beginner's guide — your first complaint in 5 steps",
     "description": "A simple guide to Internet Monitor: install it, leave it running, and send your provider a complaint backed by real measurements.",
+    "eyebrow": "Beginner's guide",
     "h1": "Your first complaint in 5 steps",
     "intro": "No technical knowledge needed. Here's how to go from \"my internet keeps dropping\" to a complaint your provider can't brush off.",
     "steps": [
@@ -211,24 +213,18 @@
   },
   "faq": {
     "title": "Questions and answers — Internet Monitor",
-    "description": "Short answers about how Internet Monitor works, what it keeps, and how to fix common problems.",
-    "from_app": "These are the same answers you'll find inside the app.",
-    "more": "Didn't find your answer? Ask us on GitHub"
+    "description": "Short answers about how Internet Monitor works, what it keeps, and how to fix common problems."
   },
   "privacy": {
     "title": "Privacy policy — Internet Monitor",
     "description": "Internet Monitor keeps your data on your computer. No account, no analytics, no tracking. Here's everything it stores and every place it connects to.",
-    "from_app": "This is the same privacy policy shown inside the app.",
     "site_title": "About this website",
     "site_body": "This website has no cookies, no trackers and no outside scripts or fonts. It only remembers your theme and language in your own browser. Downloads come straight from GitHub."
   },
   "changelog": {
     "title": "What's new — Internet Monitor",
     "description": "The latest changes in Internet Monitor: new features, fixes and preview notes.",
-    "h1": "What's new",
-    "intro": "What changed in each version. The notes below are in English.",
-    "summary": "Summary",
-    "previews": "Preview notes, newest first",
+    "preview_title": "Preview version, notes in English",
     "on_github": "See this version on GitHub"
   },
   "notfound": {

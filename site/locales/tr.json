@@ -78,6 +78,7 @@
   "download": {
     "title": "Internet Monitor'ü indir — Windows, Mac, Linux, Raspberry Pi",
     "description": "Internet Monitor'ü ücretsiz indirin ve Windows, Mac, Linux ve Raspberry Pi için basit adımlarla birkaç dakikada kurun.",
+    "eyebrow": "Ücretsiz indirme",
     "h1": "Internet Monitor'ü indirin",
     "intro": "Ücretsiz, hesap gerekmez. Aşağıdan bilgisayarınızı seçin, tek bir dosya indirin ve kısa adımları izleyin.",
     "latest": "En son sürüm {version}, {date} tarihinde yayınlandı",
@@ -168,6 +169,7 @@
   "guide": {
     "title": "Başlangıç rehberi — 5 adımda ilk şikayetiniz",
     "description": "Internet Monitor için basit bir rehber: kurun, açık bırakın ve sağlayıcınıza gerçek ölçümlerle desteklenen bir şikayet gönderin.",
+    "eyebrow": "Başlangıç rehberi",
     "h1": "5 adımda ilk şikayetiniz",
     "intro": "Teknik bilgi gerekmez. \"İnternetim sürekli kopuyor\"dan sağlayıcınızın geçiştiremeyeceği bir şikayete böyle ulaşırsınız.",
     "steps": [
@@ -211,24 +213,18 @@
   },
   "faq": {
     "title": "Sorular ve yanıtlar — Internet Monitor",
-    "description": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık karşılaşılan sorunların nasıl çözüleceği hakkında kısa yanıtlar.",
-    "from_app": "Bunlar uygulamanın içindeki yanıtların aynısıdır.",
-    "more": "Yanıtınızı bulamadınız mı? GitHub'da bize sorun"
+    "description": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık karşılaşılan sorunların nasıl çözüleceği hakkında kısa yanıtlar."
   },
   "privacy": {
     "title": "Gizlilik politikası — Internet Monitor",
     "description": "Internet Monitor verilerinizi bilgisayarınızda tutar. Hesap yok, analiz yok, takip yok. Sakladığı her şey ve bağlandığı her yer burada.",
-    "from_app": "Bu, uygulamanın içinde gösterilen gizlilik politikasının aynısıdır.",
     "site_title": "Bu web sitesi hakkında",
     "site_body": "Bu sitede çerez, izleyici ya da dışarıdan yüklenen betik veya yazı tipi yoktur. Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
   },
   "changelog": {
     "title": "Yenilikler — Internet Monitor",
     "description": "Internet Monitor'deki son değişiklikler: yeni özellikler, düzeltmeler ve ön sürüm notları.",
-    "h1": "Yenilikler",
-    "intro": "Her sürümde neler değişti. Aşağıdaki notlar İngilizcedir.",
-    "summary": "Özet",
-    "previews": "Ön sürüm notları, en yenisi önce",
+    "preview_title": "Ön sürüm, notlar İngilizce",
     "on_github": "Bu sürümü GitHub'da görün"
   },
   "notfound": {

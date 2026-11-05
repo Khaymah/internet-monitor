@@ -186,109 +186,16 @@ pre code {
   background-clip: text;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 18px;
-  border-radius: var(--radius-pill);
-  border: 1px solid transparent;
-  background: var(--color-surface-raised);
-  color: var(--text-primary);
-  font: inherit;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 1.2;
-  cursor: pointer;
-  text-decoration: none;
-  transition:
-    background var(--duration-fast) var(--ease-out),
-    filter var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
-}
-
-.btn:hover {
-  color: var(--text-primary);
-  background: var(--color-surface-top);
-}
-
-.btn-sm {
-  min-height: 36px;
-  padding: 0 14px;
-  font-size: 14px;
-}
-
-.btn-lg {
-  min-height: 48px;
-  padding: 0 24px;
-}
-
 .btn-xl {
-  min-height: 54px;
+  height: 54px;
   padding: 0 28px;
-  font-size: 16px;
+  font-size: var(--text-lg);
 }
 
-.btn-icon {
-  width: 40px;
-  min-height: 40px;
-  padding: 0;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-secondary);
-}
-
-.btn-ghost:hover {
-  background: var(--color-surface-raised);
-}
-
-.btn-aurora {
-  background: var(--gradient-aurora);
-  color: var(--text-on-light);
-}
-
-.btn-aurora:hover {
-  background: var(--gradient-aurora);
-  color: var(--text-on-light);
-  filter: brightness(1.06);
-}
-
-.btn-edge,
-.btn-edge:hover {
-  background:
-    linear-gradient(var(--color-surface-raised), var(--color-surface-raised)) padding-box,
-    var(--gradient-edge) border-box;
-}
-
-.btn-edge:hover {
-  background:
-    linear-gradient(var(--color-surface-top), var(--color-surface-top)) padding-box,
-    var(--gradient-edge) border-box;
-}
-
-.text-link {
+a.text-link:has(svg) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.text-link:hover {
-  text-decoration: underline;
-}
-
-.card {
-  position: relative;
-  min-width: 0;
-  background: var(--gradient-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card), 0 0 0 1px var(--border-subtle);
-  padding: 24px;
 }
 
 .card.edge {
@@ -297,27 +204,6 @@ pre code {
     var(--gradient-card) padding-box,
     var(--gradient-edge) border-box;
   box-shadow: var(--shadow-card);
-}
-
-.card-flare::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: radial-gradient(
-    circle at 0 0,
-    color-mix(in srgb, var(--flare, var(--accent-blue)) 20%, transparent),
-    transparent 60%
-  );
-}
-
-:root[dir="rtl"] .card-flare::before {
-  background: radial-gradient(
-    circle at 100% 0,
-    color-mix(in srgb, var(--flare, var(--accent-blue)) 20%, transparent),
-    transparent 60%
-  );
 }
 
 .well {

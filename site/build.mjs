@@ -2,10 +2,14 @@ import { createHash } from "node:crypto";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { appFormat, loadApp } from "./lib/app.mjs";
+import { appCss } from "./lib/app-css.mjs";
 import { createContent } from "./lib/content.mjs";
 import { PAGES, THEME_BOOT, pageUrl, shell } from "./lib/layout.mjs";
+import { renderAbout, renderContact, renderFaq, renderPrivacy, renderSupport, renderTerms } from "./lib/page-app.mjs";
+import { renderChangelog } from "./lib/page-changelog.mjs";
 import { renderDownload } from "./lib/page-download.mjs";
-import { renderChangelog, renderFaq, renderGuide, renderNotFound, renderPrivacy, renderTutorial } from "./lib/page-docs.mjs";
+import { renderGuide, renderNotFound, renderTutorial } from "./lib/page-docs.mjs";
 import { renderHome } from "./lib/page-home.mjs";
 import { loadReleases } from "./lib/releases.mjs";
 import { esc, fill, formatDate, formatSize, inline, lookup, shape, write } from "./lib/util.mjs";
@@ -67,11 +71,18 @@ function copyAssets() {
   mkdirSync(join(OUT, "assets", "fonts"), { recursive: true });
   copyFileSync(join(ROOT, "internal", "assets", "favicon.png"), join(OUT, "assets", "favicon.png"));
   const tokens = readFileSync(join(ROOT, "web", "src", "styles", "tokens.css"), "utf8");
-  const own = ["site.css", "footer.css", "pages.css", "content.css"].map((f) => readFileSync(join(SITE_DIR, "assets", f), "utf8"));
-  const css = [fontCss(), tokens, ...own].join("\n");
+  const app = appCss(join(ROOT, "web", "src", "styles", "app.css"));
+  const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css"].map((f) =>
+    readFileSync(join(SITE_DIR, "assets", f), "utf8"),
+  );
+  const css = [fontCss(), tokens, app, ...own].join("\n");
   write(join(OUT, "assets", "site.css"), css);
-  const js = readFileSync(join(SITE_DIR, "assets", "site.js"), "utf8");
-  write(join(OUT, "assets", "site.js"), js);
+  const scripts = {};
+  for (const f of ["site.js", "changelog.js"]) {
+    const js = readFileSync(join(SITE_DIR, "assets", f), "utf8");
+    write(join(OUT, "assets", f), js);
+    scripts[f] = hash(js);
+  }
   const shotLangs = new Set(LANGS.map((l) => content.screenshots(l).lang));
   for (const l of shotLangs) {
     for (const f of content.screenshots(l).files) {
@@ -84,11 +95,12 @@ function copyAssets() {
     mkdirSync(join(OUT, "tutorial"), { recursive: true });
     copyFileSync(tr.file, join(OUT, "tutorial", `${tr.lang}.vtt`));
   }
-  return { css: hash(css), js: hash(js), tracks };
+  return { css: hash(css), js: scripts["site.js"], scripts, tracks };
 }
 
-function makeCtx(lang, dict, site, releases, tracks) {
+function makeCtx(lang, dict, site, releases, tracks, appData) {
   const intl = site.meta[lang].intl;
+  const base = site.base;
   const t = (key, vars) => {
     const value = lookup(dict, key);
     if (typeof value !== "string") throw new Error(`missing string ${key} in ${lang}.json`);
@@ -108,11 +120,17 @@ function makeCtx(lang, dict, site, releases, tracks) {
     size: (bytes) => formatSize(intl, bytes),
     shots: content.screenshots(lang),
     app: {
-      faq: content.faq(lang),
-      privacy: content.privacy(lang),
-      privacyUpdated: content.privacyUpdated(),
       releaseNotes: content.releaseNotes(),
-      changelog: content.changelogLatest(),
+    },
+    appx: {
+      data: appData,
+      lucide: appData.lucide,
+      svg: appData.svg,
+      repoUrl: appData.repoUrl,
+      t: appData.translator(lang),
+      en: appData.translator("en"),
+      fmt: appFormat(intl),
+      href: (id, anchor) => `${pageUrl(base, lang, id)}${anchor ? `#${anchor}` : ""}`,
     },
   };
 }
@@ -125,6 +143,10 @@ const RENDER = {
   faq: renderFaq,
   privacy: renderPrivacy,
   changelog: renderChangelog,
+  about: renderAbout,
+  contact: renderContact,
+  support: renderSupport,
+  terms: renderTerms,
 };
 
 function ogImage(ctx) {
@@ -202,6 +224,7 @@ async function main() {
     token: process.env.GITHUB_TOKEN,
     offline: process.env.SITE_OFFLINE === "1",
   });
+  const appData = await loadApp(ROOT, SITE_DIR);
   const assets = copyAssets();
   const site = {
     base: BASE,
@@ -210,11 +233,11 @@ async function main() {
     meta,
     repoUrl: `https://github.com/${REPO}`,
     year: new Date().getUTCFullYear(),
-    hash: { css: assets.css, js: assets.js },
+    hash: { css: assets.css, js: assets.js, ...assets.scripts },
   };
   let count = 0;
   for (const lang of LANGS) {
-    const ctx = makeCtx(lang, dicts[lang], site, releases, assets.tracks);
+    const ctx = makeCtx(lang, dicts[lang], site, releases, assets.tracks, appData);
     for (const page of PAGES) {
       const out = RENDER[page.id](ctx);
       const html = shell(ctx, { pageId: page.id, image: ogImage(ctx), ...out });
@@ -222,7 +245,7 @@ async function main() {
       count++;
     }
   }
-  const enCtx = makeCtx("en", dicts.en, site, releases, assets.tracks);
+  const enCtx = makeCtx("en", dicts.en, site, releases, assets.tracks, appData);
   const nf = renderNotFound(enCtx);
   write(join(OUT, "404.html"), shell(enCtx, { pageId: "notfound", image: ogImage(enCtx), notFound: true, ...nf }));
   write(join(OUT, "index.html"), rootPage(site, dicts));

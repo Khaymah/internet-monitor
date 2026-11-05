@@ -78,6 +78,7 @@
   "download": {
     "title": "Télécharger Internet Monitor — Windows, Mac, Linux, Raspberry Pi",
     "description": "Téléchargez Internet Monitor gratuitement et installez-le en quelques minutes, avec des étapes simples pour Windows, Mac, Linux et Raspberry Pi.",
+    "eyebrow": "Téléchargement gratuit",
     "h1": "Télécharger Internet Monitor",
     "intro": "Gratuit, sans compte. Choisissez votre ordinateur ci-dessous, téléchargez un seul fichier et suivez les étapes.",
     "latest": "Dernière version {version}, publiée le {date}",
@@ -168,6 +169,7 @@
   "guide": {
     "title": "Guide du débutant — votre première réclamation en 5 étapes",
     "description": "Un guide simple d'Internet Monitor : installez-le, laissez-le tourner et envoyez à votre fournisseur une réclamation appuyée par de vraies mesures.",
+    "eyebrow": "Guide du débutant",
     "h1": "Votre première réclamation en 5 étapes",
     "intro": "Aucune connaissance technique nécessaire. Voici comment passer de « mon internet coupe tout le temps » à une réclamation que votre fournisseur ne peut pas ignorer.",
     "steps": [
@@ -211,24 +213,18 @@
   },
   "faq": {
     "title": "Questions et réponses — Internet Monitor",
-    "description": "Des réponses courtes sur le fonctionnement d'Internet Monitor, ce qu'il conserve et comment régler les problèmes courants.",
-    "from_app": "Ce sont les mêmes réponses que dans l'appli.",
-    "more": "Vous n'avez pas trouvé votre réponse ? Posez-nous la question sur GitHub"
+    "description": "Des réponses courtes sur le fonctionnement d'Internet Monitor, ce qu'il conserve et comment régler les problèmes courants."
   },
   "privacy": {
     "title": "Politique de confidentialité — Internet Monitor",
     "description": "Internet Monitor garde vos données sur votre ordinateur. Pas de compte, pas de statistiques, pas de pistage. Voici tout ce qu'il enregistre et tous les endroits qu'il contacte.",
-    "from_app": "C'est la même politique de confidentialité que dans l'appli.",
     "site_title": "À propos de ce site",
     "site_body": "Ce site n'a ni cookies, ni traceurs, ni scripts ou polices externes. Il retient seulement votre thème et votre langue, dans votre propre navigateur. Les téléchargements viennent directement de GitHub."
   },
   "changelog": {
     "title": "Nouveautés — Internet Monitor",
     "description": "Les dernières évolutions d'Internet Monitor : nouvelles fonctions, corrections et notes des préversions.",
-    "h1": "Nouveautés",
-    "intro": "Ce qui a changé dans chaque version. Les notes ci-dessous sont en anglais.",
-    "summary": "Résumé",
-    "previews": "Notes des préversions, la plus récente d'abord",
+    "preview_title": "Préversion, notes en anglais",
     "on_github": "Voir cette version sur GitHub"
   },
   "notfound": {

@@ -9,9 +9,48 @@ export const PAGES = [
   { id: "faq", path: "faq/" },
   { id: "privacy", path: "privacy/" },
   { id: "changelog", path: "whats-new/" },
+  { id: "about", path: "about/" },
+  { id: "contact", path: "contact/" },
+  { id: "support", path: "support/" },
+  { id: "terms", path: "terms/" },
 ];
 
-const NAV = ["guide", "tutorial", "faq", "changelog", "privacy"];
+const NAV = ["guide", "tutorial", "faq", "changelog"];
+
+const MORE = [
+  { id: "about", icon: "Info" },
+  { id: "contact", icon: "MessagesSquare" },
+  { id: "support", icon: "HeartHandshake" },
+  { id: "privacy", icon: "ShieldCheck" },
+  { id: "terms", icon: "Scale" },
+];
+
+const APP_GROUP = [
+  { id: "about", icon: "Info" },
+  { id: "changelog", icon: "Sparkles" },
+  { id: "faq", icon: "CircleHelp" },
+  { id: "tutorial", icon: "CirclePlay" },
+  { id: "contact", icon: "MessagesSquare" },
+  { id: "privacy", icon: "ShieldCheck" },
+  { id: "terms", icon: "Scale" },
+  { id: "support", icon: "HeartHandshake" },
+];
+
+const APP_LABEL = { about: "nav_about", contact: "nav_contact", support: "nav_support", terms: "nav_terms" };
+
+export function navLabel(ctx, id) {
+  return APP_LABEL[id] ? ctx.appx.t(APP_LABEL[id]) : ctx.t(`nav.${id}`);
+}
+
+function groupLinks(ctx, items, pageId) {
+  const { site, lang } = ctx;
+  return items
+    .map(({ id, icon: name }) => {
+      const cur = id === pageId ? ' aria-current="page"' : "";
+      return `<li><a href="${pageUrl(site.base, lang, id)}"${cur}>${ctx.appx.svg(ctx.appx.lucide[name], 15)}<span>${esc(navLabel(ctx, id))}</span></a></li>`;
+    })
+    .join("");
+}
 
 const OG_LOCALE = { en: "en_GB", ar: "ar_EG", fr: "fr_FR", tr: "tr_TR", ur: "ur_PK" };
 
@@ -22,7 +61,7 @@ export function pageUrl(base, lang, id) {
 
 export const THEME_BOOT = `(function(){var d=document.documentElement;d.className=d.className.replace("no-js","js");try{var t=localStorage.getItem("im.site.theme");if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";d.setAttribute("data-theme",t);}catch(e){}})();`;
 
-export function head({ ctx, title, description, canonical, alternates, image, extra = "" }) {
+export function head({ ctx, title, description, canonical, alternates, image, extra = "", scripts = [] }) {
   const { site } = ctx;
   const alt = alternates
     .map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${esc(site.origin + a.href)}">`)
@@ -55,6 +94,7 @@ ${ogAlt}
 <link rel="stylesheet" href="${site.base}assets/site.css?v=${site.hash.css}">
 <script>${THEME_BOOT}</script>
 <script src="${site.base}assets/site.js?v=${site.hash.js}" defer></script>
+${scripts.map((f) => `<script src="${site.base}assets/${f}?v=${site.hash[f]}" defer></script>`).join("\n")}
 ${extra}`;
 }
 
@@ -78,16 +118,22 @@ function header(ctx, pageId) {
   const { site, lang } = ctx;
   const links = NAV.map((id) => {
     const cur = id === pageId ? ' aria-current="page"' : "";
-    return `<li><a href="${pageUrl(site.base, lang, id)}"${cur}>${esc(ctx.t(`nav.${id}`))}</a></li>`;
+    return `<li><a href="${pageUrl(site.base, lang, id)}"${cur}>${esc(navLabel(ctx, id))}</a></li>`;
   }).join("");
+  const moreLabel = esc(ctx.appx.t("nav_more"));
+  const moreCur = MORE.some((m) => m.id === pageId) ? " is-current" : "";
+  const more = `<details class="more-menu${moreCur}">
+<summary>${moreLabel}${icon("chevron", { size: 16 })}</summary>
+<ul class="more-list">${groupLinks(ctx, MORE, pageId)}</ul>
+</details>`;
   const dlCur = pageId === "download" ? ' aria-current="page"' : "";
   return `<header class="site-header">
 <div class="wrap header-row">
 <a class="brand" href="${pageUrl(site.base, lang, "home")}"${pageId === "home" ? ' aria-current="page"' : ""}><img src="${site.base}assets/favicon.png" alt="" width="32" height="32"><span>${esc(ctx.t("site.name"))}</span></a>
-<nav class="main-nav" id="site-nav" aria-label="${esc(ctx.t("site.main_nav"))}"><ul>${links}</ul></nav>
+<nav class="main-nav" id="site-nav" aria-label="${esc(ctx.t("site.main_nav"))}"><ul>${links}</ul>${more}<ul class="nav-more" aria-label="${moreLabel}">${groupLinks(ctx, MORE, pageId)}</ul></nav>
 <div class="header-tools">
 ${langMenu(ctx, pageId)}
-<button type="button" class="btn btn-icon btn-ghost theme-toggle" aria-label="${esc(ctx.t("site.theme"))}" title="${esc(ctx.t("site.theme"))}">${icon("sun", { size: 18, cls: "i-sun" })}${icon("moon", { size: 18, cls: "i-moon" })}</button>
+<button type="button" class="btn btn-edge btn-sm btn-icon theme-toggle" aria-label="${esc(ctx.t("site.theme"))}" title="${esc(ctx.t("site.theme"))}">${ctx.appx.svg(ctx.appx.lucide.Sun, 15, "i-sun")}${ctx.appx.svg(ctx.appx.lucide.Moon, 15, "i-moon")}</button>
 <a class="btn btn-aurora btn-sm header-cta" href="${pageUrl(site.base, lang, "download")}"${dlCur}>${icon("download", { size: 16 })}<span>${esc(ctx.t("nav.download"))}</span></a>
 <button type="button" class="btn btn-icon btn-ghost nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="${esc(ctx.t("site.menu"))}">${icon("menu", { size: 20 })}</button>
 </div>
@@ -95,10 +141,10 @@ ${langMenu(ctx, pageId)}
 </header>`;
 }
 
-function footer(ctx) {
+function footer(ctx, pageId) {
   const { site, lang } = ctx;
-  const links = ["download", "guide", "tutorial", "faq", "changelog", "privacy"]
-    .map((id) => `<li><a href="${pageUrl(site.base, lang, id)}">${esc(ctx.t(`nav.${id}`))}</a></li>`)
+  const links = ["home", "download", "guide"]
+    .map((id) => `<li><a href="${pageUrl(site.base, lang, id)}"${id === pageId ? ' aria-current="page"' : ""}>${esc(navLabel(ctx, id))}</a></li>`)
     .join("");
   const langs = site.langs
     .map((l) => `<li><a href="${site.base}${l}/" hreflang="${l}" lang="${l}" data-lang="${l}">${esc(site.meta[l].name)}</a></li>`)
@@ -109,21 +155,18 @@ function footer(ctx) {
 <a class="brand" href="${pageUrl(site.base, lang, "home")}"><img src="${site.base}assets/favicon.png" alt="" width="28" height="28" loading="lazy"><span>${esc(ctx.t("site.name"))}</span></a>
 <p>${esc(ctx.t("footer.tagline"))}</p>
 </div>
-<nav aria-label="${esc(ctx.t("site.menu"))}"><ul class="footer-links">${links}</ul></nav>
-<div>
-<ul class="footer-links">
+<nav aria-label="${esc(ctx.t("site.main_nav"))}"><ul class="footer-links">${links}
 <li><a href="${site.repoUrl}" rel="noopener">${icon("github", { size: 16 })} ${esc(ctx.t("footer.source"))}</a></li>
 <li><a href="${site.repoUrl}/issues" rel="noopener">${esc(ctx.t("footer.issues"))}</a></li>
-<li><a href="${pageUrl(site.base, lang, "privacy")}">${esc(ctx.t("nav.privacy"))}</a></li>
-</ul>
-</div>
+</ul></nav>
+<nav aria-label="${esc(ctx.appx.t("nav_more"))}"><ul class="footer-links footer-app">${groupLinks(ctx, APP_GROUP, pageId)}</ul></nav>
 <nav aria-label="${esc(ctx.t("footer.languages"))}"><ul class="footer-links">${langs}</ul></nav>
 </div>
 <div class="wrap footer-bottom"><p><a href="${site.repoUrl}/blob/master/LICENSE" rel="noopener">${esc(ctx.t("footer.license"))}</a></p><p>© ${site.year} <a href="https://github.com/Khaymah" rel="noopener">Khaymah</a></p></div>
 </footer>`;
 }
 
-export function shell(ctx, { pageId, title, description, body, image, notFound = false }) {
+export function shell(ctx, { pageId, title, description, body, image, notFound = false, scripts = [] }) {
   const { site, lang } = ctx;
   const m = site.meta[lang];
   const alternates = notFound
@@ -137,7 +180,7 @@ export function shell(ctx, { pageId, title, description, body, image, notFound =
   return `<!doctype html>
 <html lang="${lang}" dir="${m.dir}" class="no-js" data-theme="dark">
 <head>
-${head({ ctx, title, description, canonical, alternates, image, extra })}
+${head({ ctx, title, description, canonical, alternates, image, extra, scripts })}
 </head>
 <body data-page="${pageId}">
 <a class="skip-link" href="#main">${esc(ctx.t("site.skip"))}</a>
@@ -145,7 +188,7 @@ ${header(ctx, pageId)}
 <main id="main" tabindex="-1">
 ${body}
 </main>
-${footer(ctx)}
+${footer(ctx, pageId)}
 </body>
 </html>
 `;

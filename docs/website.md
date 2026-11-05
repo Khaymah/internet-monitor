@@ -2,9 +2,11 @@
 
 The public website lives at <https://khaymah.github.io/internet-monitor/>. It's a static
 site for people who aren't technical: what the app does, how to download and install it,
-a tutorial video, a beginner's guide, the FAQ, the privacy policy and what's new. It comes
-in English, Arabic, French, Turkish and Urdu (Arabic and Urdu right to left), in a light
-and a dark theme, with the same design tokens as the app.
+a tutorial video, a beginner's guide, and the app's own pages: FAQ, what's new, about,
+contact, support us, privacy policy and terms of use. It comes in English, Arabic, French,
+Turkish and Urdu (Arabic and Urdu right to left), in a light and a dark theme. The pages
+that also exist inside the app use the app's own CSS, markup, icons and texts, so they look
+and read the same in both places.
 
 ## One-time setup (repository owner)
 
@@ -17,7 +19,7 @@ That's all. The first deploy runs on the next release, push or manual run.
 
 - when a release is published, edited or marked as a prerelease,
 - on every push to `master` that touches `site/`, `docs/`, `web/locales/`,
-  `web/public/tutorial/`, the FAQ or privacy content, the design tokens,
+  `web/public/tutorial/`, the app's page content (`web/src/content/`), its styles,
   `CHANGELOG.md` or `PRIVACY.md`,
 - by hand from the Actions tab (**Website → Run workflow**).
 
@@ -33,10 +35,11 @@ builds the site and checks every internal link, so a broken site fails CI.
 | What | Source | Read at |
 | ---- | ------ | ------- |
 | Site texts (home, download, guide…) | `site/locales/{en,ar,fr,tr,ur}.json` | build |
-| FAQ | `web/locales/<lang>/faq.json`, grouped like `web/src/content/faq.ts` | build |
-| Privacy policy | `web/locales/<lang>/legal.json` (privacy section), date from `web/src/content/legal.ts` | build |
+| FAQ, what's new, about, contact, support us, privacy, terms | the app's `web/src/content/*.ts` (imported as modules) and texts in `web/locales/<lang>/*.json` | build |
+| Look of those pages, buttons, cards, banners | the matching rules of `web/src/styles/app.css` (picked by `site/lib/app-css.mjs`) | build |
+| Icons on those pages | the app's own `lucide-react` icons, rendered to SVG | build |
 | Language names, direction, date format | `web/locales/<lang>/meta.json` | build |
-| What's new | `docs/releases/v*.md` (newest first) and the latest section of `CHANGELOG.md` | build |
+| What's new, next release | `docs/releases/v*.md` (newest first, in English) | build |
 | Versions, dates, file sizes, download links | GitHub REST API: latest stable release and newest prerelease | build |
 | Tutorial video | `internet-monitor-tutorial.mp4` on the latest release (or the newest prerelease that has it) | build |
 | Subtitles | `web/public/tutorial/<lang>.vtt`, copied when present | build |
@@ -44,8 +47,9 @@ builds the site and checks every internal link, so a broken site fails CI.
 | Colors, radii, gradients | `web/src/styles/tokens.css` | build |
 | Fonts | `@fontsource/poppins` and `@fontsource/ibm-plex-sans-arabic`, self-hosted | build |
 
-The FAQ and privacy policy are the app's own texts, so the site never says something
-different from the app. If the GitHub API can't be reached (for example a local build
+These pages are the app's own texts and data, so the site never says something different
+from the app. Links inside the app's texts that point to app screens the site doesn't have
+(Settings, History…) are shown as plain text. If the GitHub API can't be reached (for example a local build
 without network), the build still succeeds: download buttons point to the latest release
 page and the video shows "coming soon".
 
@@ -78,7 +82,13 @@ Environment variables for the build:
 Each language has its own folder (`/en/`, `/ar/`, `/fr/`, `/tr/`, `/ur/`) with `hreflang`
 links between them:
 
-- `/` home, `/download/`, `/guide/`, `/tutorial/`, `/faq/`, `/privacy/`, `/whats-new/`.
+- `/` home, `/download/`, `/guide/`, `/tutorial/`, `/faq/`, `/whats-new/`, `/about/`,
+  `/contact/`, `/support/`, `/privacy/`, `/terms/`.
+
+The header has the main pages and a "More pages" menu; the footer and the phone menu
+list the same group as the app's sidebar (About, What's new, FAQ, Video, Contact, Privacy,
+Terms of use, Support us). Switching the theme plays the app's circular reveal, and skips
+it when the system asks for reduced motion.
 
 The root `index.html` sends visitors to their browser's language (or the one they picked
 before), with English as the fallback, and lists all five languages. There's also a
@@ -89,5 +99,6 @@ trackers and sets no cookies; it only remembers the theme and language in the br
 
 - Edit the same key in all five `site/locales/*.json` files. Text in `**double stars**`
   is shown in bold, and `{placeholders}` are filled at build time.
-- FAQ and privacy changes go in `web/locales/`, as for the app.
+- FAQ, about, contact, support, privacy and terms changes go in `web/locales/` and
+  `web/src/content/`, as for the app.
 - Release notes for a prerelease go in `docs/releases/<tag>.md`, as before.
