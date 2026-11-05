@@ -15,6 +15,8 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Search engine verification** (rc.11): the website adds Google, Bing and Yandex
+  verification tags from the repository variables of the same names.
 - **Website** (rc.9): `site/`, a static GitHub Pages site in five languages (home,
   download, guide, tutorial, FAQ, privacy, what's new), rebuilt by `pages.yml` on every
   release; see `docs/website.md`.
