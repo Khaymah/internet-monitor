@@ -242,3 +242,64 @@ func TestPollerFindsSavesAndForgets(t *testing.T) {
 		t.Fatalf("disabled poller must forget the last status: %+v", snap)
 	}
 }
+
+func TestStatusHuaweiHG630Style(t *testing.T) {
+	calls := map[string]int{}
+	mux := http.NewServeMux()
+	mux.HandleFunc("/desc.xml", func(w http.ResponseWriter, _ *http.Request) { io.WriteString(w, descXML) })
+	mux.HandleFunc("/ctl/", func(w http.ResponseWriter, r *http.Request) {
+		action := r.Header.Get("SOAPAction")
+		action = action[strings.Index(action, "#")+1 : len(action)-1]
+		calls[action]++
+		switch action {
+		case "GetCommonLinkProperties":
+			io.WriteString(w, soap(action, map[string]string{
+				"NewWANAccessType": "VDSL", "NewPhysicalLinkStatus": "Up",
+				"NewLayer1DownstreamMaxBitRate": "0", "NewLayer1UpstreamMaxBitRate": "0",
+			}))
+		case "GetStatusInfo":
+			io.WriteString(w, soap(action, map[string]string{
+				"NewConnectionStatus": "Connected", "NewUptime": "750000", "NewLastConnectionError": "ERROR_ISP_DISCONNECT",
+			}))
+		case "GetLinkLayerMaxBitRates":
+			io.WriteString(w, soap(action, map[string]string{"NewDownstreamMaxBitRate": "65021000", "NewUpstreamMaxBitRate": "16004000"}))
+		default:
+			http.Error(w, "Invalid Action", http.StatusInternalServerError)
+		}
+	})
+	srv := httptest.NewServer(mux)
+	defer srv.Close()
+	gw, err := Open(context.Background(), srv.URL+"/desc.xml", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	for range 3 {
+		st, err := gw.Status(context.Background())
+		if err != nil {
+			t.Fatal(err)
+		}
+		if st.SyncDownKbps != 65021 || st.SyncUpKbps != 16004 {
+			t.Fatalf("sync must come from the connection service: %+v", st)
+		}
+		if st.HasCounters || st.LastError != "ERROR_ISP_DISCONNECT" {
+			t.Fatalf("status %+v", st)
+		}
+	}
+	if calls["GetTotalBytesReceived"] != 1 {
+		t.Fatalf("an action the router lacks must not be asked again, asked %d times", calls["GetTotalBytesReceived"])
+	}
+	if calls["GetStatusInfo"] != 3 {
+		t.Fatalf("status must be read every time, read %d times", calls["GetStatusInfo"])
+	}
+}
+
+func TestClassifyProviderDropped(t *testing.T) {
+	samples := []Status{
+		{Time: at(9), LinkUp: up(true), Connected: up(true), UptimeSecs: 1000},
+		{Time: at(11), LinkUp: up(true), Connected: up(false), UptimeSecs: 1120},
+		{Time: at(15), LinkUp: up(true), Connected: up(true), UptimeSecs: 1360, LastError: "ERROR_ISP_DISCONNECT"},
+	}
+	if got := Classify(samples, at(10), at(14)); got != CauseDropped {
+		t.Fatalf("got %q", got)
+	}
+}

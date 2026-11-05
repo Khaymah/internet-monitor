@@ -5,6 +5,7 @@ import "time"
 const (
 	CauseLineDown  = "line_down"
 	CauseSession   = "session_down"
+	CauseDropped   = "provider_dropped"
 	CauseRestarted = "router_restarted"
 	CauseOnline    = "router_online"
 )
@@ -40,6 +41,11 @@ func Classify(samples []Status, start, end time.Time) string {
 	}
 	for _, s := range during {
 		if s.Connected != nil && !*s.Connected {
+			for _, after := range during {
+				if providerError(after.LastError) {
+					return CauseDropped
+				}
+			}
 			return CauseSession
 		}
 	}
@@ -49,4 +55,8 @@ func Classify(samples []Status, start, end time.Time) string {
 		}
 	}
 	return ""
+}
+
+func providerError(code string) bool {
+	return code == "ERROR_ISP_DISCONNECT" || code == "ERROR_ISP_TIME_OUT"
 }

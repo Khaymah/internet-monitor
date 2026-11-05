@@ -38,6 +38,7 @@ type Status struct {
 	SyncUpKbps   int64     `json:"sync_up_kbps,omitempty"`
 	Connected    *bool     `json:"connected,omitempty"`
 	UptimeSecs   int64     `json:"uptime_seconds,omitempty"`
+	LastError    string    `json:"last_error,omitempty"`
 	RxBytes      uint64    `json:"rx_bytes,omitempty"`
 	TxBytes      uint64    `json:"tx_bytes,omitempty"`
 	HasCounters  bool      `json:"has_counters,omitempty"`
@@ -50,6 +51,7 @@ type Gateway struct {
 	connURL   string
 	connType  string
 	client    *http.Client
+	missing   map[string]bool
 }
 
 type device struct {
@@ -148,7 +150,7 @@ func Open(ctx context.Context, location string, client *http.Client) (*Gateway, 
 	if r.URLBase != "" && hostOf(r.URLBase) == hostOf(location) {
 		base = r.URLBase
 	}
-	g := &Gateway{Location: location, client: client, Model: strings.TrimSpace(r.Device.ModelName)}
+	g := &Gateway{Location: location, client: client, Model: strings.TrimSpace(r.Device.ModelName), missing: map[string]bool{}}
 	if g.Model == "" {
 		g.Model = strings.TrimSpace(r.Device.FriendlyName)
 	}
@@ -220,9 +222,26 @@ func (g *Gateway) call(ctx context.Context, controlURL, serviceType, action stri
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("%s answered HTTP %d", action, resp.StatusCode)
+		return nil, fmt.Errorf("%s: %w", action, httpError{resp.StatusCode})
 	}
 	return parseSOAP(io.LimitReader(resp.Body, maxBody))
+}
+
+type httpError struct{ status int }
+
+func (e httpError) Error() string { return fmt.Sprintf("HTTP %d", e.status) }
+
+func (g *Gateway) optional(ctx context.Context, controlURL, serviceType, action string) (map[string]string, bool) {
+	key := serviceType + "#" + action
+	if g.missing[key] {
+		return nil, false
+	}
+	m, err := g.call(ctx, controlURL, serviceType, action)
+	var he httpError
+	if errors.As(err, &he) {
+		g.missing[key] = true
+	}
+	return m, err == nil
 }
 
 func parseSOAP(r io.Reader) (map[string]string, error) {
@@ -266,9 +285,9 @@ func (g *Gateway) Status(ctx context.Context) (Status, error) {
 		} else {
 			firstErr = err
 		}
-		rx, err1 := g.call(ctx, g.commonURL, svcCommon, "GetTotalBytesReceived")
-		tx, err2 := g.call(ctx, g.commonURL, svcCommon, "GetTotalBytesSent")
-		if err1 == nil && err2 == nil {
+		rx, ok1 := g.optional(ctx, g.commonURL, svcCommon, "GetTotalBytesReceived")
+		tx, ok2 := g.optional(ctx, g.commonURL, svcCommon, "GetTotalBytesSent")
+		if ok1 && ok2 {
 			st.RxBytes = uint64(parseInt(rx["NewTotalBytesReceived"]))
 			st.TxBytes = uint64(parseInt(tx["NewTotalBytesSent"]))
 			st.HasCounters = true
@@ -280,8 +299,17 @@ func (g *Gateway) Status(ctx context.Context) (Status, error) {
 				st.Connected = boolPtr(strings.EqualFold(v, "Connected"))
 			}
 			st.UptimeSecs = parseInt(m["NewUptime"])
+			if v := m["NewLastConnectionError"]; v != "" && v != "ERROR_NONE" {
+				st.LastError = v
+			}
 		} else if firstErr == nil {
 			firstErr = err
+		}
+		if st.SyncDownKbps == 0 {
+			if m, ok := g.optional(ctx, g.connURL, g.connType, "GetLinkLayerMaxBitRates"); ok {
+				st.SyncDownKbps = parseInt(m["NewDownstreamMaxBitRate"]) / 1000
+				st.SyncUpKbps = parseInt(m["NewUpstreamMaxBitRate"]) / 1000
+			}
 		}
 	}
 	if st.LinkUp == nil && st.Connected == nil && !st.HasCounters {

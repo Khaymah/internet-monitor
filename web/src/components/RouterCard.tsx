@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "../lib/api";
 import { formatDate, formatDuration, formatNumber } from "../lib/format";
 import { useAsync } from "../lib/hooks";
-import { type Lang, useI18n } from "../lib/i18n";
+import { type Lang, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
 import type { PlanUsage, RouterStatus } from "../lib/types";
 import { tone } from "../styles/categories";
@@ -14,6 +14,14 @@ function gb(lang: Lang, bytes: number): string {
   const v = bytes / 1e9;
   return `\u2066${formatNumber(lang, v, v < 10 ? 1 : 0)} GB\u2069`;
 }
+
+const LAST_ERROR: Record<string, MessageKey> = {
+  ERROR_ISP_DISCONNECT: "rt_err_isp",
+  ERROR_ISP_TIME_OUT: "rt_err_isp_timeout",
+  ERROR_USER_DISCONNECT: "rt_err_user",
+  ERROR_IDLE_DISCONNECT: "rt_err_idle",
+  ERROR_AUTHENTICATION_FAILURE: "rt_err_auth",
+};
 
 function speed(lang: Lang, kbps: number): string {
   const v = kbps / 1000;
@@ -54,6 +62,8 @@ function StatusGrid({ st }: { st: RouterStatus }) {
     ]);
   }
   if (st.uptime_seconds) rows.push([t("rt_uptime"), formatDuration(t, st.uptime_seconds), tone.checking]);
+  const reason = st.last_error ? LAST_ERROR[st.last_error] : undefined;
+  if (reason) rows.push([t("rt_last_drop"), t(reason), tone.degraded]);
   if (!rows.length) return null;
   return (
     <dl className="evidence-grid">

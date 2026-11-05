@@ -15,6 +15,10 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Router sync speed and drop reason** (rc.8): `GetLinkLayerMaxBitRates` when the
+  common link properties report no speed, `last_error` from `GetStatusInfo`, the
+  `provider_dropped` outage cause and insight; router actions that fail with an HTTP
+  error are not asked again. Checked against a Huawei HG630 V2.
 - **Router status** (rc.7): UPnP IGD reading once a minute (`router_status`, on by
   default), `router_DATE.jsonl`, `GET /api/router`, a router card on the overview, and
   `router` on each outage row (`line_down`, `session_down`, `router_restarted`,

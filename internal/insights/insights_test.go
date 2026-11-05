@@ -74,11 +74,15 @@ func TestAnalyzeRouterAndQuota(t *testing.T) {
 			{Type: "disconnected", Router: "router_restarted"},
 			{Type: "disconnected", Router: "router_restarted"},
 			{Type: "disconnected", Router: "line_down", OnBattery: true},
+			{Type: "disconnected", Router: "provider_dropped"},
 		},
 	}
 	got := ids(Analyze(Input{Summary: s, Days: 7, QuotaUsedPct: 62, QuotaProjectedPct: 140, QuotaDaysLeft: 12}))
 	if got["line_sync"].Vars["n"] != 1 {
 		t.Errorf("line_sync must count only outages not explained by power: %v", got["line_sync"])
+	}
+	if got["provider_dropped"].Vars["n"] != 1 {
+		t.Errorf("provider_dropped = %v", got["provider_dropped"])
 	}
 	if got["router_restarts"].Vars["n"] != 2 {
 		t.Errorf("router_restarts = %v", got["router_restarts"])

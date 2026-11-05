@@ -249,7 +249,12 @@ export interface ReportEventRow {
   router?: RouterCause;
 }
 
-export type RouterCause = "line_down" | "session_down" | "router_restarted" | "router_online";
+export type RouterCause =
+  | "line_down"
+  | "session_down"
+  | "provider_dropped"
+  | "router_restarted"
+  | "router_online";
 
 export interface RouterStatus {
   timestamp: string;
@@ -260,6 +265,7 @@ export interface RouterStatus {
   sync_up_kbps?: number;
   connected?: boolean;
   uptime_seconds?: number;
+  last_error?: string;
   has_counters?: boolean;
 }
 

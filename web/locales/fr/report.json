@@ -54,6 +54,7 @@
   "route_stopped": "Trajet : arrêt après le saut {hop} ({addr}), dans le réseau du fournisseur",
   "router_line_down": "Routeur : la ligne vers le fournisseur était coupée",
   "router_session_down": "Routeur : la ligne était active, mais le fournisseur a coupé la session internet",
+  "router_provider_dropped": "Routeur : la ligne était active et le fournisseur a coupé la session internet (ISP disconnect)",
   "router_router_restarted": "Routeur : il a redémarré pendant la coupure",
   "router_router_online": "Routeur : il se disait connecté, la panne se trouvait donc plus loin dans le réseau du fournisseur",
   "seal_title": "Intégrité des journaux",

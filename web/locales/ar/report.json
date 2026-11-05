@@ -54,6 +54,7 @@
   "route_stopped": "المسار: وقف بعد النقطة رقم {hop} ({addr}) جوه شبكة الشركة",
   "router_line_down": "الراوتر: الخط اللي جاي من الشركة كان واقع",
   "router_session_down": "الراوتر: الخط كان شغّال بس الشركة قطعت جلسة الإنترنت",
+  "router_provider_dropped": "الراوتر: الخط كان شغّال والشركة هي اللي قطعت جلسة النت (ISP disconnect)",
   "router_router_restarted": "الراوتر: عمل restart وقت الفصلة",
   "router_router_online": "الراوتر: كان شايف نفسه متصل، يعني العطل كان جوه شبكة الشركة",
   "seal_title": "سلامة السجلات",
