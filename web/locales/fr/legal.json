@@ -1,0 +1,79 @@
+{
+  "legal_updated": "Dernière mise à jour : {date}",
+  "legal_toc": "Sur cette page",
+  "privacy_title": "Confidentialité",
+  "terms_title": "Conditions d'utilisation",
+  "privacy": {
+    "intro": "Internet Monitor fonctionne sur votre ordinateur et y garde vos données. Cette page liste tout ce qu'il stocke et tous les endroits auxquels il se connecte.",
+    "short": {
+      "title": "En bref",
+      "p1": "Pas de compte, pas de statistiques d'utilisation, pas de publicité et pas de pistage. Les personnes qui créent Internet Monitor ne peuvent voir ni votre historique, ni vos paramètres, ni vos alertes."
+    },
+    "stored": {
+      "title": "Ce qui est stocké sur votre ordinateur",
+      "p1": "Tout est conservé dans le dossier de l'application (à côté de l'application, ou dans %LOCALAPPDATA%\\InternetMonitor pour la version du Microsoft Store), sauf quelques petites préférences gardées par votre navigateur.",
+      "li1": "config.json : vos paramètres. Cela inclut l'URL de votre webhook, votre jeton et votre ID de discussion Telegram, ainsi que votre sujet et votre jeton ntfy, enregistrés en clair. Ne partagez pas ce fichier.",
+      "li2": "Le dossier logs : chaque vérification, coupure, test de débit et résultat de traceroute, les sceaux quotidiens qui prouvent que les journaux n'ont pas été modifiés, ainsi que app.log, un journal de diagnostic de ce qu'a fait l'application. Les fichiers de plus de 90 jours sont supprimés automatiquement.",
+      "li3": "notification.wav : votre son d'alerte personnalisé, si vous en avez importé un.",
+      "li4": ".session : la clé du tableau de bord pour le lancement en cours. Elle est remplacée à chaque démarrage de l'application.",
+      "li5": "Votre navigateur retient votre thème et votre langue, pour que le tableau de bord s’ouvre comme vous l’avez laissé, ainsi que de petits repères comme les dernières Nouveautés vues et si vous avez cliqué sur « Ça m’intéresse » dans la carte des alertes externes. Rien de tout cela n’est envoyé nulle part.",
+      "li6": "case.json : ce que vous saisissez sur la page Réclamations, comme votre fournisseur, votre forfait, votre prix, vos numéros de ligne et de compte, et vos tickets de réclamation. Il ne sert qu'à remplir le texte de vos réclamations et votre dossier de preuves, et ne quitte jamais votre ordinateur, sauf si vous les partagez."
+    },
+    "network": {
+      "title": "Ce qui quitte votre ordinateur",
+      "p1": "L'application se connecte uniquement aux endroits ci-dessous. Chacun d'eux voit votre adresse IP, comme pour toute connexion internet, et sa propre politique de confidentialité s'applique.",
+      "li1": "Les vérifications de connexion vont vers les cibles indiquées dans Paramètres → Cibles de vérification. Par défaut : les serveurs DNS de Google et de Cloudflare (8.8.8.8 et 1.1.1.1), connectivitycheck.gstatic.com, et les résolutions de noms pour www.google.com et www.cloudflare.com. L'application vérifie aussi votre propre routeur. Si votre routeur le permet (UPnP), l’application lit aussi l’état de la ligne, la vitesse de synchronisation, la durée de fonctionnement et les compteurs de trafic une fois par minute. Cela reste sur votre réseau domestique et est enregistré dans le dossier logs sous le nom router_DATE.jsonl. Vous pouvez le désactiver dans Paramètres → Application.",
+      "li2": "Les tests de débit vont vers speed.cloudflare.com par défaut, et seulement quand vous en lancez un ou que vous les programmez. Les données du test ne contiennent rien qui identifie votre appareil.",
+      "li3": "La recherche de mises à jour va vers GitHub (api.github.com) toutes les 6 heures (vous pouvez la désactiver dans les Paramètres), ou quand vous appuyez sur « Rechercher les mises à jour ». L'installation d'une mise à jour la télécharge depuis GitHub.",
+      "li4": "Les alertes et le résumé hebdomadaire vont vers Discord, Slack, un webhook de votre choix, Telegram ou ntfy, uniquement si vous les avez configurés. Ils contiennent l'état, les heures, les durées et les causes des coupures, ou un résultat de test de débit. L'application n'y ajoute ni le nom de votre ordinateur ni votre adresse IP.",
+      "li5": "Les horodatages des journaux vont vers freetsa.org uniquement si vous activez « Horodater les journaux scellés » dans les Paramètres. Ce service reçoit une empreinte de 32 octets du sceau du jour, jamais vos journaux.",
+      "li6": "Quand une coupure commence, l'application lance un traceroute vers votre première cible de vérification pour voir où la connexion s'arrête. Les routeurs sur le trajet voient ces paquets, comme pour tout traceroute."
+    },
+    "dashboard": {
+      "title": "Le tableau de bord",
+      "p1": "Le tableau de bord est servi par l'application sur cet ordinateur (127.0.0.1). Les autres appareils de votre réseau ne peuvent pas l'ouvrir, sauf si vous lancez volontairement la version sans interface (headless) avec une adresse réseau. Il utilise un seul cookie, qui contient la clé du lancement en cours. Il ne charge aucun script, aucune police ni aucune image venant de l'extérieur."
+    },
+    "control": {
+      "title": "Vous gardez le contrôle",
+      "p1": "Vous pouvez supprimer le dossier logs à tout moment pour effacer votre historique. Supprimer config.json réinitialise vos paramètres, et supprimer case.json efface les détails de vos réclamations. Pour supprimer complètement l'application, désactivez « Lancer avec Windows » dans Paramètres → Application, quittez l'application et supprimez son dossier. La version du Microsoft Store se désinstalle depuis Paramètres Windows → Applications, après quoi vous pouvez supprimer %LOCALAPPDATA%\\InternetMonitor."
+    },
+    "changes": {
+      "title": "Modifications de cette page",
+      "p1": "Si une nouvelle version change ce que l'application stocke ou les endroits auxquels elle se connecte, cette page est mise à jour et le changement figure dans les Nouveautés. La date en haut indique la dernière mise à jour."
+    },
+    "contact": {
+      "title": "Questions",
+      "p1": "Contactez-nous par l'un des moyens de la page Contact, ou ouvrez un ticket sur github.com/Khaymah/internet-monitor. N'envoyez pas votre config.json, votre case.json ni vos journaux, sauf si nous vous le demandons, car ils peuvent contenir votre webhook, votre jeton, les détails de votre compte ou votre historique."
+    }
+  },
+  "terms": {
+    "intro": "Internet Monitor est gratuit, et son code source est public sous Elastic License 2.0. Cette page explique ce que cela signifie, en termes simples. Si quelque chose ici diffère de la licence, c'est la licence qui s'applique.",
+    "use": {
+      "title": "Ce que vous pouvez faire",
+      "p1": "Vous pouvez utiliser Internet Monitor gratuitement, à la maison ou au travail. Vous pouvez aussi le copier, le modifier et le partager. Quand vous le partagez, joignez-y la licence, et si vous l'avez modifié, dites-le clairement.",
+      "p2": "Vous ne pouvez pas proposer Internet Monitor à d'autres sous forme de service hébergé ou géré, et vous ne pouvez pas supprimer ni masquer sa licence, ses mentions de droits d'auteur ou ses autres mentions.",
+      "p3": "Les versions antérieures à 2.0.0 ont été publiées sous licence MIT."
+    },
+    "warranty": {
+      "title": "Aucune garantie",
+      "p1": "L'application est fournie telle quelle. La licence indique :",
+      "quote": "Dans la mesure permise par la loi, le logiciel est fourni tel quel, sans aucune garantie ni condition, et le concédant ne sera pas responsable envers vous de tout dommage découlant de ces conditions ou de l'utilisation ou de la nature du logiciel, quel que soit le type de recours juridique."
+    },
+    "measurements": {
+      "title": "À propos des mesures",
+      "p1": "Les résultats sont mesurés depuis votre ordinateur. Le signal Wi-Fi, les autres appareils de votre réseau, un pare-feu ou la mise en veille de l'ordinateur peuvent tous les influencer. Les rapports sont un relevé de ce que votre ordinateur a observé, pas une mesure certifiée, et votre fournisseur peut les accepter ou non."
+    },
+    "fair": {
+      "title": "Utilisez-le de façon raisonnable",
+      "p1": "Ne dirigez les vérifications et les tests de débit que vers des serveurs que vous avez le droit d'utiliser. Ne réglez pas d'intervalles très courts vers des serveurs que vous ne gérez pas. Quand vous utilisez Cloudflare, GitHub, Discord, Slack ou Telegram via l'application, leurs propres conditions s'appliquent."
+    },
+    "changes": {
+      "title": "Modifications",
+      "p1": "Ces conditions peuvent changer dans une nouvelle version. La date en haut indique la dernière mise à jour, et les changements figurent dans les Nouveautés."
+    },
+    "contact": {
+      "title": "Questions",
+      "p1": "Contactez-nous par l'un des moyens de la page Contact."
+    }
+  }
+}

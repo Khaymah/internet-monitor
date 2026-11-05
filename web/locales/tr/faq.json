@@ -1,0 +1,120 @@
+{
+  "faq_eyebrow": "Yardım",
+  "faq_title": "Sorular ve yanıtlar",
+  "faq_intro": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık görülen sorunların nasıl çözüleceği hakkında kısa yanıtlar.",
+  "faq_q": "S{n}",
+  "faq_more": "Yanıtınızı bulamadınız mı? Bize ulaşın",
+  "faq": {
+    "section": {
+      "start": "Başlarken",
+      "monitoring": "İzleme ve kesintiler",
+      "alerts": "Uyarılar ve ses",
+      "reports": "Raporlar ve hız testleri",
+      "privacy": "Gizlilik ve güncellemeler"
+    },
+    "what": {
+      "q": "Internet Monitor ne yapar?",
+      "a": "Bağlantınızı birkaç saniyede bir üç şekilde kontrol eder: DNS sunucularına bağlanır, küçük bir web sayfası yükler ve web sitesi adlarını sorgular. Her kesinti tam başlangıç saati, ne kadar sürdüğü ve hangi bölümün başarısız olduğuyla kaydedilir. Sonra bunu internet sağlayıcınız için bir rapora dönüştürebilirsiniz."
+    },
+    "open": {
+      "q": "Paneli nasıl açarım?",
+      "a": "Tepsi simgesine tıklayıp “Paneli aç”ı seçin veya pencereli sürümü kurduysanız uygulama penceresini kullanın. Adresi tarayıcıya kendiniz yazarsanız kilitli bir sayfa görürsünüz, çünkü panel, uygulama her başladığında değişen bir anahtar ister."
+    },
+    "platforms": {
+      "q": "macOS ve Linux'ta çalışır mı?",
+      "a": "Evet. Windows, macOS ve Linux için sürümler var. “Windows ile başlat” seçeneği yalnızca Windows'ta bulunur."
+    },
+    "free": {
+      "q": "Ücretsiz mi?",
+      "a": "Evet. Kişisel ve ticari kullanım için ücretsizdir ve kaynak kodu Elastic License 2.0 kapsamında herkese açıktır. Hesap yok, kaydolmanız gereken bir şey yok."
+    },
+    "disconnected": {
+      "q": "Bağlantımın kesildiğini ne zaman söyler?",
+      "a": "Kontroller art arda 3 kez başarısız olduğunda. Varsayılan 5 saniyelik aralıkla bu yaklaşık 15 saniye eder. Böylece tek bir kayıp kontrol kesinti sayılmaz. İki sayıyı da [Ayarlar → İzleme](settings#monitoring) bölümünden değiştirebilirsiniz."
+    },
+    "unstable": {
+      "q": "“Kararsız” ne demek?",
+      "a": "Çevrimiçisiniz ama bağlantı zayıf: paketlerin %20'sinden fazlası kayboluyor veya yanıtlar 500 ms'den uzun sürüyor. Her iki sınır da [Ayarlar → İzleme](settings#monitoring) bölümünden değiştirilebilir."
+    },
+    "layers": {
+      "q": "DNS sorunu ile tam kesinti arasındaki fark nedir?",
+      "a": "Tam kesinti, hiçbir şeyin geçmediği anlamına gelir. DNS sorunu, hattın çalıştığı ama web sitesi adlarının sorgulanamadığı, bu yüzden sayfaların açılmadığı anlamına gelir. Web sitesi sorunu ise adların çözümlendiği ama sayfaların yüklenmediği anlamına gelir. Geçmiş ekranı ve rapor hangisinin olduğunu gösterir; bu, sağlayıcınız “hat sorunsuzdu” dediğinde işe yarar."
+    },
+    "router": {
+      "q": "Sorun modemimde mi, sağlayıcımda mı?",
+      "a": "Uygulama modeminizi de (yerel ağ geçidi) kontrol eder. Modem yanıt verir ama internet vermezse teşhis sağlayıcınızı gösterir. Modem de yanıt vermezse sorun ev ağınızdadır: Wi-Fi, kablolar veya modemin kendisi."
+    },
+    "targets": {
+      "q": "Neyin kontrol edileceğini değiştirebilir miyim?",
+      "a": "Evet. [Ayarlar → Kontrol hedefleri](settings#targets) bölümünde üç liste var: DNS sunucuları (varsayılan olarak 8.8.8.8 ve 1.1.1.1), web sayfaları ve sorgulanacak adlar. Her liste en fazla 10 kayıt alır ve kaydetmeden önce bunları test edebilirsiniz."
+    },
+    "data": {
+      "q": "Ne kadar internet verisi kullanır?",
+      "a": "Normal kontroller çok küçüktür: bir bağlantı, boş bir web sayfası ve bir ad sorgusu. Hız testleri farklıdır. Bir test, süre sınırı içinde hattınızın taşıyabildiği kadar veri aktarır; bu yüzden hızlı bir bağlantıda tek bir test yüzlerce megabayt kullanabilir. Veriniz sınırlıysa otomatik hız testi zamanlamayın."
+    },
+    "where": {
+      "q": "Uyarılar nerede görünür?",
+      "a": "Bu bilgisayarda sesli bir sistem bildirimi olarak. Bunları bir webhook ile Discord veya Slack kanalına ya da Telegram'a da gönderebilirsiniz. Bunları [Ayarlar → Uyarılar](settings#alerts) bölümünden kurun ve ulaştıklarından emin olmak için test düğmesini kullanın."
+    },
+    "telegram": {
+      "q": "Telegram uyarılarını nasıl kurarım?",
+      "a": "Telegram'da @BotFather ile bir bot oluşturun ve token'ını kopyalayın. Botunuza herhangi bir mesaj gönderin, sonra sohbet kimliğinizi (chat ID) bulun. İkisini de [Ayarlar → Uyarılar](settings#alerts) bölümüne yapıştırın ve test düğmesine basın."
+    },
+    "sound": {
+      "q": "Özel sesim neden çalmıyor?",
+      "a": "[Ayarlar → Ses](settings#sound) bölümünü açın. Orada kendi sesinizin kullanılıp kullanılmadığı ve ne kadar uzun olduğu görünür. Dosyalar MP3 veya WAV olmalı, en fazla 30 saniye ve 10 MB. “Gerçek bir uyarı gibi çal”, sesi tam bir uyarının çalacağı gibi çalar. Hiçbir şey duymuyorsanız bilgisayarın sesinin kapalı olmadığını kontrol edin."
+    },
+    "silent": {
+      "q": "Windows'ta bildirim almadım. Neden?",
+      "a": "Windows, Rahatsız etmeyin veya Odak açıkken bildirimleri gizler ve bildirimleri uygulama bazında kapatmanıza izin verir. Windows'ta Ayarlar → Sistem → Bildirimler bölümünü kontrol edin. Kesinti her durumda Geçmiş'e kaydedilir."
+    },
+    "quiet": {
+      "q": "Sessiz saatler nasıl çalışır?",
+      "a": "[Ayarlar → Bildirimler](settings#n-quiet) bölümünde Sessiz saatler'i açın ve saatleri ve günleri seçin. Yalnızca sesi kapatabilir veya masaüstü uyarılarını tamamen bekletebilirsiniz. 22:00 ile 07:00 gibi gece yarısını geçen bir aralık, başladığı güne sayılır. Webhook ve Telegram mesajları yine gönderilir ve her uyarı yine kaydedilir."
+    },
+    "noise": {
+      "q": "Çok kısa kopmalar için uyarıları durdurabilir miyim?",
+      "a": "Evet. Ayarlar → Bildirimler'de [“Uyarmadan önce bekle”](settings#n-min-outage) seçeneğini ayarlayın. Bundan kısa kesintiler Geçmiş'e kaydedilir ama sizi uyarmaz. [“Kesinti sürerken hatırlat”](settings#n-reminder), bağlantı geri gelene kadar uyarıyı birkaç dakikada bir tekrarlar."
+    },
+    "history": {
+      "q": "Geçmiş bildirimleri nerede görebilirim?",
+      "a": "Üstteki zile tıklayın veya menüden [Bildirimler](notifications) sayfasını açın. Her uyarı nereye gönderildiğini ve bir şey bekletildiyse nedenini, örneğin sessiz saatler veya kapattığınız bir kanal, gösterir. Uygulama en son 500 uyarıyı saklar."
+    },
+    "proof": {
+      "q": "İnternet sağlayıcıma nasıl kanıt gönderirim?",
+      "a": "[Geçmiş](history) sayfasında “Aylık rapor”a basın ve “Yazdır veya PDF olarak kaydet”i seçin. Rapor her kesintiyi saati, süresi ve nedeniyle listeler. Ham veri için Geçmiş'ten bir günlük, 7 günlük veya 30 günlük CSV dışa aktarın."
+    },
+    "retention": {
+      "q": "Geçmişim ne kadar süre saklanır?",
+      "a": "90 gün. Daha eski kayıt dosyaları otomatik olarak silinir. Kayıtlar uygulamanın yanındaki “logs” klasöründe durur. Bulmak için tepsi menüsünden “Kayıt klasörünü aç”ı seçin."
+    },
+    "speedserver": {
+      "q": "Hız testi hangi sunucuyu kullanır?",
+      "a": "Varsayılan olarak Cloudflare'in hız testi sunucularını. [Ayarlar → Hız testi](settings#speed) bölümünden başka sunucular seçebilirsiniz."
+    },
+    "schedule": {
+      "q": "Hız testleri kendiliğinden çalışabilir mi?",
+      "a": "Evet. [Ayarlar → Hız testi](settings#speed) bölümünde bir aralık belirleyin. Ayrıca bir en düşük hız da belirleyebilirsiniz. Sonuçlar Discord, Slack veya Telegram uyarılarınıza gönderilir ve bu hızın altındaki bir sonuç çok yavaş olarak işaretlenir."
+    },
+    "send": {
+      "q": "Verilerimi bir yere gönderiyor mu?",
+      "a": "Hayır. Hesap yok, takip yok, analiz yok. Yaptığı tek bağlantılar kontrollerin kendisi, hız testleri, GitHub'daki güncelleme denetimleri ve sizin kurduğunuz Discord, Slack veya Telegram uyarılarıdır. Gizlilik sayfası bunların her birini listeler."
+    },
+    "lan": {
+      "q": "Ağımdaki başka biri paneli açabilir mi?",
+      "a": "Hayır. Panel yalnızca bu bilgisayardan gelen bağlantıları kabul eder ve o zaman bile uygulamanın her başlangıçta oluşturduğu anahtarı ister."
+    },
+    "secrets": {
+      "q": "Ayarlarım nerede saklanıyor?",
+      "a": "Uygulamanın yanındaki config.json dosyasında. Webhook URL'niz ve Telegram token'ınız orada düz metin olarak kayıtlıdır; bu yüzden o dosyayı veya klasörü paylaşmayın. Panel bunları asla tarayıcıya geri göndermez."
+    },
+    "updates": {
+      "q": "Güncellemeler nasıl çalışır?",
+      "a": "Uygulama her 6 saatte bir veya “Güncellemeleri denetle”ye bastığınızda hemen GitHub'da yeni sürüm olup olmadığına bakar. Otomatik denetimi [Ayarlar → Uygulama](settings#app) bölümünden kapatabilirsiniz. Yüklemeden önce indirilen dosyayı sürümün sağlama toplamlarıyla karşılaştırır. Test (ön sürüm) sürümleri asla otomatik olarak önerilmez."
+    },
+    "bug": {
+      "q": "Bir hata buldum. Nereye bildiririm?",
+      "a": "Projenin GitHub sayfasında bir issue açın. Ne beklediğinizi, ne olduğunu ve uygulama sürümünüzü (kenar çubuğunun altında görünür) yazın. config.json dosyanızı yapıştırmayın, çünkü içinde webhook adresiniz veya token'ınız olabilir. Bize İletişim sayfasından WhatsApp, Discord veya e-posta ile de ulaşabilirsiniz."
+    }
+  }
+}

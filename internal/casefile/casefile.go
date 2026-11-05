@@ -34,6 +34,8 @@ type Profile struct {
 	PlanUploadMbps   float64 `json:"plan_upload_mbps"`
 	MonthlyPrice     float64 `json:"monthly_price"`
 	Currency         string  `json:"currency"`
+	QuotaGB          float64 `json:"quota_gb"`
+	QuotaResetDay    int     `json:"quota_reset_day"`
 	LineNumber       string  `json:"line_number"`
 	AccountNumber    string  `json:"account_number"`
 }
@@ -193,7 +195,10 @@ func (e *FieldError) Error() string { return e.Field + ": " + e.Message }
 
 var Countries = []string{"EG", "SA", "GB", "US"}
 
-const maxResponseHours = 24 * 120
+const (
+	maxResponseHours = 24 * 120
+	maxQuotaGB       = 100000
+)
 
 func (p Profile) clean() Profile {
 	p.Country = strings.ToUpper(strings.TrimSpace(p.Country))
@@ -213,6 +218,8 @@ func (p Profile) clean() Profile {
 	p.PlanUploadMbps = clampMbps(p.PlanUploadMbps)
 	p.MonthlyPrice = clampMbps(p.MonthlyPrice)
 	p.Currency = strings.ToUpper(limit(strings.TrimSpace(p.Currency), 3))
+	p.QuotaGB = max(0, min(p.QuotaGB, maxQuotaGB))
+	p.QuotaResetDay = max(0, min(p.QuotaResetDay, 28))
 	return p
 }
 

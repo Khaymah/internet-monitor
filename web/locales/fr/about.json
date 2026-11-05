@@ -1,0 +1,63 @@
+{
+  "about_related": "Pages associées",
+  "about_eyebrow": "À propos",
+  "about_title": "Sachez quand votre internet tombe, et prouvez-le",
+  "about_principles": "Ce qui compte pour nous",
+  "about_details": "Détails",
+  "about_publisher": "Publié par",
+  "about_developer": "Développé par",
+  "about_version": "Version",
+  "about_license": "Licence",
+  "about_source": "Code source",
+  "about_contact_cta": "Nous contacter",
+  "contact_eyebrow": "Contact",
+  "contact_title": "Nous sommes là pour vous aider",
+  "contact_intro": "Questions, problèmes ou idées : choisissez le moyen le plus simple pour vous.",
+  "contact_safety": "N'envoyez jamais votre config.json ni vos fichiers journaux, sauf si nous vous le demandons. Ils peuvent contenir votre webhook, votre jeton Telegram et l'historique de votre connexion.",
+  "contact_open": "Ouvrir {name}",
+  "contact_copy": "Copier {name}",
+  "contact_copied": "Copié dans le presse-papiers",
+  "contact_copy_failed": "Copie impossible. Sélectionnez le texte et copiez-le vous-même.",
+  "about": {
+    "story": {
+      "1": "Internet Monitor est né d'un problème bien connu : la connexion coupe sans arrêt, et votre fournisseur dit que la ligne fonctionne. Sans trace écrite, c'est votre parole contre la sienne.",
+      "2": "L'application surveille donc votre connexion discrètement, en arrière-plan. Elle enregistre chaque coupure avec son heure exacte, sa durée et sa cause, puis en fait un rapport que vous pouvez envoyer. Elle vous dit aussi si le problème vient de votre réseau domestique ou de votre fournisseur, pour que vous sachiez qui appeler."
+    },
+    "principle": {
+      "local": {
+        "title": "Vos données restent chez vous",
+        "body": "Tout est stocké sur votre ordinateur. Pas de compte, pas de cloud, pas de pistage."
+      },
+      "open": {
+        "title": "Gratuit, avec un code ouvert à tous",
+        "body": "Gratuit pour un usage personnel et commercial, sous Elastic License 2.0. Tout le monde peut lire le code."
+      },
+      "proof": {
+        "title": "Des preuves, pas des suppositions",
+        "body": "Heures exactes, durées et couche en panne, prêtes pour un PDF ou un CSV."
+      },
+      "bilingual": {
+        "title": "Cinq langues",
+        "body": "Chaque écran, alerte et rapport fonctionne en anglais, arabe, français, turc et ourdou, y compris de droite à gauche."
+      }
+    }
+  },
+  "contact": {
+    "whatsapp": {
+      "name": "WhatsApp",
+      "best": "Questions rapides et aide à l'installation."
+    },
+    "discord": {
+      "name": "Discord",
+      "best": "Discutez avec d'autres utilisateurs, partagez vos idées et suivez les nouvelles versions."
+    },
+    "email": {
+      "name": "E-mail",
+      "best": "Questions professionnelles, questions de confidentialité et tout ce que vous préférez ne pas publier."
+    },
+    "github": {
+      "name": "GitHub",
+      "best": "Signalements de bugs et demandes de fonctionnalités, en public, pour que d'autres puissent les suivre."
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "notify": {
+    "test": {
+      "title": "Notification de test",
+      "body": "🔔 Les notifications et le son fonctionnent"
+    },
+    "restored": {
+      "title": "✅ Internet rétabli",
+      "latency": "Latence : {ms}",
+      "ok": "Toutes les vérifications réussissent",
+      "after": "De retour après {duration}"
+    },
+    "degraded": {
+      "title": "⚠️ Internet dégradé",
+      "body": "Perte : {loss} % — latence : {ms}"
+    },
+    "down": {
+      "title": "🔴 Internet déconnecté",
+      "failed": "Échec : {layers}",
+      "lost": "Connexion perdue"
+    },
+    "reminder": {
+      "title": "⏰ Toujours hors ligne",
+      "body": "Déconnecté depuis {duration}"
+    },
+    "speed": {
+      "title": "🚀 Test de débit terminé",
+      "slow_title": "⚠️ Débit inférieur à {threshold} Mbps",
+      "body": "↓ {down} Mbps · ↑ {up} Mbps · {ms}",
+      "body_down": "↓ {down} Mbps · {ms}"
+    },
+    "action": {
+      "open": "Ouvrir le tableau de bord"
+    },
+    "weekly": {
+      "title": "📊 Votre internet cette semaine",
+      "body": "{outages} coupures, {downtime} hors ligne · disponibilité {uptime} %",
+      "clear": "Aucune coupure cette semaine · disponibilité {uptime} %"
+    },
+    "nudge": {
+      "title": "Le moment de réclamer ?",
+      "body": "Votre ligne a coupé {outages} fois ces {days} derniers jours, et aucune réclamation n'est ouverte. La page Réclamations a le texte et les preuves prêts."
+    },
+    "quota": {
+      "title_near": "📶 {pct} % de votre forfait de données utilisés",
+      "title_over": "📶 Votre forfait de données est épuisé ({pct} %)",
+      "body": "{used} Go sur {quota} Go, et encore {days} jours avant le renouvellement."
+    }
+  },
+  "duration": {
+    "s": "{s} s",
+    "m": "{m} min",
+    "ms": "{m} min {s} s",
+    "h": "{h} h",
+    "hm": "{h} h {m} min",
+    "millis": "{n} ms"
+  },
+  "remote": {
+    "title": {
+      "down": "Internet déconnecté",
+      "degraded": "Internet instable",
+      "restored": "Internet rétabli",
+      "reminder": "Internet toujours déconnecté"
+    },
+    "tcp": "Ping TCP",
+    "http": "HTTP",
+    "dns": "DNS",
+    "loss": "Perte de paquets",
+    "latency": "Latence",
+    "duration": "Durée",
+    "ok": "OK",
+    "failed": "Échec",
+    "footer": "Journal des événements",
+    "download": "Téléchargement",
+    "upload": "Envoi",
+    "threshold": "Seuil",
+    "speed": {
+      "done": "Test de débit terminé",
+      "drop": "Baisse de débit détectée"
+    },
+    "weekly": {
+      "title": "Résumé hebdomadaire {period}",
+      "outages": "Coupures",
+      "vs_prev": "{n} (semaine dernière : {prev})",
+      "downtime": "Temps hors ligne total",
+      "longest": "Plus longue coupure",
+      "uptime": "Disponibilité",
+      "coverage": "Surveillé",
+      "speed": "Téléchargement typique",
+      "speed_plan": "{speed} ({pct} du forfait)"
+    },
+    "bufferbloat": "Latence sous charge"
+  },
+  "tray": {
+    "starting": "Démarrage…",
+    "status": {
+      "connected": "Connecté",
+      "degraded": "Instable",
+      "disconnected": "Déconnecté",
+      "checking": "Vérification…"
+    },
+    "detail": "perte {loss} % · {ms}",
+    "last_change": "Dernier changement : {time}",
+    "last_change_none": "Dernier changement : —",
+    "open_dashboard": "Ouvrir le tableau de bord",
+    "open_dashboard_hint": "Ouvrir le tableau de bord dans votre navigateur",
+    "open_window": "Ouvrir la fenêtre",
+    "open_window_hint": "Afficher la fenêtre principale",
+    "open_logs": "Ouvrir le dossier des journaux",
+    "open_logs_hint": "Ouvrir le dossier qui contient vos fichiers journaux",
+    "exit": "Quitter",
+    "exit_hint": "Arrêter la surveillance et quitter"
+  },
+  "webhook": {
+    "test": {
+      "title": "🔔 Test du webhook",
+      "body": "Internet Monitor peut joindre ce webhook ✅"
+    }
+  }
+}

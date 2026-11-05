@@ -79,4 +79,11 @@ describe("country rules", () => {
     expect(daysText(t, "en", 1)).toBe("1 day");
     expect(daysText(t, "en", 5)).toBe("5 days");
   });
+
+  test("a fixed-number form is only used for its own number", () => {
+    const fr = (key: MessageKey, vars?: Vars) => translate("fr", key, vars);
+    expect(daysText(fr, "fr", 1)).toBe(translate("fr", "c_days_one"));
+    expect(daysText(fr, "fr", 0)).not.toBe(translate("fr", "c_days_one"));
+    expect(daysText(fr, "fr", 0.5)).toContain("0,5");
+  });
 });

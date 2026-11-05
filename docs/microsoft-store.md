@@ -3,6 +3,17 @@
 The Store build is the window app packaged as MSIX. Microsoft signs it on submission,
 so Store users never see the SmartScreen warning.
 
+## Status: paused
+
+Store publishing is paused. Releases ship on GitHub only, and CI doesn't build the
+MSIX. Everything below stays ready. To resume:
+
+1. GitHub → the repository's **Settings → Secrets and variables → Actions → Variables**:
+   add `STORE_BUILD` with the value `true`. Every CI run then builds the `msix` artifact
+   again.
+2. Finish the submission in Partner Center with `docs/store-listing.md` (text, screenshots,
+   and the remaining fields).
+
 ## One-time setup
 
 1. In Partner Center, open **Apps and games → New product → MSIX or PWA app** and
@@ -23,8 +34,10 @@ so Store users never see the SmartScreen warning.
 
 ## Each Store release
 
-1. Merge a final (non-rc) version. CI builds `internet-monitor-store.msix` and attaches
-   it to the GitHub release. It is also available as the `msix` artifact of every CI run.
+1. Merge a final (non-rc) version. With `STORE_BUILD` set, CI builds
+   `internet-monitor-store.msix` as the `msix` artifact of the run (Actions → the run →
+   Artifacts). It isn't attached to the GitHub release: an unsigned MSIX can't be
+   installed outside the Store.
 2. In Partner Center, create a submission and upload the `.msix` under **Packages**.
    The package version is the release version with a `.0` revision (`2.0.4` → `2.0.4.0`),
    and the Store requires it to be higher than the last one you submitted. So submit

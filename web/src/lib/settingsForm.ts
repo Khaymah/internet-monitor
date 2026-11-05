@@ -13,6 +13,7 @@ export interface Draft {
   use_icmp: boolean;
   auto_update_check: boolean;
   seal_timestamp: boolean;
+  router_status: boolean;
   ping_targets: string[];
   http_targets: string[];
   dns_targets: string[];
@@ -83,6 +84,7 @@ export function draftFrom(c: ConfigView): Draft {
     use_icmp: c.use_icmp,
     auto_update_check: c.auto_update_check ?? true,
     seal_timestamp: c.seal_timestamp ?? false,
+    router_status: c.router_status ?? true,
     ping_targets: [...(c.ping_targets ?? [])],
     http_targets: [...(c.http_targets ?? [])],
     dns_targets: [...(c.dns_targets ?? [])],
@@ -343,6 +345,7 @@ export function buildChanges(d: Draft, base: ConfigView): Record<string, unknown
   if (d.use_icmp !== base.use_icmp) out.use_icmp = d.use_icmp;
   if (d.auto_update_check !== (base.auto_update_check ?? true)) out.auto_update_check = d.auto_update_check;
   if (d.seal_timestamp !== (base.seal_timestamp ?? false)) out.seal_timestamp = d.seal_timestamp;
+  if (d.router_status !== (base.router_status ?? true)) out.router_status = d.router_status;
   if (!sameList(d.ping_targets, base.ping_targets)) out.ping_targets = clean(d.ping_targets);
   if (!sameList(d.http_targets, base.http_targets)) out.http_targets = clean(d.http_targets);
   if (!sameList(d.dns_targets, base.dns_targets)) out.dns_targets = clean(d.dns_targets);
@@ -407,7 +410,7 @@ const SECTION_FIELDS: Record<string, FieldKey[]> = {
     "speed_download_targets",
     "speed_upload_target",
   ],
-  app: ["dashboard_port", "log_dir", "auto_update_check", "seal_timestamp"],
+  app: ["dashboard_port", "log_dir", "auto_update_check", "seal_timestamp", "router_status"],
 };
 
 export function sectionOfField(field: FieldKey): string {

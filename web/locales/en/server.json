@@ -40,6 +40,11 @@
     "nudge": {
       "title": "Time to complain?",
       "body": "Your line dropped {outages} times in the last {days} days and no complaint is open. The Complaints page has the text and the evidence ready."
+    },
+    "quota": {
+      "title_near": "📶 {pct}% of your data plan used",
+      "title_over": "📶 Your data plan is used up ({pct}%)",
+      "body": "{used} GB of {quota} GB, with {days} days until it renews."
     }
   },
   "duration": {

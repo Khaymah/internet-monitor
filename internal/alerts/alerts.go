@@ -29,6 +29,14 @@ type Remote interface {
 	SendSpeed(lang string, ev logger.SpeedTestEvent, thresholdMbps float64, below bool, to types.Targets)
 	SendWeekly(lang string, w types.WeeklySummary, to types.Targets)
 	SendNudge(lang string, outages, days int, to types.Targets)
+	SendNotice(kind, title, body string, data any, to types.Targets)
+}
+
+type Quota struct {
+	Pct      int     `json:"pct"`
+	UsedGB   float64 `json:"used_gb"`
+	QuotaGB  float64 `json:"quota_gb"`
+	DaysLeft int     `json:"days_left"`
 }
 
 type SpeedInfo struct {
@@ -487,6 +495,25 @@ func (a *Alerts) OnNudge(outages, days int) {
 	}
 	if d.Remote().Any() && a.opts.Remote != nil {
 		a.opts.Remote.SendNudge(lang, outages, days, d.Remote())
+	}
+}
+
+func (a *Alerts) OnQuota(q Quota) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if a.closed {
+		return
+	}
+	now := a.now()
+	d := Decide(KindQuota, a.settings, a.has, now)
+	a.record(Record{ID: a.nextID(), Time: now, Kind: KindQuota, Sent: d.Sent(), Muted: d.Muted})
+	lang := a.lang
+	title, body := QuotaText(lang, q)
+	if d.Desktop && a.opts.Desktop != nil {
+		a.show(Toast{Kind: KindQuota, Status: types.StatusDegraded, Lang: lang, Title: title, Body: body, Time: now, Volume: d.Volume})
+	}
+	if d.Remote().Any() && a.opts.Remote != nil {
+		a.opts.Remote.SendNotice(string(KindQuota), title, body, q, d.Remote())
 	}
 }
 

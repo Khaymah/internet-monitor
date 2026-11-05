@@ -1,0 +1,120 @@
+{
+  "notify": {
+    "test": {
+      "title": "Test bildirimi",
+      "body": "🔔 Bildirimler ve ses çalışıyor"
+    },
+    "restored": {
+      "title": "✅ İnternet geri geldi",
+      "latency": "Gecikme: {ms}",
+      "ok": "Tüm kontroller başarılı",
+      "after": "{duration} sonra geri geldi"
+    },
+    "degraded": {
+      "title": "⚠️ İnternet kararsız",
+      "body": "Kayıp: %{loss} — gecikme: {ms}"
+    },
+    "down": {
+      "title": "🔴 İnternet bağlantısı kesildi",
+      "failed": "Başarısız: {layers}",
+      "lost": "Bağlantı kesildi"
+    },
+    "reminder": {
+      "title": "⏰ Hâlâ çevrimdışı",
+      "body": "Bağlantı kesik, süre: {duration}"
+    },
+    "speed": {
+      "title": "🚀 Hız testi bitti",
+      "slow_title": "⚠️ Hız {threshold} Mbps altında",
+      "body": "↓ {down} Mbps · ↑ {up} Mbps · {ms}",
+      "body_down": "↓ {down} Mbps · {ms}"
+    },
+    "action": {
+      "open": "Paneli aç"
+    },
+    "weekly": {
+      "title": "📊 Bu hafta internetiniz",
+      "body": "{outages} kesinti, {downtime} çevrimdışı · çevrimiçi süre %{uptime}",
+      "clear": "Bu hafta kesinti yok · çevrimiçi süre %{uptime}"
+    },
+    "nudge": {
+      "title": "Şikayet etme zamanı mı?",
+      "body": "Hattınız son {days} günde {outages} kez koptu ve açık bir şikayet yok. Şikayetler sayfasında metin ve kanıt hazır."
+    },
+    "quota": {
+      "title_near": "📶 Veri paketinizin %{pct} kadarı kullanıldı",
+      "title_over": "📶 Veri paketiniz bitti (%{pct})",
+      "body": "{used} GB / {quota} GB; yenilenmesine {days} gün var."
+    }
+  },
+  "duration": {
+    "s": "{s} sn",
+    "m": "{m} dk",
+    "ms": "{m} dk {s} sn",
+    "h": "{h} sa",
+    "hm": "{h} sa {m} dk",
+    "millis": "{n} ms"
+  },
+  "remote": {
+    "title": {
+      "down": "İnternet bağlantısı kesildi",
+      "degraded": "İnternet kararsız",
+      "restored": "İnternet geri geldi",
+      "reminder": "İnternet bağlantısı hâlâ yok"
+    },
+    "tcp": "TCP ping",
+    "http": "HTTP",
+    "dns": "DNS",
+    "loss": "Paket kaybı",
+    "latency": "Gecikme",
+    "duration": "Süre",
+    "ok": "Tamam",
+    "failed": "Başarısız",
+    "footer": "Olay kaydı",
+    "download": "İndirme",
+    "upload": "Yükleme",
+    "threshold": "Eşik",
+    "speed": {
+      "done": "Hız testi tamamlandı",
+      "drop": "Hız düşüşü algılandı"
+    },
+    "weekly": {
+      "title": "Haftalık özet {period}",
+      "outages": "Kesintiler",
+      "vs_prev": "{n} (geçen hafta: {prev})",
+      "downtime": "Toplam kesinti süresi",
+      "longest": "En uzun kesinti",
+      "uptime": "Çevrimiçi süre",
+      "coverage": "İzlenen",
+      "speed": "Tipik indirme",
+      "speed_plan": "{speed} (paketin {pct} kadarı)"
+    },
+    "bufferbloat": "Yük altında gecikme"
+  },
+  "tray": {
+    "starting": "Başlıyor…",
+    "status": {
+      "connected": "Bağlı",
+      "degraded": "Kararsız",
+      "disconnected": "Bağlantı yok",
+      "checking": "Kontrol ediliyor…"
+    },
+    "detail": "kayıp %{loss} · {ms}",
+    "last_change": "Son değişiklik: {time}",
+    "last_change_none": "Son değişiklik: —",
+    "open_dashboard": "Paneli aç",
+    "open_dashboard_hint": "Paneli tarayıcınızda açın",
+    "open_window": "Pencereyi aç",
+    "open_window_hint": "Ana pencereyi göster",
+    "open_logs": "Kayıt klasörünü aç",
+    "open_logs_hint": "Kayıt dosyalarınızın bulunduğu klasörü açın",
+    "exit": "Çıkış",
+    "exit_hint": "İzlemeyi durdur ve çık"
+  },
+  "webhook": {
+    "test": {
+      "title": "🔔 Webhook testi",
+      "body": "Internet Monitor bu webhook'a ulaşabiliyor ✅"
+    }
+  }
+}

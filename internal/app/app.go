@@ -14,6 +14,7 @@ import (
 	"internet-monitor/internal/pkgid"
 	"internet-monitor/internal/power"
 	"internet-monitor/internal/report"
+	"internet-monitor/internal/router"
 	"internet-monitor/internal/seal"
 	"internet-monitor/internal/server"
 	"internet-monitor/internal/sound"
@@ -45,6 +46,7 @@ type App struct {
 	Engine  *core.Engine
 	Alerts  *alerts.Alerts
 	Weekly  *weekly.Scheduler
+	Router  *router.Poller
 
 	stop chan struct{}
 	once sync.Once
@@ -112,6 +114,11 @@ func New(opts Options) (*App, error) {
 		Logf: lgr.AppLog,
 		Now:  time.Now,
 	}
+	poller := &router.Poller{
+		Enabled: func() bool { return store.Get().RouterStatus },
+		Save:    func(at time.Time, st router.Status) { lgr.LogJSON(router.Prefix, at, st) },
+		Logf:    lgr.AppLog,
+	}
 	srv := server.New(server.Options{
 		Store:               store,
 		Logger:              lgr,
@@ -130,6 +137,7 @@ func New(opts Options) (*App, error) {
 			Restart:          updater.Restart,
 			SpeedResult:      func(ev logger.SpeedTestEvent, threshold float64, below bool) { al.OnSpeedResult(ev, threshold, below) },
 			SendWeekly:       wk.SendNow,
+			Router:           poller.Snapshot,
 		},
 	})
 	var desktop alerts.Desktop
@@ -174,6 +182,7 @@ func New(opts Options) (*App, error) {
 		Engine:  engine,
 		Alerts:  al,
 		Weekly:  wk,
+		Router:  poller,
 		stop:    make(chan struct{}),
 	}, nil
 }
@@ -228,6 +237,28 @@ func (a *App) Run(notifiers ...core.Notifier) {
 		Now:  time.Now,
 	}
 	go nudger.Run(a.stop)
+	go a.Router.Run(a.stop)
+	quota := &weekly.QuotaWatcher{
+		State: weekly.QuotaPath(a.Dir),
+		Read: func(now time.Time) (weekly.QuotaReading, bool) {
+			u, ok := a.Server.PlanUsage(now)
+			if !ok || u.QuotaBytes == 0 {
+				return weekly.QuotaReading{}, false
+			}
+			return weekly.QuotaReading{
+				Period:   u.From,
+				UsedPct:  u.UsedPct,
+				UsedGB:   float64(u.UsedBytes) / 1e9,
+				QuotaGB:  float64(u.QuotaBytes) / 1e9,
+				DaysLeft: u.DaysLeft,
+			}, true
+		},
+		Send: func(step int, r weekly.QuotaReading) {
+			a.Alerts.OnQuota(alerts.Quota{Pct: int(r.UsedPct), UsedGB: r.UsedGB, QuotaGB: r.QuotaGB, DaysLeft: r.DaysLeft})
+		},
+		Now: time.Now,
+	}
+	go quota.Run(a.stop)
 	multi := core.MultiNotifier{server.NewNotifier(a.Server), a.Alerts, tracer}
 	multi = append(multi, notifiers...)
 	a.Engine.Notifier = multi

@@ -22,6 +22,7 @@ const ACTION: Record<string, { label: MessageKey; to: "complaints" | "speed" | "
   provider_route: { label: "ins_act_complain", to: "complaints" },
   slow_vs_plan: { label: "ins_act_complain", to: "complaints" },
   bufferbloat: { label: "ins_act_speed", to: "speed" },
+  line_sync: { label: "ins_act_complain", to: "complaints" },
 };
 
 export function InsightsCard({ days = 30, limit = 4 }: { days?: number; limit?: number }) {

@@ -11,18 +11,18 @@
     },
     "stored": {
       "title": "What's stored on your computer",
-      "p1": "Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\\InternetMonitor for the Microsoft Store version), except two small preferences kept by your browser.",
+      "p1": "Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\\InternetMonitor for the Microsoft Store version), except a few small preferences kept by your browser.",
       "li1": "config.json: your settings. This includes your webhook URL, Telegram token and chat ID, and ntfy topic and token, saved as plain text. Don't share this file.",
       "li2": "The logs folder: every check, outage, speed test and traceroute result, the daily seals that prove the logs weren't edited, plus app.log, a diagnostic log of what the app did. Files older than 90 days are deleted automatically.",
       "li3": "notification.wav: your custom alert sound, if you uploaded one.",
       "li4": ".session: the dashboard key for the current launch. It's replaced every time the app starts.",
-      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it.",
+      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it, plus small flags such as the last What's new you saw and whether you clicked “I want this” on the outside-alerts card. None of this is sent anywhere.",
       "li6": "case.json: what you enter on the Complaints page, such as your provider, plan, price, line and account numbers, and your complaint tickets. It's only used to fill your complaint text and evidence pack, and never leaves your computer unless you share them."
     },
     "network": {
       "title": "What leaves your computer",
       "p1": "The app only connects to the places below. Each of them sees your IP address, as with any internet connection, and its own privacy policy applies.",
-      "li1": "Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router.",
+      "li1": "Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router. If your router allows it (UPnP), the app also reads its line state, sync speed, uptime and traffic counters once a minute. That stays on your home network and is saved in the logs folder as router_DATE.jsonl. You can turn it off in Settings → App.",
       "li2": "Speed tests go to speed.cloudflare.com by default, and only when you start one or schedule them. The test data contains nothing that identifies your device.",
       "li3": "Update checks go to GitHub (api.github.com) every 6 hours (you can turn this off in Settings), or when you press “Check for updates”. Installing an update downloads it from GitHub.",
       "li4": "Alerts and the weekly summary go to Discord, Slack, a webhook of your choice, Telegram or ntfy only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address.",

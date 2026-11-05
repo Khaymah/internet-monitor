@@ -86,6 +86,7 @@ const DAY_FORMS: Record<Intl.LDMLPluralRule, MessageKey> = {
 };
 
 export function daysText(t: Translate, lang: Lang, days: number): string {
-  const form = new Intl.PluralRules(localeOf(lang)).select(days);
+  const rule = new Intl.PluralRules(localeOf(lang)).select(days);
+  const form = (rule === "one" && days !== 1) || (rule === "two" && days !== 2) ? "other" : rule;
   return t(DAY_FORMS[form], { n: formatNumber(lang, days, Number.isInteger(days) ? 0 : 1) });
 }

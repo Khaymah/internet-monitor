@@ -19,3 +19,4 @@ test - Copy/notification.mp3
 
 *.syso
 /data/
+quota-state.json

@@ -9,8 +9,11 @@ function read(): Theme {
   return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 }
 
+const THEME_COLOR: Record<Theme, string> = { dark: "#0c1015", light: "#f3f5f9" };
+
 export function setTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLOR[theme]);
   try {
     localStorage.setItem(KEY, theme);
   } catch {}

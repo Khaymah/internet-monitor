@@ -24,6 +24,9 @@ type Input struct {
 	Grades                []string
 	Days                  int
 	OpenOrRecentComplaint bool
+	QuotaUsedPct          float64
+	QuotaProjectedPct     float64
+	QuotaDaysLeft         int
 }
 
 func Analyze(in Input) []Insight {
@@ -37,7 +40,7 @@ func Analyze(in Input) []Insight {
 		add("coverage_low", Warn, map[string]any{"pct": math.Round(s.CoveragePct)})
 	}
 
-	providerSide, power, routerOnly := 0, 0, 0
+	providerSide, power, routerOnly, lineDown, restarts := 0, 0, 0, 0, 0
 	for _, e := range s.Events {
 		if e.Type != "disconnected" {
 			continue
@@ -47,6 +50,12 @@ func Analyze(in Input) []Insight {
 			continue
 		}
 		providerSide++
+		switch e.Router {
+		case "line_down":
+			lineDown++
+		case "router_restarted":
+			restarts++
+		}
 		if e.Route != nil && !e.Route.Reached && e.Route.LastHop == 1 {
 			routerOnly++
 		}
@@ -59,6 +68,18 @@ func Analyze(in Input) []Insight {
 
 	if routerOnly >= 2 {
 		add("provider_route", Warn, map[string]any{"n": routerOnly})
+	}
+
+	if lineDown >= 1 {
+		add("line_sync", Warn, map[string]any{"n": lineDown})
+	}
+
+	if restarts >= 2 {
+		add("router_restarts", Info, map[string]any{"n": restarts})
+	}
+
+	if in.QuotaUsedPct < 100 && in.QuotaProjectedPct >= 110 && in.QuotaDaysLeft >= 3 {
+		add("quota_pace", Warn, map[string]any{"pct": math.Round(in.QuotaUsedPct), "days": in.QuotaDaysLeft})
 	}
 
 	if s.Disconnections >= 3 && s.Causes["dns"].Outages*2 >= s.Disconnections && s.Causes["tcp"].Outages*2 < s.Disconnections {

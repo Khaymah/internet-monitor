@@ -37,6 +37,7 @@ type Config struct {
 	UseICMP             bool            `json:"use_icmp"`
 	AutoUpdateCheck     bool            `json:"auto_update_check"`
 	SealTimestamp       bool            `json:"seal_timestamp"`
+	RouterStatus        bool            `json:"router_status"`
 	TSAURL              string          `json:"tsa_url"`
 	Language            string          `json:"language"`
 	SpeedTest           SpeedTestConfig `json:"speed_test"`
@@ -63,6 +64,7 @@ func Default() Config {
 		DashboardPort:       8765,
 		Language:            "en",
 		AutoUpdateCheck:     true,
+		RouterStatus:        true,
 		SpeedTest: SpeedTestConfig{
 			DownloadTargets:     []string{"https://speed.cloudflare.com/__down"},
 			ParallelConnections: 4,

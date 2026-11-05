@@ -9,6 +9,7 @@ import (
 	"internet-monitor/internal/alerts"
 	"internet-monitor/internal/config"
 	"internet-monitor/internal/logger"
+	"internet-monitor/internal/router"
 	"internet-monitor/internal/updater"
 	"net"
 	"net/http"
@@ -27,6 +28,7 @@ type Hooks struct {
 	Restart          func()
 	SpeedResult      func(event logger.SpeedTestEvent, thresholdMbps float64, below bool)
 	SendWeekly       func() bool
+	Router           func() router.Snapshot
 }
 
 type Options struct {
@@ -142,6 +144,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/timeline", s.serveTimeline)
 	mux.HandleFunc("GET /api/seals", s.serveSeals)
 	mux.HandleFunc("GET /api/insights", s.serveInsights)
+	mux.HandleFunc("GET /api/router", s.serveRouter)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)
@@ -161,6 +164,9 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("POST /api/speed-test/start", s.serveSpeedTestStart)
 	mux.HandleFunc("POST /api/speed-test/cancel", s.serveSpeedTestCancel)
 	mux.HandleFunc("GET /api/speed-test/history", s.serveSpeedTestHistory)
+
+	mux.HandleFunc("GET /api/phone", s.servePhone)
+	mux.HandleFunc("GET /api/phone/qr.png", s.servePhoneQR)
 
 	mux.HandleFunc("GET /api/notifications", s.serveNotifications)
 	mux.HandleFunc("POST /api/notifications/read", s.serveNotificationsRead)
@@ -212,13 +218,8 @@ func (s *Server) LANMode() bool {
 
 func (s *Server) LANLaunchURLs() []string {
 	var out []string
-	addrs, _ := net.InterfaceAddrs()
-	for _, a := range addrs {
-		ipn, ok := a.(*net.IPNet)
-		if !ok || ipn.IP.IsLoopback() || ipn.IP.To4() == nil || ipn.IP.IsLinkLocalUnicast() {
-			continue
-		}
-		out = append(out, fmt.Sprintf("http://%s:%d/?%s=%s", ipn.IP, s.port, sessionQuery, s.token))
+	for _, base := range s.lanBases() {
+		out = append(out, s.phoneLink(base))
 	}
 	return out
 }

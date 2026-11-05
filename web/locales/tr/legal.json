@@ -1,0 +1,79 @@
+{
+  "legal_updated": "Son güncelleme: {date}",
+  "legal_toc": "Bu sayfada",
+  "privacy_title": "Gizlilik",
+  "terms_title": "Kullanım koşulları",
+  "privacy": {
+    "intro": "Internet Monitor bilgisayarınızda çalışır ve verilerinizi orada tutar. Bu sayfa, sakladığı her şeyi ve bağlandığı her yeri listeler.",
+    "short": {
+      "title": "Kısaca",
+      "p1": "Hesap yok, analiz yok, reklam yok, takip yok. Internet Monitor'ü yapanlar geçmişinizi, ayarlarınızı veya uyarılarınızı göremez."
+    },
+    "stored": {
+      "title": "Bilgisayarınızda neler saklanır",
+      "p1": "Tarayıcınızın tuttuğu birkaç küçük tercih dışında her şey uygulamanın klasöründe (uygulamanın yanında veya Microsoft Store sürümü için %LOCALAPPDATA%\\InternetMonitor içinde) tutulur.",
+      "li1": "config.json: ayarlarınız. Buna webhook URL'niz, Telegram token'ınız ve sohbet kimliğiniz, ntfy konunuz ve token'ınız dahildir; hepsi düz metin olarak kaydedilir. Bu dosyayı paylaşmayın.",
+      "li2": "logs klasörü: her kontrol, kesinti, hız testi ve traceroute sonucu, kayıtların düzenlenmediğini kanıtlayan günlük mühürler ve uygulamanın ne yaptığını gösteren tanılama kaydı app.log. 90 günden eski dosyalar otomatik olarak silinir.",
+      "li3": "notification.wav: yüklediyseniz özel uyarı sesiniz.",
+      "li4": ".session: mevcut açılış için panel anahtarı. Uygulama her başladığında yenilenir.",
+      "li5": "Tarayıcınız temanızı ve dilinizi hatırlar, böylece panel bıraktığınız gibi açılır. Ayrıca en son gördüğünüz Yenilikler ve dış uyarılar kartında “Bunu istiyorum”a tıklayıp tıklamadığınız gibi küçük işaretleri de saklar. Bunların hiçbiri bir yere gönderilmez.",
+      "li6": "case.json: Şikayetler sayfasına girdiğiniz bilgiler; örneğin sağlayıcınız, paketiniz, ücretiniz, hat ve hesap numaralarınız ve şikayet kayıtlarınız. Yalnızca şikayet metninizi ve kanıt paketinizi doldurmak için kullanılır ve siz paylaşmadıkça bilgisayarınızdan asla çıkmaz."
+    },
+    "network": {
+      "title": "Bilgisayarınızdan neler çıkar",
+      "p1": "Uygulama yalnızca aşağıdaki yerlere bağlanır. Her internet bağlantısında olduğu gibi her biri IP adresinizi görür ve kendi gizlilik politikası geçerlidir.",
+      "li1": "Bağlantı kontrolleri Ayarlar → Kontrol hedefleri'ndeki hedeflere gider. Varsayılan olarak: Google ve Cloudflare DNS sunucuları (8.8.8.8 ve 1.1.1.1), connectivitycheck.gstatic.com ve www.google.com ile www.cloudflare.com için ad sorguları. Ayrıca kendi modeminizi de kontrol eder. Modeminiz izin veriyorsa (UPnP), uygulama dakikada bir hat durumunu, senkron hızını, çalışma süresini ve trafik sayaçlarını da okur. Bu bilgiler ev ağınızdan çıkmaz ve logs klasörüne router_DATE.jsonl adıyla kaydedilir. Bunu Ayarlar → Uygulama bölümünden kapatabilirsiniz.",
+      "li2": "Hız testleri varsayılan olarak speed.cloudflare.com adresine gider ve yalnızca siz bir test başlattığınızda veya zamanladığınızda. Test verisi cihazınızı tanımlayan hiçbir şey içermez.",
+      "li3": "Güncelleme denetimleri her 6 saatte bir (bunu Ayarlar'dan kapatabilirsiniz) veya “Güncellemeleri denetle”ye bastığınızda GitHub'a (api.github.com) gider. Bir güncellemeyi yüklemek onu GitHub'dan indirir.",
+      "li4": "Uyarılar ve haftalık özet, yalnızca siz kurduysanız şu hizmetlere gider: Discord, Slack, seçtiğiniz bir webhook, Telegram veya ntfy. Bunlar kesintilerin durumunu, saatlerini, sürelerini ve nedenlerini ya da bir hız testi sonucunu içerir. Uygulama bilgisayarınızın adını veya IP adresini eklemez.",
+      "li5": "Kayıt zaman damgaları yalnızca Ayarlar'da “Mühürlü kayıtlara zaman damgası ekle”yi açarsanız freetsa.org'a gider. Bu hizmet kayıtlarınızı değil, yalnızca günün mührünün 32 baytlık bir hash'ini alır.",
+      "li6": "Bir kesinti başladığında uygulama, bağlantının nerede durduğunu görmek için ilk kontrol hedefinize doğru bir traceroute çalıştırır. Yol üzerindeki yönlendiriciler, her traceroute'ta olduğu gibi bu paketleri görür."
+    },
+    "dashboard": {
+      "title": "Panel",
+      "p1": "Panel bu bilgisayardaki uygulama tarafından sunulur (127.0.0.1). Bilerek bir ağ adresiyle headless sürümü çalıştırmadığınız sürece ağınızdaki diğer cihazlar onu açamaz. Mevcut açılışın anahtarını tutan tek bir çerez kullanır. Dışarıdan hiçbir betik, yazı tipi veya görsel yüklemez."
+    },
+    "control": {
+      "title": "Kontrol sizde",
+      "p1": "Geçmişinizi silmek için logs klasörünü istediğiniz zaman silebilirsiniz. config.json'u silmek ayarlarınızı sıfırlar, case.json'u silmek şikayet bilgilerinizi siler. Uygulamayı tamamen kaldırmak için Ayarlar → Uygulama'da “Windows ile başlat”ı kapatın, uygulamadan çıkın ve klasörünü silin. Microsoft Store sürümü Windows Ayarlar → Uygulamalar'dan kaldırılır, ardından %LOCALAPPDATA%\\InternetMonitor klasörünü silebilirsiniz."
+    },
+    "changes": {
+      "title": "Bu sayfadaki değişiklikler",
+      "p1": "Yeni bir sürüm, uygulamanın neyi sakladığını veya nereye bağlandığını değiştirirse bu sayfa güncellenir ve değişiklik Yenilikler'de listelenir. En üstteki tarih son güncellemeyi gösterir."
+    },
+    "contact": {
+      "title": "Sorular",
+      "p1": "Bize İletişim sayfasındaki herhangi bir kanaldan ulaşın veya github.com/Khaymah/internet-monitor adresinde bir issue açın. Biz istemedikçe config.json, case.json veya kayıtlarınızı göndermeyin; bunlarda webhook adresiniz, token'ınız, hesap bilgileriniz veya geçmişiniz olabilir."
+    }
+  },
+  "terms": {
+    "intro": "Internet Monitor'ü kullanmak ücretsizdir ve kaynak kodu Elastic License 2.0 kapsamında herkese açıktır. Bu sayfa bunun ne anlama geldiğini sade bir dille açıklar. Buradaki herhangi bir şey lisanstan farklıysa lisans geçerlidir.",
+    "use": {
+      "title": "Neler yapabilirsiniz",
+      "p1": "Internet Monitor'ü evde veya işte ücretsiz kullanabilirsiniz. Ayrıca kopyalayabilir, değiştirebilir ve paylaşabilirsiniz. Paylaşırken lisansı da ekleyin; değiştirdiyseniz bunu açıkça belirtin.",
+      "p2": "Internet Monitor'ü başkalarına barındırılan veya yönetilen bir hizmet olarak sunamazsınız ve lisansını, telif hakkını veya diğer bildirimlerini kaldıramaz ya da gizleyemezsiniz.",
+      "p3": "2.0.0'dan önceki sürümler MIT lisansıyla yayımlandı."
+    },
+    "warranty": {
+      "title": "Garanti yok",
+      "p1": "Uygulama olduğu gibi sunulur. Lisans şöyle der:",
+      "quote": "Yasaların izin verdiği ölçüde yazılım, hiçbir garanti veya koşul olmaksızın olduğu gibi sunulur ve lisans veren, bu koşullardan ya da yazılımın kullanımından veya niteliğinden doğan hiçbir zarardan, hangi tür yasal talep olursa olsun, size karşı sorumlu olmaz."
+    },
+    "measurements": {
+      "title": "Ölçümler hakkında",
+      "p1": "Sonuçlar bilgisayarınızdan ölçülür. Wi-Fi sinyali, ağınızdaki diğer cihazlar, bir güvenlik duvarı veya bilgisayarın uykuya geçmesi bunları etkileyebilir. Raporlar bilgisayarınızın gördüklerinin bir kaydıdır, onaylı bir ölçüm değildir; sağlayıcınız bunları kabul edebilir de etmeyebilir de."
+    },
+    "fair": {
+      "title": "Adil kullanın",
+      "p1": "Kontrolleri ve hız testlerini yalnızca kullanma izniniz olan sunuculara yönlendirin. Yönetmediğiniz sunuculara karşı çok kısa aralıklar ayarlamayın. Cloudflare, GitHub, Discord, Slack veya Telegram'ı uygulama üzerinden kullandığınızda onların kendi koşulları geçerlidir."
+    },
+    "changes": {
+      "title": "Değişiklikler",
+      "p1": "Bu koşullar yeni bir sürümde değişebilir. En üstteki tarih son güncellemeyi gösterir ve değişiklikler Yenilikler'de listelenir."
+    },
+    "contact": {
+      "title": "Sorular",
+      "p1": "Bize İletişim sayfasındaki herhangi bir kanaldan ulaşın."
+    }
+  }
+}

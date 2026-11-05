@@ -1,0 +1,23 @@
+{
+  "nav_support": "Nous soutenir",
+  "support_eyebrow": "Soutenir le projet",
+  "support_title": "Aidez Internet Monitor à rester gratuit",
+  "support_intro": "Internet Monitor est gratuit et le restera. S'il vous a évité une dispute avec votre fournisseur, un petit don nous aide à continuer à le développer. C'est entièrement facultatif.",
+  "support_none": "Les informations pour faire un don ne sont pas encore disponibles. Merci de vouloir nous aider !",
+  "support_thanks": "Merci. Chaque contribution, petite ou grande, compte.",
+  "support_safety": "Nous n'acceptons les dons que via les coordonnées de cette page. Nous ne vous demanderons jamais de mot de passe, de numéro de carte ni de code de vérification.",
+  "support": {
+    "paypal": {
+      "name": "PayPal",
+      "how": "De n'importe où, avec une carte ou votre solde PayPal."
+    },
+    "vodafone": {
+      "name": "Vodafone Cash",
+      "how": "Envoyez à ce numéro depuis votre portefeuille Vodafone Cash."
+    },
+    "instapay": {
+      "name": "InstaPay",
+      "how": "Depuis n'importe quel compte bancaire égyptien, via l'application InstaPay."
+    }
+  }
+}

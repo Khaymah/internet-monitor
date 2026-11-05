@@ -27,6 +27,26 @@ dashboard from a browser.
 `--listen 0.0.0.0` opens the dashboard to your home network. Without it, the dashboard
 only answers on the device itself (`127.0.0.1`).
 
+## Use it from your phone
+
+1. Open the dashboard on your phone. The easiest way is to scan a QR code with the
+   phone's camera while the phone is on the same Wi-Fi:
+   - the headless build prints one under the links when it starts (read it again
+     with `docker logs internet-monitor` or `journalctl -u internet-monitor`), or
+   - open the dashboard on a PC and go to **Settings → App → Open on your phone**.
+     This card only appears when the dashboard is open to your network.
+
+   The code is a link with your access key in it, so don't post a photo of it.
+2. In the phone's browser, choose **Add to Home screen** (Android: the ⋮ menu; iPhone:
+   the Share button). You get an Internet Monitor icon that opens the dashboard.
+3. The access key can change when the app restarts. If the phone then says to open the
+   dashboard from the app, scan the code again.
+
+The dashboard has no offline mode and doesn't install a service worker. Browsers only
+allow service workers on https or on the device itself, and the dashboard on your
+network is plain http. For the same reason, some phone browsers open the home-screen
+icon as a normal browser tab instead of a full-screen app.
+
 ### Start it automatically (systemd)
 
 Save this as `/etc/systemd/system/internet-monitor.service`, replacing `pi` with your user:

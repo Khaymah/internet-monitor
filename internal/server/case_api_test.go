@@ -236,3 +236,18 @@ func TestEvidencePackIncludesSeals(t *testing.T) {
 		t.Fatalf("seal status = %+v", st)
 	}
 }
+
+func TestLogDaysCoverEveryDayOfTheRange(t *testing.T) {
+	loc := time.FixedZone("EET", 2*3600)
+	from := time.Date(2026, 11, 3, 22, 30, 0, 0, time.UTC)
+	to := time.Date(2026, 11, 5, 0, 10, 0, 0, loc)
+	got := logDays(from, to, loc)
+	for _, want := range []string{"2026-11-03", "2026-11-04", "2026-11-05"} {
+		if !got[want] {
+			t.Errorf("missing %s in %v", want, got)
+		}
+	}
+	if got["2026-11-06"] || len(got) != 3 {
+		t.Errorf("unexpected days %v", got)
+	}
+}
