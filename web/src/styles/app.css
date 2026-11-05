@@ -1283,6 +1283,22 @@ select.input {
   white-space: normal;
 }
 
+.remote-alerts-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 16px;
+}
+
+.remote-alerts-thanks {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  color: var(--accent-green);
+}
+
 .savebar {
   position: fixed;
   bottom: 20px;
