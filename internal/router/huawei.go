@@ -66,7 +66,7 @@ func webClient(host string, timeout time.Duration) (*http.Client, error) {
 		Jar:     jar,
 		Transport: &http.Transport{
 			Proxy:           nil,
-			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+			TLSClientConfig: routerTLS(),
 		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			if len(via) > 5 || !isPrivate(req.URL.Hostname()) {
@@ -75,6 +75,34 @@ func webClient(host string, timeout time.Duration) (*http.Client, error) {
 			return nil
 		},
 	}, nil
+}
+
+func routerTLS() *tls.Config {
+	var suites []uint16
+	for _, c := range tls.CipherSuites() {
+		suites = append(suites, c.ID)
+	}
+	for _, c := range tls.InsecureCipherSuites() {
+		suites = append(suites, c.ID)
+	}
+	return &tls.Config{
+		InsecureSkipVerify: true,
+		MinVersion:         tls.VersionTLS10,
+		CipherSuites:       suites,
+	}
+}
+
+func (s *session) pick(ctx context.Context, host string) error {
+	var errs []error
+	for _, scheme := range []string{"https://", "http://"} {
+		s.base = scheme + host
+		_, _, err := s.get(ctx, "/")
+		if err == nil {
+			return nil
+		}
+		errs = append(errs, fmt.Errorf("%s: %w", scheme+host, err))
+	}
+	return errors.Join(errs...)
 }
 
 func loginHash(user, password, param, token string) string {
@@ -235,7 +263,10 @@ func (r WebReader) Read(ctx context.Context) (WebStats, error) {
 	if err != nil {
 		return WebStats{}, err
 	}
-	s := &session{client: client, base: "http://" + r.Host}
+	s := &session{client: client}
+	if err := s.pick(ctx, r.Host); err != nil {
+		return WebStats{}, err
+	}
 	user := r.User
 	if user == "" {
 		user = "admin"

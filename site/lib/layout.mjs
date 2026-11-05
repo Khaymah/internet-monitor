@@ -1,5 +1,5 @@
 import { icon } from "./icons.mjs";
-import { esc } from "./util.mjs";
+import { esc, verificationMeta } from "./util.mjs";
 
 export const PAGES = [
   { id: "home", path: "" },
@@ -87,6 +87,7 @@ ${alt}
 <meta property="og:locale" content="${OG_LOCALE[ctx.lang] ?? "en_GB"}">
 ${ogAlt}
 <meta name="twitter:card" content="summary_large_image">
+${verificationMeta()}
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0c1015">
 <link rel="icon" type="image/png" href="${site.base}assets/favicon.png">

@@ -12,7 +12,7 @@ import { renderDownload } from "./lib/page-download.mjs";
 import { renderGuide, renderNotFound, renderTutorial } from "./lib/page-docs.mjs";
 import { renderHome } from "./lib/page-home.mjs";
 import { loadReleases } from "./lib/releases.mjs";
-import { esc, fill, formatDate, formatSize, inline, lookup, shape, write } from "./lib/util.mjs";
+import { esc, fill, formatDate, formatSize, inline, lookup, shape, verificationMeta, write } from "./lib/util.mjs";
 
 const SITE_DIR = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(SITE_DIR, "..");
@@ -175,6 +175,7 @@ function rootPage(site, dicts) {
 <link rel="canonical" href="${site.origin}${site.base}">
 ${alternates}
 <link rel="alternate" hreflang="x-default" href="${site.origin}${site.base}">
+${verificationMeta()}
 <meta property="og:title" content="${esc(dicts.en.home.title)}">
 <meta property="og:description" content="${esc(dicts.en.home.description)}">
 <meta property="og:url" content="${site.origin}${site.base}">
