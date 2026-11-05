@@ -15,6 +15,11 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Plain words** (rc.13): app and website wording reviewed in all five languages: the two
+  desktop versions are "runs in the background" / "opens like a regular program", and
+  Latency, Jitter and Packet loss read Response time, Fluctuation and Data loss.
+- **Website download page and guide** (rc.13): one big button for your computer, other
+  systems and Raspberry Pi tucked away; a six-step guide with screenshots of the app.
 - **Video tours** (rc.13): one narrated video per page (overview, history, notifications,
   speed, complaints, report, settings), each opened by a "How this page works" button in
   the page header; `/tutorial` is a gallery with `?v=<id>` deep links. `tools/tutorial/`
