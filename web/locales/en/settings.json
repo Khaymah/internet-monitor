@@ -149,5 +149,14 @@
   "phone_qr_alt": "QR code that opens the dashboard on your phone",
   "phone_address": "Address on your network",
   "phone_warning_title": "This code contains your access key",
-  "phone_warning": "Anyone on your network who scans it can open your dashboard, so don't share a photo of it. If your phone later says to open the dashboard from the app, the key has changed: scan the code again."
+  "phone_warning": "Anyone on your network who scans it can open your dashboard, so don't share a photo of it. If your phone later says to open the dashboard from the app, the key has changed: scan the code again.",
+  "tour_watch": "Watch the settings tour",
+  "tut_title": "A tour of the Settings page",
+  "tut_intro": "A short narrated video that explains every setting: what it does and why you might change it.",
+  "tut_stream_note": "The video streams from GitHub only when you press play. Nothing is downloaded before that.",
+  "tut_subtitles_note": "The narration is in English, with subtitles in every app language. Turn them on or switch them from the video's subtitles (CC) menu.",
+  "tut_error": "The video couldn't be loaded from GitHub. Try again in a moment, or open it on GitHub.",
+  "tut_error_offline": "You seem to be offline. Connect to the internet and try again.",
+  "tut_open_github": "Open on GitHub",
+  "tut_open_settings": "Go to Settings"
 }

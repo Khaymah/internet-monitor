@@ -1,0 +1,14 @@
+{
+  "name": "internet-monitor-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun build.mjs",
+    "check": "bun check-links.mjs",
+    "serve": "bun serve.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans-arabic": "5.3.0",
+    "@fontsource/poppins": "5.3.0"
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "site": {
+    "name": "Internet Monitor",
+    "skip": "İçeriğe geç",
+    "menu": "Menü",
+    "language": "Dil",
+    "theme": "Açık ve koyu tema arasında geçiş yap",
+    "main_nav": "Ana menü",
+    "logo_alt": "Internet Monitor logosu"
+  },
+  "nav": {
+    "home": "Ana sayfa",
+    "download": "İndir",
+    "tutorial": "Video",
+    "guide": "Rehber",
+    "faq": "SSS",
+    "privacy": "Gizlilik",
+    "changelog": "Yenilikler"
+  },
+  "footer": {
+    "tagline": "Her internet kesintisini kaydeden ücretsiz bir uygulama; böylece kanıtla şikayet edebilirsiniz.",
+    "license": "Elastic License 2.0 — kişisel ve ticari kullanım için ücretsiz",
+    "source": "GitHub'da kaynak kodu",
+    "issues": "Sorun bildir",
+    "languages": "Diller"
+  },
+  "home": {
+    "title": "Internet Monitor — Kesintilerinizi belgeleyin. Kanıtla şikayet edin.",
+    "description": "Windows, Mac ve Linux için her internet kesintisini ve yavaşlamayı kaydeden, bunu sağlayıcınıza gönderebileceğiniz kanıta dönüştüren ücretsiz bir uygulama. Hesap yok, takip yok.",
+    "eyebrow": "Ücretsiz · Windows, Mac, Linux · Hesap gerekmez",
+    "hero_title": "Kesintilerinizi belgeleyin. Kanıtla şikayet edin.",
+    "hero_sub": "Internet Monitor evinizdeki interneti sessizce izler. İnternet her kesildiğinde ya da yavaşladığında ne zaman, ne kadar sürdüğünü ve nedenini not eder. Sağlayıcınızı aradığınızda elinizde sadece bir his değil, gerçekler olur.",
+    "cta_download": "Ücretsiz indir",
+    "cta_download_os": "{os} için indir",
+    "cta_guide": "Nasıl çalışır",
+    "version_note": "Sürüm {version} · {date}",
+    "hero_alt": "Internet Monitor paneli: bağlantı durumu, gecikme, kesinti zaman çizelgesi ve hattınızla ilgili ipuçları",
+    "benefits_title": "Neden kullanılır",
+    "benefits_sub": "Sağlayıcıyı kanıtsız aramak nadiren işe yarar. Bu uygulama size kanıtı verir.",
+    "benefits": [
+      {
+        "title": "Her kesinti kayıt altında",
+        "body": "Tam başlangıç saati, ne kadar sürdüğü ve hangi kısmın çöktüğü. Fark etmediğiniz kısa kopmalar bile."
+      },
+      {
+        "title": "Modeminiz mi, sağlayıcınız mı?",
+        "body": "Sorunun evinizde mi yoksa sağlayıcıda mı olduğunu söyler; böylece kimi arayacağınızı bilirsiniz."
+      },
+      {
+        "title": "Gönderilmeye hazır şikayet",
+        "body": "Tek tıkla kendi ölçümlerinizden oluşan bir şikayet metni ve eklemeniz için bir kanıt dosyası alırsınız."
+      },
+      {
+        "title": "Ödediğiniz hızı alıyor musunuz?",
+        "body": "Hız testi yapın ya da zamanlayın, sonuçları sözleşmenizdeki hızla karşılaştırın."
+      }
+    ],
+    "shots_title": "Yakından bakın",
+    "shots_sub": "İnternetinizin gerçekte ne yaptığını gösteren sade ekranlar.",
+    "shots": {
+      "overview": "Anlık durum, son 24 saat ve hattınızla ilgili açık ipuçları",
+      "complaints": "Şikayetleriniz, sağlayıcının yanıt süresi ve her biri için kanıt",
+      "report": "PDF olarak kaydedip gönderebileceğiniz aylık rapor",
+      "history": "Günün her kesintisi; saati, süresi ve nedeniyle"
+    },
+    "promise_title": "Ücretsiz ve baştan gizlilik odaklı",
+    "promise_sub": "İnternet geçmişiniz size aittir. Siz göndermedikçe bilgisayarınızdan asla çıkmaz.",
+    "promise": [
+      "Hesap yok, kayıt olmak yok",
+      "Reklam yok, takip yok, analiz yok",
+      "Verileriniz bilgisayarınızda kalır",
+      "Evde ve işte ücretsiz, kodu herkese açık"
+    ],
+    "promise_more": "Gizlilik politikasını okuyun",
+    "final_title": "Kanıt toplamaya bugün başlayın",
+    "final_sub": "Bir kez kurun, açık bırakın ve gerçeklerin birikmesine izin verin."
+  },
+  "download": {
+    "title": "Internet Monitor'ü indir — Windows, Mac, Linux, Raspberry Pi",
+    "description": "Internet Monitor'ü ücretsiz indirin ve Windows, Mac, Linux ve Raspberry Pi için basit adımlarla birkaç dakikada kurun.",
+    "h1": "Internet Monitor'ü indirin",
+    "intro": "Ücretsiz, hesap gerekmez. Aşağıdan bilgisayarınızı seçin, tek bir dosya indirin ve kısa adımları izleyin.",
+    "latest": "En son sürüm {version}, {date} tarihinde yayınlandı",
+    "detected": "Görünüşe göre {os} kullanıyorsunuz. Size uygun dosya bu:",
+    "pick": "Aşağıdan sisteminizi seçin.",
+    "phone": "Internet Monitor bir bilgisayarda çalışır. İndirmek için bu sayfayı bilgisayarınızda açın. Sonra paneli telefonunuzdan da görebilirsiniz.",
+    "os": {
+      "windows": "Windows",
+      "mac": "Mac",
+      "linux": "Linux",
+      "pi": "Raspberry Pi veya ev sunucusu"
+    },
+    "os_sub": {
+      "windows": "Windows 10 ve 11",
+      "mac": "Apple çip (M1 ve sonrası) veya Intel",
+      "linux": "Ubuntu, Debian ve benzerleri",
+      "pi": "7/24 çalışır, telefondan veya bilgisayardan açarsınız"
+    },
+    "tray": "Simge sürümü (önerilen)",
+    "tray_desc": "Saatin yanında küçük bir simgeyle arka planda sessizce çalışır. Hiçbir kesintiyi kaçırmamak için en iyisi.",
+    "window": "Pencere sürümü",
+    "window_desc": "Diğer uygulamalar gibi kendi penceresinde açılır.",
+    "mac_arm": "Apple çipli Mac (M1, M2, M3, M4…)",
+    "mac_intel": "Intel işlemcili Mac",
+    "mac_which": "Hangi Mac'iniz olduğundan emin değil misiniz? Apple menüsüne, sonra **Bu Mac Hakkında**'ya tıklayın. **Çip: Apple** yazıyorsa Apple çipi, **İşlemci: Intel** yazıyorsa Intel'i seçin.",
+    "pi_64": "Raspberry Pi 4 veya 5 (64 bit)",
+    "pi_32": "Raspberry Pi 2 veya 3 ya da 32 bit sistem",
+    "pi_amd64": "Diğer Linux bilgisayar veya sunucu (64 bit)",
+    "btn": "İndir",
+    "preview_only": "Şimdilik yalnızca ön sürümde",
+    "fallback": "Dosya listesini şu anda yükleyemedik. Tüm dosyalar GitHub'daki indirme sayfasında.",
+    "fallback_btn": "İndirme sayfasını aç",
+    "preview_title": "Sonraki sürümü deneyin (ön sürüm)",
+    "preview_body": "{version} sürümü ({date}) en yeni özellikleri içeren bir test sürümüdür ve hâlâ hatalar içerebilir. Uygulama kendiliğinden asla ön sürüme geçmez.",
+    "preview_btn": "Ön sürüm dosyalarını gör",
+    "install_title": "Nasıl kurulur",
+    "install_sub": "Yaklaşık iki dakika sürer ve yalnızca bir kez yapılır.",
+    "steps": {
+      "windows": [
+        "Yukarıdaki dosyayı indirin.",
+        "Belgeler içinde örneğin **Internet Monitor** adlı yeni bir klasör açın ve dosyayı içine taşıyın. Uygulama kayıtlarını kendi yanında tutar.",
+        "Başlatmak için dosyaya çift tıklayın.",
+        "**Windows bilgisayarınızı korudu** yazan mavi bir pencere çıkarsa **Ek bilgi**'ye, sonra **Yine de çalıştır**'a tıklayın. Bu uyarı bir sorun olduğu için değil, uygulama yeni ve imzasız olduğu için çıkar.",
+        "Saatin yanında küçük bir simge belirir (görmüyorsanız **^** okuna tıklayın). Simgeye tıklayıp **Paneli aç**'ı seçin.",
+        "Panelde **Ayarlar → Uygulama**'yı açın ve **Windows ile başlat**'ı açın; böylece bilgisayar yeniden başladıktan sonra da izlemeye devam eder."
+      ],
+      "mac": [
+        "Yukarıdan Mac'inize uygun dosyayı indirin.",
+        "Belgeler içinde örneğin **Internet Monitor** adlı yeni bir klasör açın ve dosyayı içine taşıyın.",
+        "**Terminal**'i açın (Spotlight ile arayın), **chmod +x** yazıp bir boşluk bırakın, dosyayı Terminal penceresine sürükleyin ve Enter'a basın. Bu, dosyanın çalışmasına izin verir.",
+        "Dosyaya sağ tıklayın (veya Control ile tıklayın), **Aç**'ı seçin, sonra yine **Aç**'a tıklayın. Bu yalnızca ilk sefer gerekir.",
+        "Mac'iniz dosyanın **tanımlanamayan bir geliştiriciden geldiği için açılamadığını** söyler ve Aç düğmesi göstermezse **Sistem Ayarları → Gizlilik ve Güvenlik**'e gidin, aşağı kaydırın ve **Yine de Aç**'a tıklayın.",
+        "Üstteki menü çubuğunda bir simge belirir. Ona tıklayıp **Paneli aç**'ı seçin."
+      ],
+      "linux": [
+        "Yukarıdaki dosyayı indirin ve ayrı bir klasöre taşıyın.",
+        "Dosyaya sağ tıklayın, **Özellikler → İzinler**'i seçin ve **Dosyanın program olarak çalıştırılmasına izin ver**'i işaretleyin. Ya da terminalde dosya üzerinde **chmod +x** çalıştırın.",
+        "Dosyaya çift tıklayın veya terminalden çalıştırın.",
+        "Paneli simgeden ya da pencere sürümünde uygulama penceresinden açın."
+      ],
+      "pi": [
+        "Yukarıdan cihazınıza uygun dosyayı indirin.",
+        "Terminalde dosya üzerinde **chmod +x** çalıştırın, sonra telefonunuz ve bilgisayarınız erişebilsin diye **--listen 0.0.0.0** ile başlatın.",
+        "Özel anahtarınızı içeren bir bağlantı yazdırır. Evdeki herhangi bir telefon veya bilgisayardan açın.",
+        "Elektrik kesintisinden sonra kendiliğinden başlaması için tam rehberi izleyin."
+      ]
+    },
+    "pi_guide": "Tam Raspberry Pi rehberi",
+    "advanced_title": "İleri düzey kullanıcılar için",
+    "advanced_sums": "İndirdiğiniz dosyayı SHA256SUMS ile doğrulayın",
+    "advanced_all": "GitHub'da tüm sürümler ve sürüm notları",
+    "advanced_source": "Kaynak koddan kendiniz derleyin"
+  },
+  "tutorial": {
+    "title": "Video eğitim — Internet Monitor",
+    "description": "Internet Monitor'ün nasıl kurulduğunu, panelin nasıl okunduğunu ve kanıtla nasıl şikayet gönderildiğini gösteren kısa bir video izleyin.",
+    "h1": "Nasıl çalıştığını izleyin",
+    "intro": "Her şeyi gösteren kısa bir video: uygulamayı kurmak, paneli okumak ve ilk şikayetinizi göndermek.",
+    "video_label": "Internet Monitor eğitim videosu",
+    "subtitles": "Altyazılar: {langs}. Oynatıcıdaki CC düğmesini kullanın.",
+    "no_subtitles": "Altyazılar yolda.",
+    "preview_note": "Bu video {version} ön sürümüyle birlikte geliyor.",
+    "soon_title": "Video yakında geliyor",
+    "soon_body": "Hâlâ kaydediyoruz. O zamana kadar adım adım rehber her şeyi anlatıyor.",
+    "download_video": "Videoyu indir",
+    "next": "Adım adım rehberi okuyun"
+  },
+  "guide": {
+    "title": "Başlangıç rehberi — 5 adımda ilk şikayetiniz",
+    "description": "Internet Monitor için basit bir rehber: kurun, açık bırakın ve sağlayıcınıza gerçek ölçümlerle desteklenen bir şikayet gönderin.",
+    "h1": "5 adımda ilk şikayetiniz",
+    "intro": "Teknik bilgi gerekmez. \"İnternetim sürekli kopuyor\"dan sağlayıcınızın geçiştiremeyeceği bir şikayete böyle ulaşırsınız.",
+    "steps": [
+      {
+        "title": "Kurun",
+        "body": "Uygulamayı bilgisayarınıza indirin ve başlatın. İki dakika sürer ve indirme sayfası size yol gösterir."
+      },
+      {
+        "title": "Açık bırakın",
+        "body": "Her gün arka planda çalışsın. İnterneti birkaç saniyede bir kontrol eder. En iyi kanıtı açık kalan ve modeme kabloyla bağlı bir bilgisayar verir. Bilgisayarın kapalı ya da uykuda olduğu zamanlar kesinti olarak değil, \"izlenmedi\" olarak işaretlenir."
+      },
+      {
+        "title": "Hat bilgilerinizi girin",
+        "body": "Panelde **Şikayetler**'i açın ve ülkenizi, sağlayıcınızı, paket hızınızı ve hat numaranızı girin. Bunlar yalnızca bilgisayarınızda saklanır ve şikayetinizi doldurmak için kullanılır."
+      },
+      {
+        "title": "Kesinti olunca Şikayetler'i açın",
+        "body": "**Son 7 günde hattınız** kartı neler olduğunu gösterir. Hattınız koptuysa şikayet kaydetmenizi önerir. Sağlayıcınızı arayın ve size verdikleri şikayet numarasını not edin."
+      },
+      {
+        "title": "Kanıtı gönderin",
+        "body": "Şikayetinizi açın ve kesintilerinizi, sürelerini ve hızınızı içeren hazır bir mesaj için **Metni kopyala**'ya basın. Kanıt dosyası için **Kanıtı indir (ZIP)**'e basın ve ikisini de sağlayıcınıza gönderin. Zamanında yanıt vermezlerse sayfa, düzenleyici kuruma nasıl başvuracağınızı gösterir."
+      }
+    ],
+    "tip_title": "Bilmekte fayda var",
+    "tips": [
+      "Aylık rapor (Geçmiş → Aylık rapor → Yazdır veya PDF olarak kaydet) tüm ayı tek sayfada özetler.",
+      "Hızınızı tek seferlik değil zaman içinde göstermek için Ayarlar'dan zamanlanmış hız testlerini açın.",
+      "İnternet kesildiğinde uyarılar Telegram, Discord veya ntfy ile telefonunuza gelebilir."
+    ],
+    "pi_title": "Raspberry Pi'de 7/24 çalıştırın",
+    "pi_intro": "En güçlü kanıt hiç uyumayan bir cihazdan gelir. Uykuya geçen bir dizüstü bilgisayar boşluklar bırakır. Modeme kabloyla bağlı küçük bir Raspberry Pi gece gündüz izler ve paneli telefonunuzdan açarsınız.",
+    "pi_steps": [
+      "Raspberry Pi dosyasını indirin: Pi 4 veya 5 için **arm64**, Pi 2 veya 3 için **armv7**.",
+      "Çalıştırılabilir yapın ve evdeki diğer cihazlar erişebilsin diye **--listen 0.0.0.0** ile başlatın.",
+      "Özel anahtarınızı içeren bir bağlantı (ve bir QR kodu) yazdırır. Telefon kamerasıyla okutun, panel açılır. Bu bağlantıyı kimseyle paylaşmayın.",
+      "Tam rehberdeki birkaç satırla elektrik kesintisinden sonra kendiliğinden başlamasını sağlayın. Docker ile de çalışır."
+    ],
+    "pi_more": "Tam Raspberry Pi ve Docker rehberi (İngilizce)",
+    "cta": "Internet Monitor'ü indir"
+  },
+  "faq": {
+    "title": "Sorular ve yanıtlar — Internet Monitor",
+    "description": "Internet Monitor'ün nasıl çalıştığı, neleri sakladığı ve sık karşılaşılan sorunların nasıl çözüleceği hakkında kısa yanıtlar.",
+    "from_app": "Bunlar uygulamanın içindeki yanıtların aynısıdır.",
+    "more": "Yanıtınızı bulamadınız mı? GitHub'da bize sorun"
+  },
+  "privacy": {
+    "title": "Gizlilik politikası — Internet Monitor",
+    "description": "Internet Monitor verilerinizi bilgisayarınızda tutar. Hesap yok, analiz yok, takip yok. Sakladığı her şey ve bağlandığı her yer burada.",
+    "from_app": "Bu, uygulamanın içinde gösterilen gizlilik politikasının aynısıdır.",
+    "site_title": "Bu web sitesi hakkında",
+    "site_body": "Bu sitede çerez, izleyici ya da dışarıdan yüklenen betik veya yazı tipi yoktur. Yalnızca temanızı ve dilinizi kendi tarayıcınızda hatırlar. İndirmeler doğrudan GitHub'dan gelir."
+  },
+  "changelog": {
+    "title": "Yenilikler — Internet Monitor",
+    "description": "Internet Monitor'deki son değişiklikler: yeni özellikler, düzeltmeler ve ön sürüm notları.",
+    "h1": "Yenilikler",
+    "intro": "Her sürümde neler değişti. Aşağıdaki notlar İngilizcedir.",
+    "summary": "Özet",
+    "previews": "Ön sürüm notları, en yenisi önce",
+    "on_github": "Bu sürümü GitHub'da görün"
+  },
+  "notfound": {
+    "title": "Sayfa bulunamadı — Internet Monitor",
+    "h1": "Bu sayfa yok",
+    "body": "Bağlantı eski ya da yanlış yazılmış olabilir. Şu sayfalar yardımcı olabilir:"
+  },
+  "root": {
+    "title": "Internet Monitor — dilinizi seçin",
+    "pick": "Dilinizi seçin"
+  }
+}

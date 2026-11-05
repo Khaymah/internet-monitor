@@ -8,7 +8,9 @@ nudge-state.json
 *.exe*
 .serena
 .specify
-.claude
+.claude/*
+!.claude/settings.json
+!.claude/hooks/
 tmp
 .playwright-mcp
 *.txt

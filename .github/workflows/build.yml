@@ -76,6 +76,28 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
 
+  site:
+    name: "🌐 Website (build / links)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install
+        working-directory: site
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bun site/build.mjs
+
+      - name: Check links
+        run: bun site/check-links.mjs
+
   # ══════════════════════════════════════════════════════════════
   # QUALITY — gofmt / vet / tests (must pass before build/release)
   # ══════════════════════════════════════════════════════════════
@@ -438,6 +460,7 @@ jobs:
       cancel-in-progress: false
     permissions:
       contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v7
 
@@ -533,3 +556,17 @@ jobs:
             dist/internet-monitor-headless-linux-armv7
             dist/SHA256SUMS
           body_path: release-notes.md
+
+      - name: Upload the settings tour video
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.version.outputs.new_tag }}
+        run: |
+          gh release upload "$TAG" docs/tutorial/internet-monitor-tutorial.mp4 \
+            --repo "$GITHUB_REPOSITORY" --clobber
+
+      # IMPORTANT: a release made with GITHUB_TOKEN does not trigger other workflows, so the website is rebuilt here.
+      - name: Update the website
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --repo "${{ github.repository }}" --ref "${{ github.ref_name }}" || echo "::warning::Could not start the website workflow. Run it by hand from the Actions tab."
