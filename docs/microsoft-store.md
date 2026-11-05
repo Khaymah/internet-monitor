@@ -31,9 +31,11 @@ so Store users never see the SmartScreen warning.
    suitable answer: "Internet Monitor is a desktop app (Win32) that runs a local
    monitoring service, shows a tray icon, and runs the system's tracert and netsh
    tools to diagnose outages."
-4. **Privacy policy URL:** the in-app Privacy page text is also in the repository. Link to
-   `https://github.com/Khaymah/internet-monitor` or a hosted copy. The app collects no
-   personal data and has no telemetry.
+4. **Privacy policy URL:** `https://github.com/Khaymah/internet-monitor/blob/master/PRIVACY.md`.
+   It's the same text as the in-app Privacy page (`web/locales/*/legal.json`), in English and
+   Arabic. The in-app page itself can't be used, since it's only served on 127.0.0.1. The
+   link works once `PRIVACY.md` is on `master`; when the app's data or connections change,
+   update both and the date.
 
 ## What changes in the Store build
 

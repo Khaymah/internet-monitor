@@ -15,7 +15,7 @@ export interface LegalDoc {
 }
 
 export const PRIVACY: LegalDoc = {
-  updated: "2026-10-24",
+  updated: "2026-11-05",
   intro: "privacy.intro",
   sections: [
     {
@@ -33,13 +33,21 @@ export const PRIVACY: LegalDoc = {
         "privacy.stored.li3",
         "privacy.stored.li4",
         "privacy.stored.li5",
+        "privacy.stored.li6",
       ],
     },
     {
       id: "network",
       title: "privacy.network.title",
       body: ["privacy.network.p1"],
-      list: ["privacy.network.li1", "privacy.network.li2", "privacy.network.li3", "privacy.network.li4"],
+      list: [
+        "privacy.network.li1",
+        "privacy.network.li2",
+        "privacy.network.li3",
+        "privacy.network.li4",
+        "privacy.network.li5",
+        "privacy.network.li6",
+      ],
     },
     {
       id: "dashboard",
