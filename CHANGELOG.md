@@ -15,6 +15,8 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Verification codes in the site** (rc.12): the Google and Bing verification codes are
+  built-in defaults; `vars.*` or `secrets.*` of the same names override them.
 - **Website redesign and SEO** (rc.11): site pages reuse the app's styles, icons and
   content (FAQ, What's new, Privacy, plus new About, Contact, Support, Terms), the app's
   theme animation, per-page SEO metadata, JSON-LD, OG images, `llms.txt`; the link check
