@@ -15,6 +15,13 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Video tours** (rc.13): one narrated video per page (overview, history, notifications,
+  speed, complaints, report, settings), each opened by a "How this page works" button in
+  the page header; `/tutorial` is a gallery with `?v=<id>` deep links. `tools/tutorial/`
+  builds all or chosen videos from `videos/<id>.json`; the release uploads them as
+  `internet-monitor-tour-<id>.mp4`, and subtitles and posters ship in
+  `web/public/tutorial/<id>/`. The website lists all seven and falls back to
+  `internet-monitor-tutorial.mp4` for the Settings video of older releases.
 - **Website** (rc.9): `site/`, a static GitHub Pages site in five languages (home,
   download, guide, tutorial, FAQ, privacy, what's new), rebuilt by `pages.yml` on every
   release; see `docs/website.md`.
