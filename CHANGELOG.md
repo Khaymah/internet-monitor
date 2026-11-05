@@ -15,6 +15,9 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Mac installer** (rc.14): universal `internet-monitor-macos.dmg` and
+  `internet-monitor-gui-macos.dmg`; drag to Applications, no Terminal. Records live in
+  Application Support when run from Applications, and updates open the download page.
 - **Plain words** (rc.13): app and website wording reviewed in all five languages: the two
   desktop versions are "runs in the background" / "opens like a regular program", and
   Latency, Jitter and Packet loss read Response time, Fluctuation and Data loss.
