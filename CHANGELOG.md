@@ -15,6 +15,11 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Use it from your phone**: a web app manifest and home-screen icons, so "Add to
+  Home screen" gives a named Internet Monitor icon. When the dashboard is open to
+  the network, Settings → App shows a QR code with the LAN link
+  (`GET /api/phone`, `GET /api/phone/qr.png`), and the headless build prints the
+  same code in the terminal at startup.
 - **Privacy policy** (rc.6): `PRIVACY.md` in English and Arabic, the public
   copy of the in-app Privacy page, which now also covers `case.json`, ntfy,
   log timestamps, the outage traceroute and the Store data folder.

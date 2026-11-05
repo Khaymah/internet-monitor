@@ -1259,6 +1259,30 @@ select.input {
   border: 0;
 }
 
+.phone-qr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.phone-qr > .stack {
+  flex: 1 1 240px;
+}
+
+.phone-qr-code {
+  flex: none;
+  width: 196px;
+  height: 196px;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  image-rendering: pixelated;
+}
+
+.phone-qr .list-row-title {
+  white-space: normal;
+}
+
 .savebar {
   position: fixed;
   bottom: 20px;
