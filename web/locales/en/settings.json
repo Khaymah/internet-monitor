@@ -129,5 +129,16 @@
   "f_router": "Read the router's status",
   "f_router_hint": "Asks your router, over UPnP on your home network, for the line state, sync speed, uptime and traffic counters once a minute. Nothing leaves your network. It explains each outage and tracks your data usage.",
   "update_store": "This copy comes from the Microsoft Store, which installs updates for you.",
-  "f_startup_store": "Turn it on or off in Windows Settings → Apps → Startup."
+  "f_startup_store": "Turn it on or off in Windows Settings → Apps → Startup.",
+  "ra_title": "Coming soon: alerts even when the power is out",
+  "ra_body": "Today an alert can only leave your home once the internet is back, so you hear about a long outage after it ends. An optional outside service could notice when your home goes silent and alert your phone right away.",
+  "ra_want": "I want this",
+  "ra_hint": "Opens a page on GitHub in your browser. The app itself sends nothing.",
+  "ra_thanks": "Thanks — we'll mention it in What's new",
+  "phone_title": "Open on your phone",
+  "phone_sub": "Scan this code with your phone's camera while it's on the same Wi-Fi. To keep the dashboard one tap away, choose “Add to Home screen” in your phone's browser.",
+  "phone_qr_alt": "QR code that opens the dashboard on your phone",
+  "phone_address": "Address on your network",
+  "phone_warning_title": "This code contains your access key",
+  "phone_warning": "Anyone on your network who scans it can open your dashboard, so don't share a photo of it. If your phone later says to open the dashboard from the app, the key has changed: scan the code again."
 }

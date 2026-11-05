@@ -11,12 +11,12 @@
     },
     "stored": {
       "title": "Bilgisayarınızda neler saklanır",
-      "p1": "Tarayıcınızın tuttuğu iki küçük tercih dışında her şey uygulamanın klasöründe (uygulamanın yanında veya Microsoft Store sürümü için %LOCALAPPDATA%\\InternetMonitor içinde) tutulur.",
+      "p1": "Tarayıcınızın tuttuğu birkaç küçük tercih dışında her şey uygulamanın klasöründe (uygulamanın yanında veya Microsoft Store sürümü için %LOCALAPPDATA%\\InternetMonitor içinde) tutulur.",
       "li1": "config.json: ayarlarınız. Buna webhook URL'niz, Telegram token'ınız ve sohbet kimliğiniz, ntfy konunuz ve token'ınız dahildir; hepsi düz metin olarak kaydedilir. Bu dosyayı paylaşmayın.",
       "li2": "logs klasörü: her kontrol, kesinti, hız testi ve traceroute sonucu, kayıtların düzenlenmediğini kanıtlayan günlük mühürler ve uygulamanın ne yaptığını gösteren tanılama kaydı app.log. 90 günden eski dosyalar otomatik olarak silinir.",
       "li3": "notification.wav: yüklediyseniz özel uyarı sesiniz.",
       "li4": ".session: mevcut açılış için panel anahtarı. Uygulama her başladığında yenilenir.",
-      "li5": "Tarayıcınız temanızı ve dilinizi hatırlar; böylece panel bıraktığınız gibi açılır.",
+      "li5": "Tarayıcınız temanızı ve dilinizi hatırlar, böylece panel bıraktığınız gibi açılır. Ayrıca en son gördüğünüz Yenilikler ve dış uyarılar kartında “Bunu istiyorum”a tıklayıp tıklamadığınız gibi küçük işaretleri de saklar. Bunların hiçbiri bir yere gönderilmez.",
       "li6": "case.json: Şikayetler sayfasına girdiğiniz bilgiler; örneğin sağlayıcınız, paketiniz, ücretiniz, hat ve hesap numaralarınız ve şikayet kayıtlarınız. Yalnızca şikayet metninizi ve kanıt paketinizi doldurmak için kullanılır ve siz paylaşmadıkça bilgisayarınızdan asla çıkmaz."
     },
     "network": {

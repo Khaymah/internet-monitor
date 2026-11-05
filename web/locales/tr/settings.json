@@ -129,5 +129,16 @@
   "f_router": "Modemin durumunu oku",
   "f_router_hint": "Ev ağınızda UPnP üzerinden modeminize dakikada bir hat durumunu, senkron hızını, çalışma süresini ve trafik sayaçlarını sorar. Hiçbir şey ağınızdan çıkmaz. Her kesintiyi açıklar ve veri kullanımınızı izler.",
   "update_store": "Bu kopya Microsoft Store'dan geliyor; güncellemeleri sizin için o yükler.",
-  "f_startup_store": "Bunu Windows Ayarlar → Uygulamalar → Başlangıç bölümünden açıp kapatın."
+  "f_startup_store": "Bunu Windows Ayarlar → Uygulamalar → Başlangıç bölümünden açıp kapatın.",
+  "ra_title": "Yakında: elektrik kesildiğinde bile uyarılar",
+  "ra_body": "Bugün bir uyarı evinizden ancak internet geri geldiğinde çıkabiliyor, bu yüzden uzun bir kesintiyi bittikten sonra öğreniyorsunuz. İsteğe bağlı bir dış hizmet, evinizden ses gelmediğini fark edip telefonunuzu hemen uyarabilir.",
+  "ra_want": "Bunu istiyorum",
+  "ra_hint": "Tarayıcınızda bir GitHub sayfası açar. Uygulamanın kendisi hiçbir şey göndermez.",
+  "ra_thanks": "Teşekkürler, Yenilikler bölümünde bahsedeceğiz",
+  "phone_title": "Telefonunuzda açın",
+  "phone_sub": "Telefonunuz aynı Wi-Fi ağındayken bu kodu kamerasıyla tarayın. Paneli bir dokunuş uzağınızda tutmak için telefon tarayıcısında “Ana ekrana ekle”yi seçin.",
+  "phone_qr_alt": "Paneli telefonunuzda açan QR kod",
+  "phone_address": "Ağınızdaki adres",
+  "phone_warning_title": "Bu kod erişim anahtarınızı içerir",
+  "phone_warning": "Ağınızda bu kodu tarayan herkes panelinizi açabilir, bu yüzden fotoğrafını paylaşmayın. Telefonunuz daha sonra paneli uygulamadan açmanızı söylerse anahtar değişmiştir: kodu yeniden tarayın."
 }

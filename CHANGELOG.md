@@ -23,6 +23,14 @@ What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
   the router's counters, alerts at 80% and 100% (`quota` alert kind), and `line_sync`,
   `router_restarts` and `quota_pace` insights.
 - **French, Turkish and Urdu** (rc.7).
+- **Use it from your phone** (rc.7): a web app manifest and home-screen icons, so "Add to
+  Home screen" gives a named Internet Monitor icon. When the dashboard is open to
+  the network, Settings → App shows a QR code with the LAN link
+  (`GET /api/phone`, `GET /api/phone/qr.png`), and the headless build prints the
+  same code in the terminal at startup.
+- **Alerts when the power is out (coming soon)** (rc.7): a card in Settings asks whether you
+  would use alerts sent from outside your home during a power cut. "I want this"
+  opens a GitHub page in your browser; the app sends nothing.
 - **Privacy policy** (rc.6): `PRIVACY.md` in English and Arabic, the public
   copy of the in-app Privacy page, which now also covers `case.json`, ntfy,
   log timestamps, the outage traceroute and the Store data folder.

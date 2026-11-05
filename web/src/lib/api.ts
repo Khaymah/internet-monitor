@@ -9,6 +9,7 @@ import type {
   LogEvent,
   MonthlyReport,
   NotificationList,
+  PhoneInfo,
   RangeEvidence,
   RouterView,
   SpeedTestEvent,
@@ -189,6 +190,7 @@ export const api = {
   resetSound: () => request("/notification-sound", { method: "DELETE" }),
   startup: () => get<StartupState>("/api/startup"),
   setStartup: (enabled: boolean) => post<StartupState>("/api/startup", { enabled }),
+  phone: () => get<PhoneInfo>("/api/phone"),
   checkUpdate: () => post<UpdateInfo>("/api/update/check"),
   applyUpdate: () => post<{ ok: boolean; status: string }>("/api/update"),
 };

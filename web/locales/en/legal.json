@@ -11,12 +11,12 @@
     },
     "stored": {
       "title": "What's stored on your computer",
-      "p1": "Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\\InternetMonitor for the Microsoft Store version), except two small preferences kept by your browser.",
+      "p1": "Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\\InternetMonitor for the Microsoft Store version), except a few small preferences kept by your browser.",
       "li1": "config.json: your settings. This includes your webhook URL, Telegram token and chat ID, and ntfy topic and token, saved as plain text. Don't share this file.",
       "li2": "The logs folder: every check, outage, speed test and traceroute result, the daily seals that prove the logs weren't edited, plus app.log, a diagnostic log of what the app did. Files older than 90 days are deleted automatically.",
       "li3": "notification.wav: your custom alert sound, if you uploaded one.",
       "li4": ".session: the dashboard key for the current launch. It's replaced every time the app starts.",
-      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it.",
+      "li5": "Your browser remembers your theme and language, so the dashboard opens the way you left it, plus small flags such as the last What's new you saw and whether you clicked “I want this” on the outside-alerts card. None of this is sent anywhere.",
       "li6": "case.json: what you enter on the Complaints page, such as your provider, plan, price, line and account numbers, and your complaint tickets. It's only used to fill your complaint text and evidence pack, and never leaves your computer unless you share them."
     },
     "network": {

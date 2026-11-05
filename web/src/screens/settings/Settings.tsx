@@ -33,6 +33,8 @@ import {
 import type { ConfigView } from "../../lib/types";
 import { AppSection } from "./AppSection";
 import { NotificationsSection } from "./NotificationsSection";
+import { PhoneCard } from "./PhoneCard";
+import { RemoteAlertsCard } from "./RemoteAlertsCard";
 import { AlertsSection, MonitoringSection, SpeedSection, TargetsSection } from "./Sections";
 import { SoundCard } from "./SoundCard";
 
@@ -373,9 +375,11 @@ export function Settings() {
           <TargetsSection {...props} />
           <AlertsSection {...props} base={state.base} />
           <NotificationsSection {...props} base={state.base} />
+          <RemoteAlertsCard />
           <SoundCard />
           <SpeedSection {...props} />
           <AppSection {...props} />
+          <PhoneCard />
         </div>
       </div>
 

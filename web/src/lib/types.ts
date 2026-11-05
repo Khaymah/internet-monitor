@@ -435,6 +435,11 @@ export interface ConfigSaveResponse {
   config: ConfigView;
 }
 
+export interface PhoneInfo {
+  available: boolean;
+  address: string;
+}
+
 export interface StartupState {
   supported: boolean;
   enabled: boolean;

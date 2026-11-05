@@ -10,4 +10,6 @@
     if (dir !== "rtl" && dir !== "ltr" && lang) dir = /^(ar|fa|he|ur|ps|sd|ug|yi|dv|ckb)(-|$)/.test(lang) ? "rtl" : "ltr";
     if (dir === "rtl" || dir === "ltr") d.setAttribute("dir", dir);
   } catch (e) {}
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && d.getAttribute("data-theme") === "light") meta.setAttribute("content", "#f3f5f9");
 })();

@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"internet-monitor/internal/app"
+	"internet-monitor/internal/server"
 	"log"
 	"os"
 	"os/signal"
@@ -32,10 +33,17 @@ func main() {
 	fmt.Println("Open the dashboard with this link (it contains your access key, keep it private):")
 	fmt.Println("  " + a.Server.LaunchURL())
 	if a.Server.LANMode() {
-		for _, u := range a.Server.LANLaunchURLs() {
+		urls := a.Server.LANLaunchURLs()
+		for _, u := range urls {
 			fmt.Println("  " + u)
 		}
 		fmt.Println("The dashboard is reachable from your network. Only do this on a network you trust.")
+		if len(urls) > 0 {
+			if code, err := server.TerminalQR(urls[0]); err == nil {
+				fmt.Println("Or scan this code with your phone's camera (it opens the first link and also contains your access key):")
+				fmt.Print(code)
+			}
+		}
 	}
 	a.Log.AppLog("HEADLESS dashboard %s (listen %s)", a.Server.URL(), *listen)
 

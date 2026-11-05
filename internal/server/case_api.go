@@ -193,10 +193,7 @@ func (s *Server) serveEvidence(w http.ResponseWriter, r *http.Request) {
 		if to.Sub(from) > maxEvidenceRange {
 			from = to.Add(-maxEvidenceRange)
 		}
-		days := map[string]bool{}
-		for d := from.AddDate(0, 0, -1); !d.After(to); d = d.AddDate(0, 0, 1) {
-			days[d.Format("2006-01-02")] = true
-		}
+		days := logDays(from, to, now.Location())
 		wantFile = func(name string) bool {
 			i := strings.LastIndex(name, "_")
 			return i >= 0 && days[strings.TrimSuffix(name[i+1:], ".jsonl")]
@@ -434,6 +431,16 @@ func (s *Server) serveTimeline(w http.ResponseWriter, r *http.Request) {
 		"to":       now.Format(time.RFC3339),
 		"segments": report.Timeline(events, samples, from, now),
 	})
+}
+
+func logDays(from, to time.Time, loc *time.Location) map[string]bool {
+	y, m, d := from.In(loc).AddDate(0, 0, -1).Date()
+	last := to.In(loc).Format("2006-01-02")
+	days := map[string]bool{}
+	for day := time.Date(y, m, d, 0, 0, 0, 0, loc); day.Format("2006-01-02") <= last; day = day.AddDate(0, 0, 1) {
+		days[day.Format("2006-01-02")] = true
+	}
+	return days
 }
 
 func attachRoutes(rows []report.EventRow, traces []trace.Trace) {

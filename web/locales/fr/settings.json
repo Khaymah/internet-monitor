@@ -129,5 +129,16 @@
   "f_router": "Lire l'état du routeur",
   "f_router_hint": "Demande à votre routeur, via UPnP sur votre réseau domestique, l'état de la ligne, le débit de synchronisation, la durée de fonctionnement et les compteurs de trafic, une fois par minute. Rien ne quitte votre réseau. Cela explique chaque coupure et suit votre consommation de données.",
   "update_store": "Cette copie provient du Microsoft Store, qui installe les mises à jour pour vous.",
-  "f_startup_store": "Activez-le ou désactivez-le dans Paramètres Windows → Applications → Démarrage."
+  "f_startup_store": "Activez-le ou désactivez-le dans Paramètres Windows → Applications → Démarrage.",
+  "ra_title": "Bientôt : des alertes même en cas de coupure de courant",
+  "ra_body": "Aujourd’hui, une alerte ne peut quitter votre domicile qu’une fois internet revenu : vous apprenez donc une longue coupure après coup. Un service externe facultatif pourrait remarquer que votre domicile ne répond plus et prévenir votre téléphone tout de suite.",
+  "ra_want": "Ça m’intéresse",
+  "ra_hint": "Ouvre une page GitHub dans votre navigateur. L’application elle-même n’envoie rien.",
+  "ra_thanks": "Merci, nous en parlerons dans les Nouveautés",
+  "phone_title": "Ouvrir sur votre téléphone",
+  "phone_sub": "Scannez ce code avec l’appareil photo de votre téléphone, connecté au même Wi-Fi. Pour garder le tableau de bord à portée de main, choisissez « Ajouter à l’écran d’accueil » dans le navigateur du téléphone.",
+  "phone_qr_alt": "Code QR qui ouvre le tableau de bord sur votre téléphone",
+  "phone_address": "Adresse sur votre réseau",
+  "phone_warning_title": "Ce code contient votre clé d’accès",
+  "phone_warning": "Toute personne sur votre réseau qui le scanne peut ouvrir votre tableau de bord : ne partagez pas de photo de ce code. Si votre téléphone vous demande plus tard d’ouvrir le tableau de bord depuis l’application, la clé a changé : scannez à nouveau le code."
 }

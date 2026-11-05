@@ -11,12 +11,12 @@
     },
     "stored": {
       "title": "Ce qui est stocké sur votre ordinateur",
-      "p1": "Tout est conservé dans le dossier de l'application (à côté de l'application, ou dans %LOCALAPPDATA%\\InternetMonitor pour la version du Microsoft Store), sauf deux petites préférences gardées par votre navigateur.",
+      "p1": "Tout est conservé dans le dossier de l'application (à côté de l'application, ou dans %LOCALAPPDATA%\\InternetMonitor pour la version du Microsoft Store), sauf quelques petites préférences gardées par votre navigateur.",
       "li1": "config.json : vos paramètres. Cela inclut l'URL de votre webhook, votre jeton et votre ID de discussion Telegram, ainsi que votre sujet et votre jeton ntfy, enregistrés en clair. Ne partagez pas ce fichier.",
       "li2": "Le dossier logs : chaque vérification, coupure, test de débit et résultat de traceroute, les sceaux quotidiens qui prouvent que les journaux n'ont pas été modifiés, ainsi que app.log, un journal de diagnostic de ce qu'a fait l'application. Les fichiers de plus de 90 jours sont supprimés automatiquement.",
       "li3": "notification.wav : votre son d'alerte personnalisé, si vous en avez importé un.",
       "li4": ".session : la clé du tableau de bord pour le lancement en cours. Elle est remplacée à chaque démarrage de l'application.",
-      "li5": "Votre navigateur retient votre thème et votre langue, pour que le tableau de bord s'ouvre comme vous l'avez laissé.",
+      "li5": "Votre navigateur retient votre thème et votre langue, pour que le tableau de bord s’ouvre comme vous l’avez laissé, ainsi que de petits repères comme les dernières Nouveautés vues et si vous avez cliqué sur « Ça m’intéresse » dans la carte des alertes externes. Rien de tout cela n’est envoyé nulle part.",
       "li6": "case.json : ce que vous saisissez sur la page Réclamations, comme votre fournisseur, votre forfait, votre prix, vos numéros de ligne et de compte, et vos tickets de réclamation. Il ne sert qu'à remplir le texte de vos réclamations et votre dossier de preuves, et ne quitte jamais votre ordinateur, sauf si vous les partagez."
     },
     "network": {
