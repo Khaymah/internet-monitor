@@ -21,6 +21,33 @@
   "cl_installed": "Votre version",
   "cl_versions": "v{from} – v{to}",
   "changelog": {
+    "v2.0.4": {
+      "title": "Des plaintes avec preuves, votre box et un site web",
+      "items": {
+        "1": "Une page Plaintes fondée sur vos mesures : coupures, durée d'arrêt et débit par rapport à votre forfait sur les 7 jours avant la plainte et depuis, un texte de plainte prêt à envoyer, un fichier de preuves (ZIP) et la bonne étape suivante pour l'Égypte, l'Arabie saoudite, le Royaume-Uni ou les États-Unis.",
+        "2": "Votre box : l'application lit l'état de votre box et, sur la Huawei HG630 V2 et les modèles proches, sa propre page si vous ajoutez son mot de passe. Vous voyez le débit de la ligne, la marge de bruit et la raison de la dernière déconnexion, et chaque coupure indique si la faute venait de la ligne de l'opérateur, de la session internet ou de la box.",
+        "3": "Forfait : indiquez votre limite mensuelle et le jour de renouvellement pour voir votre consommation, savoir si elle tiendra, et être alerté à 80 % et 100 %.",
+        "4": "« Ce que disent vos données » : des conseils clairs tirés de vos données, et un rappel chaque semaine pour vous plaindre quand la ligne coupe souvent sans plainte ouverte.",
+        "5": "Une frise des coupures sur 24 heures ou 7 jours dans la vue d'ensemble, et un résumé chaque lundi.",
+        "6": "Le rapport estime ce que les coupures vous ont coûté et montre à quelles heures la ligne coupe le plus.",
+        "7": "Chaque journée terminée est fermée par un sceau numérique, avec un horodatage de confiance en option, pour que chacun puisse vérifier que rien n'a été modifié.",
+        "8": "Les coupures notent si vous étiez en Wi-Fi ou en câble, repèrent les coupures de courant et retracent où la route s'arrêtait.",
+        "9": "Le test de débit note de A+ à F le ralentissement quand la ligne est chargée, avec des conseils pour l'améliorer.",
+        "10": "Des alertes par ntfy et par n'importe quel webhook, en plus de Discord, Slack et Telegram.",
+        "11": "Une version pour Raspberry Pi, serveur domestique ou Docker qui surveille la ligne jour et nuit ; ouvrez-la depuis votre téléphone avec un QR code.",
+        "12": "Français, turc et ourdou.",
+        "13": "Une courte vidéo commentée pour chaque page, ouverte par le bouton « Comment fonctionne cette page ».",
+        "14": "Un installateur Mac : ouvrez le fichier .dmg et glissez l'application dans Applications, sur n'importe quel Mac.",
+        "15": "Un site en cinq langues avec le téléchargement, un guide pas à pas illustré et les vidéos : khaymah.github.io/internet-monitor.",
+        "16": "Des mots plus simples partout : Temps de réponse, Variations et Données perdues, et « la petite icône près de l'horloge ».",
+        "17": "Le rapport mensuel indique les périodes sans surveillance, compare vos tests de débit à votre forfait et se télécharge avec tous les relevés et un fichier de contrôle.",
+        "18": "Vous pouvez désactiver la recherche automatique de mises à jour, et les Paramètres indiquent les données consommées par le test de débit.",
+        "19": "La lecture de la page de la box fonctionne avec les box qui n'offrent qu'un ancien HTTPS, et le test de la box explique l'échec.",
+        "20": "Un fichier de preuves pour une période passant minuit pouvait omettre les relevés du dernier jour.",
+        "21": "Le mot de passe de la box n'est envoyé qu'à une adresse de votre réseau domestique, n'est plus jamais affiché après l'enregistrement, et un mot de passe refusé n'est pas réessayé.",
+        "22": "Quand le tableau de bord est ouvert au réseau domestique, il exige toujours sa clé privée et ne répond qu'aux requêtes qui lui sont adressées."
+      }
+    },
     "v2.0.0": {
       "title": "Version 2 : entièrement reconstruite",
       "items": {

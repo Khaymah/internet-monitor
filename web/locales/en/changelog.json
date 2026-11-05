@@ -21,6 +21,33 @@
   "cl_installed": "Your version",
   "cl_versions": "v{from} – v{to}",
   "changelog": {
+    "v2.0.4": {
+      "title": "Complaints with proof, your router, and a website",
+      "items": {
+        "1": "A Complaints page built on your measurements: outages, downtime and speed against your plan for the 7 days before you complained and since, a ready-to-send complaint text, a proof file (ZIP), and the right next step for Egypt, Saudi Arabia, the UK or the US.",
+        "2": "Your router: the app reads your router's status and, on Huawei HG630 V2 and similar routers, its own page if you add its password. You see the line speed, the noise margin and why the last disconnect happened, and every outage says whether the provider's line, the internet session or the router was at fault.",
+        "3": "Data plan: enter your monthly limit and renewal day to see how much you've used, whether it will last, and get an alert at 80% and 100%.",
+        "4": "“What your data says”: plain tips from your own data, and a weekly reminder to complain when the line keeps dropping and no complaint is open.",
+        "5": "An outage timeline for the last 24 hours or 7 days on the overview, and a weekly summary every Monday.",
+        "6": "The report estimates what the provider's downtime cost you and shows which hours of the day the line drops most.",
+        "7": "Each finished day of records is closed with a digital seal, with an optional trusted timestamp, so anyone can check nothing was changed.",
+        "8": "Outages record whether you were on Wi-Fi or cable, spot power cuts, and trace where the route stopped when the line dropped.",
+        "9": "The speed test grades how much slower replies get while the line is busy, from A+ to F, with tips to fix a poor grade.",
+        "10": "Alerts through ntfy and any webhook, as well as Discord, Slack and Telegram.",
+        "11": "A version for a Raspberry Pi, a home server or Docker that watches the line around the clock; open it from your phone with a QR code.",
+        "12": "French, Turkish and Urdu.",
+        "13": "A short narrated video for every page, opened with the “How this page works” button.",
+        "14": "A Mac installer: open the .dmg file and drag the app to Applications, on any Mac.",
+        "15": "A website in five languages with the download, a step-by-step guide with pictures, and the videos: khaymah.github.io/internet-monitor.",
+        "16": "Plainer words everywhere: Response time, Fluctuation and Data loss, and “the small icon next to the clock”.",
+        "17": "The monthly report lists the time nothing was being checked, compares your speed tests with your plan, and downloads with every record and a checksum file.",
+        "18": "You can turn off the automatic update check, and Settings shows how much data the speed test uses.",
+        "19": "Reading the router's page works with routers that only offer an old HTTPS setup, and the router test says why it failed.",
+        "20": "A proof file for a range that crossed midnight could leave out the last day's records.",
+        "21": "The router password is only ever sent to an address on your home network, is never shown again after saving, and a rejected password is not retried.",
+        "22": "When the dashboard is opened to your home network, it still needs its private key and only answers requests addressed to it."
+      }
+    },
     "v2.0.0": {
       "title": "Version 2: rebuilt from the ground up",
       "items": {

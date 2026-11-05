@@ -21,6 +21,33 @@
   "cl_installed": "Sizin sürümünüz",
   "cl_versions": "v{from} – v{to}",
   "changelog": {
+    "v2.0.4": {
+      "title": "Kanıtlı şikâyetler, modeminiz ve bir web sitesi",
+      "items": {
+        "1": "Ölçümlerinize dayanan bir Şikâyetler sayfası: şikâyetten önceki 7 gün ve sonrasındaki kesintiler, kesinti süresi ve paketinize göre hız, gönderilmeye hazır bir şikâyet metni, bir kanıt dosyası (ZIP) ve Mısır, Suudi Arabistan, Birleşik Krallık veya ABD için doğru sonraki adım.",
+        "2": "Modeminiz: uygulama modeminizin durumunu, şifresini eklerseniz Huawei HG630 V2 ve benzerlerinde kendi sayfasını da okur. Hat hızını, gürültü payını ve son bağlantı kopmasının nedenini görürsünüz; her kesinti, sorunun sağlayıcının hattında mı, internet oturumunda mı yoksa modemde mi olduğunu söyler.",
+        "3": "Kota: aylık limitinizi ve yenileme gününü girin; ne kadar kullandığınızı, yetip yetmeyeceğini görün ve %80 ile %100'de uyarı alın.",
+        "4": "“Verileriniz ne diyor”: kendi verilerinizden sade öneriler ve hat sık kopuyorsa ve açık şikâyet yoksa haftalık bir şikâyet hatırlatması.",
+        "5": "Genel bakışta son 24 saat veya 7 günün kesinti zaman çizelgesi ve her pazartesi haftalık özet.",
+        "6": "Rapor, kesintilerin size maliyetini tahmin eder ve hattın günün hangi saatlerinde en çok koptuğunu gösterir.",
+        "7": "Biten her günün kayıtları dijital bir mühürle kapatılır, isteğe bağlı güvenilir zaman damgasıyla; böylece herkes hiçbir şeyin değişmediğini doğrulayabilir.",
+        "8": "Kesintiler Wi-Fi'de mi kabloda mı olduğunuzu kaydeder, elektrik kesintilerini fark eder ve hat koptuğunda rotanın nerede durduğunu izler.",
+        "9": "Hız testi, hat meşgulken yanıtların ne kadar yavaşladığını A+ ile F arasında notlar ve kötü notu düzeltmek için ipuçları verir.",
+        "10": "Discord, Slack ve Telegram'ın yanında ntfy ve her türlü webhook ile uyarılar.",
+        "11": "Hattı gece gündüz izleyen Raspberry Pi, ev sunucusu veya Docker sürümü; telefonunuzdan QR kodla açın.",
+        "12": "Fransızca, Türkçe ve Urduca.",
+        "13": "Her sayfa için kısa, sesli anlatımlı bir video; “Bu sayfa nasıl çalışır” düğmesiyle açılır.",
+        "14": "Mac yükleyicisi: .dmg dosyasını açın ve uygulamayı Uygulamalar'a sürükleyin; her Mac'te çalışır.",
+        "15": "İndirme, resimli adım adım rehber ve videoların olduğu beş dilli bir web sitesi: khaymah.github.io/internet-monitor.",
+        "16": "Her yerde daha sade sözcükler: Gecikme, Dalgalanma ve Veri kaybı, ve “saatin yanındaki küçük simge”.",
+        "17": "Aylık rapor izlenmeyen zamanları listeler, hız testlerinizi paketinizle karşılaştırır ve tüm kayıtlar ile bir sağlama dosyasıyla indirilir.",
+        "18": "Otomatik güncelleme denetimini kapatabilirsiniz; Ayarlar hız testinin ne kadar veri kullandığını gösterir.",
+        "19": "Modem sayfasını okuma, yalnızca eski bir HTTPS kurulumu sunan modemlerde de çalışır ve modem testi neden başarısız olduğunu söyler.",
+        "20": "Gece yarısını geçen bir aralığın kanıt dosyası son günün kayıtlarını dışarıda bırakabiliyordu.",
+        "21": "Modem şifresi yalnızca ev ağınızdaki bir adrese gönderilir, kaydettikten sonra bir daha gösterilmez ve reddedilen bir şifre tekrar denenmez.",
+        "22": "Gösterge paneli ev ağına açıldığında da özel anahtarını ister ve yalnızca kendisine yöneltilen isteklere yanıt verir."
+      }
+    },
     "v2.0.0": {
       "title": "Sürüm 2: baştan yeniden yazıldı",
       "items": {
