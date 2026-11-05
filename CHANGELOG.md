@@ -15,6 +15,18 @@ in-app updater, which only follows the latest stable release) until the version 
 What each rc changed, and how to test it, is in `docs/releases/v2.0.4-rc.N.md`.
 
 ### Added
+- **Plain words** (rc.13): app and website wording reviewed in all five languages: the two
+  desktop versions are "runs in the background" / "opens like a regular program", and
+  Latency, Jitter and Packet loss read Response time, Fluctuation and Data loss.
+- **Website download page and guide** (rc.13): one big button for your computer, other
+  systems and Raspberry Pi tucked away; a six-step guide with screenshots of the app.
+- **Video tours** (rc.13): one narrated video per page (overview, history, notifications,
+  speed, complaints, report, settings), each opened by a "How this page works" button in
+  the page header; `/tutorial` is a gallery with `?v=<id>` deep links. `tools/tutorial/`
+  builds all or chosen videos from `videos/<id>.json`; the release uploads them as
+  `internet-monitor-tour-<id>.mp4`, and subtitles and posters ship in
+  `web/public/tutorial/<id>/`. The website lists all seven and falls back to
+  `internet-monitor-tutorial.mp4` for the Settings video of older releases.
 - **Verification codes in the site** (rc.12): the Google and Bing verification codes are
   built-in defaults; `vars.*` or `secrets.*` of the same names override them.
 - **Website redesign and SEO** (rc.11): site pages reuse the app's styles, icons and

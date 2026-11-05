@@ -14,11 +14,11 @@
     },
     "what": {
       "q": "Internet Monitor ne yapar?",
-      "a": "Bağlantınızı birkaç saniyede bir üç şekilde kontrol eder: DNS sunucularına bağlanır, küçük bir web sayfası yükler ve web sitesi adlarını sorgular. Her kesinti tam başlangıç saati, ne kadar sürdüğü ve hangi bölümün başarısız olduğuyla kaydedilir. Sonra bunu internet sağlayıcınız için bir rapora dönüştürebilirsiniz."
+      "a": "Bağlantınızı birkaç saniyede bir üç şekilde kontrol eder: internetteki bilinen sunuculara bağlanır, küçük bir web sayfası açar ve bir web sitesinin adını sorgular (DNS, internetin adres defteri). Her kesinti tam başlangıç saati, ne kadar sürdüğü ve hangi bölümün başarısız olduğuyla kaydedilir. Sonra bunu internet sağlayıcınız için bir rapora dönüştürebilirsiniz."
     },
     "open": {
       "q": "Paneli nasıl açarım?",
-      "a": "Tepsi simgesine tıklayıp “Paneli aç”ı seçin veya pencereli sürümü kurduysanız uygulama penceresini kullanın. Adresi tarayıcıya kendiniz yazarsanız kilitli bir sayfa görürsünüz, çünkü panel, uygulama her başladığında değişen bir anahtar ister."
+      "a": "Arka planda çalışan sürümü kurduysanız saatin yanındaki küçük simgeye (Mac'te ekranın üstündeki simgeye) tıklayıp “Paneli aç”ı seçin. Normal program sürümünü kurduysanız programın penceresini açın. Adresi tarayıcıya kendiniz yazarsanız kilitli bir sayfa görürsünüz, çünkü panel, uygulama her başladığında değişen bir anahtar ister."
     },
     "platforms": {
       "q": "macOS ve Linux'ta çalışır mı?",
@@ -34,7 +34,7 @@
     },
     "unstable": {
       "q": "“Kararsız” ne demek?",
-      "a": "Çevrimiçisiniz ama bağlantı zayıf: paketlerin %20'sinden fazlası kayboluyor veya yanıtlar 500 ms'den uzun sürüyor. Her iki sınır da [Ayarlar → İzleme](settings#monitoring) bölümünden değiştirilebilir."
+      "a": "Çevrimiçisiniz ama bağlantı zayıf: gönderilen verilerin %20'sinden fazlası yolda kayboluyor veya yanıtlar yarım saniyeden (500 ms) uzun sürüyor. Her iki sınır da [Ayarlar → İzleme](settings#monitoring) bölümünden değiştirilebilir."
     },
     "layers": {
       "q": "DNS sorunu ile tam kesinti arasındaki fark nedir?",
@@ -42,11 +42,11 @@
     },
     "router": {
       "q": "Sorun modemimde mi, sağlayıcımda mı?",
-      "a": "Uygulama modeminizi de (yerel ağ geçidi) kontrol eder. Modem yanıt verir ama internet vermezse teşhis sağlayıcınızı gösterir. Modem de yanıt vermezse sorun ev ağınızdadır: Wi-Fi, kablolar veya modemin kendisi."
+      "a": "Uygulama modeminizi de kontrol eder. Modem yanıt verir ama internet vermezse teşhis sağlayıcınızı gösterir. Modem de yanıt vermezse sorun ev ağınızdadır: Wi-Fi, kablolar veya modemin kendisi."
     },
     "targets": {
       "q": "Neyin kontrol edileceğini değiştirebilir miyim?",
-      "a": "Evet. [Ayarlar → Kontrol hedefleri](settings#targets) bölümünde üç liste var: DNS sunucuları (varsayılan olarak 8.8.8.8 ve 1.1.1.1), web sayfaları ve sorgulanacak adlar. Her liste en fazla 10 kayıt alır ve kaydetmeden önce bunları test edebilirsiniz."
+      "a": "Evet. [Ayarlar → Kontrol hedefleri](settings#targets) bölümünde üç liste var: DNS sunucuları (internetin adres defterleri; varsayılan olarak 8.8.8.8 ve 1.1.1.1), web sayfaları ve sorgulanacak adlar. Her liste en fazla 10 kayıt alır ve kaydetmeden önce bunları test edebilirsiniz."
     },
     "data": {
       "q": "Ne kadar internet verisi kullanır?",
@@ -54,7 +54,7 @@
     },
     "where": {
       "q": "Uyarılar nerede görünür?",
-      "a": "Bu bilgisayarda sesli bir sistem bildirimi olarak. Bunları bir webhook ile Discord veya Slack kanalına ya da Telegram'a da gönderebilirsiniz. Bunları [Ayarlar → Uyarılar](settings#alerts) bölümünden kurun ve ulaştıklarından emin olmak için test düğmesini kullanın."
+      "a": "Bu bilgisayarda sesli bir sistem bildirimi olarak. Bunları bir webhook (bir uygulamanın kanala mesaj göndermesini sağlayan özel bir bağlantı) ile Discord veya Slack kanalına ya da Telegram'a da gönderebilirsiniz. Bunları [Ayarlar → Uyarılar](settings#alerts) bölümünden kurun ve ulaştıklarından emin olmak için test düğmesini kullanın."
     },
     "telegram": {
       "q": "Telegram uyarılarını nasıl kurarım?",
@@ -82,11 +82,11 @@
     },
     "proof": {
       "q": "İnternet sağlayıcıma nasıl kanıt gönderirim?",
-      "a": "[Geçmiş](history) sayfasında “Aylık rapor”a basın ve “Yazdır veya PDF olarak kaydet”i seçin. Rapor her kesintiyi saati, süresi ve nedeniyle listeler. Ham veri için Geçmiş'ten bir günlük, 7 günlük veya 30 günlük CSV dışa aktarın."
+      "a": "[Geçmiş](history) sayfasında “Aylık rapor”a basın ve “Yazdır veya PDF olarak kaydet”i seçin. Rapor her kesintiyi saati, süresi ve nedeniyle listeler. Tüm ayrıntılı rakamlar için Geçmiş'ten bir günlük, 7 günlük veya 30 günlük tablo dosyası (CSV, Excel'de açılır) dışa aktarın."
     },
     "retention": {
       "q": "Geçmişim ne kadar süre saklanır?",
-      "a": "90 gün. Daha eski kayıt dosyaları otomatik olarak silinir. Kayıtlar uygulamanın yanındaki “logs” klasöründe durur. Bulmak için tepsi menüsünden “Kayıt klasörünü aç”ı seçin."
+      "a": "90 gün. Daha eski kayıt dosyaları otomatik olarak silinir. Kayıtlar uygulamanın yanındaki “logs” klasöründe durur. Bulmak için saatin yanındaki küçük simgeye tıklayıp “Kayıt klasörünü aç”ı seçin."
     },
     "speedserver": {
       "q": "Hız testi hangi sunucuyu kullanır?",
@@ -110,7 +110,7 @@
     },
     "updates": {
       "q": "Güncellemeler nasıl çalışır?",
-      "a": "Uygulama her 6 saatte bir veya “Güncellemeleri denetle”ye bastığınızda hemen GitHub'da yeni sürüm olup olmadığına bakar. Otomatik denetimi [Ayarlar → Uygulama](settings#app) bölümünden kapatabilirsiniz. Yüklemeden önce indirilen dosyayı sürümün sağlama toplamlarıyla karşılaştırır. Test (ön sürüm) sürümleri asla otomatik olarak önerilmez."
+      "a": "Uygulama her 6 saatte bir veya “Güncellemeleri denetle”ye bastığınızda hemen GitHub'da yeni sürüm olup olmadığına bakar. Otomatik denetimi [Ayarlar → Uygulama](settings#app) bölümünden kapatabilirsiniz. Yüklemeden önce indirilen dosyanın yayımladığımız dosyayla birebir aynı olduğunu sürümün sağlama toplamlarıyla doğrular. Test (ön sürüm) sürümleri asla otomatik olarak önerilmez."
     },
     "bug": {
       "q": "Bir hata buldum. Nereye bildiririm?",

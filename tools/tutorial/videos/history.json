@@ -1,0 +1,140 @@
+{
+  "title": "Internet Monitor: the History page",
+  "path": "/history",
+  "ready": ".table",
+  "scenes": [
+    {
+      "id": "welcome", "caption": "History", "poster": true,
+      "targets": [".page-head"],
+      "text": {
+        "en": "The History page keeps every outage and slowdown, day by day. Everything is stored on this computer, and nothing is sent anywhere.",
+        "ar": "صفحة «السجل» بتحفظ كل انقطاع وكل بطء، يوم بيوم. كل حاجة متخزّنة على الكمبيوتر ده، ومفيش حاجة بتتبعت لأي حتة.",
+        "fr": "La page « Historique » garde chaque coupure et chaque ralentissement, jour par jour. Tout est stocké sur cet ordinateur, et rien n'est envoyé nulle part.",
+        "tr": "“Geçmiş” sayfası her kesintiyi ve yavaşlamayı gün gün saklar. Her şey bu bilgisayarda tutulur ve hiçbir yere gönderilmez.",
+        "ur": "“ہسٹری” کا صفحہ ہر بندش اور ہر سستی دن بہ دن محفوظ رکھتا ہے۔ سب کچھ اسی کمپیوٹر پر رہتا ہے، اور کہیں نہیں بھیجا جاتا۔"
+      }
+    },
+    {
+      "id": "day", "caption": "Pick a day",
+      "targets": [{"field": "Day"}],
+      "text": {
+        "en": "Pick a day here. Today is shown first. You can also type to search, for example a date or a weekday.",
+        "ar": "اختار اليوم من هنا. النهارده بيظهر الأول. وتقدر تكتب عشان تدوّر، مثلاً تاريخ أو اسم يوم.",
+        "fr": "Choisissez un jour ici. Aujourd'hui s'affiche en premier. Vous pouvez aussi taper pour chercher, par exemple une date ou un jour de la semaine.",
+        "tr": "Buradan bir gün seçin. Önce bugün gösterilir. Aramak için yazabilirsiniz de; örneğin bir tarih ya da haftanın bir günü.",
+        "ur": "یہاں سے دن چنیں۔ پہلے آج کا دن دکھتا ہے۔ آپ تلاش کے لیے لکھ بھی سکتے ہیں، مثلاً کوئی تاریخ یا ہفتے کا دن۔"
+      }
+    },
+    {
+      "id": "filter", "caption": "Show",
+      "targets": [{"field": "Show"}],
+      "text": {
+        "en": "Show filters the list: all events, only outages, only unstable periods, or only recoveries.",
+        "ar": "«عرض» بيفلتر القايمة: كل الأحداث، أو الانقطاعات بس، أو فترات عدم الاستقرار بس، أو رجوع الاتصال بس.",
+        "fr": "« Afficher » filtre la liste : tous les événements, seulement les coupures, seulement les périodes instables, ou seulement les rétablissements.",
+        "tr": "“Göster” listeyi süzer: tüm olaylar, yalnızca kesintiler, yalnızca kararsız dönemler ya da yalnızca düzelmeler.",
+        "ur": "“دکھائیں” فہرست کو چھانٹتا ہے: سارے ایونٹس، صرف بندشیں، صرف غیر مستحکم وقفے، یا صرف بحالیاں۔"
+      }
+    },
+    {
+      "id": "export", "caption": "Export",
+      "targets": [{"css": "button", "text": "Export day (Excel/CSV)"}, {"css": "button", "text": "Last 7 days (Excel/CSV)"}, {"css": "button", "text": "Last 30 days (Excel/CSV)"}],
+      "text": {
+        "en": "Export day saves the day you picked as a CSV file, which opens in Excel or Google Sheets. You can also export the last 7 or 30 days in one file.",
+        "ar": "«تصدير اليوم» بيحفظ اليوم اللي اخترته في ملف CSV بيتفتح في Excel أو Google Sheets. وتقدر كمان تصدّر آخر 7 أو 30 يوم في ملف واحد.",
+        "fr": "« Exporter le jour » enregistre le jour choisi dans un fichier CSV, qui s'ouvre dans Excel ou Google Sheets. Vous pouvez aussi exporter les 7 ou 30 derniers jours dans un seul fichier.",
+        "tr": "“Günü dışa aktar”, seçtiğiniz günü Excel'de ya da Google E-Tablolar'da açılan bir CSV dosyası olarak kaydeder. Son 7 ya da 30 günü de tek dosyada dışa aktarabilirsiniz.",
+        "ur": "“دن ایکسپورٹ کریں” چنا ہوا دن CSV فائل میں محفوظ کرتا ہے، جو Excel یا Google Sheets میں کھلتی ہے۔ آپ پچھلے 7 یا 30 دن بھی ایک ہی فائل میں ایکسپورٹ کر سکتے ہیں۔"
+      }
+    },
+    {
+      "id": "totals", "caption": "The day in numbers",
+      "targets": [".grid-stats"],
+      "text": {
+        "en": "These four numbers sum up the day: how many outages there were, the total time offline, how many unstable periods, and the longest outage.",
+        "ar": "الأربع أرقام دول بيلخّصوا اليوم: كام انقطاع حصل، ومدة الانقطاع كلها، وكام فترة عدم استقرار، وأطول انقطاع.",
+        "fr": "Ces quatre chiffres résument la journée : le nombre de coupures, le temps total hors ligne, le nombre de périodes instables, et la plus longue coupure.",
+        "tr": "Bu dört sayı günü özetler: kaç kesinti olduğu, toplam çevrimdışı süre, kaç kararsız dönem olduğu ve en uzun kesinti.",
+        "ur": "یہ چار نمبر دن کا خلاصہ ہیں: کتنی بندشیں ہوئیں، کل کتنا وقت آف لائن رہے، کتنے غیر مستحکم وقفے آئے، اور سب سے لمبی بندش۔"
+      }
+    },
+    {
+      "id": "table", "caption": "Every event",
+      "targets": ["[aria-labelledby='log-title']"], "scroll": [0],
+      "text": {
+        "en": "The table lists every event of the day with its time, newest first. Disconnected marks the start of an outage. Back online marks its end.",
+        "ar": "الجدول فيه كل أحداث اليوم بوقتها، الأحدث الأول. «النت قطع» بتعلّم بداية الانقطاع، و«النت رجع» بتعلّم نهايته.",
+        "fr": "Le tableau liste chaque événement de la journée avec son heure, du plus récent au plus ancien. « Déconnecté » marque le début d'une coupure. « De retour en ligne » marque sa fin.",
+        "tr": "Tablo, günün her olayını saatiyle, en yenisi önce olacak şekilde listeler. “Bağlantı kesildi” bir kesintinin başlangıcını, “Yeniden çevrimiçi” ise sonunu gösterir.",
+        "ur": "جدول میں دن کا ہر ایونٹ اس کے وقت کے ساتھ ہے، نیا سب سے پہلے۔ “منقطع” بندش کا آغاز ہے، اور “دوبارہ آن لائن” اس کا اختتام۔"
+      }
+    },
+    {
+      "id": "duration", "caption": "Duration",
+      "targets": [{"css": "tbody tr", "text": "TCP ping failed", "index": 0}, {"css": "tbody tr", "text": "Back online", "index": 1}],
+      "text": {
+        "en": "Duration tells how long each state lasted. On a Disconnected row, that is how long you were offline. On a Back online row, it is how long the line then stayed up.",
+        "ar": "«المدة» بتقول كل حالة فضلت قد إيه. في سطر «النت قطع» دي المدة اللي كنت فيها من غير نت. وفي سطر «النت رجع» دي المدة اللي الخط فضل شغال فيها بعد كده.",
+        "fr": "La « Durée » indique combien de temps chaque état a duré. Sur une ligne « Déconnecté », c'est le temps passé hors ligne. Sur une ligne « De retour en ligne », c'est le temps pendant lequel la ligne a tenu ensuite.",
+        "tr": "“Süre”, her durumun ne kadar sürdüğünü söyler. “Bağlantı kesildi” satırında bu, çevrimdışı kaldığınız süredir. “Yeniden çevrimiçi” satırında ise hattın ardından ne kadar açık kaldığıdır.",
+        "ur": "“دورانیہ” بتاتا ہے کہ ہر حالت کتنی دیر رہی۔ “منقطع” والی قطار میں یہ وہ وقت ہے جب آپ آف لائن رہے۔ “دوبارہ آن لائن” والی قطار میں یہ وہ وقت ہے جتنی دیر لائن اس کے بعد چلتی رہی۔"
+      }
+    },
+    {
+      "id": "cause", "caption": "Cause",
+      "targets": [{"css": "tbody tr", "text": "TCP ping failed", "index": 0}, {"css": "tbody tr", "text": "HTTP failed", "index": 0}],
+      "text": {
+        "en": "Cause says what failed. TCP ping, HTTP and DNS are the three kinds of checks. When all three fail, the whole connection was down. When only one fails, part of the internet stopped working, for example websites couldn't be found.",
+        "ar": "«السبب» بيقول إيه اللي فشل. TCP وHTTP وDNS هم التلات أنواع فحوصات. لما التلاتة يفشلوا، يبقى الاتصال كله كان واقع. ولما واحد بس يفشل، يبقى جزء من النت وقف، مثلاً المواقع ماكانتش بتتلاقي.",
+        "fr": "La « Cause » dit ce qui a échoué. Ping TCP, HTTP et DNS sont les trois sortes de vérifications. Quand les trois échouent, toute la connexion était coupée. Quand une seule échoue, une partie d'internet ne marchait plus, par exemple les sites restaient introuvables.",
+        "tr": "“Neden”, neyin başarısız olduğunu söyler. TCP ping, HTTP ve DNS üç tür kontroldür. Üçü birden başarısız olduysa bağlantının tamamı kopmuştur. Yalnızca biri başarısız olduysa internetin bir kısmı çalışmamıştır; örneğin siteler bulunamamıştır.",
+        "ur": "“وجہ” بتاتی ہے کہ کیا ناکام ہوا۔ TCP پنگ، HTTP اور DNS تین قسم کے چیک ہیں۔ جب تینوں ناکام ہوں تو پورا کنکشن بند تھا۔ جب صرف ایک ناکام ہو تو انٹرنیٹ کا کچھ حصہ رکا تھا، مثلاً ویب سائٹس نہیں مل رہی تھیں۔"
+      }
+    },
+    {
+      "id": "unstable", "caption": "Unstable",
+      "targets": [{"css": "tbody tr", "text": "of data lost", "index": 0}],
+      "text": {
+        "en": "Unstable means the line stayed up, but lost a lot of data or became very slow. Calls break up and pages load slowly during these periods.",
+        "ar": "«مش مستقر» معناها إن الخط فضل شغال، بس ضيّع بيانات كتير أو بقى بطيء أوي. في الفترات دي المكالمات بتقطّع والصفحات بتحمّل ببطء.",
+        "fr": "« Instable » veut dire que la ligne est restée active, mais a perdu beaucoup de données ou est devenue très lente. Pendant ces périodes, les appels coupent et les pages chargent lentement.",
+        "tr": "“Kararsız”, hattın açık kaldığı ama çok veri kaybettiği ya da çok yavaşladığı anlamına gelir. Bu dönemlerde aramalar kesilir ve sayfalar yavaş yüklenir.",
+        "ur": "“غیر مستحکم” کا مطلب ہے کہ لائن چلتی رہی، مگر بہت سا ڈیٹا ضائع ہوا یا بہت سست ہو گئی۔ ان وقفوں میں کالز ٹوٹتی ہیں اور صفحے آہستہ کھلتے ہیں۔"
+      }
+    },
+    {
+      "id": "outages-only", "caption": "Show: Outages",
+      "setup": [{"click": {"css": ".segmented button", "text": "Outages"}}, {"wait": 500}],
+      "targets": [{"field": "Show"}, "[aria-labelledby='log-title']"], "scroll": [1],
+      "text": {
+        "en": "With Outages selected, only the drops are left, which makes them easy to count and to compare with what your provider says.",
+        "ar": "لما تختار «الانقطاعات»، بيفضل القطع بس، فيبقى سهل تعدّه وتقارنه باللي الشركة بتقوله.",
+        "fr": "Avec « Coupures » sélectionné, il ne reste que les coupures : facile de les compter et de les comparer avec ce que dit votre fournisseur.",
+        "tr": "“Kesintiler” seçiliyken yalnızca kopmalar kalır; böylece onları saymak ve sağlayıcınızın söyledikleriyle karşılaştırmak kolaylaşır.",
+        "ur": "جب “بندشیں” چنا ہو تو صرف کنکشن ٹوٹنے کے واقعات رہ جاتے ہیں، جنہیں گننا اور پرووائیڈر کی بات سے ملانا آسان ہوتا ہے۔"
+      }
+    },
+    {
+      "id": "report", "caption": "Monthly report",
+      "targets": [{"css": ".page-head a", "text": "Monthly report"}],
+      "text": {
+        "en": "Monthly report opens the whole month on one page, ready to print or to send to your provider. It has its own video tour.",
+        "ar": "«التقرير الشهري» بيفتح الشهر كله في صفحة واحدة، جاهز للطباعة أو إنك تبعته للشركة. وليه فيديو شرح لوحده.",
+        "fr": "« Rapport mensuel » ouvre tout le mois sur une page, prêt à imprimer ou à envoyer à votre fournisseur. Il a sa propre visite en vidéo.",
+        "tr": "“Aylık rapor”, bütün ayı tek sayfada açar; yazdırmaya ya da sağlayıcınıza göndermeye hazırdır. Onun da kendi video turu var.",
+        "ur": "“ماہانہ رپورٹ” پورا مہینہ ایک صفحے پر کھولتی ہے، پرنٹ کرنے یا پرووائیڈر کو بھیجنے کے لیے تیار۔ اس کا اپنا ویڈیو تعارف بھی ہے۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours",
+      "targets": [".page-head .tour-link"],
+      "text": {
+        "en": "Press How this page works on any page to watch its video. Thanks for watching!",
+        "ar": "دوس «الصفحة دي بتشتغل إزاي» في أي صفحة عشان تتفرّج على الفيديو بتاعها. شكراً إنك اتفرّجت!",
+        "fr": "Appuyez sur « Comment marche cette page » sur n'importe quelle page pour voir sa vidéo. Merci d'avoir regardé !",
+        "tr": "Videosunu izlemek için herhangi bir sayfada “Bu sayfa nasıl çalışır”a basın. İzlediğiniz için teşekkürler!",
+        "ur": "کسی بھی صفحے کی ویڈیو دیکھنے کے لیے وہاں “یہ صفحہ کیسے کام کرتا ہے” دبائیں۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

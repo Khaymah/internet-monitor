@@ -9,6 +9,7 @@ import {
 import { type CSSProperties, useMemo, useState } from "react";
 import { SmartSelect } from "../components/SmartSelect";
 import { toast } from "../components/Toast";
+import { TourLink } from "../components/TourLink";
 import { Banner, Button, Card, CardHead, Empty, Segmented, Skeleton } from "../components/ui";
 import { api } from "../lib/api";
 import { downloadText, toCSV } from "../lib/csv";
@@ -135,6 +136,7 @@ export function History() {
           <p>{t("history_sub")}</p>
         </div>
         <div className="row">
+          <TourLink id="history" />
           <a
             className="btn btn-edge"
             href={hrefOf("report", `?month=${monthKey(new Date())}`)}

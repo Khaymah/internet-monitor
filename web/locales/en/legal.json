@@ -28,7 +28,7 @@
       "li4": "Alerts and the weekly summary go to Discord, Slack, a webhook of your choice, Telegram or ntfy only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address.",
       "li5": "Log timestamps go to freetsa.org only if you turn on “Timestamp the sealed logs” in Settings. It receives a 32-byte hash of the day's seal, never your logs.",
       "li6": "When an outage starts, the app runs a traceroute toward your first check target to see where the connection stops. The routers along the way see these packets, as with any traceroute.",
-      "li7": "The Settings tour video streams from GitHub (github.com and its download servers) only when you press play on the Settings tour page. Nothing is loaded from GitHub before that, and the subtitles come from the app itself."
+      "li7": "The tour videos stream from GitHub (github.com and its download servers) only when you press play on the Video tours page. Nothing is loaded from GitHub before that, and the subtitles come from the app itself."
     },
     "dashboard": {
       "title": "The dashboard",

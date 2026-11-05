@@ -13,6 +13,7 @@ import { type CSSProperties, useEffect, useState } from "react";
 import { BufferbloatCard, GRADE_TONE } from "../components/BufferbloatCard";
 import { Gauge } from "../components/Gauge";
 import { toast } from "../components/Toast";
+import { TourLink } from "../components/TourLink";
 import { Banner, Button, Card, CardHead, Empty, Skeleton } from "../components/ui";
 import { ApiError, api } from "../lib/api";
 import { speedErrorKey } from "../lib/errors";
@@ -138,6 +139,7 @@ export function Speed() {
             {schedule > 0 ? ` · ${t("speed_schedule_note", { n: schedule })}` : ""}
           </p>
         </div>
+        <TourLink id="speed" />
       </div>
 
       {status === "disconnected" && !busy ? (

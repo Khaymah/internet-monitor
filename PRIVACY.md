@@ -35,7 +35,7 @@ The app only connects to the places below. Each of them sees your IP address, as
 - Alerts and the weekly summary go to Discord, Slack, a webhook of your choice, Telegram or ntfy only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address.
 - Log timestamps go to freetsa.org only if you turn on “Timestamp the sealed logs” in Settings. It receives a 32-byte hash of the day's seal, never your logs.
 - When an outage starts, the app runs a traceroute toward your first check target to see where the connection stops. The routers along the way see these packets, as with any traceroute.
-- The Settings tour video streams from GitHub (github.com and its download servers) only when you press play on the Settings tour page. Nothing is loaded from GitHub before that, and the subtitles come from the app itself.
+- The tour videos stream from GitHub (github.com and its download servers) only when you press play on the Video tours page. Nothing is loaded from GitHub before that, and the subtitles come from the app itself.
 
 ### The dashboard
 
@@ -86,7 +86,7 @@ Reach us through any channel on the Contact page in the app, or open an issue at
 - التنبيهات والملخص الأسبوعي بتروح لـ Discord أو Slack أو webhook من اختيارك أو Telegram أو ntfy بس لو فعّلتها. فيها الحالة، والأوقات، والمدد، وأسباب الانقطاع، أو نتيجة قياس السرعة. والتطبيق مابيضيفش اسم جهازك ولا عنوان IP.
 - ختم السجلات بالوقت بيروح لـ freetsa.org بس لو فعّلت «ختم السجلات بتوقيت مستقل» من الإعدادات. بيوصله hash طوله 32 بايت لختم اليوم، مش السجلات نفسها.
 - لما الانقطاع يبدأ، التطبيق بيعمل traceroute ناحية أول هدف فحص عشان يعرف الاتصال بيقف فين. الراوترات اللي في الطريق بتشوف الباكتات دي زي أي traceroute.
-- فيديو جولة الإعدادات بيشتغل من GitHub ‏(github.com وسيرفرات التنزيل بتاعته) بس لما تدوس تشغيل في صفحة «جولة في الإعدادات». مفيش حاجة بتتحمّل من GitHub قبل كده، والترجمة جاية من التطبيق نفسه.
+- فيديوهات الجولات بتشتغل من GitHub ‏(github.com وسيرفرات التنزيل بتاعته) بس لما تدوس تشغيل في صفحة «جولات بالفيديو». مفيش حاجة بتتحمّل من GitHub قبل كده، والترجمة جاية من التطبيق نفسه.
 
 ### لوحة التحكم
 

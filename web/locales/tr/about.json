@@ -13,7 +13,7 @@
   "contact_eyebrow": "İletişim",
   "contact_title": "Yardım etmek için buradayız",
   "contact_intro": "Sorular, sorunlar ya da fikirler: size en kolay geleni seçin.",
-  "contact_safety": "Biz istemedikçe config.json veya kayıt dosyalarınızı asla göndermeyin. Bu dosyalarda webhook adresiniz, Telegram token'ınız ve bağlantı geçmişiniz olabilir.",
+  "contact_safety": "Biz istemedikçe config.json veya kayıt dosyalarınızı asla göndermeyin. Bu dosyalarda webhook bağlantınız (özel bir bağlantı), Telegram token'ınız (gizli bir erişim kodu) ve bağlantı geçmişiniz olabilir.",
   "contact_open": "Aç: {name}",
   "contact_copy": "Kopyala: {name}",
   "contact_copied": "Panoya kopyalandı",
@@ -34,7 +34,7 @@
       },
       "proof": {
         "title": "Tahmin değil, kanıt",
-        "body": "Tam saatler, süreler ve arızalanan katman; PDF veya CSV için hazır."
+        "body": "Tam saatler, süreler ve arızalanan bölüm; PDF veya tablo dosyası (CSV) olarak hazır."
       },
       "bilingual": {
         "title": "Beş dil",

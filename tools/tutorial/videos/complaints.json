@@ -1,0 +1,181 @@
+{
+  "title": "Internet Monitor: the Complaints page",
+  "path": "/complaints",
+  "ready": ".complaint",
+  "settle": 2500,
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Complaints & evidence", "poster": true,
+      "targets": [".page-head"],
+      "text": {
+        "en": "The Complaints page helps you complain to your provider with proof, and follow the complaint until your line is fixed. Let's walk through one complaint from start to finish.",
+        "ar": "صفحة «الشكاوى والإثباتات» بتساعدك تشتكي للشركة ومعاك إثبات، وتتابع الشكوى لحد ما خطّك يتصلّح. تعالى نمشي مع شكوى واحدة من الأول للآخر.",
+        "fr": "La page « Réclamations et preuves » vous aide à vous plaindre auprès de votre fournisseur avec des preuves, et à suivre la réclamation jusqu'à ce que votre ligne soit réparée. Suivons une réclamation du début à la fin.",
+        "tr": "“Şikayetler ve kanıtlar” sayfası, sağlayıcınıza kanıtla şikayet etmenize ve hattınız düzelene kadar şikayeti takip etmenize yardım eder. Bir şikayeti baştan sona birlikte izleyelim.",
+        "ur": "“شکایات اور ثبوت” کا صفحہ آپ کو ثبوت کے ساتھ پرووائیڈر سے شکایت کرنے، اور لائن ٹھیک ہونے تک شکایت کی پیروی کرنے میں مدد دیتا ہے۔ آئیے ایک شکایت شروع سے آخر تک دیکھتے ہیں۔"
+      }
+    },
+    {
+      "id": "profile", "caption": "Step 1: your line",
+      "targets": ["[aria-labelledby='c-profile']"],
+      "text": {
+        "en": "First, fill in your internet line once: your country, your provider, the plan and the speed it promises, your monthly price, and your line and account numbers. Then press Save line details. They go at the top of every report and complaint.",
+        "ar": "أول حاجة، املا «بيانات خط النت» مرة واحدة: بلدك، والشركة، والباقة والسرعة اللي بتوعد بيها، وسعرها في الشهر، ورقم الخط ورقم الحساب. وبعدين دوس «احفظ بيانات الخط». البيانات دي بتظهر فوق في كل تقرير وكل شكوى.",
+        "fr": "D'abord, remplissez une fois « Votre ligne internet » : votre pays, votre fournisseur, le forfait et le débit promis, le prix mensuel, et vos numéros de ligne et de compte. Puis appuyez sur « Enregistrer les infos de la ligne ». Elles figurent en tête de chaque rapport et de chaque réclamation.",
+        "tr": "Önce “İnternet hattınız”ı bir kez doldurun: ülkeniz, sağlayıcınız, paket ve vaat ettiği hız, aylık ücret, hat ve hesap numaralarınız. Sonra “Hat bilgilerini kaydet”e basın. Bunlar her raporun ve şikayetin en üstünde yer alır.",
+        "ur": "پہلے ایک بار “آپ کی انٹرنیٹ لائن” بھریں: آپ کا ملک، پرووائیڈر، پلان اور اس کی وعدہ کی گئی اسپیڈ، ماہانہ قیمت، اور لائن اور اکاؤنٹ نمبر۔ پھر “لائن کی تفصیلات محفوظ کریں” دبائیں۔ یہ ہر رپورٹ اور ہر شکایت کے اوپر آتی ہیں۔"
+      }
+    },
+    {
+      "id": "recent", "caption": "Step 2: your evidence",
+      "targets": ["[aria-labelledby='c-recent']"],
+      "text": {
+        "en": "Your line in the last 7 days sums up what the app measured: outages, downtime, the longest outage, uptime, how much of the time was monitored, and your typical speed compared with your plan.",
+        "ar": "«خطّك في آخر 7 أيام» بيلخّص اللي التطبيق قاسه: الانقطاعات، ومدتها، وأطول انقطاع، ونسبة الاتصال، والوقت اللي اتراقب، والسرعة المعتادة مقارنة بباقتك.",
+        "fr": "« Votre ligne ces 7 derniers jours » résume ce que l'application a mesuré : coupures, temps hors ligne, plus longue coupure, disponibilité, part du temps surveillée, et votre débit habituel comparé à votre forfait.",
+        "tr": "“Son 7 günde hattınız”, uygulamanın ölçtüklerini özetler: kesintiler, kesinti süresi, en uzun kesinti, çevrimiçi süre, zamanın ne kadarının izlendiği ve paketinize göre olağan hızınız.",
+        "ur": "“پچھلے 7 دنوں میں آپ کی لائن” ایپ کی پیمائش کا خلاصہ ہے: بندشیں، ڈاؤن ٹائم، سب سے لمبی بندش، اپ ٹائم، کتنا وقت نگرانی ہوئی، اور پلان کے مقابلے میں آپ کی عام اسپیڈ۔"
+      }
+    },
+    {
+      "id": "log", "caption": "Step 3: log the complaint",
+      "targets": [{"css": "[aria-labelledby='c-recent'] .banner"}],
+      "text": {
+        "en": "First call your provider, or use their app, and file the complaint there. Write down the number they give you. Then press Log a complaint here.",
+        "ar": "الأول كلّم الشركة، أو استخدم الأبلكيشن بتاعها، وقدّم الشكوى هناك. اكتب الرقم اللي هيدوهولك. وبعدين دوس «سجّل شكوى» هنا.",
+        "fr": "Appelez d'abord votre fournisseur, ou utilisez son application, et déposez la réclamation là-bas. Notez le numéro qu'on vous donne. Puis appuyez ici sur « Noter une réclamation ».",
+        "tr": "Önce sağlayıcınızı arayın ya da uygulamasını kullanın ve şikayeti orada yapın. Size verilen numarayı not edin. Sonra burada “Şikayet kaydet”e basın.",
+        "ur": "پہلے اپنے پرووائیڈر کو کال کریں، یا اس کی ایپ استعمال کریں، اور وہاں شکایت درج کرائیں۔ جو نمبر ملے وہ لکھ لیں۔ پھر یہاں “شکایت درج کریں” دبائیں۔"
+      }
+    },
+    {
+      "id": "form", "caption": "Step 3: log the complaint",
+      "setup": [
+        {"click": {"css": "[aria-labelledby='c-recent'] .banner button"}},
+        {"wait": 900},
+        {"fill": {"field": "Complaint number"}, "value": "2026110598765"},
+        {"fill": {"field": "Agent name"}, "value": "Mona"}
+      ],
+      "targets": ["[aria-labelledby='c-form']"],
+      "text": {
+        "en": "The form opens with a summary of the last 7 days already in the notes. Type the complaint number, check the date, choose how you filed it, and add the agent's name. Then press Save complaint.",
+        "ar": "الفورم بيتفتح والملاحظات فيها ملخص آخر 7 أيام جاهز. اكتب «رقم الشكوى»، واتأكد من التاريخ، واختار قدّمتها إزاي، وضيف اسم الموظف. وبعدين دوس «احفظ الشكوى».",
+        "fr": "Le formulaire s'ouvre avec un résumé des 7 derniers jours déjà dans les notes. Tapez le numéro de réclamation, vérifiez la date, choisissez comment vous l'avez déposée, et ajoutez le nom de l'agent. Puis appuyez sur « Enregistrer la réclamation ».",
+        "tr": "Form, notlarda son 7 günün özeti hazır olarak açılır. Şikayet numarasını yazın, tarihi kontrol edin, nasıl yaptığınızı seçin ve temsilcinin adını ekleyin. Sonra “Şikayeti kaydet”e basın.",
+        "ur": "فارم کھلتا ہے تو نوٹس میں پچھلے 7 دن کا خلاصہ پہلے سے لکھا ہوتا ہے۔ شکایت نمبر لکھیں، تاریخ دیکھ لیں، چنیں کہ شکایت کیسے کی، اور ایجنٹ کا نام لکھیں۔ پھر “شکایت محفوظ کریں” دبائیں۔"
+      }
+    },
+    {
+      "id": "saved", "caption": "Step 4: follow it", "keep": true,
+      "setup": [{"click": {"css": "[aria-labelledby='c-form'] button", "text": "Save complaint"}}, {"wait": 2500}],
+      "targets": [{"css": ".complaint", "text": "2026110598765"}],
+      "text": {
+        "en": "Your complaint is now in the list, waiting for the provider. The app counts down the time the provider has to respond. In Egypt, that is 3 days.",
+        "ar": "شكوتك بقت في القايمة، «مستني رد الشركة». والتطبيق بيعدّ الوقت اللي فاضل للشركة عشان ترد. في مصر المدة دي 3 أيام.",
+        "fr": "Votre réclamation est maintenant dans la liste, en attente du fournisseur. L'application décompte le temps qu'il lui reste pour répondre. En Égypte, c'est 3 jours.",
+        "tr": "Şikayetiniz artık listede, sağlayıcıyı bekliyor. Uygulama, sağlayıcının yanıt vermek için kalan süresini geri sayar. Mısır'da bu süre 3 gündür.",
+        "ur": "آپ کی شکایت اب فہرست میں ہے، پرووائیڈر کے انتظار میں۔ ایپ وہ وقت گنتی ہے جو پرووائیڈر کے پاس جواب دینے کو باقی ہے۔ مصر میں یہ 3 دن ہیں۔"
+      }
+    },
+    {
+      "id": "still", "caption": "Step 4: follow it", "keep": true,
+      "targets": [{"css": ".complaint", "text": "2026110455555"}],
+      "text": {
+        "en": "Days pass, and the app keeps measuring. Each complaint shows whether the line is still dropping since you filed it. This one is: three more outages.",
+        "ar": "الأيام بتعدّي، والتطبيق بيفضل يقيس. كل شكوى بتوضح هل الخط لسه بيقطع من ساعة ما قدّمتها. ودي لسه: تلات انقطاعات كمان.",
+        "fr": "Les jours passent, et l'application continue de mesurer. Chaque réclamation montre si la ligne coupe encore depuis son dépôt. Celle-ci, oui : trois coupures de plus.",
+        "tr": "Günler geçer ve uygulama ölçmeye devam eder. Her şikayet, yaptığınızdan beri hattın hâlâ kopup kopmadığını gösterir. Bu şikayette kopuyor: üç kesinti daha.",
+        "ur": "دن گزرتے ہیں، اور ایپ ناپتی رہتی ہے۔ ہر شکایت دکھاتی ہے کہ درج کرنے کے بعد سے لائن اب بھی ٹوٹ رہی ہے یا نہیں۔ اس میں ٹوٹ رہی ہے: تین اور بندشیں۔"
+      }
+    },
+    {
+      "id": "compare", "caption": "Step 5: send the evidence", "keep": true,
+      "setup": [{"click": {"css": ".complaint", "text": "2026110455555", "find": "button"}}, {"wait": 2500}],
+      "targets": [{"css": ".complaint", "text": "2026110455555", "find": ".grid-2"}],
+      "text": {
+        "en": "Open Evidence and complaint text. It compares the 7 days before you filed with the days since, so you can show the provider nothing has improved.",
+        "ar": "افتح «الإثبات ونص الشكوى». بيقارن الـ 7 أيام اللي قبل الشكوى بالأيام اللي بعدها، عشان توري الشركة إن مفيش حاجة اتحسنت.",
+        "fr": "Ouvrez « Preuves et texte de la réclamation ». Cela compare les 7 jours avant le dépôt avec les jours suivants, pour montrer au fournisseur que rien ne s'est amélioré.",
+        "tr": "“Kanıt ve şikayet metni”ni açın. Şikayetten önceki 7 günü sonraki günlerle karşılaştırır; böylece sağlayıcıya hiçbir şeyin düzelmediğini gösterebilirsiniz.",
+        "ur": "“ثبوت اور شکایت کا متن” کھولیں۔ یہ درج کرنے سے پہلے کے 7 دن کا بعد کے دنوں سے موازنہ کرتا ہے، تاکہ آپ پرووائیڈر کو دکھا سکیں کہ کچھ بہتر نہیں ہوا۔"
+      }
+    },
+    {
+      "id": "text", "caption": "Step 5: send the evidence", "keep": true,
+      "targets": [{"css": ".complaint", "text": "2026110455555", "find": "textarea"}, {"css": ".complaint", "text": "2026110455555", "find": "textarea + .row"}],
+      "text": {
+        "en": "Below is a ready-to-send complaint, written from your own measurements. You can edit it. Copy text puts it on the clipboard. WhatsApp and Email open a new message with it.",
+        "ar": "وتحت هتلاقي شكوى جاهزة تتبعت، مكتوبة من قياساتك إنت. تقدر تعدّل فيها. «انسخ النص» بينسخها، وواتساب والإيميل بيفتحوا رسالة جديدة بيها.",
+        "fr": "En dessous, une réclamation prête à envoyer, rédigée à partir de vos propres mesures. Vous pouvez la modifier. « Copier le texte » la copie. WhatsApp et E-mail ouvrent un nouveau message avec elle.",
+        "tr": "Altında, kendi ölçümlerinizden yazılmış, gönderilmeye hazır bir şikayet var. Düzenleyebilirsiniz. “Metni kopyala” onu panoya alır. WhatsApp ve E-posta onunla yeni bir mesaj açar.",
+        "ur": "نیچے آپ کی اپنی پیمائش سے لکھی، بھیجنے کے لیے تیار شکایت ہے۔ آپ اس میں ترمیم کر سکتے ہیں۔ “متن کاپی کریں” اسے کاپی کرتا ہے۔ واٹس ایپ اور ای میل اس کے ساتھ نیا پیغام کھولتے ہیں۔"
+      }
+    },
+    {
+      "id": "zip", "caption": "Step 5: send the evidence", "keep": true,
+      "targets": [{"css": ".complaint button", "text": "Download evidence (ZIP)"}],
+      "text": {
+        "en": "Download evidence saves a ZIP with the report, the raw logs, and a SHA-256 checksum for every file, so anyone can check that nothing was changed. Attach it to your message.",
+        "ar": "«نزّل الإثبات (ZIP)» بيحفظ ملف مضغوط فيه التقرير، والسجلات الأصلية، وبصمة SHA-256 لكل ملف، عشان أي حد يقدر يتأكد إن مفيش حاجة اتغيّرت. ابعته مع رسالتك.",
+        "fr": "« Télécharger les preuves (ZIP) » enregistre un ZIP avec le rapport, les journaux bruts et une empreinte SHA-256 pour chaque fichier, pour que chacun puisse vérifier que rien n'a été modifié. Joignez-le à votre message.",
+        "tr": "“Kanıtı indir (ZIP)”, raporu, ham kayıtları ve her dosya için bir SHA-256 sağlama toplamını içeren bir ZIP kaydeder; böylece herkes hiçbir şeyin değişmediğini doğrulayabilir. Mesajınıza ekleyin.",
+        "ur": "“ثبوت ڈاؤن لوڈ کریں (ZIP)” ایک ZIP محفوظ کرتا ہے جس میں رپورٹ، اصل لاگز، اور ہر فائل کا SHA-256 چیک سم ہوتا ہے، تاکہ کوئی بھی جانچ سکے کہ کچھ بدلا نہیں گیا۔ اسے اپنے پیغام کے ساتھ لگائیں۔"
+      }
+    },
+    {
+      "id": "overdue", "caption": "Step 6: escalate", "keep": true,
+      "targets": [{"css": ".complaint", "text": "2026110312345", "find": ".banner"}],
+      "text": {
+        "en": "When the provider's time runs out with no fix, the complaint tells you so, and you can escalate to the regulator.",
+        "ar": "لما مهلة الشركة تخلص من غير ما تصلّح، الشكوى بتقولك كده، وتقدر تصعّد للجهاز المنظّم.",
+        "fr": "Quand le délai du fournisseur est dépassé sans réparation, la réclamation vous le dit, et vous pouvez saisir le régulateur.",
+        "tr": "Sağlayıcının süresi düzeltme olmadan dolduğunda şikayet bunu size söyler ve düzenleyici kuruma başvurabilirsiniz.",
+        "ur": "جب پرووائیڈر کا وقت بغیر مرمت کے ختم ہو جائے تو شکایت آپ کو بتا دیتی ہے، اور آپ ریگولیٹر تک بات لے جا سکتے ہیں۔"
+      }
+    },
+    {
+      "id": "guide", "caption": "Step 6: escalate", "keep": true,
+      "targets": ["[aria-labelledby='c-guide']"],
+      "text": {
+        "en": "How to escalate lists the steps for your country. In Egypt, that is the NTRA: call 155, or use the My NTRA app or its website, with your line number and the provider's complaint number.",
+        "ar": "«إزاي تصعّد الشكوى» فيها الخطوات لبلدك. في مصر ده الجهاز القومي لتنظيم الاتصالات: كلّم 155، أو استخدم أبلكيشن My NTRA أو موقعه، ومعاك رقم الخط ورقم شكوى الشركة.",
+        "fr": "« Comment aller plus loin » donne les étapes pour votre pays. En Égypte, c'est la NTRA : appelez le 155, ou utilisez l'application My NTRA ou son site, avec votre numéro de ligne et le numéro de réclamation du fournisseur.",
+        "tr": "“Şikayeti üst kuruma taşıma”, ülkenizin adımlarını listeler. Mısır'da bu NTRA'dır: hat numaranız ve sağlayıcının şikayet numarasıyla 155'i arayın ya da My NTRA uygulamasını veya web sitesini kullanın.",
+        "ur": "“شکایت آگے کیسے بڑھائیں” آپ کے ملک کے مراحل بتاتا ہے۔ مصر میں یہ NTRA ہے: اپنے لائن نمبر اور پرووائیڈر کے شکایت نمبر کے ساتھ 155 پر کال کریں، یا My NTRA ایپ یا اس کی ویب سائٹ استعمال کریں۔"
+      }
+    },
+    {
+      "id": "status", "caption": "Step 7: close it", "keep": true,
+      "targets": [{"css": ".complaint button", "text": "Edit", "index": 1}, {"css": ".complaint button", "text": "I escalated it", "index": 1}, {"css": ".complaint button", "text": "It's fixed", "index": 1}],
+      "text": {
+        "en": "After you escalate, press I escalated it, and use Edit to add the regulator's complaint number. When the line is fixed, press It's fixed. Every complaint and its outcome stays in your monthly report.",
+        "ar": "بعد ما تصعّد، دوس «صعّدتها»، واستخدم «تعديل» عشان تضيف رقم الشكوى عند الجهاز. ولما الخط يتصلّح، دوس «اتحلّت». كل شكوى ونتيجتها بتفضل في التقرير الشهري.",
+        "fr": "Après avoir saisi le régulateur, appuyez sur « Je l'ai transmise au régulateur », et utilisez « Modifier » pour ajouter son numéro de réclamation. Quand la ligne est réparée, appuyez sur « C'est réparé ». Chaque réclamation et son issue restent dans votre rapport mensuel.",
+        "tr": "Üst kuruma taşıdıktan sonra “Üst kuruma taşıdım”a basın ve kurumun şikayet numarasını eklemek için “Düzenle”yi kullanın. Hat düzelince “Sorun çözüldü”ye basın. Her şikayet ve sonucu aylık raporunuzda kalır.",
+        "ur": "آگے پہنچانے کے بعد “میں نے آگے پہنچا دی” دبائیں، اور ریگولیٹر کا شکایت نمبر لکھنے کے لیے “ترمیم” استعمال کریں۔ لائن ٹھیک ہو جائے تو “ٹھیک ہو گیا” دبائیں۔ ہر شکایت اور اس کا نتیجہ آپ کی ماہانہ رپورٹ میں رہتا ہے۔"
+      }
+    },
+    {
+      "id": "insights", "caption": "Your strongest points", "keep": true,
+      "targets": ["[aria-labelledby='ins-title']"], "scroll": [0],
+      "text": {
+        "en": "On the side, What your data says points out your strongest arguments, such as the line itself dropping, or speeds far below your plan.",
+        "ar": "وعلى الجنب، «بياناتك بتقول إيه» بيطلّعلك أقوى حججك، زي إن الخط نفسه بيقع، أو إن السرعة أقل بكتير من باقتك.",
+        "fr": "Sur le côté, « Ce que disent vos données » met en avant vos meilleurs arguments, par exemple la ligne elle-même qui tombe, ou un débit très inférieur à votre forfait.",
+        "tr": "Yanda “Verileriniz ne diyor”, en güçlü argümanlarınızı gösterir; örneğin hattın kendisinin kopması ya da hızın paketinizin çok altında olması.",
+        "ur": "سائیڈ پر “آپ کا ڈیٹا کیا کہتا ہے” آپ کی سب سے مضبوط دلیلیں بتاتا ہے، جیسے لائن کا خود ٹوٹنا، یا اسپیڈ کا پلان سے بہت کم ہونا۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours", "keep": true,
+      "targets": [".page-head .tour-link", {"css": ".page-head button", "text": "Open this month's report"}],
+      "text": {
+        "en": "Open this month's report puts your complaints next to the month's measurements. The report has its own video tour. Thanks for watching!",
+        "ar": "«افتح تقرير الشهر ده» بيحط شكاويك جنب قياسات الشهر. والتقرير ليه فيديو شرح لوحده. شكراً إنك اتفرّجت!",
+        "fr": "« Ouvrir le rapport de ce mois » place vos réclamations à côté des mesures du mois. Le rapport a sa propre visite en vidéo. Merci d'avoir regardé !",
+        "tr": "“Bu ayın raporunu aç”, şikayetlerinizi ayın ölçümlerinin yanına koyar. Raporun da kendi video turu var. İzlediğiniz için teşekkürler!",
+        "ur": "“اس مہینے کی رپورٹ کھولیں” آپ کی شکایات کو مہینے کی پیمائش کے ساتھ رکھتی ہے۔ رپورٹ کا اپنا ویڈیو تعارف ہے۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

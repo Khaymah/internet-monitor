@@ -9,10 +9,11 @@ import { navLabel, PAGES, pageUrl, shell } from "./lib/layout.mjs";
 import { renderAbout, renderContact, renderFaq, renderPrivacy, renderSupport, renderTerms } from "./lib/page-app.mjs";
 import { renderChangelog } from "./lib/page-changelog.mjs";
 import { renderDownload } from "./lib/page-download.mjs";
-import { renderGuide, renderNotFound, renderTutorial } from "./lib/page-docs.mjs";
+import { renderGuide, renderNotFound } from "./lib/page-docs.mjs";
 import { renderHome } from "./lib/page-home.mjs";
+import { renderTutorial, resolveTours } from "./lib/page-tours.mjs";
 import { loadReleases } from "./lib/releases.mjs";
-import { pageDates, vttDuration, withIntro } from "./lib/seo.mjs";
+import { pageDates, withIntro } from "./lib/seo.mjs";
 import { llmsFull, llmsTxt, robots, rootPage, sitemap } from "./lib/seo-files.mjs";
 import { esc, fill, formatDate, formatSize, inline, lookup, shape, write } from "./lib/util.mjs";
 
@@ -73,9 +74,13 @@ function copyAssets() {
   mkdirSync(join(OUT, "assets", "fonts"), { recursive: true });
   copyFileSync(join(ROOT, "internal", "assets", "favicon.png"), join(OUT, "assets", "favicon.png"));
   cpSync(join(SITE_DIR, "assets", "og"), join(OUT, "assets", "og"), { recursive: true });
+  cpSync(join(SITE_DIR, "assets", "guide"), join(OUT, "assets", "guide"), {
+    recursive: true,
+    filter: (src) => !src.endsWith(".json"),
+  });
   const tokens = readFileSync(join(ROOT, "web", "src", "styles", "tokens.css"), "utf8");
   const app = appCss(join(ROOT, "web", "src", "styles", "app.css"));
-  const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css"].map((f) =>
+  const own = ["site.css", "app-pages.css", "footer.css", "pages.css", "nav.css", "content.css", "download.css", "guide.css", "tours.css"].map((f) =>
     readFileSync(join(SITE_DIR, "assets", f), "utf8"),
   );
   const css = [fontCss(), tokens, app, ...own].join("\n");
@@ -93,15 +98,17 @@ function copyAssets() {
       copyFileSync(join(ROOT, "docs", "store", l, f), join(OUT, "assets", "shots", l, f));
     }
   }
-  const tracks = content.tracks(LANGS);
-  for (const tr of tracks) {
-    mkdirSync(join(OUT, "tutorial"), { recursive: true });
-    copyFileSync(tr.file, join(OUT, "tutorial", `${tr.lang}.vtt`));
+  const tours = content.tours(LANGS);
+  for (const tour of tours) {
+    const dir = join(OUT, "tutorial", tour.id);
+    mkdirSync(dir, { recursive: true });
+    for (const tr of tour.tracks) copyFileSync(tr.file, join(dir, `${tr.lang}.vtt`));
+    if (tour.poster) copyFileSync(tour.poster, join(dir, "poster.jpg"));
   }
-  return { css: hash(css), js: scripts["site.js"], scripts, tracks };
+  return { css: hash(css), js: scripts["site.js"], scripts, tours };
 }
 
-function makeCtx(lang, dict, site, releases, tracks, appData, extra) {
+function makeCtx(lang, dict, site, releases, tours, appData, extra) {
   const intl = site.meta[lang].intl;
   const base = site.base;
   const t = (key, vars) => {
@@ -113,7 +120,7 @@ function makeCtx(lang, dict, site, releases, tracks, appData, extra) {
     lang,
     site,
     releases,
-    tracks,
+    tours: tours.map((tour) => ({ ...tour, text: content.tourText(lang, tour.id) })),
     t,
     e: (key, vars) => esc(t(key, vars)),
     md: (key, vars) => inline(t(key, vars)),
@@ -180,11 +187,11 @@ async function main() {
     year: new Date().getUTCFullYear(),
     hash: { css: assets.css, js: assets.js, ...assets.scripts },
   };
-  const enTrack = assets.tracks.find((tr) => tr.lang === "en");
-  const extra = { dates: pageDates(ROOT, releases, appData), videoDuration: enTrack ? vttDuration(enTrack.file) : null };
+  const tours = resolveTours(releases, assets.tours);
+  const extra = { dates: pageDates(ROOT, releases, appData, tours) };
   let count = 0;
   for (const lang of LANGS) {
-    const ctx = makeCtx(lang, dicts[lang], site, releases, assets.tracks, appData, extra);
+    const ctx = makeCtx(lang, dicts[lang], site, releases, tours, appData, extra);
     for (const page of PAGES) {
       const out = RENDER[page.id](ctx);
       out.body = withIntro(ctx, page.id, out.body);
@@ -193,7 +200,7 @@ async function main() {
       count++;
     }
   }
-  const enCtx = makeCtx("en", dicts.en, site, releases, assets.tracks, appData, extra);
+  const enCtx = makeCtx("en", dicts.en, site, releases, tours, appData, extra);
   const nf = renderNotFound(enCtx);
   write(join(OUT, "404.html"), shell(enCtx, { pageId: "notfound", image: ogImage(enCtx), notFound: true, ...nf }));
   write(join(OUT, "index.html"), rootPage(site, dicts));
@@ -203,9 +210,9 @@ async function main() {
   write(join(OUT, "llms-full.txt"), llmsFull(enCtx));
   write(join(OUT, ".nojekyll"), "");
   const rel = releases.ok
-    ? `stable ${releases.stable?.tag ?? "none"}, preview ${releases.preview?.tag ?? "none"}, video ${releases.tutorial ? releases.tutorial.release.tag : "none"}`
+    ? `stable ${releases.stable?.tag ?? "none"}, preview ${releases.preview?.tag ?? "none"}, videos ${tours.filter((t) => t.video).map((t) => `${t.id}@${t.video.release.tag}`).join(" ") || "none"}`
     : "release data unavailable, using fallback links";
-  console.log(`site: ${count} pages in ${LANGS.length} languages → ${OUT} (${rel}; subtitles: ${assets.tracks.map((x) => x.lang).join(", ") || "none"})`);
+  console.log(`site: ${count} pages in ${LANGS.length} languages → ${OUT} (${rel}; tours: ${tours.length}, subtitles: ${tours.reduce((n, t) => n + t.tracks.length, 0)})`);
 }
 
 main().catch((err) => {

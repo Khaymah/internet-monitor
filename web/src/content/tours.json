@@ -1,0 +1,30 @@
+[
+  {
+    "id": "overview",
+    "seconds": 175
+  },
+  {
+    "id": "history",
+    "seconds": 107.7
+  },
+  {
+    "id": "notifications",
+    "seconds": 102.8
+  },
+  {
+    "id": "speed",
+    "seconds": 103.1
+  },
+  {
+    "id": "complaints",
+    "seconds": 158.6
+  },
+  {
+    "id": "report",
+    "seconds": 143.3
+  },
+  {
+    "id": "settings",
+    "seconds": 407.9
+  }
+]

@@ -1,0 +1,184 @@
+{
+  "title": "Internet Monitor: the Monthly report",
+  "path": "/report",
+  "ready": ".kpis",
+  "settle": 2000,
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Monthly report", "poster": true,
+      "targets": [".report > header"],
+      "text": {
+        "en": "The Monthly report puts a whole month on one page. It's made to be printed, or sent to your provider with a complaint. Open it from History or from Complaints.",
+        "ar": "«التقرير الشهري» بيحط الشهر كله في صفحة واحدة. معمول عشان يتطبع، أو يتبعت للشركة مع الشكوى. افتحه من «السجل» أو من «الشكاوى».",
+        "fr": "Le « Rapport mensuel » met tout un mois sur une page. Il est fait pour être imprimé, ou envoyé à votre fournisseur avec une réclamation. Ouvrez-le depuis l'Historique ou les Réclamations.",
+        "tr": "“Aylık rapor” bütün bir ayı tek sayfaya koyar. Yazdırmak ya da bir şikayetle sağlayıcınıza göndermek için hazırlanmıştır. Geçmiş ya da Şikayetler sayfasından açın.",
+        "ur": "“ماہانہ رپورٹ” پورا مہینہ ایک صفحے پر رکھتی ہے۔ یہ پرنٹ کرنے، یا شکایت کے ساتھ پرووائیڈر کو بھیجنے کے لیے بنی ہے۔ اسے ہسٹری یا شکایات سے کھولیں۔"
+      }
+    },
+    {
+      "id": "month", "caption": "Pick a month",
+      "targets": [{"css": ".report-head > .row", "index": 0}],
+      "text": {
+        "en": "Use the arrows to move to an earlier month, and back.",
+        "ar": "استخدم الأسهم عشان ترجع لشهر قبل كده، وترجع تاني.",
+        "fr": "Utilisez les flèches pour passer à un mois précédent, et revenir.",
+        "tr": "Daha önceki bir aya gitmek ve geri dönmek için okları kullanın.",
+        "ur": "پچھلے مہینے پر جانے اور واپس آنے کے لیے تیر استعمال کریں۔"
+      }
+    },
+    {
+      "id": "meta", "caption": "Your line",
+      "targets": [".report-meta"],
+      "text": {
+        "en": "At the top are your provider, plan, line number, and how this computer was connected, from the line details on the Complaints page. A cable to the router makes the strongest evidence.",
+        "ar": "فوق هتلاقي الشركة، والباقة، ورقم الخط، والكمبيوتر ده كان متوصّل إزاي، من بيانات الخط في صفحة الشكاوى. والتوصيل بكابل للراوتر بيدّي أقوى إثبات.",
+        "fr": "En haut : votre fournisseur, votre forfait, votre numéro de ligne, et la façon dont cet ordinateur était connecté, d'après les infos de la ligne de la page Réclamations. Un câble vers le routeur donne les preuves les plus solides.",
+        "tr": "En üstte sağlayıcınız, paketiniz, hat numaranız ve bu bilgisayarın nasıl bağlandığı yer alır; bunlar Şikayetler sayfasındaki hat bilgilerinden gelir. Modeme kabloyla bağlanmak en güçlü kanıtı sağlar.",
+        "ur": "اوپر آپ کا پرووائیڈر، پلان، لائن نمبر، اور یہ کہ یہ کمپیوٹر کیسے جڑا تھا، شکایات کے صفحے کی لائن کی تفصیلات سے آتے ہیں۔ راؤٹر سے کیبل کے ذریعے جڑنا سب سے مضبوط ثبوت دیتا ہے۔"
+      }
+    },
+    {
+      "id": "kpis", "caption": "The month in numbers",
+      "targets": [".kpis"],
+      "text": {
+        "en": "The tiles sum up the month: uptime, the number of outages, total downtime, the longest outage, how long recovery took on average, unstable time, and monitoring coverage, which is the share of the month the app was watching.",
+        "ar": "المربعات بتلخّص الشهر: نسبة الاتصال، وعدد الانقطاعات، ومدة الانقطاع كلها، وأطول انقطاع، و«متوسط وقت الرجوع»، والوقت اللي الخط كان فيه مش مستقر، و«تغطية المراقبة»، يعني التطبيق كان بيراقب قد إيه من الشهر.",
+        "fr": "Les tuiles résument le mois : disponibilité, nombre de coupures, temps total hors ligne, plus longue coupure, rétablissement moyen, temps instable, et couverture de la surveillance, c'est-à-dire la part du mois où l'application surveillait.",
+        "tr": "Kutular ayı özetler: çevrimiçi süre, kesinti sayısı, toplam kesinti süresi, en uzun kesinti, ortalama düzelme süresi, kararsız süre ve izleme kapsamı; yani uygulamanın ayın ne kadarını izlediği.",
+        "ur": "یہ خانے مہینے کا خلاصہ ہیں: اپ ٹائم، بندشوں کی تعداد، کل ڈاؤن ٹائم، سب سے لمبی بندش، اوسط بحالی، غیر مستحکم وقت، اور نگرانی کی کوریج، یعنی ایپ نے مہینے کا کتنا حصہ نگرانی کی۔"
+      }
+    },
+    {
+      "id": "daily", "caption": "Downtime by day",
+      "targets": ["[aria-labelledby='daily-title']"],
+      "text": {
+        "en": "Downtime by day shows which days were bad. Point at a bar to see that day's numbers.",
+        "ar": "«الانقطاع حسب اليوم» بيوضح أنهي أيام كانت وحشة. حط الماوس على أي عمود عشان تشوف أرقام اليوم ده.",
+        "fr": "« Temps hors ligne par jour » montre les mauvais jours. Pointez une barre pour voir les chiffres de ce jour.",
+        "tr": "“Günlere göre kesinti süresi” hangi günlerin kötü geçtiğini gösterir. O günün sayılarını görmek için bir çubuğun üzerine gelin.",
+        "ur": "“روزانہ ڈاؤن ٹائم” دکھاتا ہے کہ کون سے دن برے تھے۔ اس دن کے نمبر دیکھنے کے لیے کسی کالم پر ماؤس لے جائیں۔"
+      }
+    },
+    {
+      "id": "causes", "caption": "What failed",
+      "targets": ["[aria-labelledby='causes-title']"],
+      "text": {
+        "en": "What failed shows which checks failed during the outages, and their share of the downtime.",
+        "ar": "«إيه اللي فشل» بيوضح أنهي فحوصات فشلت وقت الانقطاعات، ونصيب كل واحد من مدة الانقطاع.",
+        "fr": "« Ce qui a échoué » montre quelles vérifications ont échoué pendant les coupures, et leur part du temps hors ligne.",
+        "tr": "“Ne başarısız oldu”, kesintiler sırasında hangi kontrollerin başarısız olduğunu ve kesinti süresindeki paylarını gösterir.",
+        "ur": "“کیا ناکام ہوا” دکھاتا ہے کہ بندشوں کے دوران کون سے چیک ناکام ہوئے، اور ڈاؤن ٹائم میں ان کا حصہ۔"
+      }
+    },
+    {
+      "id": "outages", "caption": "Every outage",
+      "targets": ["[aria-labelledby='report-events']"], "scroll": [0],
+      "text": {
+        "en": "The outages table lists each outage with its day, time and length. Under the cause, the app adds what it learned from your router, and from a route test it runs when the line drops.",
+        "ar": "جدول «الانقطاعات» فيه كل انقطاع بيومه ووقته ومدته. وتحت السبب، التطبيق بيضيف اللي عرفه من الراوتر بتاعك، ومن اختبار للطريق بيعمله لما الخط يقع.",
+        "fr": "Le tableau des coupures liste chacune avec son jour, son heure et sa durée. Sous la cause, l'application ajoute ce qu'elle a appris de votre routeur, et d'un test de route qu'elle lance quand la ligne tombe.",
+        "tr": "Kesintiler tablosu her kesintiyi günü, saati ve süresiyle listeler. Nedenin altına uygulama, modeminizden ve hat düştüğünde yaptığı bir yol testinden öğrendiklerini ekler.",
+        "ur": "بندشوں کے جدول میں ہر بندش اپنے دن، وقت اور دورانیے کے ساتھ ہے۔ وجہ کے نیچے ایپ وہ بات لکھتی ہے جو اسے آپ کے راؤٹر سے، اور لائن گرنے پر کیے گئے راستے کے ٹیسٹ سے معلوم ہوئی۔"
+      }
+    },
+    {
+      "id": "router-cause", "caption": "Every outage",
+      "targets": [{"css": "tbody tr", "text": "provider ended the internet session"}, {"css": "tbody tr", "text": "line to the provider was down", "index": 1}],
+      "text": {
+        "en": "For example: the line to the provider was down, or the line was up but the provider ended the internet session. Both point at the provider, and they are strong evidence.",
+        "ar": "مثلاً: الخط اللي جاي من الشركة كان واقع، أو الخط كان شغال بس الشركة قفلت جلسة الإنترنت. الاتنين بيشاوروا على الشركة، وده إثبات قوي.",
+        "fr": "Par exemple : la ligne vers le fournisseur était coupée, ou la ligne marchait mais le fournisseur a fermé la session internet. Les deux désignent le fournisseur, et ce sont des preuves solides.",
+        "tr": "Örneğin: sağlayıcıya giden hat kopmuştu, ya da hat açıktı ama sağlayıcı internet oturumunu sonlandırdı. İkisi de sağlayıcıyı gösterir ve güçlü kanıttır.",
+        "ur": "مثلاً: پرووائیڈر تک لائن بند تھی، یا لائن چل رہی تھی مگر پرووائیڈر نے انٹرنیٹ سیشن ختم کر دیا۔ دونوں پرووائیڈر کی طرف اشارہ کرتے ہیں، اور مضبوط ثبوت ہیں۔"
+      }
+    },
+    {
+      "id": "hours", "caption": "Downtime by hour",
+      "targets": ["[aria-labelledby='report-hours']"],
+      "text": {
+        "en": "Downtime by hour of day shows whether outages cluster at certain hours, which is a sign of an overloaded network.",
+        "ar": "«الفصل حسب ساعة اليوم» بيوضح هل الانقطاعات بتتجمع في ساعات معيّنة، ودي علامة إن الشبكة عليها ضغط.",
+        "fr": "« Temps hors ligne par heure de la journée » montre si les coupures se concentrent à certaines heures, signe d'un réseau surchargé.",
+        "tr": "“Günün saatine göre kesinti süresi”, kesintilerin belirli saatlerde toplanıp toplanmadığını gösterir; bu, aşırı yüklenmiş bir ağın işaretidir.",
+        "ur": "“دن کے گھنٹوں کے حساب سے ڈاؤن ٹائم” دکھاتا ہے کہ کیا بندشیں کچھ خاص گھنٹوں میں جمع ہوتی ہیں، جو نیٹ ورک پر زیادہ بوجھ کی نشانی ہے۔"
+      }
+    },
+    {
+      "id": "speed", "caption": "Speed vs your plan",
+      "targets": ["[aria-labelledby='report-speed']"],
+      "text": {
+        "en": "Speed tests versus your plan compares your tests with the speed you pay for, including evenings against the other hours.",
+        "ar": "«اختبارات السرعة قصاد باقتك» بيقارن قياساتك بالسرعة اللي بتدفع تمنها، ومنها بالليل قصاد باقي الساعات.",
+        "fr": "« Tests de débit comparés à votre forfait » compare vos tests au débit que vous payez, y compris le soir par rapport aux autres heures.",
+        "tr": "“Hız testleri ve paketiniz”, testlerinizi parasını ödediğiniz hızla karşılaştırır; akşamları diğer saatlerle de karşılaştırır.",
+        "ur": "“اسپیڈ ٹیسٹ بمقابلہ آپ کا پلان” آپ کے ٹیسٹوں کا اس اسپیڈ سے موازنہ کرتا ہے جس کے آپ پیسے دیتے ہیں، شام کو باقی اوقات کے مقابلے میں بھی۔"
+      }
+    },
+    {
+      "id": "worth", "caption": "What it's worth",
+      "targets": ["[aria-labelledby='report-comp']"],
+      "text": {
+        "en": "What the downtime is worth estimates the value of the time you were offline, from your monthly price. Use it to ask for a refund. Outages that look like power cuts are left out.",
+        "ar": "«الفصل ده يساوي كام» بيقدّر قيمة الوقت اللي كنت فيه من غير نت، على حسب سعر باقتك في الشهر. استخدمه عشان تطلب تعويض. والانقطاعات اللي شكلها انقطاع كهربا مش محسوبة.",
+        "fr": "« Ce que vaut le temps hors ligne » estime la valeur du temps passé sans internet, d'après votre prix mensuel. Servez-vous-en pour demander un remboursement. Les coupures qui ressemblent à des coupures de courant sont exclues.",
+        "tr": "“Kesintinin karşılığı”, aylık ücretinize göre çevrimdışı geçen sürenin değerini tahmin eder. Bunu geri ödeme istemek için kullanın. Elektrik kesintisine benzeyen kesintiler hesaba katılmaz.",
+        "ur": "“ڈاؤن ٹائم کی قیمت کتنی ہے” آپ کی ماہانہ قیمت سے اندازہ لگاتا ہے کہ آف لائن وقت کی قیمت کتنی بنی۔ اسے رقم واپسی مانگنے کے لیے استعمال کریں۔ جو بندشیں بجلی جانے جیسی لگیں وہ شامل نہیں۔"
+      }
+    },
+    {
+      "id": "gaps", "caption": "Not monitored",
+      "targets": ["[aria-labelledby='report-gaps']"],
+      "text": {
+        "en": "Not monitored lists the times when this computer was off or asleep. They are never counted as outages, so the report stays fair, and the provider can trust it.",
+        "ar": "«فترات من غير مراقبة» فيها الأوقات اللي الكمبيوتر كان مقفول أو نايم. دي عمرها ما بتتحسب انقطاع، فالتقرير بيفضل عادل، والشركة تقدر تثق فيه.",
+        "fr": "« Non surveillé » liste les moments où cet ordinateur était éteint ou en veille. Ils ne comptent jamais comme des coupures : le rapport reste juste, et le fournisseur peut s'y fier.",
+        "tr": "“İzlenmedi”, bu bilgisayarın kapalı ya da uykuda olduğu zamanları listeler. Bunlar asla kesinti sayılmaz; böylece rapor adil kalır ve sağlayıcı ona güvenebilir.",
+        "ur": "“نگرانی نہیں ہوئی” ان اوقات کی فہرست ہے جب یہ کمپیوٹر بند تھا یا سو رہا تھا۔ انہیں کبھی بندش نہیں گنا جاتا، اس لیے رپورٹ منصفانہ رہتی ہے اور پرووائیڈر اس پر بھروسہ کر سکتا ہے۔"
+      }
+    },
+    {
+      "id": "integrity", "caption": "Complaints and log integrity",
+      "targets": ["[aria-labelledby='report-complaints']", "[aria-labelledby='report-integrity']"],
+      "text": {
+        "en": "Complaints filed lists your complaints for the month. Log integrity shows that the saved logs were not changed after each day was sealed.",
+        "ar": "«الشكاوى المقدّمة» فيها شكاويك في الشهر ده. و«سلامة السجلات» بتوضح إن السجلات المحفوظة ماتغيّرتش بعد ما كل يوم اتختم.",
+        "fr": "« Réclamations déposées » liste vos réclamations du mois. « Intégrité des journaux » montre que les journaux enregistrés n'ont pas été modifiés après le scellement de chaque jour.",
+        "tr": "“Yapılan şikayetler” ayın şikayetlerini listeler. “Kayıt bütünlüğü”, her gün mühürlendikten sonra kayıtların değiştirilmediğini gösterir.",
+        "ur": "“درج کی گئی شکایات” مہینے کی آپ کی شکایات دکھاتی ہے۔ “لاگ کی سالمیت” دکھاتی ہے کہ ہر دن مہر لگنے کے بعد محفوظ لاگز بدلے نہیں گئے۔"
+      }
+    },
+    {
+      "id": "print", "caption": "Save as PDF",
+      "targets": [{"css": ".report-head button", "text": "Print or save as PDF"}],
+      "text": {
+        "en": "Print or save as PDF opens your browser's print window. To get a file you can send, choose Save as PDF as the printer. Buttons and menus are left out of the printout.",
+        "ar": "«اطبع أو احفظ PDF» بيفتح شباك الطباعة في المتصفح. عشان تاخد ملف تقدر تبعته، اختار «Save as PDF» مكان الطابعة. والزراير والقوايم مش بتطلع في الطباعة.",
+        "fr": "« Imprimer ou enregistrer en PDF » ouvre la fenêtre d'impression du navigateur. Pour obtenir un fichier à envoyer, choisissez « Enregistrer au format PDF » comme imprimante. Les boutons et les menus ne sont pas imprimés.",
+        "tr": "“Yazdır veya PDF olarak kaydet”, tarayıcınızın yazdırma penceresini açar. Gönderebileceğiniz bir dosya için yazıcı olarak “PDF olarak kaydet”i seçin. Düğmeler ve menüler çıktıya girmez.",
+        "ur": "“پرنٹ کریں یا PDF میں محفوظ کریں” براؤزر کی پرنٹ ونڈو کھولتا ہے۔ بھیجنے کے قابل فائل کے لیے پرنٹر کی جگہ “Save as PDF” چنیں۔ بٹن اور مینو پرنٹ میں نہیں آتے۔"
+      }
+    },
+    {
+      "id": "zip", "caption": "Evidence pack",
+      "targets": [{"css": ".report-head button", "text": "Download evidence pack"}],
+      "text": {
+        "en": "Download evidence pack saves a ZIP with this report, all the month's raw logs, and SHA-256 checksums. Send it together with the PDF.",
+        "ar": "«نزّل ملف الإثباتات» بيحفظ ملف ZIP فيه التقرير ده، وكل سجلات الشهر الأصلية، وبصمات SHA-256. ابعته مع ملف الـ PDF.",
+        "fr": "« Télécharger le dossier de preuves » enregistre un ZIP avec ce rapport, tous les journaux bruts du mois, et des empreintes SHA-256. Envoyez-le avec le PDF.",
+        "tr": "“Kanıt paketini indir”, bu raporu, ayın tüm ham kayıtlarını ve SHA-256 sağlama toplamlarını içeren bir ZIP kaydeder. PDF ile birlikte gönderin.",
+        "ur": "“ثبوت کا پیک ڈاؤن لوڈ کریں” ایک ZIP محفوظ کرتا ہے جس میں یہ رپورٹ، مہینے کے سارے اصل لاگز اور SHA-256 چیک سمز ہوتے ہیں۔ اسے PDF کے ساتھ بھیجیں۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours",
+      "targets": [".report-head .tour-link"],
+      "text": {
+        "en": "Press How this page works on any page to watch its video. Thanks for watching!",
+        "ar": "دوس «الصفحة دي بتشتغل إزاي» في أي صفحة عشان تتفرّج على الفيديو بتاعها. شكراً إنك اتفرّجت!",
+        "fr": "Appuyez sur « Comment marche cette page » sur n'importe quelle page pour voir sa vidéo. Merci d'avoir regardé !",
+        "tr": "Videosunu izlemek için herhangi bir sayfada “Bu sayfa nasıl çalışır”a basın. İzlediğiniz için teşekkürler!",
+        "ur": "کسی بھی صفحے کی ویڈیو دیکھنے کے لیے وہاں “یہ صفحہ کیسے کام کرتا ہے” دبائیں۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

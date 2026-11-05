@@ -6,13 +6,13 @@
     },
     "restored": {
       "title": "✅ Internet Restored",
-      "latency": "Latency: {ms}",
+      "latency": "Response time: {ms}",
       "ok": "All checks passing",
       "after": "Back after {duration}"
     },
     "degraded": {
       "title": "⚠️ Internet Degraded",
-      "body": "Loss: {loss}% — latency: {ms}"
+      "body": "Data lost: {loss}% — response time: {ms}"
     },
     "down": {
       "title": "🔴 Internet Disconnected",
@@ -65,8 +65,8 @@
     "tcp": "TCP ping",
     "http": "HTTP",
     "dns": "DNS",
-    "loss": "Packet loss",
-    "latency": "Latency",
+    "loss": "Data loss",
+    "latency": "Response time",
     "duration": "Duration",
     "ok": "OK",
     "failed": "Failed",

@@ -1,0 +1,186 @@
+{
+  "title": "Internet Monitor: the Overview page",
+  "path": "/",
+  "ready": ".hero",
+  "settle": 2500,
+  "scenes": [
+    {
+      "id": "welcome", "caption": "Overview", "poster": true,
+      "targets": [".hero"],
+      "text": {
+        "en": "This is the Overview, the first page you see. It shows how your internet is doing right now, and what happened recently.",
+        "ar": "دي «نظرة عامة»، أول صفحة بتشوفها. بتوريك الإنترنت عامل إزاي دلوقتي، وإيه اللي حصل قريب.",
+        "fr": "Voici la « Vue d'ensemble », la première page que vous voyez. Elle montre l'état de votre connexion en ce moment, et ce qui s'est passé récemment.",
+        "tr": "Burası “Genel bakış”, ilk gördüğünüz sayfa. İnternetinizin şu an nasıl olduğunu ve son zamanlarda neler olduğunu gösterir.",
+        "ur": "یہ “خلاصہ” ہے، وہ پہلا صفحہ جو آپ دیکھتے ہیں۔ یہ بتاتا ہے کہ اس وقت آپ کا انٹرنیٹ کیسا چل رہا ہے، اور حال ہی میں کیا ہوا۔"
+      }
+    },
+    {
+      "id": "status", "caption": "Live status",
+      "targets": [".hero"],
+      "text": {
+        "en": "The big card at the top is the live status. Green and Connected means every check is passing. Orange means Unstable: the line works, but it is slow or losing data. Red means Disconnected. The line under it says in plain words where the problem is, for example at your router or at your provider.",
+        "ar": "الكارت الكبير اللي فوق ده الحالة على الهوا. الأخضر و«متصل» معناه إن كل الفحوصات ناجحة. البرتقاني معناه «مش مستقر»: الخط شغال بس بطيء أو بيضيّع بيانات. والأحمر معناه «مقطوع». والسطر اللي تحته بيقولك بكلام بسيط المشكلة فين، مثلاً عند الراوتر بتاعك أو عند شركة الإنترنت.",
+        "fr": "La grande carte en haut, c'est l'état en direct. Vert et « Connecté » : toutes les vérifications passent. Orange, « Instable » : la ligne marche, mais elle est lente ou perd des données. Rouge, « Déconnecté ». La ligne en dessous dit simplement où est le problème, par exemple sur votre routeur ou chez votre fournisseur.",
+        "tr": "Üstteki büyük kart canlı durumdur. Yeşil ve “Bağlı”, tüm kontrollerin geçtiği anlamına gelir. Turuncu “Kararsız” demektir: hat çalışıyor ama yavaş ya da veri kaybediyor. Kırmızı “Bağlantı yok” demektir. Altındaki satır, sorunun nerede olduğunu sade bir dille söyler; örneğin modeminizde ya da sağlayıcınızda.",
+        "ur": "اوپر والا بڑا کارڈ لائیو اسٹیٹس ہے۔ سبز اور “کنیکٹڈ” کا مطلب ہے کہ ہر چیک کامیاب ہے۔ نارنجی کا مطلب “غیر مستحکم”: لائن چل رہی ہے مگر سست ہے یا ڈیٹا ضائع ہو رہا ہے۔ سرخ کا مطلب “منقطع”۔ نیچے والی لائن آسان الفاظ میں بتاتی ہے کہ مسئلہ کہاں ہے، مثلاً آپ کے راؤٹر میں یا آپ کے پرووائیڈر کے پاس۔"
+      }
+    },
+    {
+      "id": "since", "caption": "Live status",
+      "targets": [".hero-meta"],
+      "text": {
+        "en": "On the right you see how long it has been in this state, when the last check ran, and how often the app checks.",
+        "ar": "على الجنب هتلاقي بقاله قد إيه على الحالة دي، وآخر فحص كان إمتى، والتطبيق بيفحص كل قد إيه.",
+        "fr": "À droite : depuis combien de temps cet état dure, quand la dernière vérification a eu lieu, et à quelle fréquence l'application vérifie.",
+        "tr": "Sağda bu durumun ne kadar süredir devam ettiğini, son kontrolün ne zaman yapıldığını ve uygulamanın ne sıklıkla kontrol ettiğini görürsünüz.",
+        "ur": "سائیڈ پر آپ دیکھتے ہیں کہ یہ حالت کب سے ہے، آخری چیک کب ہوا، اور ایپ کتنی دیر بعد چیک کرتی ہے۔"
+      }
+    },
+    {
+      "id": "stats", "caption": "The numbers",
+      "targets": [".grid-stats"],
+      "text": {
+        "en": "These four tiles are the numbers behind the status. Response time is how long a reply takes, in milliseconds. Lower is better. Fluctuation is how much that time jumps around. Data loss is the share of checks that got no answer. Uptime is the share of checks that passed since the app started.",
+        "ar": "المربعات الأربعة دي هي الأرقام اللي ورا الحالة. «زمن الاستجابة» هو الرد بياخد قد إيه بالمللي ثانية، وكل ما يقل يبقى أحسن. «التذبذب» هو الوقت ده بيتهز قد إيه. «ضياع البيانات» هو نسبة الفحوصات اللي ماجالهاش رد. ونسبة الاتصال هي نسبة الفحوصات اللي نجحت من ساعة ما التطبيق اشتغل.",
+        "fr": "Ces quatre tuiles sont les chiffres derrière l'état. Le « Temps de réponse » est le délai d'une réponse, en millisecondes : plus c'est bas, mieux c'est. Les « Variations » indiquent à quel point ce temps change. Les « Données perdues » sont la part des vérifications restées sans réponse. La disponibilité est la part des vérifications réussies depuis le démarrage de l'application.",
+        "tr": "Bu dört kutu, durumun arkasındaki sayılardır. “Gecikme”, bir yanıtın milisaniye cinsinden ne kadar sürdüğüdür; düşük olması iyidir. “Dalgalanma”, bu sürenin ne kadar oynadığıdır. “Veri kaybı”, yanıt alınamayan kontrollerin oranıdır. Çevrimiçi süre ise uygulama başladığından beri geçen kontrollerin oranıdır.",
+        "ur": "یہ چار خانے اسٹیٹس کے پیچھے کے نمبر ہیں۔ “جواب کا وقت” یہ ہے کہ جواب آنے میں کتنے ملی سیکنڈ لگتے ہیں، جتنا کم اتنا بہتر۔ “اتار چڑھاؤ” یہ ہے کہ یہ وقت کتنا اوپر نیچے ہوتا ہے۔ “ڈیٹا کا نقصان” ان چیکس کا حصہ ہے جن کا جواب نہیں آیا۔ اور اپ ٹائم ان چیکس کا حصہ ہے جو ایپ شروع ہونے سے اب تک کامیاب رہے۔"
+      }
+    },
+    {
+      "id": "timeline", "caption": "Outage timeline",
+      "targets": ["[aria-labelledby='tl-title']"],
+      "text": {
+        "en": "The outage timeline shows the last 24 hours as one bar. Green is connected, orange is unstable, and red is disconnected. Striped grey means the app was not running, so nothing was measured. Switch to 7 days to see the whole week.",
+        "ar": "«خط زمني للانقطاعات» بيعرض آخر 24 ساعة في شريط واحد. الأخضر متصل، والبرتقاني مش مستقر، والأحمر مقطوع. والرمادي المخطط معناه إن التطبيق ماكانش شغال، فمفيش حاجة اتقاست. دوس «7 أيام» عشان تشوف الأسبوع كله.",
+        "fr": "La « Chronologie des coupures » montre les dernières 24 heures sur une seule barre. Vert : connecté, orange : instable, rouge : déconnecté. Le gris hachuré veut dire que l'application ne tournait pas, donc rien n'a été mesuré. Passez à « 7 jours » pour voir toute la semaine.",
+        "tr": "“Kesinti zaman çizelgesi”, son 24 saati tek bir çubukta gösterir. Yeşil bağlı, turuncu kararsız, kırmızı bağlantı yok demektir. Çizgili gri, uygulamanın çalışmadığı ve hiçbir şeyin ölçülmediği anlamına gelir. Tüm haftayı görmek için “7 gün”e geçin.",
+        "ur": "“بندشوں کی ٹائم لائن” پچھلے 24 گھنٹے ایک پٹی میں دکھاتی ہے۔ سبز کنیکٹڈ، نارنجی غیر مستحکم، اور سرخ منقطع ہے۔ دھاری دار سرمئی کا مطلب ہے کہ ایپ نہیں چل رہی تھی، اس لیے کچھ ناپا نہیں گیا۔ پورا ہفتہ دیکھنے کے لیے “7 دن” پر جائیں۔"
+      }
+    },
+    {
+      "id": "timeline-hover", "caption": "Outage timeline",
+      "focus": ["[aria-labelledby='tl-title']"],
+      "targets": ["[aria-labelledby='tl-title']", ".chart-tip"],
+      "after": [{"hover": {"css": "button.timeline-seg[data-status='disconnected']", "index": 0}}, {"wait": 400}],
+      "text": {
+        "en": "Point at any red or orange part of the bar to see exactly when it started, when it ended, and how long it lasted.",
+        "ar": "حط الماوس على أي حتة حمرا أو برتقاني في الشريط، هيقولك بالظبط بدأت إمتى، وخلصت إمتى، وفضلت قد إيه.",
+        "fr": "Pointez n'importe quelle partie rouge ou orange de la barre pour voir exactement quand elle a commencé, quand elle a fini, et combien de temps elle a duré.",
+        "tr": "Başladığı, bittiği anı ve ne kadar sürdüğünü görmek için çubuğun kırmızı ya da turuncu herhangi bir kısmının üzerine gelin.",
+        "ur": "پٹی کے کسی بھی سرخ یا نارنجی حصے پر ماؤس لے جائیں تو ٹھیک ٹھیک پتا چلتا ہے کہ وہ کب شروع ہوا، کب ختم ہوا، اور کتنی دیر رہا۔"
+      }
+    },
+    {
+      "id": "insights", "caption": "What your data says",
+      "targets": ["[aria-labelledby='ins-title']"], "scroll": [0],
+      "text": {
+        "en": "What your data says reads the last 30 days for you and points out what matters. Each tip explains what it means and what to do next, like opening a complaint when the fault is on the provider's side.",
+        "ar": "«بياناتك بتقول إيه» بيقرا آخر 30 يوم بدالك ويطلّعلك المهم. كل نصيحة بتشرح معناها إيه وتعمل إيه بعد كده، زي إنك تفتح شكوى لما العطل يبقى عند الشركة.",
+        "fr": "« Ce que disent vos données » lit les 30 derniers jours pour vous et signale ce qui compte. Chaque conseil explique ce que cela veut dire et quoi faire ensuite, par exemple ouvrir une réclamation quand la panne vient du fournisseur.",
+        "tr": "“Verileriniz ne diyor”, son 30 günü sizin yerinize okur ve önemli olanı gösterir. Her ipucu ne anlama geldiğini ve sonra ne yapmanız gerektiğini anlatır; örneğin arıza sağlayıcıdaysa şikayet açmak gibi.",
+        "ur": "“آپ کا ڈیٹا کیا کہتا ہے” آپ کے لیے پچھلے 30 دن پڑھتا ہے اور اہم باتیں بتاتا ہے۔ ہر مشورہ بتاتا ہے کہ اس کا مطلب کیا ہے اور آگے کیا کرنا ہے، جیسے خرابی پرووائیڈر کی طرف ہو تو شکایت کھولنا۔"
+      }
+    },
+    {
+      "id": "router", "caption": "Your router",
+      "targets": ["[aria-labelledby='rt-title']"],
+      "text": {
+        "en": "The router card reads your router on your home network. Line to the provider tells you whether the line itself is up. Line speed is the speed the line is connected at, and Line could reach is the most it could do.",
+        "ar": "كارت «الراوتر بتاعك» بيقرا الراوتر على شبكة البيت. «الخط اللي جاي من الشركة» بيقولك الخط نفسه شغال ولا لأ. «سرعة الخط» هي السرعة اللي الخط متوصّل بيها، و«أقصى سرعة يقدر يوصلها الخط» هي أعلى حاجة يقدر يعملها.",
+        "fr": "La carte « Votre routeur » lit votre routeur sur le réseau de la maison. « Ligne vers le fournisseur » dit si la ligne elle-même fonctionne. Le débit de la ligne est la vitesse à laquelle elle est connectée, et le débit atteignable est le maximum possible.",
+        "tr": "“Modeminiz” kartı, ev ağınızdaki modemi okur. “Sağlayıcıya giden hat”, hattın kendisinin açık olup olmadığını söyler. Hat hızı, hattın bağlı olduğu hızdır; “Hattın ulaşabileceği hız” ise yapabileceği en yüksek hızdır.",
+        "ur": "“آپ کا راؤٹر” کارڈ گھر کے نیٹ ورک پر آپ کا راؤٹر پڑھتا ہے۔ “پرووائیڈر تک لائن” بتاتی ہے کہ لائن خود چل رہی ہے یا نہیں۔ لائن کی اسپیڈ وہ ہے جس پر لائن جڑی ہے، اور زیادہ سے زیادہ ممکن اسپیڈ وہ حد ہے جہاں تک وہ جا سکتی ہے۔"
+      }
+    },
+    {
+      "id": "snr", "caption": "Your router",
+      "targets": [{"css": "[aria-labelledby='rt-title'] .evidence-grid > div", "text": "Noise margin"}, {"css": "[aria-labelledby='rt-title'] .evidence-grid > div", "text": "Line attenuation"}],
+      "text": {
+        "en": "Noise margin, or SNR, shows how clean the line is. Higher is better. Below about 6 dB, a DSL line drops easily, and that is the provider's job to fix. Attenuation is how much the signal fades on its way to you.",
+        "ar": "«هامش الإشارة (SNR)» بيوضح الخط نضيف قد إيه، وكل ما يعلى يبقى أحسن. لو نزل تحت 6 ديسيبل تقريباً، خط الـ DSL بيقطع بسهولة، وده تصليحه مسؤولية الشركة. والتوهين هو الإشارة بتضعف قد إيه وهي جاية لك.",
+        "fr": "La « Marge de bruit (SNR) » montre la propreté de la ligne : plus elle est haute, mieux c'est. En dessous d'environ 6 dB, une ligne DSL décroche facilement, et c'est au fournisseur de la réparer. L'atténuation indique combien le signal s'affaiblit en arrivant chez vous.",
+        "tr": "“Gürültü payı (SNR)”, hattın ne kadar temiz olduğunu gösterir; yüksek olması iyidir. Yaklaşık 6 dB'nin altında bir DSL hattı kolayca kopar ve bunu düzeltmek sağlayıcının işidir. Zayıflama ise sinyalin size gelene kadar ne kadar azaldığıdır.",
+        "ur": "“نوائز مارجن (SNR)” بتاتا ہے کہ لائن کتنی صاف ہے، جتنا زیادہ اتنا بہتر۔ تقریباً 6 dB سے نیچے DSL لائن آسانی سے ٹوٹتی ہے، اور اسے ٹھیک کرنا پرووائیڈر کا کام ہے۔ اٹینیویشن یہ ہے کہ سگنل آپ تک پہنچتے پہنچتے کتنا کمزور ہوتا ہے۔"
+      }
+    },
+    {
+      "id": "data", "caption": "Your router",
+      "targets": [{"css": "[aria-labelledby='rt-title'] .stack .stack", "text": "used since"}],
+      "text": {
+        "en": "Below that you see how much data you used since your plan renewed. Set your plan's data limit, and the app warns you at 80 and at 100 percent.",
+        "ar": "وتحت ده هتشوف استهلكت قد إيه من ساعة ما الباقة اتجددت. دوس «حدّد حجم الباقة»، والتطبيق هينبّهك لما توصل 80 و100 في المية.",
+        "fr": "En dessous, la quantité de données utilisée depuis le renouvellement de votre forfait. Indiquez la limite de données de votre forfait, et l'application vous prévient à 80 et à 100 pour cent.",
+        "tr": "Onun altında, paketiniz yenilendiğinden beri ne kadar veri kullandığınızı görürsünüz. Paketinizin veri kotasını girin; uygulama yüzde 80'de ve yüzde 100'de sizi uyarır.",
+        "ur": "اس کے نیچے آپ دیکھتے ہیں کہ پلان تجدید ہونے کے بعد سے کتنا ڈیٹا استعمال ہوا۔ “اپنے پلان کی ڈیٹا حد سیٹ کریں” دبائیں، تو ایپ 80 اور 100 فیصد پر آپ کو خبردار کرے گی۔"
+      }
+    },
+    {
+      "id": "chart", "caption": "Response time",
+      "targets": ["[aria-labelledby='chart-title']"],
+      "text": {
+        "en": "The response time chart shows the last checks one by one. A line that stays low and flat is what you want. Tall spikes mean the connection is struggling.",
+        "ar": "رسم «زمن الاستجابة» بيعرض آخر الفحوصات واحد ورا التاني. الخط اللي فاضل واطي ومستوي هو اللي إنت عايزه. والقمم العالية معناها إن الاتصال تعبان.",
+        "fr": "Le graphique « Temps de réponse » montre les dernières vérifications une par une. Une ligne basse et plate, c'est ce que vous voulez. De grands pics veulent dire que la connexion peine.",
+        "tr": "Gecikme grafiği son kontrolleri tek tek gösterir. İstediğiniz, düşük ve düz kalan bir çizgidir. Yüksek sıçramalar bağlantının zorlandığını gösterir.",
+        "ur": "“جواب کا وقت” کا چارٹ آخری چیکس ایک ایک کر کے دکھاتا ہے۔ نیچی اور سیدھی لائن ہی آپ چاہتے ہیں۔ اونچے ابھار کا مطلب ہے کہ کنکشن مشکل میں ہے۔"
+      }
+    },
+    {
+      "id": "events", "caption": "Recent events",
+      "targets": ["[aria-labelledby='events-title']"],
+      "text": {
+        "en": "Recent events lists every change since the app started: when the connection dropped, what failed, and when it came back. View history opens the full log.",
+        "ar": "«آخر الأحداث» فيها كل تغيير من ساعة ما التطبيق اشتغل: الاتصال قطع إمتى، إيه اللي فشل، ورجع إمتى. «عرض السجل» بيفتح السجل كامل.",
+        "fr": "« Événements récents » liste chaque changement depuis le démarrage de l'application : quand la connexion a coupé, ce qui a échoué, et quand elle est revenue. « Voir l'historique » ouvre le journal complet.",
+        "tr": "“Son olaylar”, uygulama başladığından beri olan her değişikliği listeler: bağlantı ne zaman koptu, ne başarısız oldu ve ne zaman geri geldi. “Geçmişi gör” tüm kaydı açar.",
+        "ur": "“حالیہ ایونٹس” میں ایپ شروع ہونے کے بعد کی ہر تبدیلی ہے: کنکشن کب ٹوٹا، کیا ناکام ہوا، اور کب واپس آیا۔ “ہسٹری دیکھیں” پورا ریکارڈ کھولتا ہے۔"
+      }
+    },
+    {
+      "id": "availability", "caption": "Availability",
+      "targets": ["[aria-labelledby='avail-title']"],
+      "text": {
+        "en": "Availability shows how much of the time your internet worked today, in the last 7 days, and in the last 30 days.",
+        "ar": "«التوفّر» بيوضح الإنترنت كان شغال قد إيه من الوقت النهارده، وفي آخر 7 أيام، وفي آخر 30 يوم.",
+        "fr": "« Disponibilité » montre pendant quelle part du temps votre internet a fonctionné aujourd'hui, sur les 7 derniers jours et sur les 30 derniers jours.",
+        "tr": "“Erişilebilirlik”, internetinizin bugün, son 7 günde ve son 30 günde zamanın ne kadarında çalıştığını gösterir.",
+        "ur": "“دستیابی” بتاتی ہے کہ آج، پچھلے 7 دن میں اور پچھلے 30 دن میں آپ کا انٹرنیٹ کتنے وقت چلا۔"
+      }
+    },
+    {
+      "id": "targets", "caption": "Check targets",
+      "targets": ["[aria-labelledby='targets-title']"],
+      "text": {
+        "en": "Check targets lists the servers the app tests every few seconds, and whether each one answered. You can change them in Settings.",
+        "ar": "«أهداف الفحص» فيها السيرفرات اللي التطبيق بيختبرها كل كام ثانية، وكل واحد فيهم رد ولا لأ. تقدر تغيّرهم من الإعدادات.",
+        "fr": "« Cibles de vérification » liste les serveurs que l'application teste toutes les quelques secondes, et si chacun a répondu. Vous pouvez les changer dans les Paramètres.",
+        "tr": "“Kontrol hedefleri”, uygulamanın birkaç saniyede bir test ettiği sunucuları ve her birinin yanıt verip vermediğini listeler. Bunları Ayarlar'dan değiştirebilirsiniz.",
+        "ur": "“چیک کے ٹارگٹس” ان سرورز کی فہرست ہے جنہیں ایپ ہر چند سیکنڈ بعد آزماتی ہے، اور یہ کہ ہر ایک نے جواب دیا یا نہیں۔ آپ انہیں سیٹنگز میں بدل سکتے ہیں۔"
+      }
+    },
+    {
+      "id": "topbar", "caption": "Every page",
+      "targets": [".topbar-actions"],
+      "text": {
+        "en": "The status pill at the top stays on every page, and the bell holds your latest alerts. The number on it counts the ones you haven't seen.",
+        "ar": "علامة الحالة اللي فوق موجودة في كل الصفحات، والجرس فيه آخر التنبيهات. والرقم اللي عليه هو عدد اللي لسه ماشفتهاش.",
+        "fr": "La pastille d'état en haut reste sur chaque page, et la cloche contient vos dernières alertes. Le chiffre dessus compte celles que vous n'avez pas vues.",
+        "tr": "Üstteki durum etiketi her sayfada kalır; zil ise son uyarılarınızı tutar. Üzerindeki sayı, henüz görmediklerinizi sayar.",
+        "ur": "اوپر والا اسٹیٹس کا نشان ہر صفحے پر رہتا ہے، اور گھنٹی میں آپ کے تازہ الرٹس ہوتے ہیں۔ اس پر لکھا نمبر ان الرٹس کو گنتا ہے جو آپ نے ابھی نہیں دیکھے۔"
+      }
+    },
+    {
+      "id": "more", "caption": "Video tours",
+      "targets": [".page-tour .tour-link"],
+      "text": {
+        "en": "Every page has a How this page works button like this one. It opens a short video about that page. Thanks for watching!",
+        "ar": "كل صفحة فيها زرار «الصفحة دي بتشتغل إزاي» زي ده، بيفتح فيديو قصير عن الصفحة دي. شكراً إنك اتفرّجت!",
+        "fr": "Chaque page a un bouton « Comment marche cette page » comme celui-ci. Il ouvre une courte vidéo sur cette page. Merci d'avoir regardé !",
+        "tr": "Her sayfada bunun gibi bir “Bu sayfa nasıl çalışır” düğmesi vardır. O sayfa hakkında kısa bir video açar. İzlediğiniz için teşekkürler!",
+        "ur": "ہر صفحے پر اس طرح کا “یہ صفحہ کیسے کام کرتا ہے” بٹن ہے۔ یہ اس صفحے کے بارے میں ایک مختصر ویڈیو کھولتا ہے۔ دیکھنے کا شکریہ!"
+      }
+    }
+  ]
+}

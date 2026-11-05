@@ -1,5 +1,3 @@
-export const TUTORIAL_ASSET = "internet-monitor-tutorial.mp4";
-
 function shapeRelease(r) {
   const assets = {};
   for (const a of r.assets ?? []) {
@@ -38,7 +36,7 @@ export async function loadReleases(repo, { token, offline } = {}) {
     ok: false,
     stable: null,
     preview: null,
-    tutorial: null,
+    list: [],
     page: `https://github.com/${repo}/releases/latest`,
     all: `https://github.com/${repo}/releases`,
   };
@@ -59,81 +57,49 @@ export async function loadReleases(repo, { token, offline } = {}) {
   const newestPre = releases.find((r) => r.prerelease) ?? null;
   const preview = newestPre && (!stable || new Date(newestPre.date) > new Date(stable.date)) ? newestPre : null;
 
-  let tutorial = null;
-  if (stable?.assets[TUTORIAL_ASSET]) {
-    tutorial = {
-      url: `https://github.com/${repo}/releases/latest/download/${TUTORIAL_ASSET}`,
-      release: stable,
-    };
-  } else {
-    const pre = releases.find((r) => r.prerelease && r.assets[TUTORIAL_ASSET]);
-    if (pre) tutorial = { url: pre.assets[TUTORIAL_ASSET].url, release: pre };
-  }
-
-  return { ...fallback, ok: Boolean(stable || preview), stable, preview, tutorial };
+  return { ...fallback, ok: Boolean(stable || preview), stable, preview, list: releases };
 }
 
 export const PLATFORMS = [
   {
     id: "windows",
     icon: "windows",
-    groups: [
-      {
-        files: [
-          { asset: "internet-monitor-windows.exe", label: "tray", desc: "tray_desc", main: true },
-          { asset: "internet-monitor-gui-windows.exe", label: "window", desc: "window_desc" },
-        ],
-      },
-    ],
+    stepIcons: ["download", "pointer", "clock", "gauge"],
+    editions: {
+      tray: [{ asset: "internet-monitor-windows.exe" }],
+      window: [{ asset: "internet-monitor-gui-windows.exe" }],
+    },
   },
   {
     id: "mac",
     icon: "apple",
-    note: "mac_which",
-    groups: [
-      {
-        title: "mac_arm",
-        arch: "arm",
-        files: [
-          { asset: "internet-monitor-macos-arm64", label: "tray", desc: "tray_desc", main: true },
-          { asset: "internet-monitor-gui-macos-arm64", label: "window", desc: "window_desc" },
-        ],
-      },
-      {
-        title: "mac_intel",
-        arch: "intel",
-        files: [
-          { asset: "internet-monitor-macos-intel", label: "tray", desc: "tray_desc", main: true },
-          { asset: "internet-monitor-gui-macos-intel", label: "window", desc: "window_desc" },
-        ],
-      },
-    ],
+    stepIcons: ["download", "shield", "pointer", "gauge"],
+    editions: {
+      tray: [
+        { arch: "arm", asset: "internet-monitor-macos-arm64" },
+        { arch: "intel", asset: "internet-monitor-macos-intel" },
+      ],
+      window: [
+        { arch: "arm", asset: "internet-monitor-gui-macos-arm64" },
+        { arch: "intel", asset: "internet-monitor-gui-macos-intel" },
+      ],
+    },
   },
   {
     id: "linux",
     icon: "linux",
-    groups: [
-      {
-        files: [
-          { asset: "internet-monitor-linux", label: "tray", desc: "tray_desc", main: true },
-          { asset: "internet-monitor-gui-linux", label: "window", desc: "window_desc" },
-        ],
-      },
-    ],
+    stepIcons: ["download", "shield", "pointer", "gauge"],
+    editions: {
+      tray: [{ asset: "internet-monitor-linux" }],
+      window: [{ asset: "internet-monitor-gui-linux" }],
+    },
   },
-  {
-    id: "pi",
-    icon: "pi",
-    groups: [
-      {
-        files: [
-          { asset: "internet-monitor-headless-linux-arm64", label: "pi_64", main: true },
-          { asset: "internet-monitor-headless-linux-armv7", label: "pi_32" },
-          { asset: "internet-monitor-headless-linux-amd64", label: "pi_amd64" },
-        ],
-      },
-    ],
-  },
+];
+
+export const PI_FILES = [
+  { asset: "internet-monitor-headless-linux-arm64", label: "pi_64" },
+  { asset: "internet-monitor-headless-linux-armv7", label: "pi_32" },
+  { asset: "internet-monitor-headless-linux-amd64", label: "pi_amd64" },
 ];
 
 export function resolveAsset(releases, name) {

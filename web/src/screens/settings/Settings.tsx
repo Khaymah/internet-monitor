@@ -2,7 +2,6 @@ import {
   Bell,
   BellRing,
   CircleAlert,
-  CirclePlay,
   Gauge,
   type LucideIcon,
   Music,
@@ -14,8 +13,8 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ConfirmDialog } from "../../components/ConfirmDialog";
-import { RouteLink } from "../../components/RouteLink";
 import { toast } from "../../components/Toast";
+import { TourLink } from "../../components/TourLink";
 import { Banner, Button, Skeleton } from "../../components/ui";
 import { ApiError, api } from "../../lib/api";
 import { type MessageKey, useI18n } from "../../lib/i18n";
@@ -322,10 +321,7 @@ export function Settings() {
           <h1>{t("settings_title")}</h1>
           <p>{t("settings_sub")}</p>
         </div>
-        <RouteLink route="tutorial" className="btn btn-edge btn-sm">
-          <CirclePlay size={16} aria-hidden />
-          {t("tour_watch")}
-        </RouteLink>
+        <TourLink id="settings" />
       </div>
 
       {readOnly ? (

@@ -6,13 +6,13 @@
     },
     "restored": {
       "title": "✅ Internet rétabli",
-      "latency": "Latence : {ms}",
+      "latency": "Temps de réponse : {ms}",
       "ok": "Toutes les vérifications réussissent",
       "after": "De retour après {duration}"
     },
     "degraded": {
       "title": "⚠️ Internet dégradé",
-      "body": "Perte : {loss} % — latence : {ms}"
+      "body": "Données perdues : {loss} % — temps de réponse : {ms}"
     },
     "down": {
       "title": "🔴 Internet déconnecté",
@@ -65,8 +65,8 @@
     "tcp": "Ping TCP",
     "http": "HTTP",
     "dns": "DNS",
-    "loss": "Perte de paquets",
-    "latency": "Latence",
+    "loss": "Perte de données",
+    "latency": "Temps de réponse",
     "duration": "Durée",
     "ok": "OK",
     "failed": "Échec",

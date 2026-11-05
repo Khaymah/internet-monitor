@@ -13,6 +13,7 @@ import {
 import { type CSSProperties, type KeyboardEvent, useEffect, useId, useMemo, useRef, useState } from "react";
 import { ChartTooltip } from "../components/ChartTooltip";
 import { toast } from "../components/Toast";
+import { TourLink } from "../components/TourLink";
 import { Banner, Button, Card, CardHead, Empty, Meter, Skeleton } from "../components/ui";
 import { api } from "../lib/api";
 import { downloadBlob } from "../lib/csv";
@@ -265,6 +266,7 @@ export function Report({ month: initial }: { month: string | null }) {
           />
         </div>
         <div className="row">
+          <TourLink id="report" />
           <Button
             variant="edge"
             icon={Download}

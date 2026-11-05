@@ -1,0 +1,26 @@
+{
+  "voice": "en_US-lessac-medium (rhasspy/piper-voices v1.0.0)",
+  "say": {
+    "ntfy": "notify",
+    "TCP": "T C P",
+    "HTTP": "H T T P",
+    "DNS": "D N S",
+    "URLs": "U R Ls",
+    "MP3": "M P 3",
+    "WAV": "wave",
+    "ID": "I D",
+    "GitHub": "Git Hub",
+    "SNR": "S N R",
+    "CSV": "C S V",
+    "PDF": "P D F",
+    "ZIP": "zip",
+    "ISP": "I S P",
+    "SHA-256": "S H A 256",
+    "NTRA": "N T R A",
+    "SQM": "S Q M",
+    "QoS": "Q o S",
+    "WhatsApp": "Whats App",
+    "UPS": "U P S"
+  },
+  "videos": ["overview", "history", "notifications", "speed", "complaints", "report", "settings"]
+}
