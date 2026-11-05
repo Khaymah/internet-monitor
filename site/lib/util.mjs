@@ -86,3 +86,16 @@ export function compareVersions(a, b) {
   }
   return 0;
 }
+
+const VERIFY = [
+  ["google-site-verification", "GOOGLE_SITE_VERIFICATION"],
+  ["msvalidate.01", "BING_SITE_VERIFICATION"],
+  ["yandex-verification", "YANDEX_VERIFICATION"],
+];
+
+export function verificationMeta(env = process.env) {
+  return VERIFY.map(([name, key]) => [name, String(env[key] ?? "").trim()])
+    .filter(([, value]) => /^[A-Za-z0-9_\-.=]{6,200}$/.test(value))
+    .map(([name, value]) => `<meta name="${name}" content="${value}">`)
+    .join("\n");
+}
