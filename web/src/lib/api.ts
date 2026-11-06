@@ -167,10 +167,15 @@ export const api = {
   testNtfy: (url?: string, token?: string) =>
     post<{ ok: boolean }>("/api/test-ntfy", { ...(url ? { url } : {}), ...(token ? { token } : {}) }),
   testRouter: (user?: string, password?: string) =>
-    post<{ ok: boolean; down_kbps: number; up_kbps: number; snr_down_db: number; has_counters: boolean }>(
-      "/api/test-router",
-      { ...(user ? { user } : {}), ...(password ? { password } : {}) },
-    ),
+    post<{
+      ok: boolean;
+      down_kbps: number;
+      up_kbps: number;
+      snr_down_db: number;
+      has_counters: boolean;
+      has_line: boolean;
+      driver: string;
+    }>("/api/test-router", { ...(user ? { user } : {}), ...(password ? { password } : {}) }),
   playSound: (volume?: number) =>
     post<{ ok: boolean }>(volume === undefined ? "/api/play-sound" : `/api/play-sound?volume=${volume}`),
   notifications: (limit = 50, signal?: AbortSignal) =>

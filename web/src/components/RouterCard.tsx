@@ -8,6 +8,7 @@ import { type Lang, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
 import type { PlanUsage, RouterStatus, RouterView } from "../lib/types";
 import { tone } from "../styles/categories";
+import { RouterReading } from "./RouterReading";
 import { Button, Card, CardHead, Meter } from "./ui";
 
 function gb(lang: Lang, bytes: number): string {
@@ -15,10 +16,9 @@ function gb(lang: Lang, bytes: number): string {
   return `\u2066${formatNumber(lang, v, v < 10 ? 1 : 0)} GB\u2069`;
 }
 
-const WEB_ERROR: Record<NonNullable<RouterView["web_error"]>, MessageKey> = {
+const WEB_ERROR: Record<Exclude<NonNullable<RouterView["web_error"]>, "unsupported">, MessageKey> = {
   wrong_password: "rt_web_wrong_password",
   busy: "rt_web_busy",
-  unsupported: "rt_web_unsupported",
   unreachable: "rt_web_unreachable",
 };
 
@@ -171,7 +171,10 @@ export function RouterCard() {
       />
       <div className="stack" style={{ gap: 16 }}>
         {st ? <StatusGrid st={st} /> : <p className="secondary">{t("rt_not_found")}</p>}
-        {v.web_error ? <p className="secondary">{t(WEB_ERROR[v.web_error])}</p> : null}
+        {v.web_error && v.web_error !== "unsupported" ? (
+          <p className="secondary">{t(WEB_ERROR[v.web_error])}</p>
+        ) : null}
+        <RouterReading view={v} />
         {v.usage ? (
           <Usage u={v.usage} />
         ) : st && !st.has_counters ? (

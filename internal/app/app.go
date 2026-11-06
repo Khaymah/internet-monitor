@@ -128,7 +128,7 @@ func New(opts Options) (*App, error) {
 		Enabled: func() bool { return store.Get().RouterStatus },
 		Web: func() (router.WebReader, bool) {
 			c := store.Get()
-			return router.WebReader{Host: c.RouterAddress, User: c.RouterUser, Password: c.RouterPassword}, c.RouterPassword != ""
+			return router.WebReader{Host: c.RouterAddress, User: c.RouterUser, Password: c.RouterPassword}, true
 		},
 		Save: func(at time.Time, st router.Status) { lgr.LogJSON(router.Prefix, at, st) },
 		Logf: lgr.AppLog,
