@@ -162,6 +162,15 @@ func New(opts Options) (*App, error) {
 				}
 				return stats, err
 			},
+			RouterReport: func(ctx context.Context, deep bool) (router.Report, error) {
+				rep, err := poller.Report(ctx, opts.Version, deep)
+				if err != nil {
+					lgr.AppLog("ROUTER report not built: %v", err)
+					return rep, err
+				}
+				lgr.AppLog("ROUTER report built (signed-in probe: %s)", rep.Deep.Outcome)
+				return rep, nil
+			},
 		},
 	})
 	var desktop alerts.Desktop

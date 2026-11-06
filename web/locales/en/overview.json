@@ -121,6 +121,7 @@
   "rt_err_auth": "Login to the provider failed",
   "rt_not_found": "No router answered. To see the line state and your data usage here, turn on UPnP (a router feature that lets apps ask it for its status) in the router's settings (often under Network or Advanced). Some provider routers don't offer it.",
   "rt_no_counters": "This router doesn't share its traffic counters over UPnP. Add the router's password in Settings → App to track your data plan from its page.",
+  "rt_help": "Help us support this router",
   "rt_used_noquota": "{used} used since {since}",
   "rt_set_quota": "Set your plan's data limit",
   "rt_used_label": "Data used since {since}",

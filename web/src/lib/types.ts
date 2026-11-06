@@ -301,6 +301,13 @@ export interface RouterView {
   usage?: PlanUsage;
 }
 
+export interface RouterReportResult {
+  report: Record<string, unknown>;
+  summary: string;
+  filename: string;
+  issue_url: string;
+}
+
 export interface ReportRoute {
   hops: number;
   last_hop: number;

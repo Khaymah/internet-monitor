@@ -15,6 +15,7 @@ const BY_CODE: Record<string, MessageKey> = {
   router_busy: "rt_web_busy",
   router_unsupported: "rt_web_unsupported",
   router_unreachable: "rt_web_unreachable",
+  report_in_progress: "rr_busy",
 };
 
 export function errorKey(e: unknown, fallback: MessageKey): MessageKey {
