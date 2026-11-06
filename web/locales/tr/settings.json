@@ -129,7 +129,7 @@
   "f_seal_ts_hint": "Her günün kayıtları dijital bir mühürle kilitlenir; böylece sonradan yapılan her değişiklik fark edilir. Bu açıkken her günün mührüne ayrıca bağımsız bir kurum (freetsa.org) tarafından resmî tarih ve saat damgası vurulur; bu kurum verilerinizi değil, yalnızca mührün kısa bir parmak izini (32 bayt) alır. Bu zaman damgası, kayıtlarınızın o tarihte tam bu hâliyle var olduğunu herkesin doğrulamasını sağlar.",
   "f_router": "Modemin durumunu oku",
   "f_router_hint": "Ev ağınızda UPnP üzerinden modeminize dakikada bir hat durumunu, senkron hızını, çalışma süresini ve trafik sayaçlarını sorar. Hiçbir şey ağınızdan çıkmaz. Her kesintiyi açıklar ve veri kullanımınızı izler.",
-  "f_router_login_hint": "İsteğe bağlı: modem şifresiyle uygulama birkaç dakikada bir modemin sayfasına da girer ve gürültü payını (SNR), zayıflamayı ve veri kullanımını okur. Şifre bu bilgisayarda kalır ve yalnızca modeminize gönderilir. Huawei ev modemleriyle ve TR-064 sunan modemlerle (FRITZ!Box gibi) çalışır.",
+  "f_router_login_hint": "İsteğe bağlı: modem şifresiyle uygulama birkaç dakikada bir modemin sayfasına da girer ve gürültü payını (SNR), zayıflamayı ve veri kullanımını okur. Şifre bu bilgisayarda kalır ve yalnızca modeminize gönderilir. Huawei ev modemleriyle ve TR-064 sunan modemlerle (FRITZ!Box gibi) ve deneme olarak yeni ZTE modemlerle (ZXHN ve F6xx) çalışır.",
   "f_router_address": "Modem adresi",
   "f_router_address_hint": "Ağınızda bulunan modemi ya da 192.168.1.1 adresini kullanmak için boş bırakın.",
   "f_router_user": "Modem kullanıcı adı",
