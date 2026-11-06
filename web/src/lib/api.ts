@@ -11,6 +11,7 @@ import type {
   NotificationList,
   PhoneInfo,
   RangeEvidence,
+  RouterReportResult,
   RouterView,
   SpeedTestEvent,
   StartupState,
@@ -176,6 +177,7 @@ export const api = {
       has_line: boolean;
       driver: string;
     }>("/api/test-router", { ...(user ? { user } : {}), ...(password ? { password } : {}) }),
+  routerReport: (deep: boolean) => post<RouterReportResult>("/api/router/report", { deep }),
   playSound: (volume?: number) =>
     post<{ ok: boolean }>(volume === undefined ? "/api/play-sound" : `/api/play-sound?volume=${volume}`),
   notifications: (limit = 50, signal?: AbortSignal) =>

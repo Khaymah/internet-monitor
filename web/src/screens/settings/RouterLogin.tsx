@@ -10,6 +10,7 @@ import { formatNumber } from "../../lib/format";
 import { useAsync } from "../../lib/hooks";
 import { useI18n } from "../../lib/i18n";
 import type { ConfigView } from "../../lib/types";
+import { RouterReport } from "./RouterReport";
 import { SecretField } from "./SecretField";
 import type { SectionProps } from "./Sections";
 
@@ -92,6 +93,8 @@ export function RouterLogin({ draft, set, err, base }: SectionProps & { base: Co
           {t("rt_test")}
         </Button>
       </div>
+      <hr className="divider full" />
+      <RouterReport hasPassword={!!base.secret_set.router_password} />
     </>
   );
 }

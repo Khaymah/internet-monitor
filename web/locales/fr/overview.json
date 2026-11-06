@@ -125,6 +125,7 @@
   "rt_err_auth": "Échec de connexion au fournisseur",
   "rt_not_found": "Aucun routeur n'a répondu. Pour voir ici l'état de la ligne et votre consommation de données, activez l'UPnP (une fonction du routeur qui permet aux applications de l'interroger sur son état) dans les paramètres du routeur (souvent dans Réseau ou Avancé). Certains routeurs de fournisseurs ne le proposent pas.",
   "rt_no_counters": "Ce routeur ne partage pas ses compteurs de trafic via UPnP. Ajoutez le mot de passe du routeur dans Paramètres → Application pour suivre votre forfait depuis sa page.",
+  "rt_help": "Aidez-nous à prendre en charge ce routeur",
   "rt_used_noquota": "{used} utilisés depuis le {since}",
   "rt_set_quota": "Indiquez la limite de données de votre forfait",
   "rt_used_label": "Données utilisées depuis le {since}",

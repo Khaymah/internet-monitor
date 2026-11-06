@@ -3844,6 +3844,23 @@ body:has(.savebar) .toasts {
   color: var(--text-primary);
 }
 
+.report-box {
+  margin: 0;
+  padding: 10px 12px;
+  max-height: 320px;
+  overflow: auto;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-raised);
+  color: var(--text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  direction: ltr;
+  text-align: left;
+}
+
 .verdict {
   padding: 8px 12px;
   border-radius: var(--radius-md);

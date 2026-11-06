@@ -125,6 +125,7 @@
   "rt_err_auth": "Sağlayıcıya giriş başarısız",
   "rt_not_found": "Hiçbir modem yanıt vermedi. Hat durumunu ve veri kullanımınızı burada görmek için modemin ayarlarında UPnP'yi (uygulamaların modemin durumunu sormasını sağlayan bir özellik) açın (genellikle Ağ veya Gelişmiş bölümünde). Bazı sağlayıcı modemleri bunu sunmaz.",
   "rt_no_counters": "Bu modem trafik sayaçlarını UPnP üzerinden paylaşmıyor. Veri paketinizi modemin sayfasından izlemek için Ayarlar → Uygulama bölümüne modem şifresini ekleyin.",
+  "rt_help": "Bu modemi desteklememize yardım edin",
   "rt_used_noquota": "{since} tarihinden bu yana kullanılan: {used}",
   "rt_set_quota": "Paketinizin veri kotasını girin",
   "rt_used_label": "{since} tarihinden bu yana kullanılan veri",

@@ -1,0 +1,70 @@
+name: Router support
+description: Ask for your router to be supported, with a report made by the app
+title: "Router support: "
+labels: ["router-support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping. Internet Monitor can read more routers when we know how their pages and status features look.
+        In the app, open Settings, then App, then "Help us support your router", and press "Create report". The report has the private details removed, and you can read it before you send anything.
+  - type: input
+    id: model
+    attributes:
+      label: Router make and model
+      description: As printed on the sticker under the router, for example "ZTE ZXHN H298A". Leave out the serial number.
+      placeholder: ZTE ZXHN H298A
+    validations:
+      required: true
+  - type: input
+    id: isp
+    attributes:
+      label: Internet provider
+      description: Many providers hand out their own branded firmware, so this helps.
+      placeholder: Provider name
+    validations:
+      required: true
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      placeholder: Egypt
+    validations:
+      required: true
+  - type: dropdown
+    id: line
+    attributes:
+      label: Line type
+      options:
+        - DSL (ADSL or VDSL)
+        - Fiber
+        - Cable
+        - 4G or 5G
+        - Other or not sure
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Router report
+      description: Drag the downloaded file router-report-<model>.json into this box. Open it first if you want to check it. It has no passwords, Wi-Fi names, serial numbers, MAC addresses or public IP address.
+    validations:
+      required: true
+  - type: dropdown
+    id: preview
+    attributes:
+      label: Can you test a preview build?
+      description: We don't own your router, so we can only be sure it works if someone with it tries a preview.
+      options:
+        - "Yes"
+        - "Maybe, ask me"
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: For example what the app shows today, or which router page you use to sign in.
+    validations:
+      required: false

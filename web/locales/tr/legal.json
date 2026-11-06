@@ -28,7 +28,8 @@
       "li4": "Uyarılar ve haftalık özet, yalnızca siz kurduysanız şu hizmetlere gider: Discord, Slack, seçtiğiniz bir webhook, Telegram veya ntfy. Bunlar kesintilerin durumunu, saatlerini, sürelerini ve nedenlerini ya da bir hız testi sonucunu içerir. Uygulama bilgisayarınızın adını veya IP adresini eklemez.",
       "li5": "Kayıt zaman damgaları yalnızca Ayarlar'da “Mühürlü kayıtlara zaman damgası ekle”yi açarsanız freetsa.org'a gider. Bu hizmet kayıtlarınızı değil, yalnızca günün mührünün 32 baytlık bir hash'ini alır.",
       "li6": "Bir kesinti başladığında uygulama, bağlantının nerede durduğunu görmek için ilk kontrol hedefinize doğru bir traceroute çalıştırır. Yol üzerindeki yönlendiriciler, her traceroute'ta olduğu gibi bu paketleri görür.",
-      "li7": "Tur videoları yalnızca “Video turlar” sayfasında oynat düğmesine bastığınızda GitHub'dan (github.com ve indirme sunucuları) oynatılır. Öncesinde GitHub'dan hiçbir şey yüklenmez; altyazılar uygulamanın kendisinden gelir."
+      "li7": "Tur videoları yalnızca “Video turlar” sayfasında oynat düğmesine bastığınızda GitHub'dan (github.com ve indirme sunucuları) oynatılır. Öncesinde GitHub'dan hiçbir şey yüklenmez; altyazılar uygulamanın kendisinden gelir.",
+      "li8": "Modem destek raporu: yalnızca Ayarlar → Uygulama bölümünde “Rapor oluştur”a basarsanız uygulama ev ağınızdaki modemi kontrol eder ve özel bilgiler çıkarılmış olarak modelini, özelliklerini ve sayfa yapısını içeren bir rapor hazırlar. Rapor size tam olarak gösterilir ve uygulama onu asla göndermez. Kaydedip bir GitHub sorununa kendiniz ekleyebilirsiniz. Ek kutuyu işaretlerseniz uygulama kayıtlı şifreyle modeme bir kez giriş de yapar ama okuduğu bilgilerin yalnızca adlarını ve türlerini tutar."
     },
     "dashboard": {
       "title": "Panel",
