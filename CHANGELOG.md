@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 GitHub release notes for each tag are auto-generated from commits; this file is
 the curated, human-readable summary.
 
+## [Unreleased]
+
+Target: **2.1.0**. Ships as GitHub prereleases `v2.1.0-rc.N` until final; what each rc
+changed is in `docs/releases/v2.1.0-rc.N.md`.
+
+### Added
+- **Router drivers** (rc.1): a registry that picks the right way to read the router's own
+  page: Huawei HG6xx/DG8045 (`huawei-hg`), TR-064 (`tr064`, FRITZ!Box, Zyxel…) and a trial
+  ZTE driver (`zte-new`). `GET /api/router` and `POST /api/test-router` report `driver`
+  and `experimental`. See `docs/routers.md`.
+- **Router report** (rc.1): "Help us support your router" in Settings → App,
+  `POST /api/router/report`, a privacy-cleaned report the user downloads or attaches to a
+  prefilled GitHub issue; `.github/ISSUE_TEMPLATE/router-support.yml`.
+
 ## [2.0.4] - 2026-11-05
 
 Released after fourteen previews (`v2.0.4-rc.1` … `rc.14`); what each one changed and how
