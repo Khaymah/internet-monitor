@@ -44,6 +44,10 @@
       "q": "Is the problem my router or my provider?",
       "a": "The app also checks your router. If the router answers but the internet doesn't, the diagnosis points to your provider. If the router doesn't answer either, the problem is in your home network: Wi-Fi, cables, or the router itself."
     },
+    "routers": {
+      "q": "Which routers does it work with?",
+      "a": "Any router with UPnP turned on (a router feature that lets apps ask it for its status) gives the basics: whether the line is up, its speed and, on most routers, the data counters. If you also save the router's password in [Settings → App](settings#app), the app reads more from the router's own page, such as the noise margin and more reliable data counters. That works on Huawei home gateways (HG630, HG633, HG658, HG659 and DG8045), on routers that offer TR-064 (such as FRITZ!Box and some Zyxel models) and, as a trial, on newer ZTE routers (ZXHN and F6xx). The router card on the Overview says which reading is in use. Router not on the list? Turn on “Read the router's status” in the same place, then use [“Help us support your router”](settings#router-report) to send us a report so we can add it."
+    },
     "targets": {
       "q": "Can I change what it checks?",
       "a": "Yes. [Settings → Check targets](settings#targets) has three lists: DNS servers (the internet's address books; 8.8.8.8 and 1.1.1.1 by default), web pages, and names to look up. Each list holds up to 10 entries, and you can test them before saving."
@@ -51,6 +55,10 @@
     "data": {
       "q": "How much internet data does it use?",
       "a": "Regular checks are tiny: a connection, an empty web page and a name lookup. Speed tests are different. A test moves as much data as your line can in its time limit, so on a fast connection one test can use hundreds of megabytes. If your data is limited, don't schedule automatic speed tests."
+    },
+    "usage": {
+      "q": "How is data usage measured?",
+      "a": "From your router's own traffic counters, so it counts the whole house: every device on your network, downloads plus uploads, from your plan's renewal day. That's the 1st of the month unless you set another day under “Your internet line” in [Complaints](complaints). Your provider counts on its side, so its meter can differ a little from the app's number. If your router shares no counters, there is no data tracking. On supported routers, saving the router's password in [Settings → App](settings#app) can fix that."
     },
     "where": {
       "q": "Where do alerts show up?",
@@ -98,7 +106,11 @@
     },
     "send": {
       "q": "Does it send my data anywhere?",
-      "a": "No. There's no account, no tracking and no analytics. The only connections it makes are the checks themselves, speed tests, update checks on GitHub, and the Discord, Slack or Telegram alerts you set up. The Privacy page lists each one."
+      "a": "No. There's no account, no tracking and no analytics. The only connections it makes are the checks themselves, speed tests, update checks on GitHub, and the Discord, Slack or Telegram alerts you set up. Reading your router stays on your home network. The Privacy page lists each one."
+    },
+    "routerreport": {
+      "q": "What does the router report send, and to whom?",
+      "a": "The app sends nothing. “Help us support your router” only makes a file on this computer that describes how your router answers: its make, model and software version, and which features and pages it offers. Private details are removed first: Wi-Fi names and passwords, serial numbers, MAC addresses, your public IP address, user names, passwords and the names of your devices. You can read all of it, then download it and attach it yourself to an issue on our GitHub page. It reaches us only if you submit that issue, and GitHub issues are public."
     },
     "lan": {
       "q": "Can someone else on my network open the dashboard?",

@@ -468,89 +468,142 @@ Bu, ev ağınızın içinde kalır ve her
 kesintiyi açıklamaya yardım eder.
 
 98
-00:05:44.567 --> 00:05:48.129
+00:05:44.567 --> 00:05:48.548
 Hat hakkında daha ayrıntılı bilgi
 okumak için modem şifresini
 
 99
-00:05:48.129 --> 00:05:51.458
+00:05:48.548 --> 00:05:52.268
 ekleyin; örneğin sinyal
 kalitesini gösteren gürültü payı.
 
 100
-00:05:51.458 --> 00:05:54.612
+00:05:52.268 --> 00:05:55.728
+Bu, Huawei'de, FRITZ!Box
+gibi TR-064 sunan modemlerde
+
+101
+00:05:55.728 --> 00:05:58.795
+ve deneme olarak yeni ZTE
+modemlerinde çalışır.
+
+102
+00:05:58.795 --> 00:06:02.320
 Adres ve kullanıcı adı
 genellikle olduğu gibi çalışır.
 
-101
-00:05:54.612 --> 00:05:58.233
+103
+00:06:02.320 --> 00:06:06.367
 Şifre bu bilgisayarda kalır ve
 yalnızca modeminize gönderilir.
 
-102
-00:05:58.633 --> 00:06:01.462
+104
+00:06:06.767 --> 00:06:09.515
 “Modem şifresini dene”,
 şifreyi bir kez dener.
 
-103
-00:06:01.462 --> 00:06:05.767
+105
+00:06:09.515 --> 00:06:13.696
 Modem reddederse uygulama denemeyi bırakır,
 böylece sizi kilitleyemez.
 
-104
-00:06:06.167 --> 00:06:08.076
+106
+00:06:13.696 --> 00:06:16.922
+Düğmenin üstündeki satır
+hangi okumanın kullanıldığını
+
+107
+00:06:16.922 --> 00:06:19.969
+söyler; burada bir Huawei'de
+modemin kendi sayfası.
+
+108
+00:06:19.969 --> 00:06:23.433
+Modeminiz henüz desteklenmiyorsa
+bunun yerine bunu söyler.
+
+109
+00:06:23.833 --> 00:06:25.709
+Modeminiz henüz desteklenmiyorsa
+
+110
+00:06:25.709 --> 00:06:29.109
+“Modeminizi desteklememize yardım edin”
+bölümünü kullanın.
+
+111
+00:06:29.109 --> 00:06:32.860
+“Rapor oluştur”, modeminizin nasıl
+yanıt verdiğine bakar ve önce
+
+112
+00:06:32.860 --> 00:06:36.846
+Wi-Fi adları, şifreler ve seri
+numaraları gibi özel bilgileri siler.
+
+113
+00:06:36.846 --> 00:06:40.305
+Raporu okuyun, indirin ve bir
+GitHub sorun kaydına ekleyin.
+
+114
+00:06:40.305 --> 00:06:42.767
+Uygulama onu asla kendiliğinden göndermez.
+
+115
+00:06:43.167 --> 00:06:45.076
 “Güncellemeler” sürümünüzü gösterir.
 
-105
-00:06:08.076 --> 00:06:11.100
+116
+00:06:45.076 --> 00:06:48.100
 “Güncellemeleri denetle”,
 hemen daha yeni bir sürüm arar.
 
-106
-00:06:11.500 --> 00:06:14.474
+117
+00:06:48.500 --> 00:06:51.474
 “Telefonunuzda açın”,
 yalnızca panel ev ağınıza
 
-107
-00:06:14.474 --> 00:06:17.321
+118
+00:06:51.474 --> 00:06:54.321
 açıkken görünür;
 örneğin bir Raspberry Pi'de.
 
-108
-00:06:17.321 --> 00:06:21.497
+119
+00:06:54.321 --> 00:06:58.497
 Paneli telefonunuzda açmak için
 kodu telefonun kamerasıyla okutun.
 
-109
-00:06:21.497 --> 00:06:25.167
+120
+00:06:58.497 --> 00:07:02.167
 Fotoğrafını paylaşmayın,
 çünkü erişim anahtarınızı içerir.
 
-110
-00:06:25.567 --> 00:06:28.332
+121
+00:07:02.567 --> 00:07:05.332
 Bir ayarı değiştirdiğinizde
 altta bu çubuk görünür.
 
-111
-00:06:28.332 --> 00:06:33.104
+122
+00:07:05.332 --> 00:07:10.104
 Düzenlemelerinizi tutmak için “Değişiklikleri
 kaydet”e, geri almak için “Vazgeç”e basın.
 
-112
-00:06:33.104 --> 00:06:36.900
+123
+00:07:10.104 --> 00:07:13.900
 Önce çıkmaya çalışırsanız uygulama,
 değişiklikleri atmadan önce sorar.
 
-113
-00:06:37.300 --> 00:06:41.739
+124
+00:07:14.300 --> 00:07:18.739
 Bu turu yeniden izlemek için Ayarlar'ın
 üstündeki “Bu sayfa nasıl çalışır”a basın
 
-114
-00:06:41.739 --> 00:06:46.177
+125
+00:07:18.739 --> 00:07:23.177
 ya da kenar çubuğunda, her sayfanın kendi
 videosunun olduğu “Video turlar”ı açın.
 
-115
-00:06:46.177 --> 00:06:47.767
+126
+00:07:23.177 --> 00:07:24.767
 İzlediğiniz için teşekkürler!

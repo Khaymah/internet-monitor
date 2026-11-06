@@ -384,22 +384,33 @@
       "id": "router-login", "caption": "App", "nav": "App", "path": "/settings",
       "targets": [{"css": "#app p.field-hint", "text": "Optional: with the router"}, {"field": "Router address"}, {"field": "Router user name"}, {"field": "Router password"}],
       "text": {
-        "en": "Add the router's password to read deeper line details, like the noise margin, which shows signal quality. The address and user name usually work as they are. The password stays on this computer and goes only to your router.",
-        "ar": "حط باسورد الراوتر عشان تقرا تفاصيل أعمق عن الخط، زي هامش الإشارة، اللي بيبيّن جودة الإشارة. العنوان واسم المستخدم غالباً شغالين زي ما هم. والباسورد بيفضل على الجهاز ده ومابيروحش غير للراوتر بتاعك.",
-        "fr": "Ajoutez le mot de passe du routeur pour lire plus de détails sur la ligne, comme la marge de bruit, qui montre la qualité du signal. L'adresse et le nom d'utilisateur conviennent en général tels quels. Le mot de passe reste sur cet ordinateur et n'est envoyé qu'à votre routeur.",
-        "tr": "Hat hakkında daha ayrıntılı bilgi okumak için modem şifresini ekleyin; örneğin sinyal kalitesini gösteren gürültü payı. Adres ve kullanıcı adı genellikle olduğu gibi çalışır. Şifre bu bilgisayarda kalır ve yalnızca modeminize gönderilir.",
-        "ur": "لائن کی گہری تفصیلات پڑھنے کے لیے راؤٹر کا پاس ورڈ شامل کریں، جیسے نوائز مارجن، جو سگنل کا معیار دکھاتا ہے۔ پتا اور یوزر نیم عام طور پر جیسے ہیں ویسے ہی کام کرتے ہیں۔ پاس ورڈ اسی کمپیوٹر پر رہتا ہے اور صرف آپ کے راؤٹر کو جاتا ہے۔"
+        "en": "Add the router's password to read deeper line details, like the noise margin, which shows signal quality. This works on Huawei, on routers that offer TR-064 such as FRITZ!Box, and, as a trial, on newer ZTE routers. The address and user name usually work as they are. The password stays on this computer and goes only to your router.",
+        "ar": "حط باسورد الراوتر عشان تقرا تفاصيل أعمق عن الخط، زي هامش الإشارة، اللي بيبيّن جودة الإشارة. ده شغال مع Huawei، والراوترات اللي بتدعم TR-064 زي FRITZ!Box، وبشكل تجريبي مع راوترات ZTE الأحدث. العنوان واسم المستخدم غالباً شغالين زي ما هم. والباسورد بيفضل على الجهاز ده ومابيروحش غير للراوتر بتاعك.",
+        "fr": "Ajoutez le mot de passe du routeur pour lire plus de détails sur la ligne, comme la marge de bruit, qui montre la qualité du signal. Cela marche avec Huawei, avec les routeurs compatibles TR-064 comme la FRITZ!Box et, à l'essai, avec les ZTE récents. L'adresse et le nom d'utilisateur conviennent en général tels quels. Le mot de passe reste sur cet ordinateur et n'est envoyé qu'à votre routeur.",
+        "tr": "Hat hakkında daha ayrıntılı bilgi okumak için modem şifresini ekleyin; örneğin sinyal kalitesini gösteren gürültü payı. Bu, Huawei'de, FRITZ!Box gibi TR-064 sunan modemlerde ve deneme olarak yeni ZTE modemlerinde çalışır. Adres ve kullanıcı adı genellikle olduğu gibi çalışır. Şifre bu bilgisayarda kalır ve yalnızca modeminize gönderilir.",
+        "ur": "لائن کی گہری تفصیلات پڑھنے کے لیے راؤٹر کا پاس ورڈ شامل کریں، جیسے نوائز مارجن، جو سگنل کا معیار دکھاتا ہے۔ یہ Huawei، TR-064 والے راؤٹرز جیسے FRITZ!Box، اور آزمائشی طور پر ZTE کے نئے راؤٹرز پر چلتا ہے۔ پتا اور یوزر نیم عام طور پر جیسے ہیں ویسے ہی کام کرتے ہیں۔ پاس ورڈ اسی کمپیوٹر پر رہتا ہے اور صرف آپ کے راؤٹر کو جاتا ہے۔"
       }
     },
     {
       "id": "router-test", "caption": "App", "nav": "App", "path": "/settings",
-      "targets": [{"css": "#app button", "text": "Test the router password"}],
+      "targets": [{"css": "#app p.secondary", "text": "Reading the router"}, {"css": "#app button", "text": "Test the router password"}],
       "text": {
-        "en": "Test the router password checks it once. If the router rejects it, the app stops trying, so it can't lock you out.",
-        "ar": "«جرّب باسورد الراوتر» بيجربه مرة واحدة. ولو الراوتر رفضه، التطبيق بيبطّل يحاول، عشان مايقفلش عليك الراوتر.",
-        "fr": "« Tester le mot de passe du routeur » le vérifie une fois. Si le routeur le refuse, l'application arrête d'essayer, pour ne pas vous bloquer l'accès.",
-        "tr": "“Modem şifresini dene”, şifreyi bir kez dener. Modem reddederse uygulama denemeyi bırakır, böylece sizi kilitleyemez.",
-        "ur": "“راؤٹر پاس ورڈ آزمائیں” اسے ایک بار آزماتا ہے۔ اگر راؤٹر اسے رد کر دے تو ایپ کوشش چھوڑ دیتی ہے، تاکہ آپ کو لاک نہ کر دے۔"
+        "en": "Test the router password checks it once. If the router rejects it, the app stops trying, so it can't lock you out. The line above the button says which reading is in use, here the router's own page on a Huawei. If your router isn't supported yet, it says that instead.",
+        "ar": "«جرّب باسورد الراوتر» بيجربه مرة واحدة. ولو الراوتر رفضه، التطبيق بيبطّل يحاول، عشان مايقفلش عليك الراوتر. والسطر اللي فوق الزرار بيقولك بنقرا الراوتر إزاي، وهنا من شاشة الراوتر نفسه لأنه Huawei. ولو الراوتر بتاعك لسه مش مدعوم، هيقولك كده بدالها.",
+        "fr": "« Tester le mot de passe du routeur » le vérifie une fois. Si le routeur le refuse, l'application arrête d'essayer, pour ne pas vous bloquer l'accès. La ligne au-dessus du bouton indique la lecture utilisée, ici la page du routeur lui-même, sur un Huawei. Si votre routeur n'est pas encore pris en charge, elle le dit à la place.",
+        "tr": "“Modem şifresini dene”, şifreyi bir kez dener. Modem reddederse uygulama denemeyi bırakır, böylece sizi kilitleyemez. Düğmenin üstündeki satır hangi okumanın kullanıldığını söyler; burada bir Huawei'de modemin kendi sayfası. Modeminiz henüz desteklenmiyorsa bunun yerine bunu söyler.",
+        "ur": "“راؤٹر پاس ورڈ آزمائیں” اسے ایک بار آزماتا ہے۔ اگر راؤٹر اسے رد کر دے تو ایپ کوشش چھوڑ دیتی ہے، تاکہ آپ کو لاک نہ کر دے۔ بٹن کے اوپر والی لائن بتاتی ہے کہ راؤٹر کیسے پڑھا جا رہا ہے، یہاں Huawei پر راؤٹر کا اپنا صفحہ۔ اگر آپ کا راؤٹر ابھی سپورٹڈ نہیں ہے تو اس کی جگہ یہی بتاتی ہے۔"
+      }
+    },
+    {
+      "id": "router-report", "caption": "App", "nav": "App", "path": "/settings",
+      "targets": ["#router-report"],
+      "text": {
+        "en": "If your router isn't supported yet, use Help us support your router. Create report checks how your router answers and removes private details first, such as Wi-Fi names, passwords and serial numbers. Read the report, download it, and attach it to a GitHub issue. The app never sends it by itself.",
+        "ar": "لو الراوتر بتاعك لسه مش مدعوم، استخدم «ساعدنا ندعم الراوتر بتاعك». «اعمل التقرير» بيشوف الراوتر بيرد إزاي، وبيشيل البيانات الخاصة الأول، زي أسماء الواي فاي والباسوردات والأرقام التسلسلية. اقرا التقرير، ونزّله، وحطه في بلاغ على GitHub. التطبيق عمره ما بيبعته لوحده.",
+        "fr": "Si votre routeur n'est pas encore pris en charge, utilisez « Aidez-nous à prendre en charge votre routeur ». « Créer le rapport » regarde comment votre routeur répond et retire d'abord les informations privées, comme les noms Wi-Fi, les mots de passe et les numéros de série. Lisez le rapport, téléchargez-le, puis joignez-le à un ticket GitHub. L'application ne l'envoie jamais d'elle-même.",
+        "tr": "Modeminiz henüz desteklenmiyorsa “Modeminizi desteklememize yardım edin” bölümünü kullanın. “Rapor oluştur”, modeminizin nasıl yanıt verdiğine bakar ve önce Wi-Fi adları, şifreler ve seri numaraları gibi özel bilgileri siler. Raporu okuyun, indirin ve bir GitHub sorun kaydına ekleyin. Uygulama onu asla kendiliğinden göndermez.",
+        "ur": "اگر آپ کا راؤٹر ابھی سپورٹڈ نہیں ہے تو “اپنے راؤٹر کو سپورٹ کرنے میں ہماری مدد کریں” استعمال کریں۔ “رپورٹ بنائیں” دیکھتا ہے کہ آپ کا راؤٹر کیسے جواب دیتا ہے، اور پہلے نجی تفصیلات ہٹا دیتا ہے، جیسے وائی فائی کے نام، پاس ورڈ اور سیریل نمبر۔ رپورٹ پڑھیں، ڈاؤن لوڈ کریں، اور GitHub کے ایک ایشو کے ساتھ لگا دیں۔ ایپ اسے کبھی خود نہیں بھیجتی۔"
       }
     },
     {

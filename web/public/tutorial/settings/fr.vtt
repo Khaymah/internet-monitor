@@ -530,93 +530,148 @@ Tout reste sur votre réseau local,
 et cela aide à expliquer chaque coupure.
 
 109
-00:05:44.567 --> 00:05:48.244
+00:05:44.567 --> 00:05:48.692
 Ajoutez le mot de passe du routeur pour
 lire plus de détails sur la ligne,
 
 110
-00:05:48.244 --> 00:05:51.077
+00:05:48.692 --> 00:05:51.871
 comme la marge de bruit,
 qui montre la qualité du signal.
 
 111
-00:05:51.077 --> 00:05:54.456
+00:05:51.871 --> 00:05:55.272
+Cela marche avec Huawei,
+avec les routeurs compatibles TR-064
+
+112
+00:05:55.272 --> 00:05:58.338
+comme la FRITZ!Box et,
+à l'essai, avec les ZTE récents.
+
+113
+00:05:58.338 --> 00:06:02.129
 L'adresse et le nom d'utilisateur
 conviennent en général tels quels.
 
-112
-00:05:54.456 --> 00:05:58.233
+114
+00:06:02.129 --> 00:06:06.367
 Le mot de passe reste sur cet ordinateur
 et n'est envoyé qu'à votre routeur.
 
-113
-00:05:58.633 --> 00:06:01.429
-« Tester le mot de passe du routeur »
+115
+00:06:06.767 --> 00:06:09.741
+« Tester le mot de passe du routeur »
 le vérifie une fois.
 
-114
-00:06:01.429 --> 00:06:05.767
+116
+00:06:09.741 --> 00:06:14.356
 Si le routeur le refuse, l'application arrête
 d'essayer, pour ne pas vous bloquer l'accès.
 
-115
-00:06:06.167 --> 00:06:08.110
+117
+00:06:14.356 --> 00:06:17.279
+La ligne au-dessus du bouton
+indique la lecture utilisée,
+
+118
+00:06:17.279 --> 00:06:19.690
+ici la page du routeur lui-même,
+sur un Huawei.
+
+119
+00:06:19.690 --> 00:06:23.433
+Si votre routeur n'est pas encore pris
+en charge, elle le dit à la place.
+
+120
+00:06:23.833 --> 00:06:26.237
+Si votre routeur n'est pas
+encore pris en charge,
+
+121
+00:06:26.237 --> 00:06:29.082
+utilisez « Aidez-nous à prendre
+en charge votre routeur ».
+
+122
+00:06:29.082 --> 00:06:32.957
+« Créer le rapport » regarde comment votre
+routeur répond et retire d'abord les
+
+123
+00:06:32.957 --> 00:06:37.175
+informations privées, comme les noms Wi-Fi,
+les mots de passe et les numéros de série.
+
+124
+00:06:37.175 --> 00:06:40.559
+Lisez le rapport, téléchargez-le,
+puis joignez-le à un ticket GitHub.
+
+125
+00:06:40.559 --> 00:06:42.767
+L'application ne l'envoie
+jamais d'elle-même.
+
+126
+00:06:43.167 --> 00:06:45.110
 « Mises à jour » affiche votre version.
 
-116
-00:06:08.110 --> 00:06:11.100
+127
+00:06:45.110 --> 00:06:48.100
 « Rechercher les mises à jour »
 en cherche une plus récente.
 
-117
-00:06:11.500 --> 00:06:14.724
+128
+00:06:48.500 --> 00:06:51.724
 « Ouvrir sur votre téléphone »
 n'apparaît que si le tableau de bord
 
-118
-00:06:14.724 --> 00:06:17.852
+129
+00:06:51.724 --> 00:06:54.852
 est ouvert à votre réseau local,
 par exemple sur un Raspberry Pi.
 
-119
-00:06:17.852 --> 00:06:21.894
+130
+00:06:54.852 --> 00:06:58.894
 Scannez le code avec l'appareil photo du
 téléphone pour y ouvrir le tableau de bord.
 
-120
-00:06:21.894 --> 00:06:25.167
+131
+00:06:58.894 --> 00:07:02.167
 Ne partagez pas de photo du code,
 car il contient votre clé d'accès.
 
-121
-00:06:25.567 --> 00:06:28.307
+132
+00:07:02.567 --> 00:07:05.307
 Quand vous changez un réglage,
 cette barre apparaît en bas.
 
-122
-00:06:28.307 --> 00:06:31.001
+133
+00:07:05.307 --> 00:07:08.001
 Appuyez sur « Enregistrer »
 pour garder vos modifications,
 
-123
-00:06:31.001 --> 00:06:32.813
+134
+00:07:08.001 --> 00:07:09.813
 ou sur « Abandonner » pour les annuler.
 
-124
-00:06:32.813 --> 00:06:36.900
+135
+00:07:09.813 --> 00:07:13.900
 Si vous essayez de partir avant, l'application
 demande confirmation avant de les perdre.
 
-125
-00:06:37.300 --> 00:06:41.876
+136
+00:07:14.300 --> 00:07:18.876
 Pour revoir cette visite : « Comment marche
 cette page » en haut des Paramètres,
 
-126
-00:06:41.876 --> 00:06:46.451
+137
+00:07:18.876 --> 00:07:23.451
 ou « Visites en vidéo » dans la barre latérale,
 avec une vidéo pour chaque page.
 
-127
-00:06:46.451 --> 00:06:47.767
+138
+00:07:23.451 --> 00:07:24.767
 Merci d'avoir regardé !
