@@ -87,11 +87,11 @@
       "id": "router", "caption": "Your router",
       "targets": ["[aria-labelledby='rt-title']"],
       "text": {
-        "en": "The router card reads your router on your home network. Line to the provider tells you whether the line itself is up. Line speed is the speed the line is connected at, and Line could reach is the most it could do.",
-        "ar": "كارت «الراوتر بتاعك» بيقرا الراوتر على شبكة البيت. «الخط اللي جاي من الشركة» بيقولك الخط نفسه شغال ولا لأ. «سرعة الخط» هي السرعة اللي الخط متوصّل بيها، و«أقصى سرعة يقدر يوصلها الخط» هي أعلى حاجة يقدر يعملها.",
-        "fr": "La carte « Votre routeur » lit votre routeur sur le réseau de la maison. « Ligne vers le fournisseur » dit si la ligne elle-même fonctionne. Le débit de la ligne est la vitesse à laquelle elle est connectée, et le débit atteignable est le maximum possible.",
-        "tr": "“Modeminiz” kartı, ev ağınızdaki modemi okur. “Sağlayıcıya giden hat”, hattın kendisinin açık olup olmadığını söyler. Hat hızı, hattın bağlı olduğu hızdır; “Hattın ulaşabileceği hız” ise yapabileceği en yüksek hızdır.",
-        "ur": "“آپ کا راؤٹر” کارڈ گھر کے نیٹ ورک پر آپ کا راؤٹر پڑھتا ہے۔ “پرووائیڈر تک لائن” بتاتی ہے کہ لائن خود چل رہی ہے یا نہیں۔ لائن کی اسپیڈ وہ ہے جس پر لائن جڑی ہے، اور زیادہ سے زیادہ ممکن اسپیڈ وہ حد ہے جہاں تک وہ جا سکتی ہے۔"
+        "en": "The router card reads your router on your home network. Line to the provider shows whether the line is up. The text under the figures says how it's read: the router's own page, on this Huawei. If your router isn't supported yet, it says so, with a button to help us add it.",
+        "ar": "كارت «الراوتر بتاعك» بيقرا الراوتر على شبكة البيت. «الخط اللي جاي من الشركة» بيقولك الخط شغال ولا لأ. والكلام اللي تحت الأرقام بيقولك بنقرا الراوتر إزاي: من شاشة الراوتر نفسه، لأنه Huawei. ولو الراوتر بتاعك لسه مش مدعوم، هيقولك كده، ومعاه زرار تساعدنا بيه نضيفه.",
+        "fr": "La carte « Votre routeur » lit votre routeur sur le réseau de la maison. « Ligne vers le fournisseur » dit si la ligne fonctionne. Le texte sous les chiffres indique comment il est lu : la page du routeur lui-même, sur ce Huawei. Si votre routeur n'est pas encore pris en charge, il le dit, avec un bouton pour nous aider à l'ajouter.",
+        "tr": "“Modeminiz” kartı, ev ağınızdaki modemi okur. “Sağlayıcıya giden hat”, hattın açık olup olmadığını söyler. Sayıların altındaki yazı modemin nasıl okunduğunu söyler: bu Huawei'de modemin kendi sayfası. Modeminiz henüz desteklenmiyorsa bunu söyler ve onu eklememize yardım etmeniz için bir düğme gösterir.",
+        "ur": "“آپ کا راؤٹر” کارڈ گھر کے نیٹ ورک پر آپ کا راؤٹر پڑھتا ہے۔ “پرووائیڈر تک لائن” بتاتی ہے کہ لائن چل رہی ہے یا نہیں۔ نمبروں کے نیچے لکھا ہوتا ہے کہ راؤٹر کیسے پڑھا جا رہا ہے: اس Huawei پر راؤٹر کا اپنا صفحہ۔ اگر آپ کا راؤٹر ابھی سپورٹڈ نہیں ہے تو یہ بتا دیتا ہے، اور ساتھ ایک بٹن ہوتا ہے جس سے آپ اسے شامل کرنے میں ہماری مدد کر سکتے ہیں۔"
       }
     },
     {

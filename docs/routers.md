@@ -117,7 +117,7 @@ If a page read fails while the previous one supplied byte counters, the UPnP cou
 Not on the list? Open an issue with your model: https://github.com/Khaymah/internet-monitor/issues/new?labels=router-support
 ## Asking for your router to be supported
 
-Internet Monitor reads your router to say whose fault an outage was and to track your data plan. Today it reads any router that offers UPnP, plus the Huawei HG630 V2 web page. We can add more routers (ZTE, other Huawei models, TP-Link, TR-064 boxes), but we don't own them. The app can build a report that tells us how your router answers, so we can write a driver for it.
+Internet Monitor reads your router to say whose fault an outage was and to track your data plan. Today it reads any router that offers UPnP and, with the router's password, the web page of Huawei home gateways (HG630, HG633, HG658, HG659, DG8045), routers that offer TR-064 (such as FRITZ!Box) and, as a trial, newer ZTE routers. We can add more routers (Huawei fiber ONTs, older ZTE pages, TP-Link), but we don't own them. The app can build a report that tells us how your router answers, so we can write a driver for it.
 
 ### What to do
 
@@ -138,7 +138,7 @@ The app never uploads the report. You send it, through GitHub, and only if you s
 
 ### The optional sign-in probe
 
-If you tick "Also try signing in with my saved router password", and the page looks like a family the app can already sign in to (today only Huawei), the app signs in once with the password you saved, reads a few status pages and records only the names and kinds of the fields they return, never their values. It signs out afterwards. If the router rejects the password, the app does not try again, and it stops using that password until you change it.
+If you tick "Also try signing in with my saved router password", and the page looks like a family the app can already sign in to (today Huawei and the newer ZTE page), the app signs in once with the password you saved, reads a few status pages and records only the names and kinds of the fields they return, never their values. It signs out afterwards. If the router rejects the password, the app does not try again, and it stops using that password until you change it.
 
 ### What is removed
 

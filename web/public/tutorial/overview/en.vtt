@@ -120,119 +120,119 @@ like opening a complaint when the
 fault is on the provider's side.
 
 25
-00:01:26.633 --> 00:01:29.724
+00:01:26.633 --> 00:01:29.933
 The router card reads your
 router on your home network.
 
 26
-00:01:29.724 --> 00:01:33.151
-Line to the provider tells you
-whether the line itself is up.
+00:01:29.933 --> 00:01:32.933
+Line to the provider shows
+whether the line is up.
 
 27
-00:01:33.151 --> 00:01:35.905
-Line speed is the speed
-the line is connected at,
+00:01:32.933 --> 00:01:38.033
+The text under the figures says how it's read:
+the router's own page, on this Huawei.
 
 28
-00:01:35.905 --> 00:01:38.433
-and Line could reach is
-the most it could do.
+00:01:38.033 --> 00:01:42.833
+If your router isn't supported yet,
+it says so, with a button to help us add it.
 
 29
-00:01:38.833 --> 00:01:43.890
+00:01:43.233 --> 00:01:48.290
 Noise margin, or SNR, shows how clean the line is.
 Higher is better.
 
 30
-00:01:43.890 --> 00:01:49.913
+00:01:48.290 --> 00:01:54.313
 Below about 6 dB, a DSL line drops easily,
 and that is the provider's job to fix.
 
 31
-00:01:49.913 --> 00:01:54.300
+00:01:54.313 --> 00:01:58.700
 Attenuation is how much the
 signal fades on its way to you.
 
 32
-00:01:54.700 --> 00:01:58.819
+00:01:59.100 --> 00:02:03.219
 Below that you see how much data
 you used since your plan renewed.
 
 33
-00:01:58.819 --> 00:02:03.500
+00:02:03.219 --> 00:02:07.900
 Set your plan's data limit, and the app
 warns you at 80 and at 100 percent.
 
 34
-00:02:03.900 --> 00:02:07.172
+00:02:08.300 --> 00:02:11.572
 The response time chart shows
 the last checks one by one.
 
 35
-00:02:07.172 --> 00:02:09.926
+00:02:11.572 --> 00:02:14.326
 A line that stays low and
 flat is what you want.
 
 36
-00:02:09.926 --> 00:02:12.567
+00:02:14.326 --> 00:02:16.967
 Tall spikes mean the
 connection is struggling.
 
 37
-00:02:12.967 --> 00:02:16.366
+00:02:17.367 --> 00:02:20.766
 Recent events lists every
 change since the app started:
 
 38
-00:02:16.366 --> 00:02:20.322
+00:02:20.766 --> 00:02:24.722
 when the connection dropped,
 what failed, and when it came back.
 
 39
-00:02:20.322 --> 00:02:22.300
+00:02:24.722 --> 00:02:26.700
 View history opens the full log.
 
 40
-00:02:22.700 --> 00:02:26.392
+00:02:27.100 --> 00:02:30.792
 Availability shows how much
 of the time your internet
 
 41
-00:02:26.392 --> 00:02:30.433
+00:02:30.792 --> 00:02:34.833
 worked today, in the last 7 days,
 and in the last 30 days.
 
 42
-00:02:30.833 --> 00:02:33.619
+00:02:35.233 --> 00:02:38.019
 Check targets lists the
 servers the app tests
 
 43
-00:02:33.619 --> 00:02:36.652
+00:02:38.019 --> 00:02:41.052
 every few seconds,
 and whether each one answered.
 
 44
-00:02:36.652 --> 00:02:38.633
+00:02:41.052 --> 00:02:43.033
 You can change them in Settings.
 
 45
-00:02:39.033 --> 00:02:44.050
+00:02:43.433 --> 00:02:48.450
 The status pill at the top stays on every page,
 and the bell holds your latest alerts.
 
 46
-00:02:44.050 --> 00:02:46.967
+00:02:48.450 --> 00:02:51.367
 The number on it counts
 the ones you haven't seen.
 
 47
-00:02:47.367 --> 00:02:51.069
+00:02:51.767 --> 00:02:55.469
 Every page has a How this page
 works button like this one.
 
 48
-00:02:51.069 --> 00:02:54.900
+00:02:55.469 --> 00:02:59.300
 It opens a short video about that page.
 Thanks for watching!

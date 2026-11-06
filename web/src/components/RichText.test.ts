@@ -15,6 +15,7 @@ const ANCHORS = new Set([
   "n-quiet",
   "n-min-outage",
   "n-reminder",
+  "router-report",
 ]);
 
 describe("rich text", () => {
