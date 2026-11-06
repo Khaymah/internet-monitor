@@ -28,14 +28,15 @@ type PlanUsage struct {
 }
 
 type routerView struct {
-	Enabled  bool           `json:"enabled"`
-	Found    bool           `json:"found"`
-	Status   *router.Status `json:"status,omitempty"`
-	Error    string         `json:"error,omitempty"`
-	Usage    *PlanUsage     `json:"usage,omitempty"`
-	WebOK    bool           `json:"web_ok,omitempty"`
-	WebError string         `json:"web_error,omitempty"`
-	Driver   string         `json:"driver,omitempty"`
+	Enabled      bool           `json:"enabled"`
+	Found        bool           `json:"found"`
+	Status       *router.Status `json:"status,omitempty"`
+	Error        string         `json:"error,omitempty"`
+	Usage        *PlanUsage     `json:"usage,omitempty"`
+	WebOK        bool           `json:"web_ok,omitempty"`
+	WebError     string         `json:"web_error,omitempty"`
+	Driver       string         `json:"driver,omitempty"`
+	Experimental bool           `json:"experimental,omitempty"`
 }
 
 func (s *Server) PlanUsage(now time.Time) (PlanUsage, bool) {
@@ -72,6 +73,7 @@ func (s *Server) serveRouter(w http.ResponseWriter, _ *http.Request) {
 		snap := s.hooks.Router()
 		view.Found, view.Status, view.Error = snap.Found, snap.Status, snap.Error
 		view.WebOK, view.WebError, view.Driver = snap.WebOK, snap.WebError, snap.Driver
+		view.Experimental = snap.Experimental
 	}
 	if u, ok := s.PlanUsage(time.Now()); ok {
 		view.Usage = &u
@@ -140,6 +142,7 @@ func (s *Server) serveTestRouter(w http.ResponseWriter, r *http.Request) {
 		"snr_down_db":  stats.SNRDown,
 		"has_counters": stats.HasCounters,
 		"driver":       stats.Driver,
+		"experimental": stats.Experimental,
 		"has_line":     stats.HasLineStats,
 	})
 }

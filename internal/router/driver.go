@@ -22,13 +22,22 @@ type AnonymousReader interface {
 	Anonymous() bool
 }
 
+type ExperimentalDriver interface {
+	Experimental() bool
+}
+
+func IsExperimental(d Driver) bool {
+	e, ok := d.(ExperimentalDriver)
+	return ok && e.Experimental()
+}
+
 func canReadAnonymously(d Driver) bool {
 	a, ok := d.(AnonymousReader)
 	return ok && a.Anonymous()
 }
 
 func Drivers() []Driver {
-	return []Driver{huaweiHG{}, tr064{}}
+	return []Driver{huaweiHG{}, zteNew{}, tr064{}}
 }
 
 func Detect(ctx context.Context, p *Probe, drivers []Driver, anonymousOnly bool) (Driver, error) {

@@ -299,6 +299,7 @@ export interface RouterView {
   web_ok?: boolean;
   web_error?: "wrong_password" | "busy" | "unsupported" | "unreachable";
   driver?: string;
+  experimental?: boolean;
   usage?: PlanUsage;
 }
 

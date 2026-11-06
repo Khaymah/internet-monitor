@@ -47,12 +47,13 @@ type Poller struct {
 }
 
 type Snapshot struct {
-	Found    bool    `json:"found"`
-	Status   *Status `json:"status,omitempty"`
-	Error    string  `json:"error,omitempty"`
-	WebOK    bool    `json:"web_ok,omitempty"`
-	WebError string  `json:"web_error,omitempty"`
-	Driver   string  `json:"driver,omitempty"`
+	Found        bool    `json:"found"`
+	Status       *Status `json:"status,omitempty"`
+	Error        string  `json:"error,omitempty"`
+	WebOK        bool    `json:"web_ok,omitempty"`
+	WebError     string  `json:"web_error,omitempty"`
+	Driver       string  `json:"driver,omitempty"`
+	Experimental bool    `json:"experimental,omitempty"`
 }
 
 func (p *Poller) now() time.Time {
@@ -73,7 +74,7 @@ func (p *Poller) Snapshot() Snapshot {
 	defer p.mu.Unlock()
 	out := Snapshot{Found: p.gw != nil, Error: p.lastErr, WebOK: p.webOK, WebError: p.webErr}
 	if p.drv != nil {
-		out.Driver = p.drv.Name()
+		out.Driver, out.Experimental = p.drv.Name(), IsExperimental(p.drv)
 	}
 	if p.found {
 		s := p.last

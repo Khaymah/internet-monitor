@@ -167,7 +167,7 @@ func (p *Poller) fetch(ctx context.Context, r WebReader) (WebStats, error) {
 		}
 	}
 	stats, err := d.Read(wctx, probe, Creds{User: r.User, Password: r.Password})
-	stats.Driver = d.Name()
+	stats.Driver, stats.Experimental = d.Name(), IsExperimental(d)
 	p.noteDriver(d, r.Host, anon, err)
 	return stats, err
 }

@@ -115,6 +115,7 @@
   "rt_support_link": "Demandez-nous de l’ajouter",
   "rt_driver_huawei_hg": "Lecture de la page du routeur (Huawei)",
   "rt_driver_tr064": "Lecture du routeur via TR-064",
+  "rt_driver_zte_new": "Lecture de la page du routeur (ZTE, essai)",
   "rt_driver_other": "Lecture de la page du routeur",
   "rt_web_unreachable": "La page du routeur n’a pas répondu. L’application réessaiera dans quelques minutes.",
   "rt_last_drop": "Dernière déconnexion",

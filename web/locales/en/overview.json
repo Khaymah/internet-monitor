@@ -115,6 +115,7 @@
   "rt_support_link": "Ask us to add this router",
   "rt_driver_huawei_hg": "Reading the router's own page (Huawei)",
   "rt_driver_tr064": "Reading the router over TR-064",
+  "rt_driver_zte_new": "Reading the router's page (ZTE, trial)",
   "rt_driver_other": "Reading the router's own page",
   "rt_web_unreachable": "The router's page didn't answer. The app will try again in a few minutes.",
   "rt_last_drop": "Last disconnect",

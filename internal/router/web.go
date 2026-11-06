@@ -23,6 +23,7 @@ var (
 
 type WebStats struct {
 	Driver       string
+	Experimental bool
 	Model        string
 	Status       string
 	DownKbps     int64
@@ -60,7 +61,7 @@ func (r WebReader) Read(ctx context.Context) (WebStats, error) {
 		return WebStats{}, err
 	}
 	stats, err := d.Read(ctx, p, Creds{User: r.User, Password: r.Password})
-	stats.Driver = d.Name()
+	stats.Driver, stats.Experimental = d.Name(), IsExperimental(d)
 	return stats, err
 }
 

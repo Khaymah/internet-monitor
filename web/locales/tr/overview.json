@@ -115,6 +115,7 @@
   "rt_support_link": "Bu modemin eklenmesini isteyin",
   "rt_driver_huawei_hg": "Modemin kendi sayfasından okunuyor (Huawei)",
   "rt_driver_tr064": "Modem TR-064 üzerinden okunuyor",
+  "rt_driver_zte_new": "Modemin sayfasından okunuyor (ZTE, deneme)",
   "rt_driver_other": "Modemin kendi sayfasından okunuyor",
   "rt_web_unreachable": "Modem sayfası yanıt vermedi. Uygulama birkaç dakika sonra yeniden deneyecek.",
   "rt_last_drop": "Son bağlantı kesilmesi",

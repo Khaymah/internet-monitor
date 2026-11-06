@@ -12,6 +12,7 @@ The app never needs to be told which driver to use. The detected driver name is 
 | Driver | Name in the API | Needs a password | Reads |
 | --- | --- | --- | --- |
 | Huawei home gateways | `huawei-hg` | yes | `/api/ntwk/dslinfo` (rates, SNR, attenuation, line uptime), `/api/ntwk/wan_st` (byte counters), `/api/system/deviceinfo` (model) |
+| ZTE ZXHN, newer web (experimental) | `zte-new` | yes | DSL line status (current and maximum rates, noise margin, attenuation), WAN connection status and uptime, model |
 | TR-064 | `tr064` | only if the router asks | WAN counters, DSL figures, connection status, uptime, last error, model |
 
 ### Huawei family (`huawei-hg`)
@@ -39,6 +40,31 @@ A standard (Broadband Forum) used by FRITZ!Box and by some other DSL and fiber r
 - Authentication is HTTP digest (MD5 and SHA-256, `qop=auth`). The app first asks without credentials; only on a `401` challenge does it answer once with the saved user and password. With no password saved, a router that insists on one is left alone (no error is shown, because the user never asked for it).
 - Routers without a DSL service (fiber, cable) work: they give counters and connection state, and the card simply shows no line figures.
 - `X_AVM-DE_GetOnlineMonitor` is not used: it returns per-second throughput series, not totals, and `GetAddonInfos` already has the 64-bit totals.
+
+### ZTE newer web generation (`zte-new`, experimental)
+
+Marked experimental: it is built from public write-ups and a fake server, with no real device. The router card says "Reading the router's page (ZTE, trial)", `driver` is `zte-new` and `experimental` is `true` in `GET /api/router` and `POST /api/test-router`.
+
+Firmware generation: the `/?_type=loginData&_tag=login_entry` web page. The login is documented in public sources for the F6640/F6645P family, and one script shows it on an F670L; the H2640 DSL answer comes from a user capture. Other models in the `zte_tracker` list (F680, H288A, H168A, H3600P…) are reported to use the same page tags but are not shown in detail. Models on the older page are listed under Not supported yet.
+
+- Detection (no credentials sent): `GET /?_type=loginData&_tag=login_entry` answers JSON that has `sess_token` (and `lockingTime`). Routers of other makes do not.
+- Login, once per read: take `sess_token` from that answer, `GET …&_tag=login_token` (XML, the token is the text of `ajax_response_xml_root`), then `POST …&_tag=login_entry` with `action=login`, `Username`, `Password=sha256hex(password + token)` and `_sessionTOKEN`. Sign out with `POST …&_tag=logout_entry` (`IF_LogOff=1`).
+- Reads: each page is requested as `menuView` then `menuData`, answered as `ParaName`/`ParaValue` XML.
+  - `dslWanStatus` then `dsl_interface_status_lua.lua`: `Status`, `Downstream_current_rate`, `Upstream_current_rate`, `Downstream_max_rate`, `Upstream_max_rate` (kbit/s), `Downstream_noise_margin`, `Upstream_noise_margin`, `Downstream_attenuation`, `Upstream_attenuation` (tenths of dB).
+  - `ethWanStatus` then `wan_internetstatus_lua.lua`: `ConnStatus` and `UpTime` of the internet connection (the one with `IsDefGW=1`).
+  - `statusMgr` then `devmgr_statusmgr_lua.lua`: `ModelName`.
+- Fiber gateways have no DSL page: the line figures are left out. DSL gateways whose WAN page answers `SessionTimeout` give the line only.
+- Byte counters: no public source shows them on this generation, so none are read. Data-plan tracking keeps using UPnP counters.
+- Lockout: a login answer with `lockingTime` other than 0, or with an error message, is returned as `ErrWrongPassword` (or `ErrRouterBusy` when the message says another user is signed in), so the app never sends that password again. If `lockingTime` is already above 0 when the app looks, no password is sent at all and the read is retried later.
+
+Sources: `juacas/zte_tracker` (README for the login flow and endpoints; `zteclient/zte_client.py` for the hash, `lockingTime`, `loginErrMsg`, logout and `ParaName`/`ParaValue` parsing; `routers/Wan_status.md` and `routers/RouterDetail.md` for sample WAN and device answers; issue #75 for the H2640 `dsl_interface_status_lua.lua` capture and the `dslWanStatus` view tag), `langit7/zte-f670L` (`f670l.sh`: the `login_entry` sample answer, `login_token` and the hash), and `kkondyl/ZTE-VDSL-Zabbix` (`zte_vdsl.py`: DSL field names and the tenths-of-dB and kbit/s units).
+
+Needs a real router report:
+- Whether `Showtime_start` is seconds since the line synchronised. It is not read, so the card shows no "line in sync for" for ZTE.
+- The unit of `UpTime` (assumed seconds, as in TR-069) and whether `IsDefGW` is always present.
+- The exact wording of a busy session ("another user") and of a wrong password. The app treats any other message as a wrong password, which is the safe choice.
+- What the DSL page returns on a fiber gateway, and whether any page carries WAN byte counters.
+- Whether the JSON answers some firmware gives (F6745Q, reported by `zte_tracker`) must be read too. They are not.
 
 ## How detection works
 
@@ -83,7 +109,10 @@ If a page read fails while the previous one supplied byte counters, the UPnP cou
 ## Not supported yet
 
 - **Huawei EchoLife fiber ONTs** (HG8145V5, HG8245H, EG8145…). They sign in through `/asp/GetRandCount.asp` and `/login.cgi` (base64 password, token bound to the TCP connection, cookies). Public sources describe that login and a device-list page, but none documents a stats page with byte counters or optical power in enough detail to build a faithful fake server, so no driver was written. A driver written blind would be untested against any real response.
-- ZTE and TP-Link drivers are planned on top of the same interface.
+- **ZTE older web generation** (form login with `Frm_Logintoken`, `getpage.gch` pages; some H108N, H168N, F660 and F6x2W firmware). Public sources give the login (`GET /` has `getObj("Frm_Logintoken").value = "…"`, `POST /` with `frashnum`, `action=login`, `Frm_Logintoken`, `Username`, `Password`, success shown as a `302`, token increases on every attempt, the router limits failed attempts to three) but none shows the DSL or WAN status pages or their `Transfer_meaning` data. Without them a driver could only log in and read nothing, and a login to a router that locks out would cost the user for no benefit, so none was written.
+- **ZTE H267A, H168N 3.1 and other `getpage.lua` firmware.** `kkondyl/ZTE-VDSL-Zabbix` documents a login by `POST /` with `sha256(password + token)` (token from `/function_module/login_module/login_page/logintoken_lua.lua`) and DSL fields at `/common_page/internet_dsl_interface_lua.lua`, but it counts HTTP 200 as a successful login and never looks at the body, so how a wrong password or a lockout is answered is unknown. That cannot be faked faithfully.
+- **TP-Link Archer and Deco encrypted web API** (`/cgi/getParm`, `/cgi/login`, `/cgi_gdpr`, and the `luci/;stok=` variants). The public clients (`tplinkrouterc6u`, `Electry/TPLink-W9960-APIClient`) show several incompatible variants (RSA with PKCS#1 v1.5, raw RSA, OAEP, AES-CBC, AES-GCM, ECIES). Only summaries of that code were available, not the exact byte layouts, so the crypto could not be reproduced and tested against the real algorithm.
+- **TP-Link TD-W, VX and Archer VR cgi modems** (`/cgi?1&5`, `Authorization` cookie of `Basic base64(user:password)`, `[WAN_DSL_INTF_CFG#…]` blocks). The request and response block format and the `WAN_DSL_INTF_CFG` / `WAN_DSL_INTF_STATS_TOTAL` attribute names are documented (Embedded Lab Vienna "Examination of TP-Link devices", `Electry/TPLink-W9960-APIClient`), but no source shows how these firmware answer a wrong password or a second signed-in user, or what page identifies them, and the cookie is sent with every request. Because the failure behaviour is unknown, no `tplink-cgi` driver was shipped.
 
 Not on the list? Open an issue with your model: https://github.com/Khaymah/internet-monitor/issues/new?labels=router-support
 ## Asking for your router to be supported

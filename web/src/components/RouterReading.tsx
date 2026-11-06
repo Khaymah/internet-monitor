@@ -8,6 +8,7 @@ export const ROUTER_SUPPORT_URL =
 const DRIVER_LABEL: Record<string, MessageKey> = {
   "huawei-hg": "rt_driver_huawei_hg",
   tr064: "rt_driver_tr064",
+  "zte-new": "rt_driver_zte_new",
 };
 
 export function driverKey(driver: string): MessageKey {
