@@ -1,6 +1,6 @@
 import { markdown } from "./markdown.mjs";
 import { appPage, docHero } from "./page-app.mjs";
-import { esc } from "./util.mjs";
+import { compareVersions, esc } from "./util.mjs";
 
 function anchorOf(id) {
   return `release-${id.replace(/\./g, "-")}`;
@@ -96,7 +96,10 @@ export function renderChangelog(ctx) {
   const timeline = a.data.buildTimeline(releases, "all", "", a.t);
   const latestId = releases.find((r) => r.version !== null)?.id;
   const firstId = releases[0]?.id;
-  const previews = ctx.app.releaseNotes;
+  const released = releases.find((r) => r.version !== null)?.version;
+  const previews = ctx.app.releaseNotes.filter(
+    (n) => n.tag.includes("-") && (!released || compareVersions(n.tag.replace(/-.*$/, ""), released) > 0),
+  );
   const counts = { new: 0, improved: 0, fixed: 0, security: 0 };
   for (const r of releases) for (const i of r.items) counts[i.kind] += 1;
   const stats = [
