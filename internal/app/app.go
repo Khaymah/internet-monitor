@@ -128,7 +128,7 @@ func New(opts Options) (*App, error) {
 		Enabled: func() bool { return store.Get().RouterStatus },
 		Web: func() (router.WebReader, bool) {
 			c := store.Get()
-			return router.WebReader{Host: c.RouterAddress, User: c.RouterUser, Password: c.RouterPassword}, c.RouterPassword != ""
+			return router.WebReader{Host: c.RouterAddress, User: c.RouterUser, Password: c.RouterPassword}, true
 		},
 		Save: func(at time.Time, st router.Status) { lgr.LogJSON(router.Prefix, at, st) },
 		Logf: lgr.AppLog,
@@ -161,6 +161,15 @@ func New(opts Options) (*App, error) {
 					lgr.AppLog("ROUTER page test failed: %v", err)
 				}
 				return stats, err
+			},
+			RouterReport: func(ctx context.Context, deep bool) (router.Report, error) {
+				rep, err := poller.Report(ctx, opts.Version, deep)
+				if err != nil {
+					lgr.AppLog("ROUTER report not built: %v", err)
+					return rep, err
+				}
+				lgr.AppLog("ROUTER report built (signed-in probe: %s)", rep.Deep.Outcome)
+				return rep, nil
 			},
 		},
 	})

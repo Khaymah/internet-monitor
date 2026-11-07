@@ -298,7 +298,16 @@ export interface RouterView {
   error?: string;
   web_ok?: boolean;
   web_error?: "wrong_password" | "busy" | "unsupported" | "unreachable";
+  driver?: string;
+  experimental?: boolean;
   usage?: PlanUsage;
+}
+
+export interface RouterReportResult {
+  report: Record<string, unknown>;
+  summary: string;
+  filename: string;
+  issue_url: string;
 }
 
 export interface ReportRoute {

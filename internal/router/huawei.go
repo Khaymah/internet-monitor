@@ -1,108 +1,63 @@
 package router
 
 import (
-	"bytes"
 	"context"
 	"crypto/sha256"
-	"crypto/tls"
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
-	"errors"
 	"fmt"
-	"io"
-	"net"
-	"net/http"
-	"net/http/cookiejar"
 	"regexp"
-	"strings"
-	"time"
 )
+
+const DriverHuaweiHG = "huawei-hg"
 
 var (
-	ErrWrongPassword = errors.New("the router rejected the user name or password")
-	ErrWebUnknown    = errors.New("this router's web page is not one the app can read")
-	ErrRouterBusy    = errors.New("someone else is signed in to the router's page")
-
 	csrfParam = regexp.MustCompile(`name="csrf_param"\s+content="([^"]+)"`)
 	csrfToken = regexp.MustCompile(`name="csrf_token"\s+content="([^"]+)"`)
+
+	huaweiPages = []string{"/", "/html/index.html"}
 )
 
-type WebStats struct {
-	Status       string
-	DownKbps     int64
-	UpKbps       int64
-	MaxDownKbps  int64
-	MaxUpKbps    int64
-	SNRDown      float64
-	SNRUp        float64
-	AttnDown     float64
-	AttnUp       float64
-	LineUpSecs   int64
-	RxBytes      uint64
-	TxBytes      uint64
-	HasCounters  bool
-	HasLineStats bool
+type huaweiHG struct{}
+
+func (huaweiHG) Name() string { return DriverHuaweiHG }
+
+func csrfFrom(page []byte) (string, string, bool) {
+	p, t := csrfParam.FindSubmatch(page), csrfToken.FindSubmatch(page)
+	if p == nil || t == nil {
+		return "", "", false
+	}
+	return string(p[1]), string(t[1]), true
 }
 
-type WebReader struct {
-	Host     string
-	User     string
-	Password string
-	Timeout  time.Duration
-}
-
-func webClient(host string, timeout time.Duration) (*http.Client, error) {
-	name := host
-	if h, _, err := net.SplitHostPort(host); err == nil {
-		name = h
+func (huaweiHG) Detect(ctx context.Context, p *Probe) (bool, error) {
+	page, err := p.Page(ctx)
+	if err != nil {
+		return false, err
 	}
-	if !isPrivate(name) {
-		return nil, fmt.Errorf("router address %q is not on the home network", host)
+	if _, _, ok := csrfFrom(page); ok {
+		return true, nil
 	}
-	jar, _ := cookiejar.New(nil)
-	return &http.Client{
-		Timeout: timeout,
-		Jar:     jar,
-		Transport: &http.Transport{
-			Proxy:           nil,
-			TLSClientConfig: routerTLS(),
-		},
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			if len(via) > 5 || !isPrivate(req.URL.Hostname()) {
-				return http.ErrUseLastResponse
-			}
-			return nil
-		},
-	}, nil
-}
-
-func routerTLS() *tls.Config {
-	var suites []uint16
-	for _, c := range tls.CipherSuites() {
-		suites = append(suites, c.ID)
+	s, err := p.Session(ctx)
+	if err != nil {
+		return false, err
 	}
-	for _, c := range tls.InsecureCipherSuites() {
-		suites = append(suites, c.ID)
-	}
-	return &tls.Config{
-		InsecureSkipVerify: true,
-		MinVersion:         tls.VersionTLS10,
-		CipherSuites:       suites,
-	}
-}
-
-func (s *session) pick(ctx context.Context, host string) error {
-	var errs []error
-	for _, scheme := range []string{"https://", "http://"} {
-		s.base = scheme + host
-		_, _, err := s.get(ctx, "/")
-		if err == nil {
-			return nil
+	if body, _, err := s.get(ctx, huaweiPages[1]); err == nil {
+		if _, _, ok := csrfFrom(body); ok {
+			return true, nil
 		}
-		errs = append(errs, fmt.Errorf("%s: %w", scheme+host, err))
 	}
-	return errors.Join(errs...)
+	if body, _, err := s.get(ctx, "/api/system/deviceinfo"); err == nil {
+		var info struct {
+			DeviceName   string `json:"DeviceName"`
+			SerialNumber string `json:"SerialNumber"`
+		}
+		if json.Unmarshal(unwrap(body), &info) == nil && (info.DeviceName != "" || info.SerialNumber != "") {
+			return true, nil
+		}
+	}
+	return false, nil
 }
 
 func loginHash(user, password, param, token string) string {
@@ -112,70 +67,17 @@ func loginHash(user, password, param, token string) string {
 	return hex.EncodeToString(outer[:])
 }
 
-func unwrap(body []byte) []byte {
-	s := strings.TrimSpace(string(body))
-	s = strings.TrimPrefix(s, "while(1);")
-	s = strings.TrimSpace(s)
-	s = strings.TrimPrefix(s, "/*")
-	s = strings.TrimSuffix(s, "*/")
-	return []byte(strings.TrimSpace(s))
-}
-
-type session struct {
-	client *http.Client
-	base   string
-}
-
-func (s *session) get(ctx context.Context, path string) ([]byte, string, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, s.base+path, nil)
-	if err != nil {
-		return nil, "", err
-	}
-	resp, err := s.client.Do(req)
-	if err != nil {
-		return nil, "", err
-	}
-	defer resp.Body.Close()
-	body, err := io.ReadAll(io.LimitReader(resp.Body, maxBody))
-	if resp.Request != nil && resp.Request.URL != nil {
-		s.base = resp.Request.URL.Scheme + "://" + resp.Request.URL.Host
-	}
-	if resp.StatusCode != http.StatusOK {
-		return body, "", fmt.Errorf("%s answered HTTP %d", path, resp.StatusCode)
-	}
-	return body, resp.Header.Get("Content-Type"), err
-}
-
 func (s *session) csrf(ctx context.Context) (string, string, error) {
-	page, _, err := s.get(ctx, "/")
-	if err != nil {
-		return "", "", err
+	for _, path := range huaweiPages {
+		page, _, err := s.get(ctx, path)
+		if err != nil {
+			continue
+		}
+		if p, t, ok := csrfFrom(page); ok {
+			return p, t, nil
+		}
 	}
-	p, t := csrfParam.FindSubmatch(page), csrfToken.FindSubmatch(page)
-	if p == nil || t == nil {
-		return "", "", ErrWebUnknown
-	}
-	return string(p[1]), string(t[1]), nil
-}
-
-func (s *session) post(ctx context.Context, path string, payload any) ([]byte, error) {
-	data, _ := json.Marshal(payload)
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, s.base+path, bytes.NewReader(data))
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Set("Content-Type", "application/json;charset=UTF-8")
-	req.Header.Set("X-Requested-With", "XMLHttpRequest")
-	resp, err := s.client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	body, _ := io.ReadAll(io.LimitReader(resp.Body, maxBody))
-	if resp.StatusCode != http.StatusOK {
-		return body, fmt.Errorf("%s answered HTTP %d", path, resp.StatusCode)
-	}
-	return body, nil
+	return "", "", ErrWebUnknown
 }
 
 func (s *session) login(ctx context.Context, user, password string) error {
@@ -243,9 +145,14 @@ func parseDSL(body []byte) (dslInfo, bool) {
 }
 
 func parseWAN(body []byte) (rx, tx uint64, ok bool) {
+	raw := unwrap(body)
 	var list []wanStat
-	if json.Unmarshal(unwrap(body), &list) != nil {
-		return 0, 0, false
+	if json.Unmarshal(raw, &list) != nil {
+		var one wanStat
+		if json.Unmarshal(raw, &one) != nil {
+			return 0, 0, false
+		}
+		return one.ReceiveBytes, one.SendBytes, true
 	}
 	for _, w := range list {
 		rx += w.ReceiveBytes
@@ -254,51 +161,53 @@ func parseWAN(body []byte) (rx, tx uint64, ok bool) {
 	return rx, tx, len(list) > 0
 }
 
-func (r WebReader) Read(ctx context.Context) (WebStats, error) {
-	timeout := r.Timeout
-	if timeout <= 0 {
-		timeout = 8 * time.Second
-	}
-	client, err := webClient(r.Host, timeout)
+func (huaweiHG) Read(ctx context.Context, p *Probe, c Creds) (WebStats, error) {
+	s, err := p.Session(ctx)
 	if err != nil {
 		return WebStats{}, err
 	}
-	s := &session{client: client}
-	if err := s.pick(ctx, r.Host); err != nil {
-		return WebStats{}, err
-	}
-	user := r.User
+	user := c.User
 	if user == "" {
 		user = "admin"
 	}
-	if err := s.login(ctx, user, r.Password); err != nil {
+	if err := s.login(ctx, user, c.Password); err != nil {
 		return WebStats{}, err
 	}
 	defer s.logout(ctx)
 	var out WebStats
-	body, _, err := s.get(ctx, "/api/ntwk/dslinfo")
-	if err != nil {
-		return out, err
-	}
-	d, ok := parseDSL(body)
-	if !ok {
-		return out, ErrWebUnknown
-	}
-	out = WebStats{
-		Status:       d.Status,
-		DownKbps:     d.DownCurrRate,
-		UpKbps:       d.UpCurrRate,
-		MaxDownKbps:  d.DownstreamMaxBitRate,
-		MaxUpKbps:    d.UpstreamMaxBitRate,
-		SNRDown:      d.DownMargin,
-		SNRUp:        d.UpMargin,
-		AttnDown:     d.DownAttenuation,
-		AttnUp:       d.UpAttenuation,
-		LineUpSecs:   d.ShowtimeStart,
-		HasLineStats: true,
+	dslBody, _, dslErr := s.get(ctx, "/api/ntwk/dslinfo")
+	d, dslOK := parseDSL(dslBody)
+	if dslErr == nil && dslOK {
+		out = WebStats{
+			Status:       d.Status,
+			DownKbps:     d.DownCurrRate,
+			UpKbps:       d.UpCurrRate,
+			MaxDownKbps:  d.DownstreamMaxBitRate,
+			MaxUpKbps:    d.UpstreamMaxBitRate,
+			SNRDown:      d.DownMargin,
+			SNRUp:        d.UpMargin,
+			AttnDown:     d.DownAttenuation,
+			AttnUp:       d.UpAttenuation,
+			LineUpSecs:   d.ShowtimeStart,
+			HasLineStats: true,
+		}
 	}
 	if body, _, err := s.get(ctx, "/api/ntwk/wan_st"); err == nil {
 		out.RxBytes, out.TxBytes, out.HasCounters = parseWAN(body)
+	}
+	if !out.HasLineStats && !out.HasCounters {
+		if dslErr != nil {
+			return out, dslErr
+		}
+		return out, ErrWebUnknown
+	}
+	if body, _, err := s.get(ctx, "/api/system/deviceinfo"); err == nil {
+		var info struct {
+			DeviceName string `json:"DeviceName"`
+		}
+		if json.Unmarshal(unwrap(body), &info) == nil {
+			out.Model = info.DeviceName
+		}
 	}
 	return out, nil
 }

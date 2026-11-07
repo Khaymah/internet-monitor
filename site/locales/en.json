@@ -44,7 +44,7 @@
       },
       {
         "title": "Your router or your provider?",
-        "body": "It tells you whether the problem is in your home or at your provider, so you know who to call."
+        "body": "It tells you whether the problem is in your home or at your provider, so you know who to call. It can read many routers, and you can ask us to add yours."
       },
       {
         "title": "A complaint, ready to send",
@@ -227,7 +227,8 @@
     "tip_title": "Good to know",
     "tips": [
       "The monthly report (History → Monthly report → Print or save as PDF) covers the whole month in one page.",
-      "Alerts can reach your phone through Telegram, Discord or ntfy when the internet drops."
+      "Alerts can reach your phone through Telegram, Discord or ntfy when the internet drops.",
+      "Add your router's password in **Settings → App** to see your line quality and data use. If your router isn't supported yet, use **Help us support your router** there to ask for it."
     ],
     "advanced_note": "Want it to run all day on a Raspberry Pi? See the Advanced section on the download page.",
     "advanced_btn": "Advanced: Raspberry Pi",

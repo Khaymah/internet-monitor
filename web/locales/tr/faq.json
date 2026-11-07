@@ -44,6 +44,10 @@
       "q": "Sorun modemimde mi, sağlayıcımda mı?",
       "a": "Uygulama modeminizi de kontrol eder. Modem yanıt verir ama internet vermezse teşhis sağlayıcınızı gösterir. Modem de yanıt vermezse sorun ev ağınızdadır: Wi-Fi, kablolar veya modemin kendisi."
     },
+    "routers": {
+      "q": "Hangi modemlerle çalışır?",
+      "a": "UPnP'si açık her modem (uygulamaların modemin durumunu sormasını sağlayan bir özellik) temel bilgileri verir: hattın açık olup olmadığını, hızını ve çoğu modemde veri sayaçlarını. Modem şifresini de [Ayarlar → Uygulama](settings#app) bölümüne kaydederseniz uygulama modemin kendi sayfasından daha fazlasını okur; örneğin gürültü payını ve daha güvenilir veri sayaçlarını. Bu, Huawei ev modemlerinde (HG630, HG633, HG658, HG659 ve DG8045), TR-064 sunan modemlerde (FRITZ!Box ve bazı Zyxel modelleri gibi) ve deneme olarak yeni ZTE modemlerinde (ZXHN ve F6xx) çalışır. Genel bakıştaki modem kartı hangi okumanın kullanıldığını söyler. Modeminiz listede yok mu? Aynı yerde “Modemin durumunu oku”yu açın, sonra onu ekleyebilmemiz için [“Modeminizi desteklememize yardım edin”](settings#router-report) ile bize bir rapor gönderin."
+    },
     "targets": {
       "q": "Neyin kontrol edileceğini değiştirebilir miyim?",
       "a": "Evet. [Ayarlar → Kontrol hedefleri](settings#targets) bölümünde üç liste var: DNS sunucuları (internetin adres defterleri; varsayılan olarak 8.8.8.8 ve 1.1.1.1), web sayfaları ve sorgulanacak adlar. Her liste en fazla 10 kayıt alır ve kaydetmeden önce bunları test edebilirsiniz."
@@ -51,6 +55,10 @@
     "data": {
       "q": "Ne kadar internet verisi kullanır?",
       "a": "Normal kontroller çok küçüktür: bir bağlantı, boş bir web sayfası ve bir ad sorgusu. Hız testleri farklıdır. Bir test, süre sınırı içinde hattınızın taşıyabildiği kadar veri aktarır; bu yüzden hızlı bir bağlantıda tek bir test yüzlerce megabayt kullanabilir. Veriniz sınırlıysa otomatik hız testi zamanlamayın."
+    },
+    "usage": {
+      "q": "Veri kullanımı nasıl ölçülür?",
+      "a": "Modemin kendi trafik sayaçlarıyla, yani bütün ev için: ağınızdaki tüm cihazlar, indirme ve yükleme birlikte, paketinizin yenilenme gününden itibaren. [Şikayetler](complaints) sayfasındaki “İnternet hattınız” bölümünde başka bir gün seçmediyseniz bu gün ayın 1'idir. Sağlayıcınız kendi tarafında saydığı için onun sayacı uygulamanın sayısından biraz farklı olabilir. Modeminiz hiç sayaç paylaşmıyorsa veri kullanımı izlenmez. Desteklenen modemlerde modem şifresini [Ayarlar → Uygulama](settings#app) bölümüne kaydetmek bunu çözebilir."
     },
     "where": {
       "q": "Uyarılar nerede görünür?",
@@ -98,7 +106,11 @@
     },
     "send": {
       "q": "Verilerimi bir yere gönderiyor mu?",
-      "a": "Hayır. Hesap yok, takip yok, analiz yok. Yaptığı tek bağlantılar kontrollerin kendisi, hız testleri, GitHub'daki güncelleme denetimleri ve sizin kurduğunuz Discord, Slack veya Telegram uyarılarıdır. Gizlilik sayfası bunların her birini listeler."
+      "a": "Hayır. Hesap yok, takip yok, analiz yok. Yaptığı tek bağlantılar kontrollerin kendisi, hız testleri, GitHub'daki güncelleme denetimleri ve sizin kurduğunuz Discord, Slack veya Telegram uyarılarıdır. Modeminizin okunması ev ağınızın içinde kalır. Gizlilik sayfası bunların her birini listeler."
+    },
+    "routerreport": {
+      "q": "Modem raporu neyi, kime gönderir?",
+      "a": "Uygulama hiçbir şey göndermez. “Modeminizi desteklememize yardım edin” yalnızca bu bilgisayarda, modeminizin nasıl yanıt verdiğini anlatan bir dosya oluşturur: markası, modeli, yazılım sürümü, sunduğu özellikler ve sayfalar. Önce özel bilgiler silinir: Wi-Fi adları ve şifreleri, seri numaraları, MAC adresleri, genel IP adresiniz, kullanıcı adları, şifreler ve cihazlarınızın adları. Hepsini okuyabilir, sonra indirip GitHub sayfamızdaki bir sorun kaydına kendiniz ekleyebilirsiniz. Bize yalnızca o kaydı gönderirseniz ulaşır ve GitHub kayıtları herkese açıktır."
     },
     "lan": {
       "q": "Ağımdaki başka biri paneli açabilir mi?",

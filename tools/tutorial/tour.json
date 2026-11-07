@@ -20,7 +20,11 @@
     "SQM": "S Q M",
     "QoS": "Q o S",
     "WhatsApp": "Whats App",
-    "UPS": "U P S"
+    "UPS": "U P S",
+    "Huawei": "Wah way",
+    "ZTE": "Z T E",
+    "TR-064": "T R 0 64",
+    "FRITZ!Box": "Fritz Box"
   },
   "videos": ["overview", "history", "notifications", "speed", "complaints", "report", "settings"]
 }

@@ -214,9 +214,7 @@ func resolve(base, ref string) string {
 }
 
 func (g *Gateway) call(ctx context.Context, controlURL, serviceType, action string) (map[string]string, error) {
-	body := `<?xml version="1.0"?>` +
-		`<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">` +
-		`<s:Body><u:` + action + ` xmlns:u="` + serviceType + `"/></s:Body></s:Envelope>`
+	body := soapBody(serviceType, action)
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, controlURL, strings.NewReader(body))
 	if err != nil {
 		return nil, err

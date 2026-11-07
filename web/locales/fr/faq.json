@@ -44,6 +44,10 @@
       "q": "Le problème vient-il de mon routeur ou de mon fournisseur ?",
       "a": "L'application vérifie aussi votre routeur. Si le routeur répond mais pas internet, le diagnostic désigne votre fournisseur. Si le routeur ne répond pas non plus, le problème est dans votre réseau domestique : le Wi-Fi, les câbles ou le routeur lui-même."
     },
+    "routers": {
+      "q": "Avec quels routeurs fonctionne-t-il ?",
+      "a": "Tout routeur avec l'UPnP activé (une fonction du routeur qui permet aux applications de l'interroger sur son état) donne l'essentiel : si la ligne fonctionne, son débit et, sur la plupart des routeurs, les compteurs de données. Si vous enregistrez aussi le mot de passe du routeur dans [Paramètres → Application](settings#app), l'application lit davantage sur la page du routeur, comme la marge de bruit et des compteurs de données plus fiables. Cela marche avec les box Huawei (HG630, HG633, HG658, HG659 et DG8045), les routeurs compatibles TR-064 (comme la FRITZ!Box et certains modèles Zyxel) et, à l'essai, les routeurs ZTE récents (ZXHN et F6xx). La carte du routeur dans la Vue d'ensemble indique la lecture utilisée. Votre routeur n'est pas dans la liste ? Activez « Lire l'état du routeur » au même endroit, puis utilisez [« Aidez-nous à prendre en charge votre routeur »](settings#router-report) pour nous envoyer un rapport, afin que nous puissions l'ajouter."
+    },
     "targets": {
       "q": "Puis-je changer ce qui est vérifié ?",
       "a": "Oui. [Paramètres → Cibles de vérification](settings#targets) contient trois listes : des serveurs DNS (les annuaires d'internet ; 8.8.8.8 et 1.1.1.1 par défaut), des pages web et des noms à rechercher. Chaque liste contient jusqu'à 10 entrées, et vous pouvez les tester avant d'enregistrer."
@@ -51,6 +55,10 @@
     "data": {
       "q": "Combien de données internet consomme-t-il ?",
       "a": "Les vérifications régulières sont minuscules : une connexion, une page web vide et une résolution de nom. Les tests de débit, c'est différent. Un test fait passer autant de données que votre ligne le permet pendant sa durée limite ; sur une connexion rapide, un seul test peut donc consommer des centaines de mégaoctets. Si vos données sont limitées, ne programmez pas de tests de débit automatiques."
+    },
+    "usage": {
+      "q": "Comment la consommation de données est-elle mesurée ?",
+      "a": "Avec les compteurs de trafic du routeur lui-même, donc pour toute la maison : tous les appareils de votre réseau, téléchargements et envois compris, depuis le jour de renouvellement de votre forfait. C'est le 1er du mois, sauf si vous choisissez un autre jour dans « Votre ligne internet » de la page [Réclamations](complaints). Votre fournisseur compte de son côté, donc son compteur peut différer un peu du chiffre de l'application. Si votre routeur ne partage aucun compteur, la consommation n'est pas suivie. Sur les routeurs pris en charge, enregistrer le mot de passe du routeur dans [Paramètres → Application](settings#app) peut régler cela."
     },
     "where": {
       "q": "Où les alertes apparaissent-elles ?",
@@ -98,7 +106,11 @@
     },
     "send": {
       "q": "Est-ce qu'il envoie mes données quelque part ?",
-      "a": "Non. Pas de compte, pas de pistage, pas de statistiques d'utilisation. Les seules connexions qu'il établit sont les vérifications elles-mêmes, les tests de débit, la recherche de mises à jour sur GitHub, et les alertes Discord, Slack ou Telegram que vous configurez. La page Confidentialité les liste une par une."
+      "a": "Non. Pas de compte, pas de pistage, pas de statistiques d'utilisation. Les seules connexions qu'il établit sont les vérifications elles-mêmes, les tests de débit, la recherche de mises à jour sur GitHub, et les alertes Discord, Slack ou Telegram que vous configurez. La lecture de votre routeur reste sur votre réseau domestique. La page Confidentialité les liste une par une."
+    },
+    "routerreport": {
+      "q": "Qu'envoie le rapport du routeur, et à qui ?",
+      "a": "L'application n'envoie rien. « Aidez-nous à prendre en charge votre routeur » crée seulement un fichier sur cet ordinateur, qui décrit comment votre routeur répond : sa marque, son modèle, sa version logicielle, et les fonctions et pages qu'il propose. Les informations privées sont retirées d'abord : noms et mots de passe Wi-Fi, numéros de série, adresses MAC, votre adresse IP publique, noms d'utilisateur, mots de passe et noms de vos appareils. Vous pouvez tout lire, puis le télécharger et le joindre vous-même à un ticket sur notre page GitHub. Il ne nous parvient que si vous publiez ce ticket, et les tickets GitHub sont publics."
     },
     "lan": {
       "q": "Quelqu'un d'autre sur mon réseau peut-il ouvrir le tableau de bord ?",

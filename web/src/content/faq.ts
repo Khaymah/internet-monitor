@@ -40,8 +40,10 @@ export const FAQ: FaqSection[] = [
       { id: "unstable", q: "faq.unstable.q", a: "faq.unstable.a" },
       { id: "layers", q: "faq.layers.q", a: "faq.layers.a" },
       { id: "router", q: "faq.router.q", a: "faq.router.a" },
+      { id: "routers", q: "faq.routers.q", a: "faq.routers.a" },
       { id: "targets", q: "faq.targets.q", a: "faq.targets.a" },
       { id: "data", q: "faq.data.q", a: "faq.data.a" },
+      { id: "usage", q: "faq.usage.q", a: "faq.usage.a" },
     ],
   },
   {
@@ -78,6 +80,7 @@ export const FAQ: FaqSection[] = [
     title: "faq.section.privacy",
     items: [
       { id: "send", q: "faq.send.q", a: "faq.send.a" },
+      { id: "routerreport", q: "faq.routerreport.q", a: "faq.routerreport.a" },
       { id: "lan", q: "faq.lan.q", a: "faq.lan.a" },
       { id: "secrets", q: "faq.secrets.q", a: "faq.secrets.a" },
       { id: "updates", q: "faq.updates.q", a: "faq.updates.a" },

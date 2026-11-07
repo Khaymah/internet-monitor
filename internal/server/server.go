@@ -31,6 +31,7 @@ type Hooks struct {
 	SendWeekly       func() bool
 	Router           func() router.Snapshot
 	TestRouter       func(user, password string) (router.WebStats, error)
+	RouterReport     func(ctx context.Context, deep bool) (router.Report, error)
 }
 
 type Options struct {
@@ -148,6 +149,7 @@ func (s *Server) routes() http.Handler {
 	mux.HandleFunc("GET /api/insights", s.serveInsights)
 	mux.HandleFunc("GET /api/router", s.serveRouter)
 	mux.HandleFunc("POST /api/test-router", s.serveTestRouter)
+	mux.HandleFunc("POST /api/router/report", s.serveRouterReport)
 	mux.HandleFunc("POST /api/case/profile", s.serveCaseProfile)
 	mux.HandleFunc("POST /api/case/complaints", s.serveComplaintSave)
 	mux.HandleFunc("DELETE /api/case/complaints/{id}", s.serveComplaintDelete)

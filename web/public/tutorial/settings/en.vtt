@@ -425,84 +425,132 @@ It stays inside your home network,
 and helps explain each outage.
 
 89
-00:05:44.567 --> 00:05:47.921
+00:05:44.567 --> 00:05:48.167
 Add the router's password to
 read deeper line details,
 
 90
-00:05:47.921 --> 00:05:51.027
+00:05:48.167 --> 00:05:51.500
 like the noise margin,
 which shows signal quality.
 
 91
-00:05:51.027 --> 00:05:54.195
+00:05:51.500 --> 00:05:55.167
+This works on Huawei,
+on routers that offer TR-064 such
+
+92
+00:05:55.167 --> 00:05:58.633
+as FRITZ!Box, and, as a trial,
+on newer ZTE routers.
+
+93
+00:05:58.633 --> 00:06:02.033
 The address and user name
 usually work as they are.
 
-92
-00:05:54.195 --> 00:05:58.233
+94
+00:06:02.033 --> 00:06:06.367
 The password stays on this computer
 and goes only to your router.
 
-93
-00:05:58.633 --> 00:06:01.158
+95
+00:06:06.767 --> 00:06:09.292
 Test the router password checks it once.
 
-94
-00:06:01.158 --> 00:06:05.767
+96
+00:06:09.292 --> 00:06:13.901
 If the router rejects it, the app stops
 trying, so it can't lock you out.
 
-95
-00:06:06.167 --> 00:06:11.100
+97
+00:06:13.901 --> 00:06:17.373
+The line above the button
+says which reading is in use,
+
+98
+00:06:17.373 --> 00:06:19.835
+here the router's own page on a Huawei.
+
+99
+00:06:19.835 --> 00:06:23.433
+If your router isn't supported yet,
+it says that instead.
+
+100
+00:06:23.833 --> 00:06:28.242
+If your router isn't supported yet,
+use Help us support your router.
+
+101
+00:06:28.242 --> 00:06:32.392
+Create report checks how your
+router answers and removes private
+
+102
+00:06:32.392 --> 00:06:36.607
+details first, such as Wi-Fi names,
+passwords and serial numbers.
+
+103
+00:06:36.607 --> 00:06:40.627
+Read the report, download it,
+and attach it to a GitHub issue.
+
+104
+00:06:40.627 --> 00:06:42.767
+The app never sends it by itself.
+
+105
+00:06:43.167 --> 00:06:48.100
 Updates shows your version.
 Check for updates looks for a newer one right now.
 
-96
-00:06:11.500 --> 00:06:14.518
+106
+00:06:48.500 --> 00:06:51.518
 Open on your phone appears
 only when the dashboard is
 
-97
-00:06:14.518 --> 00:06:17.764
+107
+00:06:51.518 --> 00:06:54.764
 open to your home network,
 for example on a Raspberry Pi.
 
-98
-00:06:17.764 --> 00:06:21.579
+108
+00:06:54.764 --> 00:06:58.579
 Scan the code with your phone's
 camera to open the dashboard there.
 
-99
-00:06:21.579 --> 00:06:25.167
+109
+00:06:58.579 --> 00:07:02.167
 Don't share a photo of it,
 because it contains your access key.
 
-100
-00:06:25.567 --> 00:06:29.082
+110
+00:07:02.567 --> 00:07:06.082
 When you change a setting,
 this bar appears at the bottom.
 
-101
-00:06:29.082 --> 00:06:32.900
+111
+00:07:06.082 --> 00:07:09.900
 Press Save changes to keep your edits,
 or Discard to undo them.
 
-102
-00:06:32.900 --> 00:06:36.900
+112
+00:07:09.900 --> 00:07:13.900
 If you try to leave first,
 the app asks before throwing them away.
 
-103
-00:06:37.300 --> 00:06:42.029
+113
+00:07:14.300 --> 00:07:19.029
 To watch this tour again, press How
 this page works at the top of Settings,
 
-104
-00:06:42.029 --> 00:06:46.506
+114
+00:07:19.029 --> 00:07:23.506
 or open Video tours in the sidebar,
 where every page has its own video.
 
-105
-00:06:46.506 --> 00:06:47.767
+115
+00:07:23.506 --> 00:07:24.767
 Thanks for watching!

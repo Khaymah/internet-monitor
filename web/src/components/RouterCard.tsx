@@ -1,4 +1,4 @@
-import { Router } from "lucide-react";
+import { LifeBuoy, Router } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 import { api } from "../lib/api";
@@ -6,19 +6,22 @@ import { formatDate, formatDuration, formatNumber } from "../lib/format";
 import { useAsync } from "../lib/hooks";
 import { type Lang, type MessageKey, useI18n } from "../lib/i18n";
 import { navigate } from "../lib/router";
+import { goToTarget } from "../lib/spotlight";
 import type { PlanUsage, RouterStatus, RouterView } from "../lib/types";
 import { tone } from "../styles/categories";
+import { RouterReading } from "./RouterReading";
 import { Button, Card, CardHead, Meter } from "./ui";
+
+const ROUTER_REPORT_ANCHOR = "router-report";
 
 function gb(lang: Lang, bytes: number): string {
   const v = bytes / 1e9;
   return `\u2066${formatNumber(lang, v, v < 10 ? 1 : 0)} GB\u2069`;
 }
 
-const WEB_ERROR: Record<NonNullable<RouterView["web_error"]>, MessageKey> = {
+const WEB_ERROR: Record<Exclude<NonNullable<RouterView["web_error"]>, "unsupported">, MessageKey> = {
   wrong_password: "rt_web_wrong_password",
   busy: "rt_web_busy",
-  unsupported: "rt_web_unsupported",
   unreachable: "rt_web_unreachable",
 };
 
@@ -157,6 +160,7 @@ export function RouterCard() {
   const v = data.data;
   if (!v?.enabled) return null;
   const st = v.status;
+  const unreadable = !st || v.web_error === "unsupported" || (!st.has_counters && !v.usage);
   return (
     <Card labelledBy="rt-title">
       <CardHead
@@ -171,11 +175,26 @@ export function RouterCard() {
       />
       <div className="stack" style={{ gap: 16 }}>
         {st ? <StatusGrid st={st} /> : <p className="secondary">{t("rt_not_found")}</p>}
-        {v.web_error ? <p className="secondary">{t(WEB_ERROR[v.web_error])}</p> : null}
+        {v.web_error && v.web_error !== "unsupported" ? (
+          <p className="secondary">{t(WEB_ERROR[v.web_error])}</p>
+        ) : null}
+        <RouterReading view={v} />
         {v.usage ? (
           <Usage u={v.usage} />
         ) : st && !st.has_counters ? (
           <p className="muted">{t("rt_no_counters")}</p>
+        ) : null}
+        {unreadable ? (
+          <div className="row">
+            <Button
+              size="sm"
+              variant="edge"
+              icon={LifeBuoy}
+              onClick={() => goToTarget("settings", ROUTER_REPORT_ANCHOR)}
+            >
+              {t("rt_help")}
+            </Button>
+          </div>
         ) : null}
       </div>
     </Card>

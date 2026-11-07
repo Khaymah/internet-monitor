@@ -6,7 +6,7 @@ Internet Monitor · مراقب الإنترنت
 
 ## Privacy Policy
 
-Last updated: 5 November 2026
+Last updated: 6 November 2026
 
 Internet Monitor runs on your computer and keeps your data there. This page lists everything it stores and every place it connects to.
 
@@ -29,13 +29,14 @@ Everything is kept in the app's folder (next to the app, or in %LOCALAPPDATA%\In
 
 The app only connects to the places below. Each of them sees your IP address, as with any internet connection, and its own privacy policy applies.
 
-- Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router. If your router allows it (UPnP), the app also reads its line state, sync speed, uptime and traffic counters once a minute. That stays on your home network and is saved in the logs folder as router_DATE.jsonl. You can turn it off in Settings → App. With the router's password set, the app also signs in to the router's own page every few minutes to read the noise margin, attenuation and traffic counters, and signs out again. That also stays on your home network.
+- Connection checks go to the targets in Settings → Check targets. By default: Google and Cloudflare DNS servers (8.8.8.8 and 1.1.1.1), connectivitycheck.gstatic.com, and name lookups for www.google.com and www.cloudflare.com. It also checks your own router. If your router allows it (UPnP), the app also reads its line state, sync speed, uptime and traffic counters once a minute. That stays on your home network and is saved in the logs folder as router_DATE.jsonl. You can turn it off in Settings → App. With the router's password set, the app also signs in to the router's own page every few minutes to read the noise margin, attenuation and traffic counters, and signs out again. If the router offers TR-064 (a standard that some routers support), the app can also read the same figures from it, with or without the password. That also stays on your home network.
 - Speed tests go to speed.cloudflare.com by default, and only when you start one or schedule them. The test data contains nothing that identifies your device.
 - Update checks go to GitHub (api.github.com) every 6 hours (you can turn this off in Settings), or when you press “Check for updates”. Installing an update downloads it from GitHub.
 - Alerts and the weekly summary go to Discord, Slack, a webhook of your choice, Telegram or ntfy only if you set them up. They contain the status, times, durations and causes of outages, or a speed test result. The app doesn't add your computer's name or IP address.
 - Log timestamps go to freetsa.org only if you turn on “Timestamp the sealed logs” in Settings. It receives a 32-byte hash of the day's seal, never your logs.
 - When an outage starts, the app runs a traceroute toward your first check target to see where the connection stops. The routers along the way see these packets, as with any traceroute.
 - The tour videos stream from GitHub (github.com and its download servers) only when you press play on the Video tours page. Nothing is loaded from GitHub before that, and the subtitles come from the app itself.
+- Router support report: only if you press “Create report” in Settings → App, the app checks your router on your home network and builds a report of its model, features and page layout, with private details removed. It's shown to you in full and the app never sends it. You can save it and attach it to a GitHub issue yourself. If you tick the extra box, the app also signs in to the router once with your saved password, but only keeps the names and kinds of the details it reads.
 
 ### The dashboard
 
@@ -57,7 +58,7 @@ Reach us through any channel on the Contact page in the app, or open an issue at
 
 ## سياسة الخصوصية
 
-آخر تحديث: 5 نوفمبر 2026
+آخر تحديث: 6 نوفمبر 2026
 
 مراقب الإنترنت بيشتغل على جهازك وبيحتفظ ببياناتك عليه. الصفحة دي بتذكر كل اللي بيحفظه وكل مكان بيتصل بيه.
 
@@ -80,13 +81,14 @@ Reach us through any channel on the Contact page in the app, or open an issue at
 
 التطبيق بيتصل بس بالأماكن دي. كل واحد فيهم بيشوف عنوان IP بتاعك زي أي اتصال بالإنترنت، وبتنطبق عليه سياسة الخصوصية بتاعته.
 
-- فحوصات الاتصال بتروح للأهداف الموجودة في الإعدادات ← أهداف الفحص. افتراضياً: خوادم DNS من Google وCloudflare ‏(8.8.8.8 و1.1.1.1)، وconnectivitycheck.gstatic.com، والبحث عن www.google.com وwww.cloudflare.com. وبيفحص الراوتر بتاعك كمان. ولو الراوتر بيسمح (UPnP)، التطبيق كمان بيقرا حالة الخط وسرعة التزامن ومدة التشغيل وعدّادات الاستهلاك كل دقيقة. ده بيفضل جوه شبكة البيت، وبيتحفظ في فولدر logs باسم router_DATE.jsonl. وتقدر تقفله من الإعدادات ← التطبيق. ولو حطيت باسورد الراوتر، التطبيق كمان بيدخل صفحة الراوتر نفسها كل كام دقيقة يقرا هامش الإشارة والتوهين وعدّادات الاستهلاك، وبعدين يخرج. وده كمان بيفضل جوه شبكة البيت.
+- فحوصات الاتصال بتروح للأهداف الموجودة في الإعدادات ← أهداف الفحص. افتراضياً: خوادم DNS من Google وCloudflare ‏(8.8.8.8 و1.1.1.1)، وconnectivitycheck.gstatic.com، والبحث عن www.google.com وwww.cloudflare.com. وبيفحص الراوتر بتاعك كمان. ولو الراوتر بيسمح (UPnP)، التطبيق كمان بيقرا حالة الخط وسرعة التزامن ومدة التشغيل وعدّادات الاستهلاك كل دقيقة. ده بيفضل جوه شبكة البيت، وبيتحفظ في فولدر logs باسم router_DATE.jsonl. وتقدر تقفله من الإعدادات ← التطبيق. ولو حطيت باسورد الراوتر، التطبيق كمان بيدخل صفحة الراوتر نفسها كل كام دقيقة يقرا هامش الإشارة والتوهين وعدّادات الاستهلاك، وبعدين يخرج. ولو الراوتر بيدعم TR-064 (معيار بعض الراوترات بتدعمه)، التطبيق ممكن يقرا نفس الأرقام منه كمان، بباسورد أو من غير. وده كمان بيفضل جوه شبكة البيت.
 - قياس السرعة بيروح لـ speed.cloudflare.com افتراضياً، وبس لما تبدأه أو تجدوله. بيانات القياس مفيهاش أي حاجة تعرّف جهازك.
 - البحث عن التحديثات بيروح لـ GitHub ‏(api.github.com) كل 6 ساعات (وتقدر تقفلها من الإعدادات)، أو لما تدوس «دوّر على تحديثات». وتثبيت التحديث بيتنزّل من GitHub.
 - التنبيهات والملخص الأسبوعي بتروح لـ Discord أو Slack أو webhook من اختيارك أو Telegram أو ntfy بس لو فعّلتها. فيها الحالة، والأوقات، والمدد، وأسباب الانقطاع، أو نتيجة قياس السرعة. والتطبيق مابيضيفش اسم جهازك ولا عنوان IP.
 - ختم السجلات بالوقت بيروح لـ freetsa.org بس لو فعّلت «ختم السجلات بتوقيت مستقل» من الإعدادات. بيوصله hash طوله 32 بايت لختم اليوم، مش السجلات نفسها.
 - لما الانقطاع يبدأ، التطبيق بيعمل traceroute ناحية أول هدف فحص عشان يعرف الاتصال بيقف فين. الراوترات اللي في الطريق بتشوف الباكتات دي زي أي traceroute.
 - فيديوهات الجولات بتشتغل من GitHub ‏(github.com وسيرفرات التنزيل بتاعته) بس لما تدوس تشغيل في صفحة «جولات بالفيديو». مفيش حاجة بتتحمّل من GitHub قبل كده، والترجمة جاية من التطبيق نفسه.
+- تقرير دعم الراوتر: لو ضغطت «اعمل التقرير» في الإعدادات ← التطبيق بس، التطبيق بيفحص الراوتر على شبكتك البيتية ويبني تقرير بموديله ومميزاته وشكل صفحته، من غير التفاصيل الخاصة. بيتعرضلك كامل، والتطبيق عمره ما بيبعته. تقدر تحفظه وتضيفه بنفسك في بلاغ على GitHub. ولو علّمت على الخانة الإضافية، التطبيق كمان بيدخل الراوتر مرة واحدة بالباسورد المحفوظ، وبيحتفظ بأسماء وأنواع التفاصيل اللي بيقراها بس.
 
 ### لوحة التحكم
 

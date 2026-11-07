@@ -44,7 +44,7 @@
       },
       {
         "title": "Modeminiz mi, sağlayıcınız mı?",
-        "body": "Sorunun evinizde mi yoksa sağlayıcıda mı olduğunu söyler; böylece kimi arayacağınızı bilirsiniz."
+        "body": "Sorunun evinizde mi yoksa sağlayıcıda mı olduğunu söyler; böylece kimi arayacağınızı bilirsiniz. Birçok modemi okuyabilir; sizinkini eklememizi de isteyebilirsiniz."
       },
       {
         "title": "Gönderilmeye hazır şikayet",
@@ -227,7 +227,8 @@
     "tip_title": "Bilmekte fayda var",
     "tips": [
       "Aylık rapor (Geçmiş → Aylık rapor → Yazdır veya PDF olarak kaydet) tüm ayı tek sayfada özetler.",
-      "İnternet kesildiğinde uyarılar Telegram, Discord veya ntfy ile telefonunuza gelebilir."
+      "İnternet kesildiğinde uyarılar Telegram, Discord veya ntfy ile telefonunuza gelebilir.",
+      "Hat kalitesini ve veri kullanımınızı görmek için modem şifrenizi **Ayarlar → Uygulama** bölümüne ekleyin. Modeminiz henüz desteklenmiyorsa aynı yerdeki **Modeminizi desteklememize yardım edin** ile onu isteyin."
     ],
     "advanced_note": "7/24 bir Raspberry Pi'de çalışsın mı? İndirme sayfasındaki Gelişmiş bölümüne bakın.",
     "advanced_btn": "Gelişmiş: Raspberry Pi",

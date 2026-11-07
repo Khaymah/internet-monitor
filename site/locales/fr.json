@@ -44,7 +44,7 @@
       },
       {
         "title": "Votre box ou votre fournisseur ?",
-        "body": "Elle vous dit si le problème vient de chez vous ou de votre fournisseur, pour savoir qui appeler."
+        "body": "Elle vous dit si le problème vient de chez vous ou de votre fournisseur, pour savoir qui appeler. Elle sait lire beaucoup de box, et vous pouvez nous demander d'ajouter la vôtre."
       },
       {
         "title": "Une réclamation prête à envoyer",
@@ -227,7 +227,8 @@
     "tip_title": "Bon à savoir",
     "tips": [
       "Le rapport mensuel (Historique → Rapport mensuel → Imprimer ou enregistrer en PDF) résume tout le mois sur une page.",
-      "Les alertes peuvent arriver sur votre téléphone via Telegram, Discord ou ntfy quand internet coupe."
+      "Les alertes peuvent arriver sur votre téléphone via Telegram, Discord ou ntfy quand internet coupe.",
+      "Ajoutez le mot de passe de votre box dans **Paramètres → Application** pour voir la qualité de la ligne et votre consommation. Si votre box n'est pas encore prise en charge, utilisez **Aidez-nous à prendre en charge votre routeur** au même endroit pour la demander."
     ],
     "advanced_note": "Vous voulez qu'il tourne 24 h/24 sur un Raspberry Pi ? Voir la section Avancé de la page de téléchargement.",
     "advanced_btn": "Avancé : Raspberry Pi",
